@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Str.Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%; overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0A0A0A; color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    height: 100vh; display: flex; flex-direction: column;
+    padding: 2rem 2.5rem;
+  }
+
+  /* ========== BRAND (top left) ========== */
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand svg { width: 50px; height: 50px; border-radius: 12px; }
+  .brand span { font-weight: 800; font-size: 1.35rem; letter-spacing: -0.03em; }
+
+  /* ========== CENTER CONTENT ========== */
+  .center {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+  }
+  .buttons {
+    display: flex; gap: 1.5rem;
+  }
+
+  .app-btn {
+    display: flex; align-items: center; gap: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px; padding: 2rem 3rem;
+    text-decoration: none; color: #FFFFFF;
+    transition: all 0.3s ease;
+  }
+  .app-btn:hover {
+    transform: translateY(-4px);
+  }
+  .app-btn .icon { width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0; }
+  .app-btn .icon svg { width: 72px; height: 72px; border-radius: 18px; }
+  .app-btn .label { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; }
+
+  /* Pitcher: purple→blue gradient background */
+  .btn-pitcher {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(59,130,246,0.12));
+    border-color: rgba(124,58,237,0.2);
+  }
+  .btn-pitcher:hover {
+    background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(59,130,246,0.2));
+    border-color: rgba(124,58,237,0.4);
+    box-shadow: 0 16px 48px rgba(124,58,237,0.15);
+  }
+
+  /* TraKcal: green gradient background */
+  .btn-trakcal {
+    background: linear-gradient(135deg, rgba(22,101,52,0.15), rgba(34,197,94,0.1));
+    border-color: rgba(74,222,128,0.2);
+  }
+  .btn-trakcal:hover {
+    background: linear-gradient(135deg, rgba(22,101,52,0.25), rgba(34,197,94,0.18));
+    border-color: rgba(74,222,128,0.4);
+    box-shadow: 0 16px 48px rgba(22,163,74,0.15);
+  }
+
+  /* ========== FOOTER ========== */
+  footer { text-align: center; padding-bottom: 0.5rem; }
+  footer a {
+    font-size: 0.8rem; color: #666; text-decoration: none; transition: color 0.2s;
+  }
+  footer a:hover { color: #E8734A; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 600px) {
+    .page { padding: 1.5rem; }
+    .buttons { flex-direction: column; }
+    .app-btn { padding: 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <!-- BRAND top left -->
+  <div class="brand">
+    <svg viewBox="0 0 1024 1024">
+      <rect width="1024" height="1024" rx="224" fill="#1A1A1A"/>
+      <text x="512" y="545" text-anchor="middle" dominant-baseline="central" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-size="340" font-weight="800" fill="#E8734A">Str.</text>
+    </svg>
+    <span>Str.Labs</span>
+  </div>
+
+  <!-- TWO BUTTONS centered -->
+  <div class="center">
+    <div class="buttons">
+      <a href="https://pafpitcher.app" class="app-btn btn-pitcher" target="_blank">
+        <div class="icon">
+          <svg viewBox="0 0 800 800">
+            <defs><linearGradient id="pg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient></defs>
+            <rect width="800" height="800" rx="175" fill="#0A0A0A"/>
+            <g transform="translate(260,260)"><circle cx="0" cy="0" r="52" fill="url(#pg)" opacity="0.9"/><path d="M-75,160 C-75,90-50,60 0,55 C50,60 75,90 75,160" fill="url(#pg)" opacity="0.9"/><g transform="translate(-68,40) scale(0.55)"><circle cx="0" cy="-15" r="16" fill="url(#pg)"/><path d="M-18,35 C-18,5-12,-5 0,-8 C12,-5 18,5 18,35" fill="url(#pg)"/><path d="M-8,-10 C-35,-40-40,-20-18,0" fill="url(#pg)" opacity="0.5"/><path d="M8,-10 C35,-40 40,-20 18,0" fill="url(#pg)" opacity="0.5"/></g></g>
+            <g transform="translate(540,260)"><circle cx="0" cy="0" r="52" fill="url(#pg)" opacity="0.9"/><path d="M-75,160 C-75,90-50,60 0,55 C50,60 75,90 75,160" fill="url(#pg)" opacity="0.9"/><g transform="translate(68,40) scale(-0.55,0.55)"><circle cx="0" cy="-15" r="16" fill="url(#pg)"/><path d="M-18,35 C-18,5-12,-5 0,-8 C12,-5 18,5 18,35" fill="url(#pg)"/><path d="M-8,-10 C-35,-40-40,-20-18,0" fill="url(#pg)" opacity="0.5"/><path d="M8,-10 C35,-40 40,-20 18,0" fill="url(#pg)" opacity="0.5"/></g></g>
+            <text x="400" y="555" text-anchor="middle" font-family="Inter,Helvetica Neue,sans-serif" font-size="88" font-weight="700" letter-spacing="3" fill="url(#pg)">Pitcher</text>
+          </svg>
+        </div>
+        <span class="label">Pitcher</span>
+      </a>
+
+      <a href="https://trakcal.app" class="app-btn btn-trakcal" target="_blank">
+        <div class="icon">
+          <svg viewBox="0 0 1024 1024">
+            <defs><linearGradient id="tb" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#166534"/><stop offset="100%" stop-color="#14532D"/></linearGradient><linearGradient id="tr" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#86EFAC"/><stop offset="100%" stop-color="#4ADE80"/></linearGradient></defs>
+            <rect width="1024" height="1024" rx="224" fill="url(#tb)"/>
+            <circle cx="512" cy="512" r="320" fill="none" stroke="#1A5C2E" stroke-width="60"/>
+            <circle cx="512" cy="512" r="320" fill="none" stroke="url(#tr)" stroke-width="60" stroke-dasharray="2010" stroke-dashoffset="500" stroke-linecap="round" transform="rotate(-90 512 512)"/>
+            <g transform="translate(512 490)"><path d="M0-80Q80-80 100 0Q100 80 0 120Q-100 80-100 0Q-80-80 0-80Z" fill="#4ADE80" opacity="0.2"/><polyline points="-50,10-15,50 60,-40" fill="none" stroke="#86EFAC" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/></g>
+          </svg>
+        </div>
+        <span class="label">TraKcal</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="mailto:hey@strlabs.app">hey@strlabs.app</a>
+  </footer>
+</div>
+
+</body>
+</html>
