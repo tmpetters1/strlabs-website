@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+<title>QRderobe — park your jacket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="logo">
+    <div class="logo-mark">QR</div>
+    <span>QRderobe</span>
+  </div>
+  <a href="./staff/" class="muted">Staff →</a>
+</header>
+
+<div class="card card-pad-lg">
+  <h2 id="venue-name">Loading venue…</h2>
+  <p class="sub" id="venue-sub">No bag of tickets, no paper. Pay with Vipps and we hand it back when you're heading out.</p>
+
+  <div id="fee-row" class="row-between mb-18" style="padding: 12px 14px; background: var(--bg-3); border-radius: var(--r-md);">
+    <span class="muted">Coat-check fee</span>
+    <span style="font-weight: 600;"><span id="fee">—</span> kr</span>
+  </div>
+
+  <button id="pay-btn" class="btn btn-vipps" disabled>
+    <span id="pay-label">Pay with Vipps</span>
+  </button>
+  <p class="smaller mt-12 center">You'll get a digital ticket with a QR. Open it again to call for pickup.</p>
+</div>
+
+<div class="card">
+  <div class="row-between">
+    <div>
+      <div style="font-weight: 600;">How it works</div>
+      <div class="muted" style="font-size: 0.85rem;">Three steps</div>
+    </div>
+  </div>
+  <ol class="muted mt-12" style="padding-left: 22px; line-height: 1.55; font-size: 0.9rem;">
+    <li>Tap the Vipps button, approve the payment.</li>
+    <li>Hand your jacket to staff and show your ticket.</li>
+    <li>When you're leaving, open the ticket again and tap <em>I'm coming</em>.</li>
+  </ol>
+</div>
+
+<p class="smaller center mt-18">Test deploy · <a href="./staff/" style="color: var(--text-3);">staff app</a></p>
+
+<script type="module">
+  import { sb, fn } from "./js/sb.js";
+  import { DEFAULT_VENUE_SLUG } from "./js/config.js";
+
+  const params   = new URLSearchParams(location.search);
+  const slug     = params.get("venue") ?? DEFAULT_VENUE_SLUG;
+  const $name    = document.getElementById("venue-name");
+  const $sub     = document.getElementById("venue-sub");
+  const $fee     = document.getElementById("fee");
+  const $btn     = document.getElementById("pay-btn");
+  const $label   = document.getElementById("pay-label");
+
+  // Load venue.
+  const { data: venue, error } = await sb
+    .from("venues")
+    .select("id, slug, name, fee_nok")
+    .eq("slug", slug)
+    .single();
+
+  if (error || !venue) {
+    $name.textContent = "Venue not found";
+    $sub.textContent  = `No venue with slug "${slug}".`;
+    $btn.remove();
+  } else {
+    $name.textContent = venue.name;
+    $fee.textContent  = venue.fee_nok;
+    $label.textContent = `Pay ${venue.fee_nok} kr with Vipps`;
+    $btn.disabled = false;
+  }
+
+  $btn.addEventListener("click", async () => {
+    $btn.disabled = true;
+    $label.innerHTML = '<span class="spin"></span> Starting…';
+    try {
+      const { redirect_url } = await fn("create-payment", { venue_slug: slug });
+      location.href = redirect_url;
+    } catch (e) {
+      $label.textContent = "Couldn't start payment — try again";
+      $btn.disabled = false;
+      console.error(e);
+    }
+  });
+</script>
+
+</body>
+</html>

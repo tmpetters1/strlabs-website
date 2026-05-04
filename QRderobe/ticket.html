@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+<title>Your ticket · QRderobe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="logo">
+    <div class="logo-mark">QR</div>
+    <span>QRderobe</span>
+  </div>
+  <a href="./index.html" class="muted">New ticket</a>
+</header>
+
+<div id="root"></div>
+
+<p class="smaller center mt-18">Keep this page open. Refresh if anything looks stale.</p>
+
+<script type="module">
+  import { sb, fn } from "./js/sb.js";
+  import { tile, colorForNumber } from "./js/colors.js";
+  import QRCode from "https://esm.sh/qrcode@1.5.4";
+
+  const $root = document.getElementById("root");
+  const ref   = new URLSearchParams(location.search).get("ref");
+
+  if (!ref) {
+    $root.innerHTML = `<div class="card"><h2>Missing reference</h2><p class="sub">Open this page from the link Vipps gave you.</p></div>`;
+    throw new Error("no ref");
+  }
+
+  // Initial fetch + realtime updates.
+  let ticket = await loadTicket();
+  if (!ticket) {
+    $root.innerHTML = `<div class="card"><h2>Ticket not found</h2><p class="sub">Reference <code>${ref}</code> doesn't exist.</p></div>`;
+    throw new Error("not found");
+  }
+
+  render();
+
+  // Realtime — when staff places, requests, returns, the page updates live.
+  sb.channel(`ticket-${ref}`)
+    .on("postgres_changes",
+        { event: "UPDATE", schema: "public", table: "tickets", filter: `vipps_reference=eq.${ref}` },
+        (payload) => { ticket = payload.new; render(); })
+    .subscribe();
+
+  async function loadTicket() {
+    const { data } = await sb
+      .from("tickets")
+      .select("id, status, hanger_id, paid_at, placed_at, requested_at, returned_at, vipps_reference, amount_nok")
+      .eq("vipps_reference", ref)
+      .maybeSingle();
+    return data;
+  }
+
+  async function loadHangerInfo(hangerId) {
+    const { data: h } = await sb
+      .from("hangers")
+      .select("id, number, color, current_rack_id")
+      .eq("id", hangerId).maybeSingle();
+    if (!h) return null;
+    let rack = null;
+    if (h.current_rack_id) {
+      const { data: r } = await sb.from("racks").select("name").eq("id", h.current_rack_id).maybeSingle();
+      rack = r?.name ?? null;
+    }
+    return { ...h, rack_name: rack };
+  }
+
+  async function render() {
+    const status = ticket.status;
+    let body = "";
+
+    // Status header
+    const badge = ({
+      draft:     `<span class="badge badge-warn">Awaiting payment</span>`,
+      paid:      `<span class="badge badge-good">Paid · waiting for staff</span>`,
+      placed:    `<span class="badge badge-info">Hanging up</span>`,
+      requested: `<span class="badge badge-warn">Staff is grabbing it</span>`,
+      returned:  `<span class="badge badge-good">Returned · enjoy your night</span>`,
+      cancelled: `<span class="badge badge-bad">Cancelled</span>`,
+    })[status] ?? `<span class="badge">${status}</span>`;
+
+    let hangerBlock = "";
+    if (ticket.hanger_id && (status === "placed" || status === "requested" || status === "returned")) {
+      const h = await loadHangerInfo(ticket.hanger_id);
+      if (h) {
+        const c = colorForNumber(h.number);
+        hangerBlock = `
+          <div class="row mt-18" style="background: var(--bg-3); border-radius: var(--r-md); padding: 14px;">
+            <div class="hanger-tile lg" style="background:${c.tint_hex};border:1.5px solid ${c.border_hex};color:${c.text_hex};">${h.number}</div>
+            <div class="grow">
+              <div class="muted" style="font-size: 0.85rem;">${h.color[0].toUpperCase()+h.color.slice(1)} ${h.number}</div>
+              <div style="font-weight: 600;">${h.rack_name ?? "—"}</div>
+            </div>
+          </div>`;
+      }
+    }
+
+    let action = "";
+    if (status === "placed") {
+      action = `<button id="im-coming" class="btn btn-primary mt-18">I'm coming — get my jacket</button>
+                <p class="smaller center mt-8">Tap when you're heading toward the wardrobe so staff can grab it ahead.</p>`;
+    } else if (status === "requested") {
+      action = `<div class="card-tight mt-18 row" style="background: rgba(229,177,68,0.10); border:1px solid rgba(229,177,68,0.35); border-radius: var(--r-md); padding: 12px 14px;">
+                  <span class="spin"></span>
+                  <span>Staff is grabbing it now…</span>
+                </div>`;
+    } else if (status === "returned") {
+      action = `<p class="muted mt-18 center">Have a great night.</p>`;
+    } else if (status === "paid") {
+      action = `<p class="muted mt-18 center">Hand the jacket to a staff member. They'll bind this ticket to a hanger.</p>`;
+    }
+
+    body = `
+      <div class="card">
+        <div class="row-between mb-12">
+          <h2>Your ticket</h2>
+          ${badge}
+        </div>
+        <div class="qr-box" id="qr"></div>
+        <p class="smaller center mt-12">Reference</p>
+        <p class="center" style="font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--text-2);">${ref}</p>
+        ${hangerBlock}
+        ${action}
+      </div>
+    `;
+    $root.innerHTML = body;
+
+    // Render QR
+    const svg = await QRCode.toString(ref, { type: "svg", margin: 0, color: { dark: "#000", light: "#fff" } });
+    document.getElementById("qr").innerHTML = svg;
+
+    const $imc = document.getElementById("im-coming");
+    if ($imc) {
+      $imc.addEventListener("click", async () => {
+        $imc.disabled = true;
+        $imc.innerHTML = '<span class="spin"></span> Notifying staff…';
+        try {
+          await fn("request-pickup", { ticket_id: ticket.id });
+          // Realtime will re-render us into the requested state.
+        } catch (e) {
+          $imc.textContent = "Failed — try again";
+          $imc.disabled = false;
+          console.error(e);
+        }
+      });
+    }
+  }
+</script>
+
+</body>
+</html>

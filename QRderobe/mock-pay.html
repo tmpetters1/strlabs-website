@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FF5B24">
+<title>Vipps · mock approve</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/main.css">
+<style>
+  body { background: var(--vipps); color: #1a0a04; max-width: 440px; }
+  .vipps-card {
+    background: #fff; color: #1a0a04;
+    border-radius: var(--r-xl); padding: 26px; margin-top: 28px;
+  }
+  .vipps-card h2 { font-size: 1.1rem; margin-bottom: 4px; color: #1a0a04; }
+  .vipps-card .sub { color: #5e493d; font-size: 0.9rem; margin-bottom: 18px; }
+  .amount { font-size: 2.6rem; font-weight: 800; letter-spacing: -0.02em; }
+  .vipps-logo {
+    background: #fff; color: var(--vipps); padding: 6px 12px; border-radius: var(--r-md);
+    font-weight: 800; letter-spacing: -0.02em;
+    display: inline-block; margin-bottom: 18px;
+  }
+  .approve {
+    background: #1a0a04; color: #fff; border-color: #1a0a04;
+  }
+  .approve:hover { background: #2a1407; }
+  .reject {
+    background: transparent; color: #1a0a04; border-color: rgba(26,10,4,0.18);
+  }
+  .reject:hover { background: rgba(0,0,0,0.04); }
+  .mock-tag {
+    color: rgba(255,255,255,0.85); font-size: 0.78rem;
+    text-align: center; margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="vipps-logo">Vipps</div>
+
+<div class="vipps-card">
+  <h2>Approve payment</h2>
+  <p class="sub">QRderobe coat-check</p>
+  <div class="amount"><span id="amount">—</span> <span style="font-size: 1rem; font-weight: 500; color: #5e493d;">kr</span></div>
+  <p class="sub mt-8">Reference <span id="ref" style="font-family: ui-monospace, monospace; font-size: 0.78rem; color: #5e493d;">—</span></p>
+
+  <button id="approve" class="btn approve mt-18">Approve</button>
+  <button id="reject"  class="btn reject mt-12">Reject</button>
+</div>
+
+<p class="mock-tag">⚠️ Mock Vipps — the real flow lands here in <code>live</code> mode.</p>
+
+<script type="module">
+  import { fn } from "./js/sb.js";
+
+  const p = new URLSearchParams(location.search);
+  const ref    = p.get("ref");
+  const amount = p.get("amount") ?? "—";
+
+  document.getElementById("ref").textContent = ref ?? "missing";
+  document.getElementById("amount").textContent = amount;
+
+  document.getElementById("approve").addEventListener("click", async (e) => {
+    e.target.disabled = true;
+    e.target.innerHTML = '<span class="spin"></span> Approving…';
+    try {
+      await fn("mock-approve", { reference: ref });
+      location.href = `./ticket.html?ref=${encodeURIComponent(ref)}`;
+    } catch (err) {
+      e.target.textContent = "Failed — try again";
+      e.target.disabled = false;
+      console.error(err);
+    }
+  });
+
+  document.getElementById("reject").addEventListener("click", () => {
+    location.href = "./index.html";
+  });
+</script>
+
+</body>
+</html>
