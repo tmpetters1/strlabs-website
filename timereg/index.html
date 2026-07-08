@@ -21,7 +21,7 @@
         <div class="icon-badge">🔨</div>
         <h1>Timeregistrering</h1>
         <p class="muted">Skriv inn tilgangskoden for å komme i gang.</p>
-        <input id="gateCode" type="password" placeholder="Tilgangskode" autocomplete="off" autocapitalize="off" autocorrect="off">
+        <input id="gateCode" type="text" placeholder="Tilgangskode" autocomplete="off" autocapitalize="off" autocorrect="off">
         <p id="gateError" class="error hidden"></p>
         <button id="gateSubmit" class="primary">Fortsett</button>
       </div>
@@ -62,7 +62,7 @@
           <textarea id="entryDescription" rows="5" placeholder="Beskriv hva som ble gjort…"></textarea>
 
           <label for="entryPhoto">Bilde (valgfritt)</label>
-          <input id="entryPhoto" type="file" accept="image/*" capture="environment">
+          <input id="entryPhoto" type="file" accept="image/*">
           <img id="photoPreview" class="photo-preview hidden" alt="">
 
           <p id="logError" class="error hidden"></p>
@@ -82,7 +82,7 @@
           <textarea id="expenseDescription" rows="5" placeholder="Beskriv hva utlegget gjaldt…"></textarea>
 
           <label for="expensePhoto">Kvittering (valgfritt)</label>
-          <input id="expensePhoto" type="file" accept="image/*" capture="environment">
+          <input id="expensePhoto" type="file" accept="image/*">
           <img id="expensePhotoPreview" class="photo-preview hidden" alt="">
 
           <p id="expenseError" class="error hidden"></p>
