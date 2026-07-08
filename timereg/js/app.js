@@ -40,7 +40,13 @@ function todayString() {
 
 function formatDateDisplay(dateStr) {
   const [y, m, d] = dateStr.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("nb-NO", { day: "numeric", month: "long", year: "numeric" });
+  const formatted = new Date(y, m - 1, d).toLocaleDateString("nb-NO", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1);
 }
 
 function formatHours(hours) {
