@@ -44,6 +44,7 @@
         <div class="tabs">
           <div class="tab-indicator"></div>
           <button class="tab active" data-tab="log">Registrer</button>
+          <button class="tab" data-tab="expense">Utlegg</button>
           <button class="tab" data-tab="history">Historikk</button>
         </div>
         <button id="switchUserBtn" class="icon-btn" title="Bytt bruker">👤</button>
@@ -69,7 +70,27 @@
         </div>
       </div>
 
+      <div id="tab-expense" class="tab-panel">
+        <div class="card entrance">
+          <label for="expenseDate">Dato</label>
+          <input id="expenseDate" type="date">
+
+          <label for="expenseAmount">Beløp (kr)</label>
+          <input id="expenseAmount" type="text" inputmode="decimal" placeholder="450">
+
+          <label for="expenseDescription">Hva ble det brukt på?</label>
+          <textarea id="expenseDescription" rows="5" placeholder="Beskriv hva utlegget gjaldt…"></textarea>
+
+          <p id="expenseError" class="error hidden"></p>
+          <button id="saveExpenseBtn" class="primary">Lagre</button>
+        </div>
+      </div>
+
       <div id="tab-history" class="tab-panel">
+        <div class="type-row">
+          <button class="filter type-btn active" data-type="hours">Timer</button>
+          <button class="filter type-btn" data-type="expenses">Utlegg</button>
+        </div>
         <div id="totals" class="totals"></div>
         <div class="filter-row">
           <div class="filter-group">
@@ -89,10 +110,10 @@
       <label for="editDate">Dato</label>
       <input id="editDate" type="date">
 
-      <label for="editHours">Timer</label>
+      <label id="editAmountLabel" for="editHours">Timer</label>
       <input id="editHours" type="text" inputmode="decimal">
 
-      <label for="editDescription">Hva ble gjort?</label>
+      <label id="editDescriptionLabel" for="editDescription">Hva ble gjort?</label>
       <textarea id="editDescription" rows="4"></textarea>
 
       <p id="editError" class="error hidden"></p>

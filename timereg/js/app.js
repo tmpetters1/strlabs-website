@@ -48,6 +48,11 @@ function formatHours(hours) {
   return rounded.replace(".", ",") + "t";
 }
 
+function formatAmount(amount) {
+  const rounded = Number.isInteger(amount) ? String(amount) : amount.toFixed(2);
+  return rounded.replace(".", ",") + " kr";
+}
+
 // ---- Avatars: deterministic color + initials per name ----
 const AVATAR_COLORS = ["#ffb340", "#ff6482", "#c774f0", "#6dc9ff", "#4ce0a1", "#ffd54c"];
 
@@ -219,7 +224,9 @@ function enterMainApp() {
   showScreen("main");
   el("entryDate").value = todayString();
   el("entryDate").max = todayString();
-  loadHistory();
+  el("expenseDate").value = todayString();
+  el("expenseDate").max = todayString();
+  loadHistoryData();
   requestAnimationFrame(() => moveTabIndicator(document.querySelector(".tab.active")));
 }
 
@@ -230,7 +237,7 @@ document.querySelectorAll(".tab").forEach((tab) => {
     tab.classList.add("active");
     el(`tab-${tab.dataset.tab}`).classList.add("active");
     moveTabIndicator(tab);
-    if (tab.dataset.tab === "history") loadHistory();
+    if (tab.dataset.tab === "history") loadHistoryData();
   });
 });
 
@@ -317,9 +324,58 @@ async function saveEntry() {
   }
 }
 
+// Log expense
+el("saveExpenseBtn").addEventListener("click", saveExpense);
+
+async function saveExpense() {
+  const dateStr = el("expenseDate").value;
+  const amount = parseFloat(el("expenseAmount").value.replace(",", "."));
+  const description = el("expenseDescription").value.trim();
+  const errorEl = el("expenseError");
+  errorEl.classList.add("hidden");
+
+  if (!dateStr || !Number.isFinite(amount) || amount <= 0 || !description) {
+    errorEl.textContent = "Fyll ut dato, beløp og hva det gjaldt.";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
+  const btn = el("saveExpenseBtn");
+  btn.disabled = true;
+  try {
+    const { error } = await sb.from("expenses").insert({
+      participant_id: currentParticipant.id,
+      expense_date: dateStr,
+      amount,
+      description,
+    });
+    if (error) throw error;
+    el("expenseAmount").value = "";
+    el("expenseDescription").value = "";
+    el("expenseDate").value = todayString();
+    showToast("Utlegg lagret!");
+  } catch {
+    errorEl.textContent = "Kunne ikke lagre. Prøv igjen.";
+    errorEl.classList.remove("hidden");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
 // History
 let allEntries = [];
+let allExpenses = [];
 let historyFilter = "all";
+let historyType = "hours";
+
+document.querySelectorAll(".type-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".type-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    historyType = btn.dataset.type;
+    renderHistory();
+  });
+});
 
 document.querySelectorAll(".filter").forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -330,17 +386,18 @@ document.querySelectorAll(".filter").forEach((btn) => {
   });
 });
 
-async function loadHistory() {
+async function loadHistoryData() {
   const listEl = el("entryList");
   listEl.innerHTML = "<p class='empty-state'>Laster…</p>";
   try {
-    const { data, error } = await sb
-      .from("time_entries")
-      .select("*, participants(name)")
-      .order("entry_date", { ascending: false })
-      .order("created_at", { ascending: false });
-    if (error) throw error;
-    allEntries = data;
+    const [entriesRes, expensesRes] = await Promise.all([
+      sb.from("time_entries").select("*, participants(name)").order("entry_date", { ascending: false }).order("created_at", { ascending: false }),
+      sb.from("expenses").select("*, participants(name)").order("expense_date", { ascending: false }).order("created_at", { ascending: false }),
+    ]);
+    if (entriesRes.error) throw entriesRes.error;
+    if (expensesRes.error) throw expensesRes.error;
+    allEntries = entriesRes.data;
+    allExpenses = expensesRes.data;
     renderHistory();
   } catch {
     listEl.innerHTML = "<p class='empty-state error'>Kunne ikke hente historikk.</p>";
@@ -348,7 +405,16 @@ async function loadHistory() {
 }
 
 function renderHistory() {
-  renderTotals();
+  if (historyType === "hours") {
+    renderHoursTotals();
+    renderHoursList();
+  } else {
+    renderExpenseTotals();
+    renderExpenseList();
+  }
+}
+
+function renderHoursList() {
   const listEl = el("entryList");
   const entries = historyFilter === "mine"
     ? allEntries.filter((e) => e.participant_id === currentParticipant.id)
@@ -371,7 +437,7 @@ function renderHistory() {
           <span class="entry-name ${isMine ? "mine" : ""}">${escapeHtml(entry.participants.name)}</span>
         </div>
         <span class="entry-hours">${formatHours(entry.hours)}</span>
-        ${isMine ? `<button class="entry-edit-btn" data-id="${entry.id}" title="Rediger">✏️</button>` : ""}
+        ${isMine ? `<button class="entry-edit-btn" data-id="${entry.id}" data-kind="hours" title="Rediger">✏️</button>` : ""}
       </div>
       ${entry.photo_url ? `<a href="${entry.photo_url}" target="_blank" rel="noopener"><img class="entry-photo" src="${entry.photo_url}" alt=""></a>` : ""}
       <p class="entry-desc">${escapeHtml(entry.description)}</p>
@@ -381,21 +447,61 @@ function renderHistory() {
   }
 }
 
+function renderExpenseList() {
+  const listEl = el("entryList");
+  const expenses = historyFilter === "mine"
+    ? allExpenses.filter((e) => e.participant_id === currentParticipant.id)
+    : allExpenses;
+
+  if (expenses.length === 0) {
+    listEl.innerHTML = "<p class='empty-state'>Ingen utlegg ennå.</p>";
+    return;
+  }
+
+  listEl.innerHTML = "";
+  for (const expense of expenses) {
+    const isMine = expense.participant_id === currentParticipant.id;
+    const row = document.createElement("div");
+    row.className = "entry-row";
+    row.innerHTML = `
+      <div class="entry-top">
+        <div class="entry-name-group">
+          ${avatarHtml(expense.participants.name, "lg")}
+          <span class="entry-name ${isMine ? "mine" : ""}">${escapeHtml(expense.participants.name)}</span>
+        </div>
+        <span class="entry-hours">${formatAmount(expense.amount)}</span>
+        ${isMine ? `<button class="entry-edit-btn" data-id="${expense.id}" data-kind="expenses" title="Rediger">✏️</button>` : ""}
+      </div>
+      <p class="entry-desc">${escapeHtml(expense.description)}</p>
+      <p class="entry-date">${formatDateDisplay(expense.expense_date)}</p>
+    `;
+    listEl.appendChild(row);
+  }
+}
+
 el("entryList").addEventListener("click", (e) => {
   const btn = e.target.closest(".entry-edit-btn");
   if (!btn) return;
-  const entry = allEntries.find((en) => en.id === btn.dataset.id);
-  if (entry) openEditModal(entry);
+  const kind = btn.dataset.kind;
+  const list = kind === "hours" ? allEntries : allExpenses;
+  const entry = list.find((en) => en.id === btn.dataset.id);
+  if (entry) openEditModal(entry, kind);
 });
 
 // ---- Edit / delete entry ----
 let editingEntryId = null;
+let editingKind = null;
 
-function openEditModal(entry) {
+function openEditModal(entry, kind) {
   editingEntryId = entry.id;
-  el("editDate").value = entry.entry_date;
+  editingKind = kind;
+  el("editDate").value = kind === "hours" ? entry.entry_date : entry.expense_date;
   el("editDate").max = todayString();
-  el("editHours").value = String(entry.hours).replace(".", ",");
+  el("editAmountLabel").textContent = kind === "hours" ? "Timer" : "Beløp (kr)";
+  el("editDescriptionLabel").textContent = kind === "hours" ? "Hva ble gjort?" : "Hva gjaldt det?";
+  el("editHours").value = kind === "hours"
+    ? String(entry.hours).replace(".", ",")
+    : String(entry.amount).replace(".", ",");
   el("editDescription").value = entry.description;
   el("editError").classList.add("hidden");
   el("editModal").classList.remove("hidden");
@@ -403,6 +509,7 @@ function openEditModal(entry) {
 
 function closeEditModal() {
   editingEntryId = null;
+  editingKind = null;
   el("editModal").classList.add("hidden");
 }
 
@@ -413,13 +520,17 @@ el("editModal").addEventListener("click", (e) => {
 
 el("editSaveBtn").addEventListener("click", async () => {
   const dateStr = el("editDate").value;
-  const hours = parseFloat(el("editHours").value.replace(",", "."));
+  const amount = parseFloat(el("editHours").value.replace(",", "."));
   const description = el("editDescription").value.trim();
   const errorEl = el("editError");
   errorEl.classList.add("hidden");
 
-  if (!dateStr || !Number.isFinite(hours) || hours <= 0 || hours > 24 || !description) {
-    errorEl.textContent = "Fyll ut dato, timer og hva som ble gjort.";
+  const valid = editingKind === "hours"
+    ? dateStr && Number.isFinite(amount) && amount > 0 && amount <= 24 && description
+    : dateStr && Number.isFinite(amount) && amount > 0 && description;
+
+  if (!valid) {
+    errorEl.textContent = "Fyll ut alle feltene riktig.";
     errorEl.classList.remove("hidden");
     return;
   }
@@ -427,14 +538,15 @@ el("editSaveBtn").addEventListener("click", async () => {
   const btn = el("editSaveBtn");
   btn.disabled = true;
   try {
-    const { error } = await sb
-      .from("time_entries")
-      .update({ entry_date: dateStr, hours, description })
-      .eq("id", editingEntryId);
+    const table = editingKind === "hours" ? "time_entries" : "expenses";
+    const payload = editingKind === "hours"
+      ? { entry_date: dateStr, hours: amount, description }
+      : { expense_date: dateStr, amount, description };
+    const { error } = await sb.from(table).update(payload).eq("id", editingEntryId);
     if (error) throw error;
     closeEditModal();
     showToast("Oppdatert!");
-    await loadHistory();
+    await loadHistoryData();
   } catch {
     errorEl.textContent = "Kunne ikke lagre endringer.";
     errorEl.classList.remove("hidden");
@@ -448,11 +560,12 @@ el("editDeleteBtn").addEventListener("click", async () => {
   const btn = el("editDeleteBtn");
   btn.disabled = true;
   try {
-    const { error } = await sb.from("time_entries").delete().eq("id", editingEntryId);
+    const table = editingKind === "hours" ? "time_entries" : "expenses";
+    const { error } = await sb.from(table).delete().eq("id", editingEntryId);
     if (error) throw error;
     closeEditModal();
     showToast("Slettet");
-    await loadHistory();
+    await loadHistoryData();
   } catch {
     el("editError").textContent = "Kunne ikke slette.";
     el("editError").classList.remove("hidden");
@@ -461,7 +574,7 @@ el("editDeleteBtn").addEventListener("click", async () => {
   }
 });
 
-function renderTotals() {
+function renderHoursTotals() {
   const totalsEl = el("totals");
   const byPerson = {};
   for (const entry of allEntries) {
@@ -484,34 +597,62 @@ function renderTotals() {
     .join("");
 }
 
+function renderExpenseTotals() {
+  const totalsEl = el("totals");
+  const byPerson = {};
+  for (const expense of allExpenses) {
+    const name = expense.participants.name;
+    byPerson[name] = (byPerson[name] ?? 0) + expense.amount;
+  }
+  const sorted = Object.entries(byPerson).sort((a, b) => b[1] - a[1]);
+  totalsEl.innerHTML = sorted
+    .map(
+      ([name, total]) => `
+      <div class="total-card">
+        ${avatarHtml(name)}
+        <div class="total-info">
+          <span class="total-name">${escapeHtml(name)}</span>
+          <span class="total-hours">${formatAmount(total)}</span>
+        </div>
+      </div>
+    `
+    )
+    .join("");
+}
+
 // ---- CSV export ----
 function csvEscape(value) {
   const str = String(value ?? "");
   return /[;"\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
 }
 
-function exportCsv() {
-  const entries = historyFilter === "mine"
-    ? allEntries.filter((e) => e.participant_id === currentParticipant.id)
-    : allEntries;
-
-  const header = ["Navn", "Dato", "Timer", "Beskrivelse"];
-  const rows = entries.map((e) => [
-    e.participants.name,
-    e.entry_date,
-    String(e.hours).replace(".", ","),
-    e.description,
-  ]);
+function downloadCsv(header, rows, filenameBase) {
   const csv = [header, ...rows].map((row) => row.map(csvEscape).join(";")).join("\r\n");
   const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `timeregistrering-${todayString()}.csv`;
+  a.download = `${filenameBase}-${todayString()}.csv`;
   document.body.appendChild(a);
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+}
+
+function exportCsv() {
+  if (historyType === "hours") {
+    const entries = historyFilter === "mine"
+      ? allEntries.filter((e) => e.participant_id === currentParticipant.id)
+      : allEntries;
+    const rows = entries.map((e) => [e.participants.name, e.entry_date, String(e.hours).replace(".", ","), e.description]);
+    downloadCsv(["Navn", "Dato", "Timer", "Beskrivelse"], rows, "timeregistrering");
+  } else {
+    const expenses = historyFilter === "mine"
+      ? allExpenses.filter((e) => e.participant_id === currentParticipant.id)
+      : allExpenses;
+    const rows = expenses.map((e) => [e.participants.name, e.expense_date, String(e.amount).replace(".", ","), e.description]);
+    downloadCsv(["Navn", "Dato", "Beløp", "Beskrivelse"], rows, "utlegg");
+  }
 }
 
 el("exportBtn").addEventListener("click", exportCsv);
