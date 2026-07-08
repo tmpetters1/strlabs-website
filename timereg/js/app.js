@@ -1,5 +1,4 @@
 import { sb } from "./sb.js";
-import { ACCESS_CODE } from "./config.js";
 
 const LS_KEYS = {
   hasEnteredCode: "tr_hasEnteredCode",
@@ -125,17 +124,20 @@ async function submitGate() {
   const errorEl = el("gateError");
   errorEl.classList.add("hidden");
 
-  if (!code || code.toLowerCase() !== ACCESS_CODE.toLowerCase()) {
-    errorEl.textContent = "Feil kode. Prøv igjen.";
-    errorEl.classList.remove("hidden");
-    return;
-  }
+  if (!code) return;
 
   const btn = el("gateSubmit");
   btn.disabled = true;
   btn.textContent = "…";
   try {
     await ensureSignedIn();
+    const { data: verified, error } = await sb.rpc("verify_access_code", { input_code: code });
+    if (error) throw error;
+    if (!verified) {
+      errorEl.textContent = "Feil kode. Prøv igjen.";
+      errorEl.classList.remove("hidden");
+      return;
+    }
     localStorage.setItem(LS_KEYS.hasEnteredCode, "1");
     await enterNamePicker();
   } catch {
