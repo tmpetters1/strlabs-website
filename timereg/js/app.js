@@ -249,10 +249,33 @@ el("switchUserBtn").addEventListener("click", () => {
 // Log entry
 el("saveEntryBtn").addEventListener("click", saveEntry);
 
+const MAX_PHOTO_BYTES = 10 * 1024 * 1024;
+
+el("entryPhoto").addEventListener("change", () => {
+  const file = el("entryPhoto").files[0];
+  const preview = el("photoPreview");
+  if (!file) {
+    preview.classList.add("hidden");
+    preview.removeAttribute("src");
+    return;
+  }
+  preview.src = URL.createObjectURL(file);
+  preview.classList.remove("hidden");
+});
+
+async function uploadPhoto(file) {
+  const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+  const path = `${currentParticipant.id}/${crypto.randomUUID()}.${ext}`;
+  const { error } = await sb.storage.from("entry-photos").upload(path, file, { contentType: file.type });
+  if (error) throw error;
+  return sb.storage.from("entry-photos").getPublicUrl(path).data.publicUrl;
+}
+
 async function saveEntry() {
   const dateStr = el("entryDate").value;
   const hours = parseFloat(el("entryHours").value.replace(",", "."));
   const description = el("entryDescription").value.trim();
+  const photoFile = el("entryPhoto").files[0] ?? null;
   const errorEl = el("logError");
   errorEl.classList.add("hidden");
 
@@ -262,19 +285,29 @@ async function saveEntry() {
     return;
   }
 
+  if (photoFile && photoFile.size > MAX_PHOTO_BYTES) {
+    errorEl.textContent = "Bildet er for stort (maks 10 MB).";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
   const btn = el("saveEntryBtn");
   btn.disabled = true;
   try {
+    const photoUrl = photoFile ? await uploadPhoto(photoFile) : null;
     const { error } = await sb.from("time_entries").insert({
       participant_id: currentParticipant.id,
       entry_date: dateStr,
       hours,
       description,
+      photo_url: photoUrl,
     });
     if (error) throw error;
     el("entryHours").value = "";
     el("entryDescription").value = "";
     el("entryDate").value = todayString();
+    el("entryPhoto").value = "";
+    el("photoPreview").classList.add("hidden");
     showToast("Lagret!");
   } catch {
     errorEl.textContent = "Kunne ikke lagre. Prøv igjen.";
@@ -338,13 +371,95 @@ function renderHistory() {
           <span class="entry-name ${isMine ? "mine" : ""}">${escapeHtml(entry.participants.name)}</span>
         </div>
         <span class="entry-hours">${formatHours(entry.hours)}</span>
+        ${isMine ? `<button class="entry-edit-btn" data-id="${entry.id}" title="Rediger">✏️</button>` : ""}
       </div>
+      ${entry.photo_url ? `<a href="${entry.photo_url}" target="_blank" rel="noopener"><img class="entry-photo" src="${entry.photo_url}" alt=""></a>` : ""}
       <p class="entry-desc">${escapeHtml(entry.description)}</p>
       <p class="entry-date">${formatDateDisplay(entry.entry_date)}</p>
     `;
     listEl.appendChild(row);
   }
 }
+
+el("entryList").addEventListener("click", (e) => {
+  const btn = e.target.closest(".entry-edit-btn");
+  if (!btn) return;
+  const entry = allEntries.find((en) => en.id === btn.dataset.id);
+  if (entry) openEditModal(entry);
+});
+
+// ---- Edit / delete entry ----
+let editingEntryId = null;
+
+function openEditModal(entry) {
+  editingEntryId = entry.id;
+  el("editDate").value = entry.entry_date;
+  el("editDate").max = todayString();
+  el("editHours").value = String(entry.hours).replace(".", ",");
+  el("editDescription").value = entry.description;
+  el("editError").classList.add("hidden");
+  el("editModal").classList.remove("hidden");
+}
+
+function closeEditModal() {
+  editingEntryId = null;
+  el("editModal").classList.add("hidden");
+}
+
+el("editCancelBtn").addEventListener("click", closeEditModal);
+el("editModal").addEventListener("click", (e) => {
+  if (e.target === el("editModal")) closeEditModal();
+});
+
+el("editSaveBtn").addEventListener("click", async () => {
+  const dateStr = el("editDate").value;
+  const hours = parseFloat(el("editHours").value.replace(",", "."));
+  const description = el("editDescription").value.trim();
+  const errorEl = el("editError");
+  errorEl.classList.add("hidden");
+
+  if (!dateStr || !Number.isFinite(hours) || hours <= 0 || hours > 24 || !description) {
+    errorEl.textContent = "Fyll ut dato, timer og hva som ble gjort.";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
+  const btn = el("editSaveBtn");
+  btn.disabled = true;
+  try {
+    const { error } = await sb
+      .from("time_entries")
+      .update({ entry_date: dateStr, hours, description })
+      .eq("id", editingEntryId);
+    if (error) throw error;
+    closeEditModal();
+    showToast("Oppdatert!");
+    await loadHistory();
+  } catch {
+    errorEl.textContent = "Kunne ikke lagre endringer.";
+    errorEl.classList.remove("hidden");
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+el("editDeleteBtn").addEventListener("click", async () => {
+  if (!confirm("Slette denne registreringen?")) return;
+  const btn = el("editDeleteBtn");
+  btn.disabled = true;
+  try {
+    const { error } = await sb.from("time_entries").delete().eq("id", editingEntryId);
+    if (error) throw error;
+    closeEditModal();
+    showToast("Slettet");
+    await loadHistory();
+  } catch {
+    el("editError").textContent = "Kunne ikke slette.";
+    el("editError").classList.remove("hidden");
+  } finally {
+    btn.disabled = false;
+  }
+});
 
 function renderTotals() {
   const totalsEl = el("totals");
@@ -368,5 +483,37 @@ function renderTotals() {
     )
     .join("");
 }
+
+// ---- CSV export ----
+function csvEscape(value) {
+  const str = String(value ?? "");
+  return /[;"\n\r]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
+}
+
+function exportCsv() {
+  const entries = historyFilter === "mine"
+    ? allEntries.filter((e) => e.participant_id === currentParticipant.id)
+    : allEntries;
+
+  const header = ["Navn", "Dato", "Timer", "Beskrivelse"];
+  const rows = entries.map((e) => [
+    e.participants.name,
+    e.entry_date,
+    String(e.hours).replace(".", ","),
+    e.description,
+  ]);
+  const csv = [header, ...rows].map((row) => row.map(csvEscape).join(";")).join("\r\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `timeregistrering-${todayString()}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+el("exportBtn").addEventListener("click", exportCsv);
 
 boot();

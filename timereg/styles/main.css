@@ -342,9 +342,13 @@ button:active { transform: scale(0.97); }
 
 .filter-row {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 4px 16px 10px;
 }
+
+.filter-group { display: flex; gap: 8px; }
 
 .filter {
   background: var(--surface);
@@ -401,6 +405,88 @@ button:active { transform: scale(0.97); }
 }
 .entry-desc { margin: 0 0 6px; font-size: 15px; line-height: 1.4; white-space: pre-wrap; }
 .entry-date { margin: 0; font-size: 12px; color: var(--muted); }
+
+.entry-photo {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 8px 0;
+  border: 1px solid var(--border-soft);
+}
+
+.entry-edit-btn {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  font-size: 15px;
+  opacity: 0.7;
+  border-radius: 8px;
+}
+
+.entry-edit-btn:hover { opacity: 1; background: var(--surface-strong); }
+
+/* File input (photo) */
+input[type="file"] {
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--muted);
+  accent-color: var(--accent);
+}
+
+input[type="file"]::file-selector-button {
+  background: var(--surface-strong);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 650;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.photo-preview {
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+}
+
+.photo-preview.hidden { display: none; }
+
+/* Edit modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: riseIn 0.2s var(--ease);
+}
+
+.modal-backdrop.hidden { display: none; }
+
+.modal-card { max-height: 88vh; overflow-y: auto; }
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.modal-actions .primary { flex: 1; }
+
+.danger { color: var(--error); }
+.danger:hover { background: rgba(255, 69, 58, 0.14); }
 
 .empty-state {
   margin: auto;

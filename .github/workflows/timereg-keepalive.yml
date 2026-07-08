@@ -1,0 +1,21 @@
+name: Timeregistrering Supabase keep-alive
+
+on:
+  schedule:
+    # Every 3 days at 06:00 UTC — well under the free-tier 7-day inactivity pause.
+    - cron: "0 6 */3 * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Timeregistrering Supabase project
+        run: |
+          curl -sf \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+            "https://tkqeoirgxorqznjsbtsa.supabase.co/rest/v1/participants?select=id&limit=1" \
+            -o /dev/null -w "HTTP %{http_code}\n"
+        env:
+          SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRrcWVvaXJneG9ycXpuanNidHNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MjE5NjAsImV4cCI6MjA5OTA5Nzk2MH0.IHUj5OLloVapomg2lDG2bUuWKe0bSARLoG_q9B2IIV4"
