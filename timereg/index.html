@@ -81,6 +81,10 @@
           <label for="expenseDescription">Hva ble det brukt på?</label>
           <textarea id="expenseDescription" rows="5" placeholder="Beskriv hva utlegget gjaldt…"></textarea>
 
+          <label for="expensePhoto">Kvittering (valgfritt)</label>
+          <input id="expensePhoto" type="file" accept="image/*" capture="environment">
+          <img id="expensePhotoPreview" class="photo-preview hidden" alt="">
+
           <p id="expenseError" class="error hidden"></p>
           <button id="saveExpenseBtn" class="primary">Lagre</button>
         </div>

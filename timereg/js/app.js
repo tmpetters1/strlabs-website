@@ -327,10 +327,23 @@ async function saveEntry() {
 // Log expense
 el("saveExpenseBtn").addEventListener("click", saveExpense);
 
+el("expensePhoto").addEventListener("change", () => {
+  const file = el("expensePhoto").files[0];
+  const preview = el("expensePhotoPreview");
+  if (!file) {
+    preview.classList.add("hidden");
+    preview.removeAttribute("src");
+    return;
+  }
+  preview.src = URL.createObjectURL(file);
+  preview.classList.remove("hidden");
+});
+
 async function saveExpense() {
   const dateStr = el("expenseDate").value;
   const amount = parseFloat(el("expenseAmount").value.replace(",", "."));
   const description = el("expenseDescription").value.trim();
+  const photoFile = el("expensePhoto").files[0] ?? null;
   const errorEl = el("expenseError");
   errorEl.classList.add("hidden");
 
@@ -340,19 +353,29 @@ async function saveExpense() {
     return;
   }
 
+  if (photoFile && photoFile.size > MAX_PHOTO_BYTES) {
+    errorEl.textContent = "Bildet er for stort (maks 10 MB).";
+    errorEl.classList.remove("hidden");
+    return;
+  }
+
   const btn = el("saveExpenseBtn");
   btn.disabled = true;
   try {
+    const photoUrl = photoFile ? await uploadPhoto(photoFile) : null;
     const { error } = await sb.from("expenses").insert({
       participant_id: currentParticipant.id,
       expense_date: dateStr,
       amount,
       description,
+      photo_url: photoUrl,
     });
     if (error) throw error;
     el("expenseAmount").value = "";
     el("expenseDescription").value = "";
     el("expenseDate").value = todayString();
+    el("expensePhoto").value = "";
+    el("expensePhotoPreview").classList.add("hidden");
     showToast("Utlegg lagret!");
   } catch {
     errorEl.textContent = "Kunne ikke lagre. Prøv igjen.";
@@ -472,6 +495,7 @@ function renderExpenseList() {
         <span class="entry-hours">${formatAmount(expense.amount)}</span>
         ${isMine ? `<button class="entry-edit-btn" data-id="${expense.id}" data-kind="expenses" title="Rediger">✏️</button>` : ""}
       </div>
+      ${expense.photo_url ? `<a href="${expense.photo_url}" target="_blank" rel="noopener"><img class="entry-photo" src="${expense.photo_url}" alt=""></a>` : ""}
       <p class="entry-desc">${escapeHtml(expense.description)}</p>
       <p class="entry-date">${formatDateDisplay(expense.expense_date)}</p>
     `;
