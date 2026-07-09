@@ -311,6 +311,8 @@ button:active { transform: scale(0.97); }
 .tab-panel { display: none; flex: 1; min-height: 0; flex-direction: column; overflow: hidden; }
 .tab-panel.active { display: flex; }
 
+#tab-log, #tab-expense { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
 #tab-log .card, #tab-expense .card { width: auto; margin: 8px 16px 16px; }
 
 #tab-history { padding-bottom: 12px; }
