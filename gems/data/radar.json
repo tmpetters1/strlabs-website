@@ -1,6 +1,6 @@
 {
-  "published_at": "2026-08-03T18:14:20.935772+00:00",
-  "updated_at": "2026-08-03T18:07:27Z",
+  "published_at": "2026-08-03T18:29:20.732513+00:00",
+  "updated_at": "2026-08-03T18:27:34Z",
   "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 solana(0.25) \u00b7 metas: stock-reward-mining",
   "filters": {
     "min_liq_usd": 5000,
@@ -61,7 +61,7 @@
       "mc": 226191.0,
       "liq": 52307.0,
       "vol_h24": 139832,
-      "pair_age_minutes": 5591.7,
+      "pair_age_minutes": 5606.7,
       "score": 81.0,
       "status": "briefed",
       "stage_index": 4,
@@ -188,75 +188,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002523,
-          "mc": 226227.0,
-          "liq": 52298.36,
-          "vol_h24": 133473.83,
+          "price_usd": 0.0002521,
+          "mc": 226050.0,
+          "liq": 52276.69,
+          "vol_h24": 133419.33,
           "vol_to_liq": 2.55,
-          "change_m5": -1.18,
-          "change_h1": -1.84,
-          "change_h6": -3.78,
-          "change_h24": -24.22,
-          "buys_h1": 65,
-          "sells_h1": 58,
-          "buys_h24": 1800,
-          "sells_h24": 1404,
+          "change_m5": -0.85,
+          "change_h1": 1.4,
+          "change_h6": -1.42,
+          "change_h24": -21.96,
+          "buys_h1": 71,
+          "sells_h1": 54,
+          "buys_h24": 1809,
+          "sells_h24": 1394,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 5591.7
+          "pair_age_minutes": 5606.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0003329375
+              "p": 0.0003230395
             },
             {
               "t": "6h_ago",
-              "p": 0.0002622116
+              "p": 0.0002557314
             },
             {
               "t": "1h_ago",
-              "p": 0.0002570293
+              "p": 0.0002486193
             },
             {
               "t": "5m_ago",
-              "p": 0.0002553127
+              "p": 0.0002542612
             },
             {
               "t": "now",
-              "p": 0.0002523
+              "p": 0.0002521
             }
           ],
           "change": {
-            "m5": -1.18,
-            "h1": -1.84,
-            "h6": -3.78,
-            "h24": -24.22
+            "m5": -0.85,
+            "h1": 1.4,
+            "h6": -1.42,
+            "h24": -21.96
           },
           "volume": {
-            "h24": 133473.83,
-            "h6": 30406.42,
-            "h1": 4908.4,
-            "m5": 295.52
+            "h24": 133419.33,
+            "h6": 30497.02,
+            "h1": 4463.84,
+            "m5": 419.42
           },
           "txns": {
             "m5": {
-              "buys": 6,
+              "buys": 5,
               "sells": 5
             },
             "h1": {
-              "buys": 65,
-              "sells": 58
+              "buys": 71,
+              "sells": 54
             },
             "h6": {
-              "buys": 423,
-              "sells": 388
+              "buys": 434,
+              "sells": 380
             },
             "h24": {
-              "buys": 1800,
-              "sells": 1404
+              "buys": 1809,
+              "sells": 1394
             }
           }
         },
@@ -273,7 +273,7 @@
       "mc": 162926.0,
       "liq": 128623.0,
       "vol_h24": 76849,
-      "pair_age_minutes": 99421.8,
+      "pair_age_minutes": 99436.8,
       "score": 76.0,
       "status": "briefed",
       "stage_index": 4,
@@ -381,75 +381,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.904e-06,
-          "mc": 190476.0,
-          "liq": 141786.73,
-          "vol_h24": 92094.29,
-          "vol_to_liq": 0.65,
-          "change_m5": -0.07,
-          "change_h1": 9.32,
-          "change_h6": 19.29,
-          "change_h24": 46.7,
-          "buys_h1": 27,
-          "sells_h1": 70,
-          "buys_h24": 475,
-          "sells_h24": 812,
+          "price_usd": 1.863e-06,
+          "mc": 186395.0,
+          "liq": 139917.41,
+          "vol_h24": 92134.56,
+          "vol_to_liq": 0.66,
+          "change_m5": -0.22,
+          "change_h1": 5.4,
+          "change_h6": 15.82,
+          "change_h24": 42.06,
+          "buys_h1": 22,
+          "sells_h1": 60,
+          "buys_h24": 473,
+          "sells_h24": 817,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 99421.8
+          "pair_age_minutes": 99436.8
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.2979e-06
+              "p": 1.3114e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.5961e-06
+              "p": 1.6085e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.7417e-06
+              "p": 1.7676e-06
             },
             {
               "t": "5m_ago",
-              "p": 1.9053e-06
+              "p": 1.8671e-06
             },
             {
               "t": "now",
-              "p": 1.904e-06
+              "p": 1.863e-06
             }
           ],
           "change": {
-            "m5": -0.07,
-            "h1": 9.32,
-            "h6": 19.29,
-            "h24": 46.7
+            "m5": -0.22,
+            "h1": 5.4,
+            "h6": 15.82,
+            "h24": 42.06
           },
           "volume": {
-            "h24": 92094.29,
-            "h6": 19336.14,
-            "h1": 10385.26,
-            "m5": 12.96
+            "h24": 92134.56,
+            "h6": 19799.02,
+            "h1": 10026.84,
+            "m5": 60.11
           },
           "txns": {
             "m5": {
               "buys": 0,
-              "sells": 2
+              "sells": 1
             },
             "h1": {
-              "buys": 27,
-              "sells": 70
+              "buys": 22,
+              "sells": 60
             },
             "h6": {
-              "buys": 103,
-              "sells": 198
+              "buys": 101,
+              "sells": 203
             },
             "h24": {
-              "buys": 475,
-              "sells": 812
+              "buys": 473,
+              "sells": 817
             }
           }
         },
@@ -659,6 +659,276 @@
       "thesis": "Class meme/brainrot novelty=none (not product). Conductor gate: skip unless product thesis. Whale no SM; flow only. No deep brief.",
       "priority": "low",
       "explorer": "https://robinhoodchain.blockscout.com/token/0xa85Bd69EA5492e42bb912A82B4fEED6fe10D5e12"
+    },
+    {
+      "symbol": "APE",
+      "chain": "solana",
+      "token": "2ux3CX2VSvGnHEFmAfYaVoKPQeN1oYAtKaaaTYf2pump",
+      "pair": "HvN8kWksk8MmZcjTb5iuS7Ke1zNGAMiQjLMWRrECeZD",
+      "url": "https://dexscreener.com/solana/hvn8kwksk8mmzcjtb5ius7ke1zngamiqjlmwrrecezd",
+      "mc": 26457.0,
+      "liq": 11124.09,
+      "vol_h24": 555818.95,
+      "pair_age_minutes": 17.8,
+      "score": null,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:27:34Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": null,
+      "subcategory": null,
+      "novelty": null,
+      "thesis": "solana dex-profile; mc~26457; liq~11124; vol24~555819; age~18m",
+      "priority": null,
+      "explorer": "https://solscan.io/token/2ux3CX2VSvGnHEFmAfYaVoKPQeN1oYAtKaaaTYf2pump"
+    },
+    {
+      "symbol": "DECISION",
+      "chain": "solana",
+      "token": "5XsEGrnJiUBmWFzqkV4nPDUxsB3TuxTcTcWdoPhzpump",
+      "pair": "2whhkGbKiXqdqVkv5McY6xFA8esGE7kNfUhrZrCDKupt",
+      "url": "https://dexscreener.com/solana/2whhkgbkixqdqvkv5mcy6xfa8esge7knfuhrzrcdkupt",
+      "mc": 132307.0,
+      "liq": 25083.8,
+      "vol_h24": 54593.53,
+      "pair_age_minutes": 43.3,
+      "score": null,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:27:34Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": null,
+      "subcategory": null,
+      "novelty": null,
+      "thesis": "solana dex-profile; mc~132307; liq~25084; vol24~54594; age~43m",
+      "priority": null,
+      "explorer": "https://solscan.io/token/5XsEGrnJiUBmWFzqkV4nPDUxsB3TuxTcTcWdoPhzpump"
+    },
+    {
+      "symbol": "Smudgecoin",
+      "chain": "solana",
+      "token": "sfrYU54zKsYxCXtY59E8WV1puaNHQ8bC3RAWUHUpump",
+      "pair": "2pugPHff1hbD1nwjeYgZ6Sz5XxSd1mAsT8iTVFfLHJrH",
+      "url": "https://dexscreener.com/solana/2pugphff1hbd1nwjeygz6sz5xxsd1mast8itvfflhjrh",
+      "mc": 25636.0,
+      "liq": 10291.85,
+      "vol_h24": 34768.76,
+      "pair_age_minutes": 6.1,
+      "score": null,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:27:34Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": null,
+      "subcategory": null,
+      "novelty": null,
+      "thesis": "solana dex-profile; mc~25636; liq~10292; vol24~34769; age~6m",
+      "priority": null,
+      "explorer": "https://solscan.io/token/sfrYU54zKsYxCXtY59E8WV1puaNHQ8bC3RAWUHUpump"
+    },
+    {
+      "symbol": "COMPANY",
+      "chain": "robinhood",
+      "token": "0x52D08954699Ee80Db6d926df62b3c8692c66DEf9",
+      "pair": "0xF7D7A721AD0949ccEa6d5Ee4EEa441Dd27064601",
+      "url": "https://dexscreener.com/robinhood/0xf7d7a721ad0949ccea6d5ee4eea441dd27064601",
+      "mc": 29927.0,
+      "liq": 15088.58,
+      "vol_h24": 82961.81,
+      "pair_age_minutes": 15.3,
+      "score": null,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:27:15Z",
+      "checks_done": 1,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": null,
+      "subcategory": null,
+      "novelty": null,
+      "thesis": "robinhood dex-profile; mc~29927; liq~15089; vol24~82962; age~15m",
+      "priority": null,
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x52D08954699Ee80Db6d926df62b3c8692c66DEf9"
+    },
+    {
+      "symbol": "TRSA",
+      "chain": "robinhood",
+      "token": "0x08629f9A1cCe96c60cad043197B796105b45eEc6",
+      "pair": "0x2b5f4e07eb29d8ab994A7893520E6bC176a267F9",
+      "url": "https://dexscreener.com/robinhood/0x2b5f4e07eb29d8ab994a7893520e6bc176a267f9",
+      "mc": 1370651.0,
+      "liq": 142239.93,
+      "vol_h24": 4161607.94,
+      "pair_age_minutes": 139.6,
+      "score": null,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:27:10Z",
+      "checks_done": 1,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": null,
+      "subcategory": null,
+      "novelty": null,
+      "thesis": "robinhood dex-profile; mc~1370651; liq~142240; vol24~4161608; age~140m",
+      "priority": null,
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x08629f9A1cCe96c60cad043197B796105b45eEc6"
+    },
+    {
+      "symbol": "FRED",
+      "chain": "solana",
+      "token": "HtK6PtfghpsomyUk5mJA91DGpLAkJkGuMy65XK6gpump",
+      "pair": "5CnvjWSTpnTmonNt3NFqJMRG5q9zv9XrFeYZm25x3RXu",
+      "url": "https://dexscreener.com/solana/5cnvjwstpntmonnt3nfqjmrg5q9zv9xrfeyzm25x3rxu",
+      "mc": 69330.0,
+      "liq": 18586.44,
+      "vol_h24": 442551.01,
+      "pair_age_minutes": 25.2,
+      "score": null,
+      "status": "classified",
+      "stage_index": 1,
+      "waiting_on": "whale",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:17:05Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~69330; liq~18586; vol24~442551; age~25m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/HtK6PtfghpsomyUk5mJA91DGpLAkJkGuMy65XK6gpump"
+    },
+    {
+      "symbol": "MIAO",
+      "chain": "solana",
+      "token": "FGv66qXAKiXDFwdRKKU2EQVAYRJkBDU5bdcsxP1fpump",
+      "pair": "FcS2Fv73ErsSDh1mHWPrRMn3uCoZRoXLWBwxLY3gzpav",
+      "url": "https://dexscreener.com/solana/fcs2fv73erssdh1mhwprrmn3ucozroxlwbwxly3gzpav",
+      "mc": 122473.0,
+      "liq": 24815.73,
+      "vol_h24": 315262.74,
+      "pair_age_minutes": 34.0,
+      "score": null,
+      "status": "classified",
+      "stage_index": 1,
+      "waiting_on": "whale",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:17:05Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~122473; liq~24816; vol24~315263; age~34m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/FGv66qXAKiXDFwdRKKU2EQVAYRJkBDU5bdcsxP1fpump"
+    },
+    {
+      "symbol": "Queefcoin",
+      "chain": "solana",
+      "token": "8G4XEHtNpoDmtf9emkGFEkwHwPeCXkS5V4MpfrBJpump",
+      "pair": "8vd5MeArQ7Usc6gZsuxijAxtG8KKWQWGh9Sq5WPDjhU8",
+      "url": "https://dexscreener.com/solana/8vd5mearq7usc6gzsuxijaxtg8kkwqwgh9sq5wpdjhu8",
+      "mc": 25256.0,
+      "liq": 10267.64,
+      "vol_h24": 97825.47,
+      "pair_age_minutes": 69.2,
+      "score": null,
+      "status": "classified",
+      "stage_index": 1,
+      "waiting_on": "whale",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:17:05Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~25256; liq~10268; vol24~97825; age~69m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/8G4XEHtNpoDmtf9emkGFEkwHwPeCXkS5V4MpfrBJpump"
+    },
+    {
+      "symbol": "DOGE",
+      "chain": "solana",
+      "token": "E5xt4BXoo9mskPobYnrJDA3zgiA9LzywEDc4uvueAsFL",
+      "pair": "6MuNPDpmFDf9WjDcCEEmLWSsvtLH9t9sd2ojEkvhUK3Q",
+      "url": "https://dexscreener.com/solana/6munpdpmfdf9wjdcceemlwssvtlh9t9sd2ojekvhuk3q",
+      "mc": 107658.0,
+      "liq": 26557.42,
+      "vol_h24": 2272261.51,
+      "pair_age_minutes": 1034.2,
+      "score": null,
+      "status": "classified",
+      "stage_index": 1,
+      "waiting_on": "whale",
+      "last_touch_by": "scout",
+      "last_touch_at": "2026-08-03T18:17:05Z",
+      "checks_done": 0,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-boost",
+      "brief": false,
+      "brief_path": "",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-boost; mc~107658; liq~26557; vol24~2272262; age~1034m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/E5xt4BXoo9mskPobYnrJDA3zgiA9LzywEDc4uvueAsFL"
     },
     {
       "symbol": "Flappers",
@@ -2578,75 +2848,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002523,
-          "mc": 226227.0,
-          "liq": 52298.36,
-          "vol_h24": 133473.83,
+          "price_usd": 0.0002521,
+          "mc": 226050.0,
+          "liq": 52276.69,
+          "vol_h24": 133419.33,
           "vol_to_liq": 2.55,
-          "change_m5": -1.18,
-          "change_h1": -1.84,
-          "change_h6": -3.78,
-          "change_h24": -24.22,
-          "buys_h1": 65,
-          "sells_h1": 58,
-          "buys_h24": 1800,
-          "sells_h24": 1404,
+          "change_m5": -0.85,
+          "change_h1": 1.4,
+          "change_h6": -1.42,
+          "change_h24": -21.96,
+          "buys_h1": 71,
+          "sells_h1": 54,
+          "buys_h24": 1809,
+          "sells_h24": 1394,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 5591.7
+          "pair_age_minutes": 5606.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0003329375
+              "p": 0.0003230395
             },
             {
               "t": "6h_ago",
-              "p": 0.0002622116
+              "p": 0.0002557314
             },
             {
               "t": "1h_ago",
-              "p": 0.0002570293
+              "p": 0.0002486193
             },
             {
               "t": "5m_ago",
-              "p": 0.0002553127
+              "p": 0.0002542612
             },
             {
               "t": "now",
-              "p": 0.0002523
+              "p": 0.0002521
             }
           ],
           "change": {
-            "m5": -1.18,
-            "h1": -1.84,
-            "h6": -3.78,
-            "h24": -24.22
+            "m5": -0.85,
+            "h1": 1.4,
+            "h6": -1.42,
+            "h24": -21.96
           },
           "volume": {
-            "h24": 133473.83,
-            "h6": 30406.42,
-            "h1": 4908.4,
-            "m5": 295.52
+            "h24": 133419.33,
+            "h6": 30497.02,
+            "h1": 4463.84,
+            "m5": 419.42
           },
           "txns": {
             "m5": {
-              "buys": 6,
+              "buys": 5,
               "sells": 5
             },
             "h1": {
-              "buys": 65,
-              "sells": 58
+              "buys": 71,
+              "sells": 54
             },
             "h6": {
-              "buys": 423,
-              "sells": 388
+              "buys": 434,
+              "sells": 380
             },
             "h24": {
-              "buys": 1800,
-              "sells": 1404
+              "buys": 1809,
+              "sells": 1394
             }
           }
         },
@@ -2750,75 +3020,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.904e-06,
-          "mc": 190476.0,
-          "liq": 141786.73,
-          "vol_h24": 92094.29,
-          "vol_to_liq": 0.65,
-          "change_m5": -0.07,
-          "change_h1": 9.32,
-          "change_h6": 19.29,
-          "change_h24": 46.7,
-          "buys_h1": 27,
-          "sells_h1": 70,
-          "buys_h24": 475,
-          "sells_h24": 812,
+          "price_usd": 1.863e-06,
+          "mc": 186395.0,
+          "liq": 139917.41,
+          "vol_h24": 92134.56,
+          "vol_to_liq": 0.66,
+          "change_m5": -0.22,
+          "change_h1": 5.4,
+          "change_h6": 15.82,
+          "change_h24": 42.06,
+          "buys_h1": 22,
+          "sells_h1": 60,
+          "buys_h24": 473,
+          "sells_h24": 817,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 99421.8
+          "pair_age_minutes": 99436.8
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.2979e-06
+              "p": 1.3114e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.5961e-06
+              "p": 1.6085e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.7417e-06
+              "p": 1.7676e-06
             },
             {
               "t": "5m_ago",
-              "p": 1.9053e-06
+              "p": 1.8671e-06
             },
             {
               "t": "now",
-              "p": 1.904e-06
+              "p": 1.863e-06
             }
           ],
           "change": {
-            "m5": -0.07,
-            "h1": 9.32,
-            "h6": 19.29,
-            "h24": 46.7
+            "m5": -0.22,
+            "h1": 5.4,
+            "h6": 15.82,
+            "h24": 42.06
           },
           "volume": {
-            "h24": 92094.29,
-            "h6": 19336.14,
-            "h1": 10385.26,
-            "m5": 12.96
+            "h24": 92134.56,
+            "h6": 19799.02,
+            "h1": 10026.84,
+            "m5": 60.11
           },
           "txns": {
             "m5": {
               "buys": 0,
-              "sells": 2
+              "sells": 1
             },
             "h1": {
-              "buys": 27,
-              "sells": 70
+              "buys": 22,
+              "sells": 60
             },
             "h6": {
-              "buys": 103,
-              "sells": 198
+              "buys": 101,
+              "sells": 203
             },
             "h24": {
-              "buys": 475,
-              "sells": 812
+              "buys": 473,
+              "sells": 817
             }
           }
         },
@@ -2838,8 +3108,8 @@
       "notified"
     ],
     "counts": {
-      "queued": 1,
-      "classified": 39,
+      "queued": 6,
+      "classified": 43,
       "whale_reviewed": 16,
       "researching": 0,
       "briefed": 5,
@@ -2973,10 +3243,10 @@
   "accuracy": {
     "available": true,
     "tracked": 24,
-    "graded": 22,
-    "pending": 2,
+    "graded": 23,
+    "pending": 1,
     "verdicts": {
-      "flat": 22
+      "flat": 23
     },
     "by_score_band": {
       "70-77": {
@@ -3004,11 +3274,11 @@
         "delisted": 0
       },
       "<60": {
-        "n": 8,
+        "n": 9,
         "winner": 0,
         "loser": 0,
         "rug": 0,
-        "flat": 8,
+        "flat": 9,
         "delisted": 0
       },
       "78+": {
@@ -3027,10 +3297,10 @@
       "date": "2026-08-03",
       "count": 0
     },
-    "last_scan_at": "2026-08-03T18:07:27Z",
+    "last_scan_at": "2026-08-03T18:27:34Z",
     "version": 3,
     "new_this_run": 5,
-    "total_rows": 63,
+    "total_rows": 72,
     "notify_cards": 2,
     "update_mode": "publish_script_plus_git_push"
   }
