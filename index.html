@@ -74,6 +74,16 @@
     box-shadow: 0 16px 48px rgba(22,163,74,0.15);
   }
 
+  .btn-gems {
+    background: linear-gradient(135deg, rgba(232,115,74,0.12), rgba(251,191,36,0.08));
+    border-color: rgba(232,115,74,0.22);
+  }
+  .btn-gems:hover {
+    background: linear-gradient(135deg, rgba(232,115,74,0.2), rgba(251,191,36,0.14));
+    border-color: rgba(232,115,74,0.45);
+    box-shadow: 0 16px 48px rgba(232,115,74,0.15);
+  }
+
   /* ========== FOOTER ========== */
   footer { text-align: center; padding-bottom: 0.5rem; }
   footer a {
@@ -128,6 +138,17 @@
           </svg>
         </div>
         <span class="label">TraKcal</span>
+      </a>
+
+      <a href="/gems/" class="app-btn btn-gems">
+        <div class="icon">
+          <svg viewBox="0 0 1024 1024">
+            <rect width="1024" height="1024" rx="224" fill="#1A1A1A"/>
+            <polygon points="512,180 820,420 700,820 324,820 204,420" fill="none" stroke="#E8734A" stroke-width="48" stroke-linejoin="round"/>
+            <polygon points="512,300 700,450 630,700 394,700 324,450" fill="#E8734A" opacity="0.9"/>
+          </svg>
+        </div>
+        <span class="label">Gem Radar</span>
       </a>
     </div>
   </div>
