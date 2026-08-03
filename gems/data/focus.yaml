@@ -1,0 +1,85 @@
+# Living focus map — agents (especially Macro + Conductor) update this.
+# Do not hardcode chain logic in prompts alone; read this file every session.
+
+version: 1
+updated_at: "2026-08-03"
+updated_by: macro
+# See also: ops.yaml (discord activity + wake routes), COMMS.md
+
+active_chains:
+  - id: robinhood
+    weight: 1.0
+    explorer: blockscout
+    notes: "Primary heat — RH L2; Bankr (stock/agent) + Pons (meme pad) + stock-reward-mining"
+  - id: base
+    weight: 0.7
+    explorer: etherscan
+    chainid: 8453
+    notes: "Infra / AI-agent stack (gitlawb-class), Coinbase orbit"
+  - id: bsc
+    weight: 0.5
+    explorer: etherscan
+    chainid: 56
+    notes: "Fast meme volume; high noise — stricter filters"
+  - id: solana
+    weight: 0.25
+    explorer: none
+    notes: "Secondary unless narrative crosses over"
+
+launchpads:
+  - name: Bankr
+    weight: 1.0
+    chains: [robinhood]
+    signals: ["bankr", "bnkr", "bankrbot", "stock-paired"]
+    notes: "Hot RH launchpad; stock-token quote pools"
+  - name: Pons
+    weight: 0.75
+    chains: [robinhood]
+    signals: ["pons", "ponslaunch", "ponslaunchfactory", "ponslaunchertoken", "ponsfamily", "ponsdotfamily"]
+    notes: >
+      RH meme launchpad (ponsfamily.com/launchpad · @ponsdotfamily). Platform token $PONS
+      0x39dBED3a2bd333467115dE45665cC57F813C4571 mc~$22.6M liq~$1.45M top-pair vol24~$1.9M
+      (Dex 2026-08-03). Soft share claims ~60% pad vol / ~69% deploys — direction not hard.
+      V2: ETH curve + Uni V4 + custom pairs (USDG/NVDA/AAPL/HOOD) may bleed stock-paired later.
+      Serial factory noise-heavy; filter liq+socials hard. Bankr=1.0 keeps agentic/stock-quote edge.
+
+hot_metas:
+  - id: stock-reward-mining
+    weight: 0.55
+    chains: [robinhood]
+    notes: "Taxonomy leaf live (GLD/Bullion-class). Mechanism > ticker. Thin-liq names stay score-gated."
+# Also filled by Macro from Dex /metas/trending + X
+
+watch_x:
+  - bankrbot
+  - ponsdotfamily
+  - MEADGod
+
+# These are READ AT RUNTIME by scripts/scout_scan.py via common.focus().
+# Change them here — do not hardcode filter values in a script or a prompt.
+filters:
+  min_liq_usd: 5000
+  min_mc_usd: 15000
+  max_mc_usd: 2000000
+  max_candidates_per_run: 5
+  notify_min_score: 78
+  max_discord_pings_per_day: 8
+  # Set >0 to skip brand-new pairs (sniper window). 0 = no age filter.
+  min_pair_age_minutes: 0
+  max_top1_pct_ex_lp: 25.0
+
+# Scout builds its Dex search queries from launchpad `signals`, `hot_metas` ids
+# and `watch_x` handles above — adding a launchpad here changes what is scanned.
+
+notify:
+  discord: true
+  dashboard: true
+  ping_user_id: "217012868514578432"
+
+paths:
+  root: /Users/tmpettersen/.openclaw/gem-radar
+  # Canonical publish tree (NOT Desktop — iCloud dataless deadlocks)
+  dashboard: /Users/tmpettersen/.openclaw/publish/strlabs-website/gems
+  dashboard_url: https://strlabs.app/gems/
+  # Custom subdomain needs DNS CNAME — not live yet:
+  dashboard_url_custom: https://gems.strlabs.app/
