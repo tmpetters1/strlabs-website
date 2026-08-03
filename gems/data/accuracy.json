@@ -4,7 +4,8 @@
   "graded": 25,
   "pending": 1,
   "verdicts": {
-    "flat": 24,
+    "flat": 23,
+    "loser": 1,
     "winner": 1
   },
   "by_score_band": {
@@ -19,9 +20,9 @@
     "60-69": {
       "n": 4,
       "winner": 0,
-      "loser": 0,
+      "loser": 1,
       "rug": 0,
-      "flat": 4,
+      "flat": 3,
       "delisted": 0
     },
     "unscored": {
