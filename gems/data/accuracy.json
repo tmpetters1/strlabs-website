@@ -1,10 +1,10 @@
 {
   "available": true,
-  "tracked": 20,
-  "graded": 16,
-  "pending": 4,
+  "tracked": 21,
+  "graded": 18,
+  "pending": 3,
   "verdicts": {
-    "flat": 16
+    "flat": 18
   },
   "by_score_band": {
     "70-77": {
@@ -32,13 +32,21 @@
       "delisted": 0
     },
     "<60": {
-      "n": 6,
+      "n": 7,
       "winner": 0,
       "loser": 0,
       "rug": 0,
-      "flat": 6,
+      "flat": 7,
+      "delisted": 0
+    },
+    "78+": {
+      "n": 1,
+      "winner": 0,
+      "loser": 0,
+      "rug": 0,
+      "flat": 1,
       "delisted": 0
     }
   },
-  "note": "peak-based vs the baseline captured at decision time"
+  "note": "peak-based vs baseline at decision time"
 }

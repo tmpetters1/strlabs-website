@@ -1,431 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><rect width='1024' height='1024' rx='224' fill='%231A1A1A'/><text x='512' y='545' text-anchor='middle' dominant-baseline='central' font-family='Inter,sans-serif' font-size='340' font-weight='800' fill='%23E8734A'>Str.</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0A0A0A;
-    --panel: #121212;
-    --panel2: #171717;
-    --line: rgba(255,255,255,0.08);
-    --text: #F5F5F5;
-    --muted: #8A8A8A;
-    --accent: #E8734A;
-    --green: #34D399;
-    --yellow: #FBBF24;
-    --red: #F87171;
-    --blue: #60A5FA;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
-
-  #gate {
-    min-height: 100vh; display: grid; place-items: center; padding: 1.5rem;
-  }
-  .gate-card {
-    width: min(420px, 100%);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 2rem;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-  }
-  .gate-card h1 { font-size: 1.35rem; letter-spacing: -0.03em; margin-bottom: 0.35rem; }
-  .gate-card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 1.25rem; line-height: 1.45; }
-  .gate-card input {
-    width: 100%;
-    background: #0d0d0d;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    color: var(--text);
-    padding: 0.9rem 1rem;
-    font-size: 1rem;
-    outline: none;
-  }
-  .gate-card input:focus { border-color: rgba(232,115,74,0.55); }
-  .gate-card button {
-    width: 100%;
-    margin-top: 0.85rem;
-    border: 0;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #E8734A, #c45a36);
-    color: white;
-    font-weight: 700;
-    padding: 0.9rem 1rem;
-    cursor: pointer;
-  }
-  .gate-error { color: var(--red); font-size: 0.85rem; min-height: 1.2rem; margin-top: 0.75rem; }
-
-  #app { display: none; padding: 1.25rem clamp(1rem, 3vw, 2rem) 3rem; }
-  .top {
-    display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 1.25rem;
-  }
-  .brand { display: flex; gap: 0.75rem; align-items: center; }
-  .brand-mark {
-    width: 42px; height: 42px; border-radius: 12px; background: #1A1A1A;
-    display: grid; place-items: center; color: var(--accent); font-weight: 800;
-  }
-  .brand h1 { font-size: 1.25rem; letter-spacing: -0.03em; }
-  .brand .sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.15rem; }
-  .meta {
-    display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: flex-end;
-  }
-  .chip {
-    border: 1px solid var(--line);
-    background: var(--panel);
-    border-radius: 999px;
-    padding: 0.35rem 0.7rem;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-  .chip strong { color: var(--text); font-weight: 600; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1rem;
-  }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 1rem 1.1rem;
-  }
-  .span-8 { grid-column: span 8; }
-  .span-4 { grid-column: span 4; }
-  .span-12 { grid-column: span 12; }
-  @media (max-width: 960px) {
-    .span-8, .span-4 { grid-column: span 12; }
-  }
-  .card h2 {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    margin-bottom: 0.85rem;
-  }
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 0.65rem;
-  }
-  .stat {
-    background: var(--panel2);
-    border-radius: 12px;
-    padding: 0.75rem;
-  }
-  .stat .k { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
-  .stat .v { font-size: 1.25rem; font-weight: 700; margin-top: 0.25rem; letter-spacing: -0.03em; }
-
-  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-  th, td { text-align: left; padding: 0.7rem 0.45rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-  tr:last-child td { border-bottom: 0; }
-  .sym { font-weight: 700; letter-spacing: -0.02em; }
-  .muted { color: var(--muted); }
-  .badge {
-    display: inline-flex; align-items: center; gap: 0.3rem;
-    border-radius: 999px; padding: 0.15rem 0.55rem; font-size: 0.72rem; font-weight: 600;
-    border: 1px solid var(--line); background: #101010; color: var(--muted);
-  }
-  .badge.notify { color: #052e1b; background: rgba(52,211,153,0.18); border-color: rgba(52,211,153,0.35); color: var(--green); }
-  .badge.watch { color: var(--yellow); border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.08); }
-  .badge.kill { color: var(--red); border-color: rgba(248,113,113,0.3); background: rgba(248,113,113,0.08); }
-  .badge.blue { color: var(--blue); border-color: rgba(96,165,250,0.3); background: rgba(96,165,250,0.08); }
-  .score {
-    font-weight: 700; font-variant-numeric: tabular-nums;
-  }
-  .score.hi { color: var(--green); }
-  .score.mid { color: var(--yellow); }
-  .score.lo { color: var(--muted); }
-  .empty { color: var(--muted); padding: 1rem 0; }
-  .list { display: grid; gap: 0.55rem; }
-  .list-item {
-    background: var(--panel2);
-    border-radius: 12px;
-    padding: 0.7rem 0.8rem;
-    font-size: 0.88rem;
-  }
-  .footer {
-    margin-top: 1.25rem;
-    color: var(--muted);
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-</style>
-</head>
-<body>
-<div id="gate">
-  <div class="gate-card">
-    <h1>Gem Radar</h1>
-    <p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
-    <input id="pw" type="password" placeholder="Password" autocomplete="current-password">
-    <button id="unlock" type="button">Unlock</button>
-    <div class="gate-error" id="gate-error"></div>
-  </div>
-</div>
-
-<div id="app">
-  <div class="top">
-    <div class="brand">
-      <div class="brand-mark">G</div>
-      <div>
-        <h1>Gem Radar</h1>
-        <div class="sub" id="focus-line">Loading desk state…</div>
-      </div>
-    </div>
-    <div class="meta">
-      <div class="chip">Published <strong id="published-at">—</strong></div>
-      <div class="chip">Rows <strong id="row-count">—</strong></div>
-      <div class="chip">Notify bar <strong id="notify-bar">78</strong></div>
-      <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
-    </div>
-  </div>
-
-  <div class="grid">
-    <section class="card span-8">
-      <h2>Pipeline</h2>
-      <div class="stats" id="pipeline-stats"></div>
-    </section>
-    <section class="card span-4">
-      <h2>Accuracy</h2>
-      <div id="accuracy-box" class="list"></div>
-    </section>
-
-    <section class="card span-12">
-      <h2>Candidates</h2>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Token</th>
-              <th>Score</th>
-              <th>Status</th>
-              <th>Waiting</th>
-              <th>Market</th>
-              <th>Checks</th>
-              <th>Touch</th>
-            </tr>
-          </thead>
-          <tbody id="cand-body"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card span-12">
-      <h2>Blockers</h2>
-      <div id="blockers" class="list"></div>
-    </section>
-  </div>
-
-  <div class="footer">
-    <div>Research only · no trading keys on this desk</div>
-    <div class="mono" id="source-line">data/radar.json</div>
-  </div>
-</div>
-
-<script>
-const AUTH_KEY = "gems.strlabs.auth.v1";
-
-async function sha256Hex(text) {
-  const data = new TextEncoder().encode(text);
-  const digest = await crypto.subtle.digest("SHA-256", data);
-  return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-function fmtUsd(n) {
-  if (n == null || Number.isNaN(Number(n))) return "—";
-  const v = Number(n);
-  if (v >= 1e6) return "$" + (v/1e6).toFixed(2) + "M";
-  if (v >= 1e3) return "$" + (v/1e3).toFixed(1) + "k";
-  return "$" + v.toFixed(0);
-}
-
-function fmtTime(iso) {
-  if (!iso) return "—";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleString(undefined, {
-    month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
-  });
-}
-
-function scoreClass(score) {
-  if (score == null) return "lo";
-  if (score >= 78) return "hi";
-  if (score >= 70) return "mid";
-  return "lo";
-}
-
-function statusBadge(c) {
-  if (c.notify) return '<span class="badge notify">NOTIFY</span>';
-  const s = (c.status || "").toLowerCase();
-  if (s.includes("kill")) return '<span class="badge kill">killed</span>';
-  if (s.includes("brief") || s.includes("watch") || s.includes("track")) return `<span class="badge watch">${s}</span>`;
-  if (s.includes("class") || s.includes("whale") || s.includes("queue") || s.includes("research")) return `<span class="badge blue">${s}</span>`;
-  return `<span class="badge">${s || "—"}</span>`;
-}
-
-function shortCa(ca) {
-  if (!ca || ca.length < 12) return ca || "—";
-  return ca.slice(0, 6) + "…" + ca.slice(-4);
-}
-
-async function unlock(password, auth) {
-  const hash = await sha256Hex(password);
-  if (hash !== auth.hash) throw new Error("Wrong password");
-  sessionStorage.setItem(AUTH_KEY, hash);
-}
-
-function alreadyUnlocked(auth) {
-  return sessionStorage.getItem(AUTH_KEY) === auth.hash;
-}
-
-function render(data) {
-  document.getElementById("app").style.display = "block";
-  document.getElementById("gate").style.display = "none";
-
-  const filters = data.filters || {};
-  const bar = filters.notify_min_score ?? 78;
-  document.getElementById("notify-bar").textContent = String(bar);
-  document.getElementById("published-at").textContent = fmtTime(data.published_at || data.updated_at);
-  document.getElementById("row-count").textContent = String((data.candidates || []).length);
-  document.getElementById("focus-line").textContent = data.focus_summary || "Gem desk live";
-  document.getElementById("source-line").textContent = `v${(data.meta && data.meta.version) || 2} · ${(data.candidates || []).length} rows`;
-
-  const counts = (data.pipeline && data.pipeline.counts) || {};
-  const terminal = (data.pipeline && data.pipeline.terminal) || {};
-  const stats = [
-    ["queued", counts.queued || 0],
-    ["classified", counts.classified || 0],
-    ["whale", counts.whale_reviewed || 0],
-    ["briefed", counts.briefed || 0],
-    ["notified", counts.notified || 0],
-    ["killed", terminal.killed || 0],
-    ["needs checks", terminal.needs_checks || 0],
-  ];
-  document.getElementById("pipeline-stats").innerHTML = stats.map(([k,v]) =>
-    `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div></div>`
-  ).join("");
-
-  const acc = data.accuracy || {};
-  const accBox = document.getElementById("accuracy-box");
-  if (!acc.available) {
-    accBox.innerHTML = `<div class="list-item muted">${acc.why || "No accuracy data yet"}</div>`;
-  } else {
-    const verdicts = acc.verdicts || {};
-    accBox.innerHTML = [
-      `<div class="list-item">Tracked <strong>${acc.tracked ?? 0}</strong> · Graded <strong>${acc.graded ?? 0}</strong> · Pending <strong>${acc.pending ?? 0}</strong></div>`,
-      `<div class="list-item mono">${Object.entries(verdicts).map(([k,v]) => `${k}:${v}`).join(" · ") || "no verdicts"}</div>`,
-      `<div class="list-item muted">${acc.note || ""}</div>`
-    ].join("");
-  }
-
-  const body = document.getElementById("cand-body");
-  const cands = (data.candidates || []).slice().sort((a,b) => {
-    if (!!b.notify !== !!a.notify) return Number(!!b.notify) - Number(!!a.notify);
-    return (b.score || -1) - (a.score || -1);
-  });
-  if (!cands.length) {
-    body.innerHTML = `<tr><td colspan="7" class="empty">No candidates in radar.json</td></tr>`;
-  } else {
-    body.innerHTML = cands.map(c => {
-      const link = c.url ? `<a href="${c.url}" target="_blank" rel="noopener">${c.symbol || "?"}</a>` : (c.symbol || "?");
-      const failed = (c.checks_failed || []).length;
-      const blocked = (c.checks_blocked || []).length;
-      const checkTxt = failed || blocked
-        ? `<span class="badge kill">${failed} fail</span> <span class="badge watch">${blocked} blocked</span>`
-        : `<span class="muted">${c.checks_done || 0} done</span>`;
-      return `<tr>
-        <td>
-          <div class="sym">${link}</div>
-          <div class="muted mono" style="font-size:0.75rem">${c.chain || "—"} · ${shortCa(c.token)}</div>
-          <div class="muted" style="font-size:0.75rem">${[c.category,c.novelty].filter(Boolean).join(" · ")}</div>
-        </td>
-        <td class="score ${scoreClass(c.score)}">${c.score == null ? "—" : c.score}</td>
-        <td>${statusBadge(c)}</td>
-        <td class="muted">${c.waiting_on || "—"}</td>
-        <td class="mono" style="font-size:0.8rem">
-          mc ${fmtUsd(c.mc)}<br>liq ${fmtUsd(c.liq)}<br>vol ${fmtUsd(c.vol_h24)}
-        </td>
-        <td>${checkTxt}</td>
-        <td class="muted" style="font-size:0.78rem">${c.last_touch_by || "—"}<br>${fmtTime(c.last_touch_at)}</td>
-      </tr>`;
-    }).join("");
-  }
-
-  const blockers = data.blockers || [];
-  const b = document.getElementById("blockers");
-  if (!blockers.length) {
-    b.innerHTML = `<div class="list-item muted">No blockers surfaced</div>`;
-  } else {
-    b.innerHTML = blockers.map(x =>
-      `<div class="list-item"><strong>${x.symbol || "?"}</strong> · ${x.status || "—"} · failed: <span class="mono">${(x.failed || []).join(", ") || "—"}</span></div>`
-    ).join("");
-  }
-}
-
-async function boot() {
-  const err = document.getElementById("gate-error");
-  const authRes = await fetch("./data/auth.json", { cache: "no-store" });
-  if (!authRes.ok) {
-    err.textContent = "auth.json missing — dashboard gate not configured";
-    return;
-  }
-  const auth = await authRes.json();
-  if (!auth.hash) {
-    err.textContent = "auth.json invalid";
-    return;
-  }
-
-  const loadApp = async () => {
-    const res = await fetch("./data/radar.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load radar.json");
-    render(await res.json());
-  };
-
-  if (alreadyUnlocked(auth)) {
-    try { await loadApp(); } catch (e) { err.textContent = e.message; }
-    return;
-  }
-
-  const go = async () => {
-    err.textContent = "";
-    try {
-      await unlock(document.getElementById("pw").value || "", auth);
-      await loadApp();
-    } catch (e) {
-      err.textContent = e.message || "Unlock failed";
-    }
-  };
-  document.getElementById("unlock").addEventListener("click", go);
-  document.getElementById("pw").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") go();
-  });
-  document.getElementById("pw").focus();
-}
-
-boot();
-</script>
-</body>
-</html>
+:root{--bg:#0A0A0A;--panel:#121212;--panel2:#171717;--line:rgba(255,255,255,.08);--text:#F5F5F5;--muted:#8A8A8A;--accent:#E8734A;--green:#34D399;--yellow:#FBBF24;--red:#F87171;--blue:#60A5FA}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+#gate{min-height:100vh;display:grid;place-items:center;padding:1.5rem}.gate-card{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:2rem}
+.gate-card h1{font-size:1.35rem;margin-bottom:.35rem}.gate-card p{color:var(--muted);margin-bottom:1.25rem;line-height:1.45}
+.gate-card input{width:100%;background:#0d0d0d;border:1px solid var(--line);border-radius:12px;color:var(--text);padding:.9rem 1rem}
+.gate-card button{width:100%;margin-top:.85rem;border:0;border-radius:12px;background:linear-gradient(135deg,#E8734A,#c45a36);color:#fff;font-weight:700;padding:.9rem 1rem;cursor:pointer}
+.gate-error{color:var(--red);font-size:.85rem;min-height:1.2rem;margin-top:.75rem}#app{display:none;padding:1.25rem clamp(1rem,3vw,2rem) 3rem}
+.top{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;margin-bottom:1.25rem}.brand{display:flex;gap:.75rem;align-items:center}
+.brand-mark{width:42px;height:42px;border-radius:12px;background:#1A1A1A;display:grid;place-items:center;color:var(--accent);font-weight:800}
+.brand h1{font-size:1.25rem}.brand .sub{color:var(--muted);font-size:.85rem}.meta{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:.35rem .7rem;font-size:.78rem;color:var(--muted)}.chip strong{color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1rem 1.1rem}
+.span-8{grid-column:span 8}.span-4{grid-column:span 4}.span-12{grid-column:span 12}@media(max-width:960px){.span-8,.span-4{grid-column:span 12}}
+.card h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.85rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.65rem}.stat{background:var(--panel2);border-radius:12px;padding:.75rem}
+.stat .k{color:var(--muted);font-size:.72rem;text-transform:uppercase}.stat .v{font-size:1.25rem;font-weight:700;margin-top:.25rem}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;padding:.7rem .45rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-size:.72rem;text-transform:uppercase}.sym{font-weight:700}.muted{color:var(--muted)}
+.badge{display:inline-flex;border-radius:999px;padding:.15rem .55rem;font-size:.72rem;font-weight:600;border:1px solid var(--line);background:#101010;color:var(--muted)}
+.badge.notify{color:var(--green);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.12)}.badge.watch{color:var(--yellow);border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.08)}
+.badge.kill{color:var(--red);border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.08)}.badge.blue{color:var(--blue);border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.08)}
+.score{font-weight:700}.score.hi{color:var(--green)}.score.mid{color:var(--yellow)}.score.lo{color:var(--muted)}.empty{color:var(--muted);padding:1rem 0}
+.list{display:grid;gap:.55rem}.list-item{background:var(--panel2);border-radius:12px;padding:.7rem .8rem;font-size:.88rem}
+.footer{margin-top:1.25rem;color:var(--muted);font-size:.8rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.notify-grid{display:grid;gap:1rem}.ncard{background:linear-gradient(180deg,rgba(232,115,74,.08),rgba(18,18,18,.9));border:1px solid rgba(232,115,74,.25);border-radius:18px;padding:1rem 1.1rem}
+.ncard.watchish{background:linear-gradient(180deg,rgba(251,191,36,.07),rgba(18,18,18,.9));border-color:rgba(251,191,36,.22)}
+.nhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;margin-bottom:.85rem}.nhead h3{font-size:1.15rem}.nmeta{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.nbody{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}@media(max-width:900px){.nbody{grid-template-columns:1fr}}
+.links{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .8rem}.links a{border:1px solid var(--line);background:#101010;border-radius:999px;padding:.25rem .6rem;font-size:.75rem;color:var(--text)}
+.bullets{margin:.35rem 0 0 1rem;color:#d7d7d7;font-size:.88rem;line-height:1.45}.bullets li{margin:.25rem 0}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:.45rem;margin:.5rem 0}.kv .cell{background:#101010;border:1px solid var(--line);border-radius:10px;padding:.5rem}
+.kv .cell .k{font-size:.68rem;color:var(--muted);text-transform:uppercase}.kv .cell .v{font-size:.92rem;font-weight:700;margin-top:.15rem}
+.pos{color:var(--green)}.neg{color:var(--red)}.spark{width:100%;height:84px;background:#0d0d0d;border:1px solid var(--line);border-radius:12px;display:block}
+.stack{display:grid;gap:.25rem;margin-top:.4rem}.stack-row{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;padding:.2rem 0;border-bottom:1px dashed rgba(255,255,255,.05)}
+.checks{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}.mech{font-size:.84rem;color:#cfcfcf;white-space:pre-wrap;background:#101010;border-radius:10px;padding:.65rem;border:1px solid var(--line);max-height:160px;overflow:auto}
+.sec{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:.7rem 0 .25rem}
+</style></head><body>
+<div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
+<div id="app"><div class="top"><div class="brand"><div class="brand-mark">G</div><div><h1>Gem Radar</h1><div class="sub" id="focus-line">Loading…</div></div></div>
+<div class="meta"><div class="chip">Published <strong id="published-at">—</strong></div><div class="chip">Rows <strong id="row-count">—</strong></div>
+<div class="chip">Notify bar <strong id="notify-bar">78</strong></div><div class="chip">Mode <strong id="update-mode">push</strong></div><div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div></div></div>
+<div class="grid">
+<section class="card span-12"><h2>Notification-worthy</h2><div id="notify-cards" class="notify-grid"></div></section>
+<section class="card span-8"><h2>Pipeline</h2><div class="stats" id="pipeline-stats"></div></section>
+<section class="card span-4"><h2>Accuracy</h2><div id="accuracy-box" class="list"></div></section>
+<section class="card span-12"><h2>Candidates</h2><div style="overflow-x:auto"><table><thead><tr><th>Token</th><th>Score</th><th>Status</th><th>Waiting</th><th>Market</th><th>Checks</th><th>Touch</th></tr></thead><tbody id="cand-body"></tbody></table></div></section>
+<section class="card span-12"><h2>Blockers</h2><div id="blockers" class="list"></div></section>
+</div><div class="footer"><div>Research only · no trading keys on this desk</div><div class="mono" id="source-line">data/radar.json</div></div></div>
+<script src="./app.js"></script></body></html>

@@ -1,7 +1,7 @@
 {
-  "published_at": "2026-08-03T15:25:41.460659+00:00",
-  "updated_at": "2026-08-03T15:18:09Z",
-  "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 metas: stock-reward-mining",
+  "published_at": "2026-08-03T15:43:57.605234+00:00",
+  "updated_at": "2026-08-03T15:32:57Z",
+  "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 solana(0.25) \u00b7 metas: stock-reward-mining",
   "filters": {
     "min_liq_usd": 5000,
     "min_mc_usd": 15000,
@@ -19,22 +19,55 @@
       "note": "Taxonomy leaf live (GLD/Bullion-class). Mechanism > ticker. Thin-liq names stay score-gated."
     }
   ],
+  "launchpads": [
+    {
+      "name": "Bankr",
+      "weight": 1.0,
+      "chains": [
+        "robinhood"
+      ],
+      "signals": [
+        "bankr",
+        "bnkr",
+        "bankrbot",
+        "stock-paired"
+      ],
+      "notes": "Hot RH launchpad; stock-token quote pools"
+    },
+    {
+      "name": "Pons",
+      "weight": 0.75,
+      "chains": [
+        "robinhood"
+      ],
+      "signals": [
+        "pons",
+        "ponslaunch",
+        "ponslaunchfactory",
+        "ponslaunchertoken",
+        "ponsfamily",
+        "ponsdotfamily"
+      ],
+      "notes": ">"
+    }
+  ],
   "candidates": [
     {
       "symbol": "DTF",
       "chain": "robinhood",
       "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
       "url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
       "mc": 226191.0,
       "liq": 52307.0,
-      "vol_h24": null,
-      "pair_age_minutes": null,
+      "vol_h24": 139832,
+      "pair_age_minutes": 5441.3,
       "score": 81.0,
       "status": "briefed",
       "stage_index": 4,
       "waiting_on": "conductor",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T14:24:00Z",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T16:40:00Z",
       "checks_done": 10,
       "checks_failed": [
         "sm_pass"
@@ -45,13 +78,866 @@
       "notify": true,
       "source": "dex-profile",
       "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md",
       "category": "rwa-finance",
-      "novelty": "none"
+      "subcategory": "stock-reward-mining",
+      "novelty": "none",
+      "thesis": "SRM peer to GLD: prize-draw staking with real tokenized stocks (AMD flowing into pool today); USDG-quoted; buy-biased h24; organized team (SafeProxy+7702)",
+      "priority": "notify",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "detail": {
+        "why_notify": "notify flag",
+        "links": {
+          "site": "https://dtf.finance/",
+          "x": "@DefiTradedFund",
+          "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+          "twitter": "https://x.com/DefiTradedFund"
+        },
+        "reasoning": [
+          "DeFi Traded Fund is the second verified SRM peer to GLD/Bullion on RH. Mechanism is active: AMD tokenized stock entered the prize contract today; USDG moving from team wallet. USDG-quoted pair means the protocol natively prices in the buy currency. $226k MC at $52k liq with 1859 h24 buys is strong organic conviction for a 3.7-day token with zero boosts. Prize-draw mechanism is novel vs GLD's grid-lottery \u2014 different product surface, same verified stock-buy+claim category.",
+          "**Why now:** Caught early (3.7d), buy-biased tape, no boosts, team active onchain, real stock flowing.",
+          "**Invalidation:**\n1. Prize contract drains without stock distribution (team rug via unverified contract)\n2. Holders drop below 100 or liq collapses below $20k\n3. AMD/stock deposits stop for 48h (mechanism paused/stopped)\n4. Contract verified and shows admin-drain function without timelock"
+        ],
+        "risks": [
+          "1. **Prize contract (0xA89e38\u2026) is unverified** \u2014 cannot read code; rug mechanism possible but unlikely given public AMD deposits\n2. **125 holders** \u2014 thin; early-stage distribution risk\n3. **h24 \u22122.84%** \u2014 slight price decline despite buy-biased volume; sell-side pressure from early buyers distributing\n4. **Intermediate contract (0xF74247\u2026) also unverified** \u2014 stock routing layer unknown\n5. **No public X engagement visible** (X search blocked; @DefiTradedFund name clean but reach unknown)"
+        ],
+        "invalidation": [],
+        "score_stack": [
+          {
+            "label": "Verified SRM buy-path (AMD stock flowing into prize contract today)",
+            "delta": 22
+          },
+          {
+            "label": "USDG-quoted pair (correct mechanism currency)",
+            "delta": 10
+          },
+          {
+            "label": "h24 buy-biased 1859/1399, vol/liq 2.67\u00d7",
+            "delta": 8
+          },
+          {
+            "label": "SafeProxy + 7702 team structure (organized, not anon quick-flip)",
+            "delta": 7
+          },
+          {
+            "label": "Dominant DTF on RH; clean EOA distro (top 2.6%)",
+            "delta": 6
+          },
+          {
+            "label": "Zero boosts, 3.7d organic",
+            "delta": 5
+          },
+          {
+            "label": "SRM second peer (leaf validated)",
+            "delta": 3
+          }
+        ],
+        "checks": {
+          "srm_buy_claim_path": {
+            "status": "pass",
+            "note": "AMD Robinhood Token flowing into prize pool 0xA89e38 at 14:15 UTC today",
+            "by": null
+          },
+          "usdg_quote": {
+            "status": "pass",
+            "note": "pair quote=USDG; correct SRM denomination",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "pass",
+            "note": "SafeProxy multisig + 7702 team; USDG active 14:13 UTC; no rug",
+            "by": null
+          },
+          "clone_count": {
+            "status": "pass",
+            "note": "dominant DTF; second DTF vol24=.77 dead",
+            "by": null
+          },
+          "contract_risk": {
+            "status": "blocked",
+            "note": "token contract named DeFi Traded Fund; prize pool 0xA89e38 unverified",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no SM; organic buy tape compensates",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "concentration": {
+            "status": "pass",
+            "note": "38.6% in confirmed staking contract (stakingToken()=DTF RPC verified); 5.4% SafeProxy 1/1 dev; ex-protocol top5=24.7% float \u2014 not alarming",
+            "by": "whale"
+          },
+          "deployer_or_owner": {
+            "status": "pass",
+            "note": "SafeProxy owner = 0xc0e3D4A96faC (1-of-1, single dev EOA). Staking contract creator unknown (blocked) but confirmed staking function.",
+            "by": "whale"
+          },
+          "staking_contract_id": {
+            "status": "pass",
+            "note": "0xA89e3852: stakingToken() returns DTF token addr; confirmed staking contract. 38.6% staked = product in use.",
+            "by": "whale"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
+        "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
+        "market_live": {
+          "price_usd": 0.0002652,
+          "mc": 237759.0,
+          "liq": 53677.27,
+          "vol_h24": 137429.4,
+          "vol_to_liq": 2.56,
+          "change_m5": -3.2,
+          "change_h1": 4.39,
+          "change_h6": 2.7,
+          "change_h24": -6.73,
+          "buys_h1": 68,
+          "sells_h1": 59,
+          "buys_h24": 1831,
+          "sells_h24": 1401,
+          "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "quote": "USDG",
+          "dex": "uniswap",
+          "pair_age_minutes": 5441.3
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 0.0002843358
+            },
+            {
+              "t": "6h_ago",
+              "p": 0.0002582278
+            },
+            {
+              "t": "1h_ago",
+              "p": 0.0002540473
+            },
+            {
+              "t": "5m_ago",
+              "p": 0.0002739669
+            },
+            {
+              "t": "now",
+              "p": 0.0002652
+            }
+          ],
+          "change": {
+            "m5": -3.2,
+            "h1": 4.39,
+            "h6": 2.7,
+            "h24": -6.73
+          },
+          "volume": {
+            "h24": 137429.4,
+            "h6": 30280.02,
+            "h1": 3574.53,
+            "m5": 480.28
+          },
+          "txns": {
+            "m5": {
+              "buys": 3,
+              "sells": 6
+            },
+            "h1": {
+              "buys": 68,
+              "sells": 59
+            },
+            "h6": {
+              "buys": 424,
+              "sells": 378
+            },
+            "h24": {
+              "buys": 1831,
+              "sells": 1401
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md",
+        "brief_excerpt": "# DTF \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair:** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG-quoted)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/\n- **X:** @DefiTradedFund\n\n## \u26a0\ufe0f SRM Gate check (DD mandatory before brief)\n- Token name: `DeFi Traded Fund` (intentional, not cosplay) \u2713\n- Pair quote: **USDG** (same denomination as GLD's stock-buy path) \u2713\n- Prize/staking contract (0xA89e38...) actively receiving **AMD Robinhood Token** today at 14:15 UTC \u2713\n- Deployer (team 7702 account 0xD2e482F...) actively moving USDG at 14:13 UTC \u2713\n- No Flap / FlapTaxTokenV3 / clone naming \u2713\n- **SRM verdict: PASS \u2014 real stock-buy path active onchain**\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Tags:** robinhood, usdg-quoted, stock-prize-draw, staking, nvda-tsla-aapl-amd, organized-team, srm-peer\n- **Novelty:** second verified SRM peer (GLD is archetype); distinct prize-draw mechanism vs GLD's grid-lottery\n- **Confidence:** 0.84\n\n## Market (live ~16:40 CEST)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$226k |\n| Liq | ~$52k |\n| Vol 24h | ~$140k |\n| Vol/Liq | **2.67\u00d7** (very active) |\n| Txns h24 | **1,859B / 1,399S** (buy-biased +33%) |\n| Txns h1 | 73B / 69S (balanced) |\n| \u0394 h1 / h24 | +1.86% / \u22122.84% |\n| Pair age | 3.7 days (2026-07-31) |\n| Boosts | none |\n| Holders | 125 |\n| Quote | **USDG** |\n\n## Holder map\n| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713\n\n## Deployer / team structure\n- Token deployed by factory contract `0xa17Be45\u2026` (named \"DeFi Tra"
+      }
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+      "url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+      "mc": 162926.0,
+      "liq": 128623.0,
+      "vol_h24": 76849,
+      "pair_age_minutes": 99271.4,
+      "score": 76.0,
+      "status": "briefed",
+      "stage_index": 4,
+      "waiting_on": "conductor",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T16:35:00Z",
+      "checks_done": 12,
+      "checks_failed": [
+        "sm_pass"
+      ],
+      "checks_blocked": [
+        "social_x_pass",
+        "deployer_history",
+        "whale"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
+      "category": "defi",
+      "subcategory": "consumer-payments",
+      "novelty": "medium-high",
+      "thesis": "iMessage/WhatsApp crypto remittance agent on Base; real users, real notional, novel zero-install UX; 76/100 watch",
+      "priority": "watch",
+      "explorer": "https://basescan.org/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "detail": {
+        "why_notify": "score 76.0 near/above bar 78.0",
+        "links": {
+          "x": "@basemateagent",
+          "dex": "https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "explorer": "https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "site": "https://basemate.app/",
+          "twitter": "http://x.com/basemateagent"
+        },
+        "reasoning": [
+          "Real product, real users, real volume moved. iMessage remittance UX is genuinely novel (zero wallet install, cross-chain send/receive). $163k MC vs $382K notional moved product-side means token is underpriced relative to real activity. Liq/MC at 79% = deep book, hard to wick down. 82-day-old token breaking +30% today suggests a catalyst (likely X post or partnership announcement) \u2014 but no SM fingerprint yet.",
+          "**Asymmetry:** If product continues to grow users/notional, token stays tightly correlated. At $163k MC this is pre-attention for a real fintech product. Gap to FIND-class tokens ($500K-2M MC) exists if press coverage breaks.",
+          "**Invalidation:**\n1. Product metrics stall (users / notional moved plateau) \u2014 check basemate.app monthly\n2. Token deployer exits significant bag without product catalyst\n3. RehypeDoppler hook infra turns out to be bonding/unlock mechanism (needs deployer check)\n4. h24 sell volume exceeds 70% of txns for 3 consecutive days \u2014 distribution mode\n5. Better-funded competitor replicates UX on larger chain"
+        ],
+        "risks": [],
+        "invalidation": [],
+        "score_stack": [],
+        "checks": {
+          "website_product_truth": {
+            "status": "pass",
+            "note": "live app; 12.3K users / 63K msgs / $382K notional from landing page",
+            "by": null
+          },
+          "site_points_to_ca": {
+            "status": "n_a",
+            "note": "app site no CA; scam BASEEMATE confirmed separate",
+            "by": null
+          },
+          "social_x_pass": {
+            "status": "blocked",
+            "note": "@basemateagent exists; X search blocked",
+            "by": null
+          },
+          "contract_risk": {
+            "status": "pass",
+            "note": "DERC20 Doppler verified; no proxy; deployer 0 other deploys",
+            "by": null
+          },
+          "clone_check": {
+            "status": "pass",
+            "note": "BASEEMATE 0x16b559 is scam; real CA dominant",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "blocked",
+            "note": "0 other Etherscan deploys found; Blockscout Base not checked",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no labeled SM; Whale not run for Base",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "deployer_owner_id": {
+            "status": "pass",
+            "note": "0x3f0fddb9... \u2014 ERC-4337 smart account, EntryPoint txns since Jun 2025. Product team wallet. No rug history.",
+            "by": "whale"
+          },
+          "dev_wallet_track_history": {
+            "status": "pass",
+            "note": "Smart account active 13+ months. All txns via ERC-4337 EntryPoint. Legitimate infra pattern for a remittance app. No serial deploys, no rug indicators.",
+            "by": "whale"
+          },
+          "top_holders": {
+            "status": "pass",
+            "note": "1,069 holders; LP=33.9% (deepened); top EOA 4.05% (0x1c9011 = LiFi accumulator over 11d \u2014 product affiliate likely); no insider concentration; correcting prior 'airdrop' label.",
+            "by": "whale"
+          },
+          "whale": {
+            "status": "blocked",
+            "note": "No SM in DB; 0x1c9011 (4.05%) is genuine buyer via LiFi but likely product-affiliated. Score stays 76 \u2014 2pts from notify bar. Watch for labeled SM entry.",
+            "by": "whale"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
+        "mechanism": null,
+        "market_live": {
+          "price_usd": 1.651e-06,
+          "mc": 165124.0,
+          "liq": 129867.33,
+          "vol_h24": 78198.32,
+          "vol_to_liq": 0.6,
+          "change_m5": 0.14,
+          "change_h1": 1.32,
+          "change_h6": 10.13,
+          "change_h24": 32.43,
+          "buys_h1": 5,
+          "sells_h1": 16,
+          "buys_h24": 395,
+          "sells_h24": 672,
+          "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+          "quote": "WETH",
+          "dex": "uniswap",
+          "pair_age_minutes": 99271.4
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 1.2467e-06
+            },
+            {
+              "t": "6h_ago",
+              "p": 1.4991e-06
+            },
+            {
+              "t": "1h_ago",
+              "p": 1.6295e-06
+            },
+            {
+              "t": "5m_ago",
+              "p": 1.6487e-06
+            },
+            {
+              "t": "now",
+              "p": 1.651e-06
+            }
+          ],
+          "change": {
+            "m5": 0.14,
+            "h1": 1.32,
+            "h6": 10.13,
+            "h24": 32.43
+          },
+          "volume": {
+            "h24": 78198.32,
+            "h6": 14789.04,
+            "h1": 2838.48,
+            "m5": 14.99
+          },
+          "txns": {
+            "m5": {
+              "buys": 0,
+              "sells": 1
+            },
+            "h1": {
+              "buys": 5,
+              "sells": 16
+            },
+            "h6": {
+              "buys": 178,
+              "sells": 290
+            },
+            "h24": {
+              "buys": 395,
+              "sells": 672
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
+        "brief_excerpt": "# BASEMATE \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Base (8453)\n- **Token:** `0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3`\n- **Main Pair:** `0x4676505f75ef3cf95cf30d6e56134e39fe1f4c3\u2026` (Uniswap v4 / Base)\n- **Dex:** https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **Explorer:** https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **App:** https://basemate.app (live iMessage/WhatsApp crypto remittance agent)\n- **X:** @basemateagent\n- **Deployer:** not retrieved (Etherscan v2 gated for Base) \u2014 unknown, needs manual check\n\n## \u26a0\ufe0f Scam copy: `BASEEMATE` at `0x16b559\u2026` \u2014 NOT this token. Dominant CA is `0x07E61D8a\u2026`.\n\n## Classification + novelty\n- **Category:** defi / **sub:** consumer-payments / messaging-agent\n- **Tags:** base, imessage, whatsapp, remittance, ai-agent, usdc-yield, real-product\n- **Novelty:** medium-high \u2014 iMessage-native crypto payments is a distinct product surface (not a DEX wrapper or generic yield vault). WhatsApp receive side + iMessage send side with zero wallet setup is genuinely novel UX architecture.\n- **Confidence:** 0.78\n\n## Product truth (verified from site)\n**Basemate = \"Send Money in your Texts\" \u2014 iMessage + WhatsApp crypto agent.**\n\nLive metrics from landing page:\n- **12,300 users**\n- **63,000+ messages processed**\n- **$382.2K notional moved**\n\nHow it works:\n1. **Send** \u2014 \"send $200 to Mum\" in iMessage \u2192 moves in seconds to any phone number\n2. **Earn** \u2014 idle USDC auto-routes to best Base yield (Moonwell / Morpho / Aave) in one text\n3. **Trade** \u2014 Uniswap + Aerodrome swaps from chat; perps via Base App\n4. **Save** \u2014 USDC base currency, dollar-denominated\n\n**The moat:** Sender uses iMessage (1.3B US/EU/Gulf senders). Receiver uses WhatsApp (Philippines, India, Mexico, Nigeria, Brazil). Zero apps to install on either side. This directly attacks the $800B remittance market at the UX layer \u2014 no incumbent does zero-install on both sides.\n\n**Product truth verdict: REAL.** Numbers are modest but live. The architecture is legitimate and distinct.\n\n## Market (live ~16:25 UTC)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$163k |\n| Liq | **~$128k** |\n| Vol 24h | ~$77k |\n| Vol/MC | ~0.47\u00d7 |\n| Txns h24 | 390B / 655S (sell-heavy today) |\n| Txns h1 | 4B / 11S (current sell pressure) |\n| \u0394 h1 / h6 / h24 | +1% / +6% / **+30%** |\n| Pair age | ~82 days (not new) |\n| Boosts | **none** (organic) |\n| Holders |",
+        "score_line": "76 / 100 \u00b7 Notify: NO (bar 78)"
+      }
+    },
+    {
+      "symbol": "BOOTS",
+      "chain": "robinhood",
+      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
+      "pair": "0xE814cC22D86537fF3eDEce645955e40a0717634A",
+      "url": null,
+      "mc": 34301.0,
+      "liq": 17195.6,
+      "vol_h24": 110634.78,
+      "pair_age_minutes": null,
+      "score": 72.0,
+      "status": "briefed",
+      "stage_index": 4,
+      "waiting_on": "conductor",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T14:05:39Z",
+      "checks_done": 26,
+      "checks_failed": [
+        "clone_count"
+      ],
+      "checks_blocked": [
+        "pair_age",
+        "website_shell",
+        "whale",
+        "lp_burn_labeled"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BOOTS.md",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "72 notify NO; best meme of batch; multi-platform organic; no SM; thin liq; sub-bar",
+      "priority": "watch",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b"
+    },
+    {
+      "symbol": "GLD",
+      "chain": "robinhood",
+      "token": "0x98d456f43FF912577F679f6D148Cb08714Cf4A09",
+      "pair": "0xd31c46ea0f14a3c450b1ea16573c329c601e13541800b540418b62ad6064c601",
+      "url": "https://dexscreener.com/robinhood/0xd31c46ea0f14a3c450b1ea16573c329c601e13541800b540418b62ad6064c601",
+      "mc": 27001.0,
+      "liq": 3725.33,
+      "vol_h24": 30707.83,
+      "pair_age_minutes": null,
+      "score": 71.0,
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:18:00Z",
+      "checks_done": 7,
+      "checks_failed": [],
+      "checks_blocked": [
+        "class_aligned"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-GLD.md",
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "novelty": "new_subcategory",
+      "thesis": "RH bullion lottery/staking product (gld.money); deployer-concentrated; liq thinned <$5k",
+      "priority": "thin-liq-watch",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x98d456f43FF912577F679f6D148Cb08714Cf4A09"
+    },
+    {
+      "symbol": "Lightoor",
+      "chain": "robinhood",
+      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
+      "pair": "0x13e94e15f121fef5da124bb2e7c53ac82f6d53f5133729f3ffa99f899b6c91e2",
+      "url": "https://dexscreener.com/robinhood/0x13e94e15f121fef5da124bb2e7c53ac82f6d53f5133729f3ffa99f899b6c91e2",
+      "mc": 44454.0,
+      "liq": 40155.13,
+      "vol_h24": 336508.71,
+      "pair_age_minutes": null,
+      "score": 69.0,
+      "status": "briefed",
+      "stage_index": 4,
+      "waiting_on": "conductor",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:38:09Z",
+      "checks_done": 6,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-LIGHTOOR.md",
+      "category": "meme",
+      "subcategory": "knockoff",
+      "novelty": "none",
+      "thesis": "RH multi-DEX perps terminal narrative (Lighter/HL/Aster/Katana). Real vol (~$337k) + decent distro, but site stub/backend-on-the-way, sell-heavy 24h, boosts=10. Watch product ship; score 69.",
+      "priority": "watch",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3"
+    },
+    {
+      "symbol": "FIND",
+      "chain": "base",
+      "token": "0x460766cC4158Ffbd70fEFFd3d2891237E064AB54",
+      "pair": "0x47800f2c8eedb2649055fe230b119686ad5129b4e43175721bb5703388d181e1",
+      "url": "https://dexscreener.com/base/0x47800f2c8eedb2649055fe230b119686ad5129b4e43175721bb5703388d181e1",
+      "mc": 15602.0,
+      "liq": 14832.0,
+      "vol_h24": 11818.09,
+      "pair_age_minutes": null,
+      "score": 66.0,
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:32:51Z",
+      "checks_done": 9,
+      "checks_failed": [],
+      "checks_blocked": [
+        "github_agent"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-FIND.md",
+      "category": "gaming-nft",
+      "subcategory": "games",
+      "novelty": "medium mechanic not primitive",
+      "thesis": "Finding Memeland: AI X treasure-hunt on Base. Site/litepaper/CA match; GitHub scaffold. mc~$17k liq~$16k. Score 66 notify NO.",
+      "priority": "medium",
+      "explorer": "https://basescan.org/token/0x460766cC4158Ffbd70fEFFd3d2891237E064AB54"
+    },
+    {
+      "symbol": "Port",
+      "chain": "robinhood",
+      "token": "0x14112893F576c12f65B9F0f88E9a9A12723239B5",
+      "pair": "0x2dC56aa90F90A328e0faD9660bF01115baC2D628",
+      "url": "https://dexscreener.com/robinhood/0x2dc56aa90f90a328e0fad9660bf01115bac2d628",
+      "mc": 66611,
+      "liq": 24450.63,
+      "vol_h24": 194900.97,
+      "pair_age_minutes": 22.6,
+      "score": 65,
+      "status": "briefed",
+      "stage_index": 4,
+      "waiting_on": "conductor",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T15:29:44Z",
+      "checks_done": 19,
+      "checks_failed": [
+        "dev_wallet_history",
+        "buyer_quality",
+        "sniper_cluster"
+      ],
+      "checks_blocked": [
+        "lp_secured"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-PORT.md",
+      "category": "defi",
+      "subcategory": "markets",
+      "novelty": "none",
+      "thesis": "Portfolia city-builder product surface real (alpha auth) on RH; Pons serial + no SM + unproven RWA settlement. Watch 65, notify NO.",
+      "priority": "watch",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x14112893F576c12f65B9F0f88E9a9A12723239B5"
+    },
+    {
+      "symbol": "KRIS",
+      "chain": "robinhood",
+      "token": "0xB49ED586ed7A5cA4793A5e31768a4D57b505aA4f",
+      "pair": "0xC51A1dc7FE7e99796F4642BA72250EbeFa85cE02",
+      "url": "https://dexscreener.com/robinhood/0xc51a1dc7fe7e99796f4642ba72250ebefa85ce02",
+      "mc": 90533.0,
+      "liq": 63273.24,
+      "vol_h24": 335231.5,
+      "pair_age_minutes": null,
+      "score": 62.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T14:33:00Z",
+      "checks_done": 4,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-KRIS.md",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "novelty": "none",
+      "thesis": "RH persona meme, 2.1h old, liq/mc=82%, vol/liq=11.6x; no SM, no product, post-pump bleed",
+      "priority": "watch-low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xB49ED586ed7A5cA4793A5e31768a4D57b505aA4f"
+    },
+    {
+      "symbol": "VAUTH",
+      "chain": "robinhood",
+      "token": "0x5DF2429657771c4b4cC567D44795979c63eBffA6",
+      "pair": "0x8eF505F90b4A83818018Ff16fb1BBB00c158AfE3",
+      "url": "https://dexscreener.com/robinhood/0x8ef505f90b4a83818018ff16fb1bbb00c158afe3",
+      "mc": 15783.0,
+      "liq": 10486.39,
+      "vol_h24": 41540.09,
+      "pair_age_minutes": null,
+      "score": 54.0,
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:16:00Z",
+      "checks_done": 9,
+      "checks_failed": [
+        "website_product_truth"
+      ],
+      "checks_blocked": [
+        "social_x_pass",
+        "contract_risk"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-VAUTH.md",
+      "category": "ai-agents",
+      "subcategory": "agent-frameworks",
+      "novelty": "new_tag agent-security shelf; unproven",
+      "thesis": "Agent-security UI on RH; console still zero metrics, agent-core 404, boosts 30 \u2014 vapor vs attestations",
+      "priority": "deprioritized",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x5DF2429657771c4b4cC567D44795979c63eBffA6"
+    },
+    {
+      "symbol": "MEMESTOCK",
+      "chain": "bsc",
+      "token": "0xd3F4d386DB69657bb5A61C99276BCF0d97837777",
+      "pair": "0x5883A131424cC366626032141c2095fa4bF5DD4F",
+      "url": "https://dexscreener.com/bsc/0x5883a131424cc366626032141c2095fa4bf5dd4f",
+      "mc": 46243.0,
+      "liq": 21537.81,
+      "vol_h24": 220412.08,
+      "pair_age_minutes": null,
+      "score": 48.0,
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:18:00Z",
+      "checks_done": 6,
+      "checks_failed": [
+        "sm_gate"
+      ],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-MEMESTOCK.md",
+      "category": "defi",
+      "subcategory": "stock-paired",
+      "novelty": "none",
+      "thesis": "BSC SPYB-paired stock meme; high vol post-pump dump; holders blocked without Etherscan key",
+      "priority": "deprioritize",
+      "explorer": "https://bscscan.com/token/0xd3F4d386DB69657bb5A61C99276BCF0d97837777"
+    },
+    {
+      "symbol": "BOURSE",
+      "chain": "robinhood",
+      "token": "0x60Edd303679c3923b628c8F02cE0bE69e96deb1d",
+      "pair": "0x7eba77f0403bd49df11633280d276e008f561b797a9acede173ae6e90f0086aa",
+      "url": "https://dexscreener.com/robinhood/0x7eba77f0403bd49df11633280d276e008f561b797a9acede173ae6e90f0086aa",
+      "mc": 408159.0,
+      "liq": 60603.19,
+      "vol_h24": 141805.86,
+      "pair_age_minutes": 79.5,
+      "score": 44,
+      "status": "queued",
+      "stage_index": 0,
+      "waiting_on": "class",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T15:02:41Z",
+      "checks_done": 24,
+      "checks_failed": [
+        "contract_name_vs_ticker",
+        "website_shell",
+        "socials_exist",
+        "buyer_quality",
+        "website_product_truth",
+        "social_x_pass"
+      ],
+      "checks_blocked": [
+        "lp_secured",
+        "dev_wallet_history"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": "defi",
+      "subcategory": "markets",
+      "novelty": "none",
+      "thesis": "No product. Markets ticker cosplay on BasedToken. Flow real, surface empty.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x60Edd303679c3923b628c8F02cE0bE69e96deb1d"
+    },
+    {
+      "symbol": "BNW",
+      "chain": "robinhood",
+      "token": "0x7eC5f1DF4d15BA5bD65815F8E0480bF218D1c0E1",
+      "pair": "0xfd36674a8cbd9de7081b4254a8a409cc28527c187ba51443af86fb9b0edd07e6",
+      "url": "https://dexscreener.com/robinhood/0xfd36674a8cbd9de7081b4254a8a409cc28527c187ba51443af86fb9b0edd07e6",
+      "mc": 29356.0,
+      "liq": 21301.17,
+      "vol_h24": 58575.58,
+      "pair_age_minutes": null,
+      "score": 34.0,
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T13:16:00Z",
+      "checks_done": 3,
+      "checks_failed": [],
+      "checks_blocked": [
+        "caution"
+      ],
+      "notify": false,
+      "source": "dex-search",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BNW.md",
+      "category": "meme",
+      "subcategory": "knockoff",
+      "novelty": "bankr-name derivative / clone-farm",
+      "thesis": "Bankr-wrapped derivative; no socials/site; dead h1/h6 flow; creator holds ~45%. Kill_list pure-ticker-clone/search-query-echo. Score 34 killed.",
+      "priority": "kill",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x7eC5f1DF4d15BA5bD65815F8E0480bF218D1c0E1"
+    },
+    {
+      "symbol": "NOCK",
+      "chain": "robinhood",
+      "token": "0x05E6eAe62791c92B66D2851c288Cf51b8d4Ca383",
+      "pair": "0x6454E3Ea67d9EE20F458706597B3dCc37E095114",
+      "url": null,
+      "mc": 31841.0,
+      "liq": 13558.0,
+      "vol_h24": 9637,
+      "pair_age_minutes": null,
+      "score": 28.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T16:35:00Z",
+      "checks_done": 8,
+      "checks_failed": [
+        "website_product_truth",
+        "site_points_to_ca",
+        "clone_count",
+        "contract_risk",
+        "flow_quality",
+        "boosts_vs_flow",
+        "sm_pass"
+      ],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-boost",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-NOCK.md",
+      "category": "meme",
+      "subcategory": "launchpad-narrative",
+      "novelty": "none",
+      "thesis": "score 28 kill; LaunchTestToken = test deploy; not dominant RH NOCK (competitor has $36k liq vs our $13.6k); h6 -35% with 10 boosts; holder 2+3 hold 22%; no SM; no product",
+      "priority": "kill",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x05E6eAe62791c92B66D2851c288Cf51b8d4Ca383"
+    },
+    {
+      "symbol": "DOXA",
+      "chain": "robinhood",
+      "token": "0x7d143E4E908C8001c2B04541862aaf001BB343fF",
+      "pair": "0xA1fEa4304038C9AeA7235D490f477D455F780Fbb",
+      "url": "https://dexscreener.com/robinhood/0xa1fea4304038c9aea7235d490f477d455f780fbb",
+      "mc": 57259.0,
+      "liq": 15710.15,
+      "vol_h24": 160794.54,
+      "pair_age_minutes": null,
+      "score": 18,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-03T14:45:12Z",
+      "checks_done": 6,
+      "checks_failed": [
+        "deployer_concentration",
+        "website_product_truth",
+        "contract_risk",
+        "sm_pass",
+        "sniper_pressure"
+      ],
+      "checks_blocked": [
+        "x_social_pass"
+      ],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DOXA.md",
+      "category": "defi",
+      "subcategory": "markets",
+      "novelty": "new_tag",
+      "thesis": "RH opinion-market narrative (doxamarket.app). Product-shaped site; unproven markets; sniper/sell pressure; clone dilution. Whale holders then Research only if product surface is live not vapor.",
+      "priority": "kill",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x7d143E4E908C8001c2B04541862aaf001BB343fF"
+    },
+    {
+      "symbol": "MON",
+      "chain": "robinhood",
+      "token": "0x7c646A41572B441527169C576ef0c0A40c667777",
+      "pair": "0x4F392Bf8FA02555f3E33838fdF67f08d196faf9B",
+      "url": "https://dexscreener.com/robinhood/0x4f392bf8fa02555f3e33838fdf67f08d196faf9b",
+      "mc": 19997.0,
+      "liq": 17717.19,
+      "vol_h24": 79937.44,
+      "pair_age_minutes": null,
+      "score": 15.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "-",
+      "last_touch_at": "2026-08-03T13:38:09Z",
+      "checks_done": 7,
+      "checks_failed": [
+        "contract_name_vs_ticker",
+        "srm_buy_claim_path"
+      ],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "srm-hunt",
+      "brief": false,
+      "brief_path": "",
+      "category": "gaming-nft",
+      "subcategory": "collectibles",
+      "novelty": "none",
+      "thesis": "Stockmon NFT collectible + FlapTax MON; SRM marketing claim only; not GLD peer.",
+      "priority": "hard-reject",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x7c646A41572B441527169C576ef0c0A40c667777"
+    },
+    {
+      "symbol": "CATE",
+      "chain": "robinhood",
+      "token": "0xFB18536682B9A33cdc91b91173Cc8ad367e0aB1D",
+      "pair": "0x2452a951F0f032633bb4Fecd25A74e930Cb33803",
+      "url": "https://dexscreener.com/robinhood/0x2452a951f0f032633bb4fecd25a74e930cb33803",
+      "mc": 51462.0,
+      "liq": 28244.28,
+      "vol_h24": 393225.62,
+      "pair_age_minutes": null,
+      "score": 5.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "-",
+      "last_touch_at": "2026-08-03T12:53:29Z",
+      "checks_done": 5,
+      "checks_failed": [],
+      "checks_blocked": [],
+      "notify": false,
+      "source": "dex-profile",
+      "brief": false,
+      "brief_path": "",
+      "category": "meme",
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "Plain RH cat meme (Catecoin) with real tape (vol24~352k, ~2k h1 txns). No product edge \u2014 flow/whale path only.",
+      "priority": "flow",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xFB18536682B9A33cdc91b91173Cc8ad367e0aB1D"
     },
     {
       "symbol": "OZZY",
       "chain": "robinhood",
       "token": "0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D",
+      "pair": "0xc246b088646869D57BBE483968B05D6dCdB8Eb59",
       "url": "https://dexscreener.com/robinhood/0xc246b088646869d57bbe483968b05d6dcdb8eb59",
       "mc": 15895.0,
       "liq": 10186.82,
@@ -69,13 +955,19 @@
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "robinhood dex-search; mc~15895; liq~10187; vol24~3548; age~29778m; q=meadgod",
+      "priority": "kill",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D"
     },
     {
       "symbol": "STOCKERS",
       "chain": "solana",
       "token": "CeyZtFUiYP5oxCZ99urwHMvdCW67cY2yALknfrQppump",
+      "pair": "4ZCViZ4pE9HY6vLG3fDQ2GPuG59GKPeJkPe69nUC7B3F",
       "url": "https://dexscreener.com/solana/4zcviz4pe9hy6vlg3fdq2gpug59gkpejkpe69nuc7b3f",
       "mc": 194617.0,
       "liq": 34307.94,
@@ -87,19 +979,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:18:09Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "ticker-meta",
+      "novelty": "none",
+      "thesis": "solana dex-search; mc~194617; liq~34308; vol24~364625; age~3002m; q=stock reward mining",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/CeyZtFUiYP5oxCZ99urwHMvdCW67cY2yALknfrQppump"
     },
     {
       "symbol": "AURACAT",
       "chain": "solana",
       "token": "6wfbCEwBDE8D75QaQCSgawiNfKwJDCyAYA32F768pump",
+      "pair": "BRfcbtYCZuiLDJ3m3Ektho442ARkAa1bhnZFYvpEmQrC",
       "url": "https://dexscreener.com/solana/brfcbtyczuildj3m3ektho442arkaa1bhnzfyvpemqrc",
       "mc": 148910.0,
       "liq": 28004.05,
@@ -111,19 +1011,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:18:09Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "solana dex-boost; mc~148910; liq~28004; vol24~532107; age~1230m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/6wfbCEwBDE8D75QaQCSgawiNfKwJDCyAYA32F768pump"
     },
     {
       "symbol": "NEEGY",
       "chain": "solana",
       "token": "6oGuFDbEeaSzTcvrmmd2MqfNYwHKXFoN7regcR22pump",
+      "pair": "6HSBtfqrKz4zxpVLyVTp7jbiY88BVYs61g2PNP4sJmMF",
       "url": "https://dexscreener.com/solana/6hsbtfqrkz4zxpvlyvtp7jbiy88bvys61g2pnp4sjmmf",
       "mc": 1045768.0,
       "liq": 106818.58,
@@ -149,13 +1057,19 @@
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-boost; mc~1045768; liq~106819; vol24~469058; age~28915m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/6oGuFDbEeaSzTcvrmmd2MqfNYwHKXFoN7regcR22pump"
     },
     {
       "symbol": "BULLEN",
       "chain": "solana",
       "token": "BULLENxRbvuwjo4DLBKBbh23cNQ4ZbpDeQKuoVXL7exN",
+      "pair": "9MP131fa3jir94azmVHZdwQww2Ma9aLtzQUG6CJdV6TZ",
       "url": "https://dexscreener.com/solana/9mp131fa3jir94azmvhzdwqww2ma9altzqug6cjdv6tz",
       "mc": 71952.0,
       "liq": 19063.2,
@@ -167,19 +1081,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:18:09Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-boost; mc~71952; liq~19063; vol24~127395; age~1190m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/BULLENxRbvuwjo4DLBKBbh23cNQ4ZbpDeQKuoVXL7exN"
     },
     {
       "symbol": "SHIBCAT",
       "chain": "robinhood",
       "token": "0xac0F333bBEBB62B6d16322650641Bd5eF2B849e5",
+      "pair": "0x65137aF8C54199628f74db33573b3CdDE7409BE9",
       "url": "https://dexscreener.com/robinhood/0x65137af8c54199628f74db33573b3cdde7409be9",
       "mc": 213364.0,
       "liq": 44688.52,
@@ -191,19 +1113,25 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:12:42Z",
-      "checks_done": 1,
+      "checks_done": 3,
       "checks_failed": [],
       "checks_blocked": [],
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "robinhood dex-boost; mc~213364; liq~44689; vol24~51118; age~21310m",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xac0F333bBEBB62B6d16322650641Bd5eF2B849e5"
     },
     {
       "symbol": "\ud83d\udc9b\ud83d\udc08",
       "chain": "solana",
       "token": "8F2TE1sbonZvE8kGqzZ7CUb9KVcfZ9VTtirUsdpNpump",
+      "pair": "2yNgnB84REK2ZzfriWdnr9whJzPr85BWKmAkoGvjoTMA",
       "url": "https://dexscreener.com/solana/2yngnb84rek2zzfriwdnr9whjzpr85bwkmakogvjotma",
       "mc": 52494.0,
       "liq": 15451.68,
@@ -215,19 +1143,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:12:42Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~52494; liq~15452; vol24~144588; age~9m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/8F2TE1sbonZvE8kGqzZ7CUb9KVcfZ9VTtirUsdpNpump"
     },
     {
       "symbol": "fuckass",
       "chain": "solana",
       "token": "HJig5E8xGU1FcnowTSFQkh4E3h4nEuLGfDqtyghTpump",
+      "pair": "498EQVy2FUPhLg9uSWepTKcnkZMytAaB12n6So5K6SVM",
       "url": "https://dexscreener.com/solana/498eqvy2fuphlg9usweptkcnkzmytaab12n6so5k6svm",
       "mc": 27444.0,
       "liq": 10654.24,
@@ -239,19 +1175,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:12:42Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~27444; liq~10654; vol24~65766; age~47m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/HJig5E8xGU1FcnowTSFQkh4E3h4nEuLGfDqtyghTpump"
     },
     {
       "symbol": "TCAT",
       "chain": "robinhood",
       "token": "0xA1D9d2152e353b5F72a77c3f7BeEb8d77C456aeF",
+      "pair": "0x082Af8F2c767165485e728eBfcB86A4A94C518B2",
       "url": "https://dexscreener.com/robinhood/0x082af8f2c767165485e728ebfcb86a4a94c518b2",
       "mc": 57892.0,
       "liq": 34143.4,
@@ -263,49 +1207,25 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T15:12:30Z",
-      "checks_done": 1,
+      "checks_done": 3,
       "checks_failed": [],
       "checks_blocked": [],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "Port",
-      "chain": "robinhood",
-      "token": "0x14112893F576c12f65B9F0f88E9a9A12723239B5",
-      "url": "https://dexscreener.com/robinhood/0x2dc56aa90f90a328e0fad9660bf01115bac2d628",
-      "mc": 52974.0,
-      "liq": 21301.65,
-      "vol_h24": 194900.97,
-      "pair_age_minutes": 22.6,
-      "score": null,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "scout",
-      "last_touch_at": "2026-08-03T15:12:25Z",
-      "checks_done": 10,
-      "checks_failed": [
-        "dev_wallet_history",
-        "buyer_quality",
-        "sniper_cluster"
-      ],
-      "checks_blocked": [
-        "lp_secured"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": false,
-      "category": "defi",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "robinhood dex-profile; mc~57892; liq~34143; vol24~145467; age~26m",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xA1D9d2152e353b5F72a77c3f7BeEb8d77C456aeF"
     },
     {
       "symbol": "Travelers",
       "chain": "solana",
       "token": "2dVBJRKrZSgEvCbhFzrcGeZarMjpXiruznyCifk8pump",
+      "pair": "7hqnzv5nQQ3uBo9C7RjAhxzzTYEetbrSh27xCEbfen6",
       "url": "https://dexscreener.com/solana/7hqnzv5nqq3ubo9c7rjahxzztyeetbrsh27xcebfen6",
       "mc": 24761.0,
       "liq": 10663.79,
@@ -317,19 +1237,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:58:15Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~24761; liq~10664; vol24~338322; age~73m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/2dVBJRKrZSgEvCbhFzrcGeZarMjpXiruznyCifk8pump"
     },
     {
       "symbol": " $TRENCHY",
       "chain": "solana",
       "token": "25V8hsmS19D83YcmzpALceDhAYhFHBu2udbXSMvkpump",
+      "pair": "H6C6GrEhftTiLszrm52uVKQT3PnT6fEfAMtN2LeoKc2a",
       "url": "https://dexscreener.com/solana/h6c6grehfttilszrm52uvkqt3pnt6fefamtn2leokc2a",
       "mc": 569689.0,
       "liq": 54534.61,
@@ -341,19 +1269,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:58:15Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~569689; liq~54535; vol24~279165; age~450m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/25V8hsmS19D83YcmzpALceDhAYhFHBu2udbXSMvkpump"
     },
     {
       "symbol": "BABYCATE",
       "chain": "solana",
       "token": "CLoRXWYHKQm6i2vShBrTgT29J4RRBBgVthvnbK6Dpump",
+      "pair": "3XrnFBQ6AvcxY3cBsyhAHahUFmPBV7rvJCp4EmbUQtHX",
       "url": "https://dexscreener.com/solana/3xrnfbq6avcxy3cbsyhahahufmpbv7rvjcp4embuqthx",
       "mc": 85520.0,
       "liq": 27168.69,
@@ -365,19 +1301,27 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:58:15Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "solana dex-profile; mc~85520; liq~27169; vol24~216742; age~50m",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/CLoRXWYHKQm6i2vShBrTgT29J4RRBBgVthvnbK6Dpump"
     },
     {
       "symbol": "STONK",
       "chain": "solana",
       "token": "6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx",
+      "pair": "7a8xxAJBELDo6P9dikSYctdw6ce8F4mWr3ahcAD8Ao49",
       "url": "https://dexscreener.com/solana/7a8xxajbeldo6p9diksyctdw6ce8f4mwr3ahcad8ao49",
       "mc": 200948.0,
       "liq": 59168.44,
@@ -389,77 +1333,62 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:58:15Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "BOURSE",
-      "chain": "robinhood",
-      "token": "0x60Edd303679c3923b628c8F02cE0bE69e96deb1d",
-      "url": "https://dexscreener.com/robinhood/0x7eba77f0403bd49df11633280d276e008f561b797a9acede173ae6e90f0086aa",
-      "mc": 408159.0,
-      "liq": 60603.19,
-      "vol_h24": 141805.86,
-      "pair_age_minutes": 79.5,
-      "score": 44,
-      "status": "queued",
-      "stage_index": 0,
-      "waiting_on": "class",
-      "last_touch_by": "scout",
-      "last_touch_at": "2026-08-03T14:58:10Z",
-      "checks_done": 24,
-      "checks_failed": [
-        "contract_name_vs_ticker",
-        "website_shell",
-        "socials_exist",
-        "buyer_quality",
-        "website_product_truth",
-        "social_x_pass"
-      ],
-      "checks_blocked": [
-        "lp_secured",
-        "dev_wallet_history"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": false,
-      "category": "defi",
-      "novelty": "none"
+      "subcategory": "ticker-meta",
+      "novelty": "none",
+      "thesis": "solana dex-search; mc~200948; liq~59168; vol24~1158567; age~15591m; q=stock reward mining",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/6GmAFSYs4gk3FDao5FzzySQpPZaWsa4rUJHacpMpUNgx"
     },
     {
       "symbol": "GME",
       "chain": "bsc",
       "token": "0x03dC4af4E7d4Ab34E98B88Ca12457b04635d7777",
+      "pair": "0xEae8516795cB6250e8ccaAc1167A6338980E3d32",
       "url": "https://dexscreener.com/bsc/0xeae8516795cb6250e8ccaac1167a6338980e3d32",
       "mc": 31952.0,
       "liq": 17360.7,
       "vol_h24": 47943.23,
       "pair_age_minutes": 4253.6,
       "score": null,
-      "status": "classified",
-      "stage_index": 1,
-      "waiting_on": "whale",
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:43:44Z",
-      "checks_done": 1,
-      "checks_failed": [],
-      "checks_blocked": [],
+      "checks_done": 9,
+      "checks_failed": [
+        "buyer_quality"
+      ],
+      "checks_blocked": [
+        "lp_secured",
+        "dev_wallet_history"
+      ],
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "ticker-meta",
+      "novelty": "none",
+      "thesis": "GME ticker clone on BSC; low data.",
+      "priority": "low",
+      "explorer": "https://bscscan.com/token/0x03dC4af4E7d4Ab34E98B88Ca12457b04635d7777"
     },
     {
       "symbol": "COW",
       "chain": "solana",
       "token": "yPRXjUeAidU5Azc3GL35QbWRyJwznju7yTGmzKTpump",
+      "pair": "BN39kqgLkByJkaUrgaZbY6GW32Zwin79h199uraqw79t",
       "url": "https://dexscreener.com/solana/bn39kqglkbyjkaurgazby6gw32zwin79h199uraqw79t",
       "mc": 57987.0,
       "liq": 16962.86,
@@ -471,43 +1400,62 @@
       "waiting_on": "whale",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:43:44Z",
-      "checks_done": 0,
+      "checks_done": 2,
       "checks_failed": [],
-      "checks_blocked": [],
+      "checks_blocked": [
+        "top_holders"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "Cow animal meme on Solana; low data.",
+      "priority": "low",
+      "explorer": "https://solscan.io/token/yPRXjUeAidU5Azc3GL35QbWRyJwznju7yTGmzKTpump"
     },
     {
       "symbol": "RTX",
       "chain": "bsc",
       "token": "0x2Ec39B165e22944d2FEE389219ee64E4924cfffF",
+      "pair": "0x13f4B5d9f7902A25D339F7557B972B8Ee86f5573",
       "url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573",
       "mc": 88012.0,
       "liq": 34243.28,
       "vol_h24": 267497.87,
       "pair_age_minutes": 4712.2,
       "score": null,
-      "status": "classified",
-      "stage_index": 1,
-      "waiting_on": "whale",
+      "status": "whale_reviewed",
+      "stage_index": 2,
+      "waiting_on": "research",
       "last_touch_by": "scout",
       "last_touch_at": "2026-08-03T14:43:43Z",
-      "checks_done": 1,
-      "checks_failed": [],
-      "checks_blocked": [],
+      "checks_done": 9,
+      "checks_failed": [
+        "buyer_quality"
+      ],
+      "checks_blocked": [
+        "lp_secured",
+        "dev_wallet_history"
+      ],
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "ticker-meta",
+      "novelty": "none",
+      "thesis": "RTX ticker clone; low data.",
+      "priority": "low",
+      "explorer": "https://bscscan.com/token/0x2Ec39B165e22944d2FEE389219ee64E4924cfffF"
     },
     {
       "symbol": "ZAIBATSU",
       "chain": "robinhood",
       "token": "0xa842BA12fCB3254F25059c87BA2d36360AcFcD26",
+      "pair": "0x060D4B4899971777A62D047068416Ee2186f0F79",
       "url": "https://dexscreener.com/robinhood/0x060d4b4899971777a62d047068416ee2186f0f79",
       "mc": 59488.0,
       "liq": 37809.13,
@@ -532,13 +1480,19 @@
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "Zaibatsu meme; low data.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xa842BA12fCB3254F25059c87BA2d36360AcFcD26"
     },
     {
       "symbol": "Isabel",
       "chain": "robinhood",
       "token": "0xA6ffEd0830317ff5245Bb8147e1Ff0b987f8071f",
+      "pair": "0x55267E788d1c4a97ad79585C4e0ecE1Bd416BE13",
       "url": "https://dexscreener.com/robinhood/0x55267e788d1c4a97ad79585c4e0ece1bd416be13",
       "mc": 89000.0,
       "liq": 39095.81,
@@ -560,49 +1514,23 @@
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "DOXA",
-      "chain": "robinhood",
-      "token": "0x7d143E4E908C8001c2B04541862aaf001BB343fF",
-      "url": "https://dexscreener.com/robinhood/0xa1fea4304038c9aea7235d490f477d455f780fbb",
-      "mc": 57259.0,
-      "liq": 15710.15,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 18,
-      "status": "killed",
-      "stage_index": null,
-      "waiting_on": "-",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T14:33:00Z",
-      "checks_done": 6,
-      "checks_failed": [
-        "deployer_concentration",
-        "website_product_truth",
-        "contract_risk",
-        "sm_pass",
-        "sniper_pressure"
-      ],
-      "checks_blocked": [
-        "x_social_pass"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "defi",
-      "novelty": "new_tag"
+      "subcategory": "celebrity",
+      "novelty": "none",
+      "thesis": "Possible celebrity meme; low data.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xA6ffEd0830317ff5245Bb8147e1Ff0b987f8071f"
     },
     {
       "symbol": "DORK",
       "chain": "robinhood",
       "token": "0xD707D1A75A85cCA5bb0491663ff74324FD0f7b03",
+      "pair": "0xb5c5735de7dea217b6db067bda92b53ae24891540adb39908f49351747d33835",
       "url": "https://dexscreener.com/robinhood/0xb5c5735de7dea217b6db067bda92b53ae24891540adb39908f49351747d33835",
       "mc": 576566.0,
       "liq": 54876.0,
-      "vol_h24": null,
+      "vol_h24": 213042.55,
       "pair_age_minutes": null,
       "score": null,
       "status": "whale_reviewed",
@@ -622,137 +1550,23 @@
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": null,
       "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "NOCK",
-      "chain": "robinhood",
-      "token": "0x05E6eAe62791c92B66D2851c288Cf51b8d4Ca383",
-      "url": null,
-      "mc": 31841.0,
-      "liq": 13558.0,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 28.0,
-      "status": "killed",
-      "stage_index": null,
-      "waiting_on": "-",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T14:10:31Z",
-      "checks_done": 8,
-      "checks_failed": [
-        "website_product_truth",
-        "site_points_to_ca",
-        "clone_count",
-        "contract_risk",
-        "flow_quality",
-        "boosts_vs_flow",
-        "sm_pass"
-      ],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-boost",
-      "brief": true,
-      "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "BASEMATE",
-      "chain": "base",
-      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
-      "url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
-      "mc": 162926.0,
-      "liq": 128623.0,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 76.0,
-      "status": "briefed",
-      "stage_index": 4,
-      "waiting_on": "conductor",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T14:10:31Z",
-      "checks_done": 12,
-      "checks_failed": [
-        "sm_pass"
-      ],
-      "checks_blocked": [
-        "social_x_pass",
-        "deployer_history",
-        "whale"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "defi",
-      "novelty": "medium-high"
-    },
-    {
-      "symbol": "BOOTS",
-      "chain": "robinhood",
-      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
-      "url": null,
-      "mc": 34301.0,
-      "liq": 17195.6,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 72.0,
-      "status": "briefed",
-      "stage_index": 4,
-      "waiting_on": "conductor",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T13:58:00Z",
-      "checks_done": 26,
-      "checks_failed": [
-        "clone_count"
-      ],
-      "checks_blocked": [
-        "pair_age",
-        "website_shell",
-        "whale",
-        "lp_burn_labeled"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "MON",
-      "chain": "robinhood",
-      "token": "0x7c646A41572B441527169C576ef0c0A40c667777",
-      "url": "https://dexscreener.com/robinhood/0x4f392bf8fa02555f3e33838fdf67f08d196faf9b",
-      "mc": 19997.0,
-      "liq": 17717.19,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 15.0,
-      "status": "killed",
-      "stage_index": null,
-      "waiting_on": "-",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T13:31:49Z",
-      "checks_done": 7,
-      "checks_failed": [
-        "contract_name_vs_ticker",
-        "srm_buy_claim_path"
-      ],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "srm-hunt",
-      "brief": false,
-      "category": "gaming-nft",
-      "novelty": "none"
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "Dork Lord brainrot meme on RH; strong launch tape; multi-CA dilution risk; no product. Whale SM optional; no Research unless SM.",
+      "priority": "noise",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xD707D1A75A85cCA5bb0491663ff74324FD0f7b03"
     },
     {
       "symbol": "EARN",
       "chain": "robinhood",
       "token": "0xA3b6AEe90017b72c0812dC1e013De70eB2917ba3",
+      "pair": "0x1fb9a45079b017a6661016ba7dea29e1c4864b0874c21f63e137a52e71c3395b",
       "url": "https://dexscreener.com/robinhood/0x1fb9a45079b017a6661016ba7dea29e1c4864b0874c21f63e137a52e71c3395b",
       "mc": 119649.0,
       "liq": 66839.97,
-      "vol_h24": null,
+      "vol_h24": 20552.58,
       "pair_age_minutes": null,
       "score": null,
       "status": "classified",
@@ -768,17 +1582,23 @@
       "notify": false,
       "source": "srm-hunt",
       "brief": false,
+      "brief_path": "",
       "category": "defi",
-      "novelty": "none"
+      "subcategory": "yield",
+      "novelty": "none",
+      "thesis": "RH agent stock/USDG LP vaults; adjacent yield not SRM peer.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xA3b6AEe90017b72c0812dC1e013De70eB2917ba3"
     },
     {
       "symbol": "BOND",
       "chain": "robinhood",
       "token": "0x0c184CE8dF6Dc4844222EEf4Fbc093D94B380ce8",
+      "pair": "0x67492E5857dd8253ca06682fe2CbEBDdB0d94cc2",
       "url": "https://dexscreener.com/robinhood/0x67492e5857dd8253ca06682fe2cbebddb0d94cc2",
       "mc": 21536.0,
       "liq": 12581.92,
-      "vol_h24": null,
+      "vol_h24": 38672.07,
       "pair_age_minutes": null,
       "score": null,
       "status": "deprioritized",
@@ -796,69 +1616,23 @@
       "notify": false,
       "source": "dex-profile",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "GLD",
-      "chain": "robinhood",
-      "token": "0x98d456f43FF912577F679f6D148Cb08714Cf4A09",
-      "url": "https://dexscreener.com/robinhood/0xd31c46ea0f14a3c450b1ea16573c329c601e13541800b540418b62ad6064c601",
-      "mc": 27001.0,
-      "liq": 3725.33,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 71.0,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T13:22:16Z",
-      "checks_done": 7,
-      "checks_failed": [],
-      "checks_blocked": [
-        "class_aligned"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "rwa-finance",
-      "novelty": "new_subcategory"
-    },
-    {
-      "symbol": "MEMESTOCK",
-      "chain": "bsc",
-      "token": "0xd3F4d386DB69657bb5A61C99276BCF0d97837777",
-      "url": "https://dexscreener.com/bsc/0x5883a131424cc366626032141c2095fa4bf5dd4f",
-      "mc": 46243.0,
-      "liq": 21537.81,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 48.0,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T13:22:16Z",
-      "checks_done": 6,
-      "checks_failed": [
-        "sm_gate"
-      ],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "defi",
-      "novelty": "none"
+      "subcategory": "celebrity",
+      "novelty": "none",
+      "thesis": "RH 007 meme via Pons; shell+multi-CA; novelty none; noise unless SM.",
+      "priority": "noise",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x0c184CE8dF6Dc4844222EEf4Fbc093D94B380ce8"
     },
     {
       "symbol": "STELLA",
       "chain": "robinhood",
       "token": "0xD2259fcb0408417ab93a637e1ea357c6FFb7D786",
+      "pair": "0x69c6240b17a9d2022131baede0a5656da9cd2d448ec91e9bb1787b00b2183872",
       "url": "https://dexscreener.com/robinhood/0x69c6240b17a9d2022131baede0a5656da9cd2d448ec91e9bb1787b00b2183872",
       "mc": 38263.0,
       "liq": 22494.04,
-      "vol_h24": null,
+      "vol_h24": 144508.06,
       "pair_age_minutes": null,
       "score": null,
       "status": "whale_reviewed",
@@ -872,17 +1646,23 @@
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "animals",
+      "novelty": "none",
+      "thesis": "Uniswap Cat \u2014 animal meme with heavy boosts (50). Prior defi/product label wrong. Boost surface unless whale quality exceptional.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xD2259fcb0408417ab93a637e1ea357c6FFb7D786"
     },
     {
       "symbol": "TURBO",
       "chain": "robinhood",
       "token": "0x808a9D5071E7d5f58490cB7385027536BbE43eF0",
+      "pair": "0xc75E2C1f6E1CfE329C3807757123DF2Cd7Dba924",
       "url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924",
       "mc": 189633.0,
       "liq": 42432.51,
-      "vol_h24": null,
+      "vol_h24": 103125.85,
       "pair_age_minutes": null,
       "score": null,
       "status": "whale_reviewed",
@@ -896,17 +1676,23 @@
       "notify": false,
       "source": "dex-boost",
       "brief": false,
+      "brief_path": "",
       "category": "meme",
-      "novelty": "none"
+      "subcategory": "knockoff",
+      "novelty": "none",
+      "thesis": "Turbo on Robinhood \u2014 classic ticker port + boosts. No new thesis.",
+      "priority": "low",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x808a9D5071E7d5f58490cB7385027536BbE43eF0"
     },
     {
       "symbol": "BNKR B20",
       "chain": "base",
       "token": "0xb200000000000000000000Cb9b38A74879CaD5E7",
+      "pair": "0x65e821e0482836ed037b7b78bfbad20829c7d7c9646142c694435b3f6b14edde",
       "url": "https://dexscreener.com/base/0x65e821e0482836ed037b7b78bfbad20829c7d7c9646142c694435b3f6b14edde",
       "mc": 552783.0,
       "liq": 414587.39,
-      "vol_h24": null,
+      "vol_h24": 1.0,
       "pair_age_minutes": null,
       "score": null,
       "status": "killed",
@@ -920,17 +1706,23 @@
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "defi",
-      "novelty": "none"
+      "subcategory": "launchpads",
+      "novelty": "none",
+      "thesis": "BankrCoin B20 on Base \u2014 vanity/core Bankr-adjacent with large liq but ~$1 vol24. Not an early gem; bankr search noise.",
+      "priority": "kill",
+      "explorer": "https://basescan.org/token/0xb200000000000000000000Cb9b38A74879CaD5E7"
     },
     {
       "symbol": "BNKRW",
       "chain": "base",
       "token": "0xf48bC234855aB08ab2EC0cfaaEb2A80D065a3b07",
+      "pair": "0x6c8fd04c19e3c6c3efc21f6f5ae79c1453a19d971b7b7d4969df1928c380aaad",
       "url": "https://dexscreener.com/base/0x6c8fd04c19e3c6c3efc21f6f5ae79c1453a19d971b7b7d4969df1928c380aaad",
       "mc": 113105.0,
       "liq": 159851.1,
-      "vol_h24": null,
+      "vol_h24": 51.92,
       "pair_age_minutes": null,
       "score": null,
       "status": "killed",
@@ -944,17 +1736,23 @@
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "defi",
-      "novelty": "none"
+      "subcategory": "launchpads",
+      "novelty": "none",
+      "thesis": "BankrWallet name + bankr search; site redirects WalletChan; vol24~$52. Dead bankr-adjacent noise.",
+      "priority": "kill",
+      "explorer": "https://basescan.org/token/0xf48bC234855aB08ab2EC0cfaaEb2A80D065a3b07"
     },
     {
       "symbol": "HEIST",
       "chain": "base",
       "token": "0x6eEEE476fF3707d4A0E9b056061EA9E3b47bc0f3",
+      "pair": "0xdC0Ff9969B89c426915a5074ab86b7b83Ffa60cf",
       "url": "https://dexscreener.com/base/0xdc0ff9969b89c426915a5074ab86b7b83ffa60cf",
       "mc": 38827.0,
       "liq": 13308.95,
-      "vol_h24": null,
+      "vol_h24": 18.13,
       "pair_age_minutes": null,
       "score": null,
       "status": "killed",
@@ -968,161 +1766,381 @@
       "notify": false,
       "source": "dex-search",
       "brief": false,
+      "brief_path": "",
       "category": "gaming-nft",
-      "novelty": "none"
-    },
+      "subcategory": "games",
+      "novelty": "none",
+      "thesis": "HEIST COIN BNKR-quoted Sushi pair; vol24~$18, old pair, heistvr.com shell. Bankr-search noise / dead.",
+      "priority": "kill",
+      "explorer": "https://basescan.org/token/0x6eEEE476fF3707d4A0E9b056061EA9E3b47bc0f3"
+    }
+  ],
+  "notify_cards": [
     {
-      "symbol": "KRIS",
+      "symbol": "DTF",
       "chain": "robinhood",
-      "token": "0xB49ED586ed7A5cA4793A5e31768a4D57b505aA4f",
-      "url": "https://dexscreener.com/robinhood/0xc51a1dc7fe7e99796f4642ba72250ebefa85ce02",
-      "mc": 90533.0,
-      "liq": 63273.24,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 62.0,
-      "status": "killed",
-      "stage_index": null,
-      "waiting_on": "-",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T13:06:09Z",
-      "checks_done": 4,
-      "checks_failed": [],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "Lightoor",
-      "chain": "robinhood",
-      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
-      "url": "https://dexscreener.com/robinhood/0x13e94e15f121fef5da124bb2e7c53ac82f6d53f5133729f3ffa99f899b6c91e2",
-      "mc": 44454.0,
-      "liq": 40155.13,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 69.0,
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "score": 81.0,
       "status": "briefed",
-      "stage_index": 4,
-      "waiting_on": "conductor",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T12:53:29Z",
-      "checks_done": 6,
-      "checks_failed": [],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "meme",
-      "novelty": "none"
+      "notify": true,
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "mc": 226191.0,
+      "liq": 52307.0,
+      "vol_h24": 139832,
+      "detail": {
+        "why_notify": "notify flag",
+        "links": {
+          "site": "https://dtf.finance/",
+          "x": "@DefiTradedFund",
+          "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+          "twitter": "https://x.com/DefiTradedFund"
+        },
+        "reasoning": [
+          "DeFi Traded Fund is the second verified SRM peer to GLD/Bullion on RH. Mechanism is active: AMD tokenized stock entered the prize contract today; USDG moving from team wallet. USDG-quoted pair means the protocol natively prices in the buy currency. $226k MC at $52k liq with 1859 h24 buys is strong organic conviction for a 3.7-day token with zero boosts. Prize-draw mechanism is novel vs GLD's grid-lottery \u2014 different product surface, same verified stock-buy+claim category.",
+          "**Why now:** Caught early (3.7d), buy-biased tape, no boosts, team active onchain, real stock flowing.",
+          "**Invalidation:**\n1. Prize contract drains without stock distribution (team rug via unverified contract)\n2. Holders drop below 100 or liq collapses below $20k\n3. AMD/stock deposits stop for 48h (mechanism paused/stopped)\n4. Contract verified and shows admin-drain function without timelock"
+        ],
+        "risks": [
+          "1. **Prize contract (0xA89e38\u2026) is unverified** \u2014 cannot read code; rug mechanism possible but unlikely given public AMD deposits\n2. **125 holders** \u2014 thin; early-stage distribution risk\n3. **h24 \u22122.84%** \u2014 slight price decline despite buy-biased volume; sell-side pressure from early buyers distributing\n4. **Intermediate contract (0xF74247\u2026) also unverified** \u2014 stock routing layer unknown\n5. **No public X engagement visible** (X search blocked; @DefiTradedFund name clean but reach unknown)"
+        ],
+        "invalidation": [],
+        "score_stack": [
+          {
+            "label": "Verified SRM buy-path (AMD stock flowing into prize contract today)",
+            "delta": 22
+          },
+          {
+            "label": "USDG-quoted pair (correct mechanism currency)",
+            "delta": 10
+          },
+          {
+            "label": "h24 buy-biased 1859/1399, vol/liq 2.67\u00d7",
+            "delta": 8
+          },
+          {
+            "label": "SafeProxy + 7702 team structure (organized, not anon quick-flip)",
+            "delta": 7
+          },
+          {
+            "label": "Dominant DTF on RH; clean EOA distro (top 2.6%)",
+            "delta": 6
+          },
+          {
+            "label": "Zero boosts, 3.7d organic",
+            "delta": 5
+          },
+          {
+            "label": "SRM second peer (leaf validated)",
+            "delta": 3
+          }
+        ],
+        "checks": {
+          "srm_buy_claim_path": {
+            "status": "pass",
+            "note": "AMD Robinhood Token flowing into prize pool 0xA89e38 at 14:15 UTC today",
+            "by": null
+          },
+          "usdg_quote": {
+            "status": "pass",
+            "note": "pair quote=USDG; correct SRM denomination",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "pass",
+            "note": "SafeProxy multisig + 7702 team; USDG active 14:13 UTC; no rug",
+            "by": null
+          },
+          "clone_count": {
+            "status": "pass",
+            "note": "dominant DTF; second DTF vol24=.77 dead",
+            "by": null
+          },
+          "contract_risk": {
+            "status": "blocked",
+            "note": "token contract named DeFi Traded Fund; prize pool 0xA89e38 unverified",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no SM; organic buy tape compensates",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "concentration": {
+            "status": "pass",
+            "note": "38.6% in confirmed staking contract (stakingToken()=DTF RPC verified); 5.4% SafeProxy 1/1 dev; ex-protocol top5=24.7% float \u2014 not alarming",
+            "by": "whale"
+          },
+          "deployer_or_owner": {
+            "status": "pass",
+            "note": "SafeProxy owner = 0xc0e3D4A96faC (1-of-1, single dev EOA). Staking contract creator unknown (blocked) but confirmed staking function.",
+            "by": "whale"
+          },
+          "staking_contract_id": {
+            "status": "pass",
+            "note": "0xA89e3852: stakingToken() returns DTF token addr; confirmed staking contract. 38.6% staked = product in use.",
+            "by": "whale"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
+        "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
+        "market_live": {
+          "price_usd": 0.0002652,
+          "mc": 237759.0,
+          "liq": 53677.27,
+          "vol_h24": 137429.4,
+          "vol_to_liq": 2.56,
+          "change_m5": -3.2,
+          "change_h1": 4.39,
+          "change_h6": 2.7,
+          "change_h24": -6.73,
+          "buys_h1": 68,
+          "sells_h1": 59,
+          "buys_h24": 1831,
+          "sells_h24": 1401,
+          "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "quote": "USDG",
+          "dex": "uniswap",
+          "pair_age_minutes": 5441.3
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 0.0002843358
+            },
+            {
+              "t": "6h_ago",
+              "p": 0.0002582278
+            },
+            {
+              "t": "1h_ago",
+              "p": 0.0002540473
+            },
+            {
+              "t": "5m_ago",
+              "p": 0.0002739669
+            },
+            {
+              "t": "now",
+              "p": 0.0002652
+            }
+          ],
+          "change": {
+            "m5": -3.2,
+            "h1": 4.39,
+            "h6": 2.7,
+            "h24": -6.73
+          },
+          "volume": {
+            "h24": 137429.4,
+            "h6": 30280.02,
+            "h1": 3574.53,
+            "m5": 480.28
+          },
+          "txns": {
+            "m5": {
+              "buys": 3,
+              "sells": 6
+            },
+            "h1": {
+              "buys": 68,
+              "sells": 59
+            },
+            "h6": {
+              "buys": 424,
+              "sells": 378
+            },
+            "h24": {
+              "buys": 1831,
+              "sells": 1401
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md",
+        "brief_excerpt": "# DTF \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair:** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG-quoted)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/\n- **X:** @DefiTradedFund\n\n## \u26a0\ufe0f SRM Gate check (DD mandatory before brief)\n- Token name: `DeFi Traded Fund` (intentional, not cosplay) \u2713\n- Pair quote: **USDG** (same denomination as GLD's stock-buy path) \u2713\n- Prize/staking contract (0xA89e38...) actively receiving **AMD Robinhood Token** today at 14:15 UTC \u2713\n- Deployer (team 7702 account 0xD2e482F...) actively moving USDG at 14:13 UTC \u2713\n- No Flap / FlapTaxTokenV3 / clone naming \u2713\n- **SRM verdict: PASS \u2014 real stock-buy path active onchain**\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Tags:** robinhood, usdg-quoted, stock-prize-draw, staking, nvda-tsla-aapl-amd, organized-team, srm-peer\n- **Novelty:** second verified SRM peer (GLD is archetype); distinct prize-draw mechanism vs GLD's grid-lottery\n- **Confidence:** 0.84\n\n## Market (live ~16:40 CEST)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$226k |\n| Liq | ~$52k |\n| Vol 24h | ~$140k |\n| Vol/Liq | **2.67\u00d7** (very active) |\n| Txns h24 | **1,859B / 1,399S** (buy-biased +33%) |\n| Txns h1 | 73B / 69S (balanced) |\n| \u0394 h1 / h24 | +1.86% / \u22122.84% |\n| Pair age | 3.7 days (2026-07-31) |\n| Boosts | none |\n| Holders | 125 |\n| Quote | **USDG** |\n\n## Holder map\n| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713\n\n## Deployer / team structure\n- Token deployed by factory contract `0xa17Be45\u2026` (named \"DeFi Tra"
+      }
     },
     {
-      "symbol": "VAUTH",
-      "chain": "robinhood",
-      "token": "0x5DF2429657771c4b4cC567D44795979c63eBffA6",
-      "url": "https://dexscreener.com/robinhood/0x8ef505f90b4a83818018ff16fb1bbb00c158afe3",
-      "mc": 15783.0,
-      "liq": 10486.39,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 54.0,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T12:53:29Z",
-      "checks_done": 9,
-      "checks_failed": [
-        "website_product_truth"
-      ],
-      "checks_blocked": [
-        "social_x_pass",
-        "contract_risk"
-      ],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "ai-agents",
-      "novelty": "new_tag agent-security shelf; unproven"
-    },
-    {
-      "symbol": "BNW",
-      "chain": "robinhood",
-      "token": "0x7eC5f1DF4d15BA5bD65815F8E0480bF218D1c0E1",
-      "url": "https://dexscreener.com/robinhood/0xfd36674a8cbd9de7081b4254a8a409cc28527c187ba51443af86fb9b0edd07e6",
-      "mc": 29356.0,
-      "liq": 21301.17,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 34.0,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T12:53:29Z",
-      "checks_done": 3,
-      "checks_failed": [],
-      "checks_blocked": [
-        "caution"
-      ],
-      "notify": false,
-      "source": "dex-search",
-      "brief": true,
-      "category": "meme",
-      "novelty": "bankr-name derivative / clone-farm"
-    },
-    {
-      "symbol": "CATE",
-      "chain": "robinhood",
-      "token": "0xFB18536682B9A33cdc91b91173Cc8ad367e0aB1D",
-      "url": "https://dexscreener.com/robinhood/0x2452a951f0f032633bb4fecd25a74e930cb33803",
-      "mc": 51462.0,
-      "liq": 28244.28,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 5.0,
-      "status": "killed",
-      "stage_index": null,
-      "waiting_on": "-",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T12:53:29Z",
-      "checks_done": 5,
-      "checks_failed": [],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": false,
-      "category": "meme",
-      "novelty": "none"
-    },
-    {
-      "symbol": "FIND",
+      "symbol": "BASEMATE",
       "chain": "base",
-      "token": "0x460766cC4158Ffbd70fEFFd3d2891237E064AB54",
-      "url": "https://dexscreener.com/base/0x47800f2c8eedb2649055fe230b119686ad5129b4e43175721bb5703388d181e1",
-      "mc": 15602.0,
-      "liq": 14832.0,
-      "vol_h24": null,
-      "pair_age_minutes": null,
-      "score": 66.0,
-      "status": "whale_reviewed",
-      "stage_index": 2,
-      "waiting_on": "research",
-      "last_touch_by": "-",
-      "last_touch_at": "2026-08-03T12:53:29Z",
-      "checks_done": 9,
-      "checks_failed": [],
-      "checks_blocked": [
-        "github_agent"
-      ],
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "score": 76.0,
+      "status": "briefed",
       "notify": false,
-      "source": "dex-profile",
-      "brief": true,
-      "category": "gaming-nft",
-      "novelty": "medium mechanic not primitive"
+      "category": "defi",
+      "subcategory": "consumer-payments",
+      "url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+      "explorer": "https://basescan.org/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "mc": 162926.0,
+      "liq": 128623.0,
+      "vol_h24": 76849,
+      "detail": {
+        "why_notify": "score 76.0 near/above bar 78.0",
+        "links": {
+          "x": "@basemateagent",
+          "dex": "https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "explorer": "https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "site": "https://basemate.app/",
+          "twitter": "http://x.com/basemateagent"
+        },
+        "reasoning": [
+          "Real product, real users, real volume moved. iMessage remittance UX is genuinely novel (zero wallet install, cross-chain send/receive). $163k MC vs $382K notional moved product-side means token is underpriced relative to real activity. Liq/MC at 79% = deep book, hard to wick down. 82-day-old token breaking +30% today suggests a catalyst (likely X post or partnership announcement) \u2014 but no SM fingerprint yet.",
+          "**Asymmetry:** If product continues to grow users/notional, token stays tightly correlated. At $163k MC this is pre-attention for a real fintech product. Gap to FIND-class tokens ($500K-2M MC) exists if press coverage breaks.",
+          "**Invalidation:**\n1. Product metrics stall (users / notional moved plateau) \u2014 check basemate.app monthly\n2. Token deployer exits significant bag without product catalyst\n3. RehypeDoppler hook infra turns out to be bonding/unlock mechanism (needs deployer check)\n4. h24 sell volume exceeds 70% of txns for 3 consecutive days \u2014 distribution mode\n5. Better-funded competitor replicates UX on larger chain"
+        ],
+        "risks": [],
+        "invalidation": [],
+        "score_stack": [],
+        "checks": {
+          "website_product_truth": {
+            "status": "pass",
+            "note": "live app; 12.3K users / 63K msgs / $382K notional from landing page",
+            "by": null
+          },
+          "site_points_to_ca": {
+            "status": "n_a",
+            "note": "app site no CA; scam BASEEMATE confirmed separate",
+            "by": null
+          },
+          "social_x_pass": {
+            "status": "blocked",
+            "note": "@basemateagent exists; X search blocked",
+            "by": null
+          },
+          "contract_risk": {
+            "status": "pass",
+            "note": "DERC20 Doppler verified; no proxy; deployer 0 other deploys",
+            "by": null
+          },
+          "clone_check": {
+            "status": "pass",
+            "note": "BASEEMATE 0x16b559 is scam; real CA dominant",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "blocked",
+            "note": "0 other Etherscan deploys found; Blockscout Base not checked",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no labeled SM; Whale not run for Base",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "deployer_owner_id": {
+            "status": "pass",
+            "note": "0x3f0fddb9... \u2014 ERC-4337 smart account, EntryPoint txns since Jun 2025. Product team wallet. No rug history.",
+            "by": "whale"
+          },
+          "dev_wallet_track_history": {
+            "status": "pass",
+            "note": "Smart account active 13+ months. All txns via ERC-4337 EntryPoint. Legitimate infra pattern for a remittance app. No serial deploys, no rug indicators.",
+            "by": "whale"
+          },
+          "top_holders": {
+            "status": "pass",
+            "note": "1,069 holders; LP=33.9% (deepened); top EOA 4.05% (0x1c9011 = LiFi accumulator over 11d \u2014 product affiliate likely); no insider concentration; correcting prior 'airdrop' label.",
+            "by": "whale"
+          },
+          "whale": {
+            "status": "blocked",
+            "note": "No SM in DB; 0x1c9011 (4.05%) is genuine buyer via LiFi but likely product-affiliated. Score stays 76 \u2014 2pts from notify bar. Watch for labeled SM entry.",
+            "by": "whale"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
+        "mechanism": null,
+        "market_live": {
+          "price_usd": 1.651e-06,
+          "mc": 165124.0,
+          "liq": 129867.33,
+          "vol_h24": 78198.32,
+          "vol_to_liq": 0.6,
+          "change_m5": 0.14,
+          "change_h1": 1.32,
+          "change_h6": 10.13,
+          "change_h24": 32.43,
+          "buys_h1": 5,
+          "sells_h1": 16,
+          "buys_h24": 395,
+          "sells_h24": 672,
+          "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+          "quote": "WETH",
+          "dex": "uniswap",
+          "pair_age_minutes": 99271.4
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 1.2467e-06
+            },
+            {
+              "t": "6h_ago",
+              "p": 1.4991e-06
+            },
+            {
+              "t": "1h_ago",
+              "p": 1.6295e-06
+            },
+            {
+              "t": "5m_ago",
+              "p": 1.6487e-06
+            },
+            {
+              "t": "now",
+              "p": 1.651e-06
+            }
+          ],
+          "change": {
+            "m5": 0.14,
+            "h1": 1.32,
+            "h6": 10.13,
+            "h24": 32.43
+          },
+          "volume": {
+            "h24": 78198.32,
+            "h6": 14789.04,
+            "h1": 2838.48,
+            "m5": 14.99
+          },
+          "txns": {
+            "m5": {
+              "buys": 0,
+              "sells": 1
+            },
+            "h1": {
+              "buys": 5,
+              "sells": 16
+            },
+            "h6": {
+              "buys": 178,
+              "sells": 290
+            },
+            "h24": {
+              "buys": 395,
+              "sells": 672
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
+        "brief_excerpt": "# BASEMATE \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Base (8453)\n- **Token:** `0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3`\n- **Main Pair:** `0x4676505f75ef3cf95cf30d6e56134e39fe1f4c3\u2026` (Uniswap v4 / Base)\n- **Dex:** https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **Explorer:** https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **App:** https://basemate.app (live iMessage/WhatsApp crypto remittance agent)\n- **X:** @basemateagent\n- **Deployer:** not retrieved (Etherscan v2 gated for Base) \u2014 unknown, needs manual check\n\n## \u26a0\ufe0f Scam copy: `BASEEMATE` at `0x16b559\u2026` \u2014 NOT this token. Dominant CA is `0x07E61D8a\u2026`.\n\n## Classification + novelty\n- **Category:** defi / **sub:** consumer-payments / messaging-agent\n- **Tags:** base, imessage, whatsapp, remittance, ai-agent, usdc-yield, real-product\n- **Novelty:** medium-high \u2014 iMessage-native crypto payments is a distinct product surface (not a DEX wrapper or generic yield vault). WhatsApp receive side + iMessage send side with zero wallet setup is genuinely novel UX architecture.\n- **Confidence:** 0.78\n\n## Product truth (verified from site)\n**Basemate = \"Send Money in your Texts\" \u2014 iMessage + WhatsApp crypto agent.**\n\nLive metrics from landing page:\n- **12,300 users**\n- **63,000+ messages processed**\n- **$382.2K notional moved**\n\nHow it works:\n1. **Send** \u2014 \"send $200 to Mum\" in iMessage \u2192 moves in seconds to any phone number\n2. **Earn** \u2014 idle USDC auto-routes to best Base yield (Moonwell / Morpho / Aave) in one text\n3. **Trade** \u2014 Uniswap + Aerodrome swaps from chat; perps via Base App\n4. **Save** \u2014 USDC base currency, dollar-denominated\n\n**The moat:** Sender uses iMessage (1.3B US/EU/Gulf senders). Receiver uses WhatsApp (Philippines, India, Mexico, Nigeria, Brazil). Zero apps to install on either side. This directly attacks the $800B remittance market at the UX layer \u2014 no incumbent does zero-install on both sides.\n\n**Product truth verdict: REAL.** Numbers are modest but live. The architecture is legitimate and distinct.\n\n## Market (live ~16:25 UTC)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$163k |\n| Liq | **~$128k** |\n| Vol 24h | ~$77k |\n| Vol/MC | ~0.47\u00d7 |\n| Txns h24 | 390B / 655S (sell-heavy today) |\n| Txns h1 | 4B / 11S (current sell pressure) |\n| \u0394 h1 / h6 / h24 | +1% / +6% / **+30%** |\n| Pair age | ~82 days (not new) |\n| Boosts | **none** (organic) |\n| Holders |",
+        "score_line": "76 / 100 \u00b7 Notify: NO (bar 78)"
+      }
     }
   ],
   "pipeline": {
@@ -1136,10 +2154,10 @@
     ],
     "counts": {
       "queued": 1,
-      "classified": 15,
-      "whale_reviewed": 12,
+      "classified": 13,
+      "whale_reviewed": 13,
       "researching": 0,
-      "briefed": 4,
+      "briefed": 5,
       "notified": 0
     },
     "terminal": {
@@ -1158,11 +2176,39 @@
       "status": "briefed"
     },
     {
+      "symbol": "BASEMATE",
+      "failed": [
+        "sm_pass"
+      ],
+      "status": "briefed"
+    },
+    {
+      "symbol": "BOOTS",
+      "failed": [
+        "clone_count"
+      ],
+      "status": "briefed"
+    },
+    {
       "symbol": "Port",
       "failed": [
         "dev_wallet_history",
         "buyer_quality",
         "sniper_cluster"
+      ],
+      "status": "briefed"
+    },
+    {
+      "symbol": "VAUTH",
+      "failed": [
+        "website_product_truth"
+      ],
+      "status": "whale_reviewed"
+    },
+    {
+      "symbol": "MEMESTOCK",
+      "failed": [
+        "sm_gate"
       ],
       "status": "whale_reviewed"
     },
@@ -1177,6 +2223,52 @@
         "social_x_pass"
       ],
       "status": "queued"
+    },
+    {
+      "symbol": "NOCK",
+      "failed": [
+        "website_product_truth",
+        "site_points_to_ca",
+        "clone_count",
+        "contract_risk",
+        "flow_quality",
+        "boosts_vs_flow",
+        "sm_pass"
+      ],
+      "status": "killed"
+    },
+    {
+      "symbol": "DOXA",
+      "failed": [
+        "deployer_concentration",
+        "website_product_truth",
+        "contract_risk",
+        "sm_pass",
+        "sniper_pressure"
+      ],
+      "status": "killed"
+    },
+    {
+      "symbol": "MON",
+      "failed": [
+        "contract_name_vs_ticker",
+        "srm_buy_claim_path"
+      ],
+      "status": "killed"
+    },
+    {
+      "symbol": "GME",
+      "failed": [
+        "buyer_quality"
+      ],
+      "status": "whale_reviewed"
+    },
+    {
+      "symbol": "RTX",
+      "failed": [
+        "buyer_quality"
+      ],
+      "status": "whale_reviewed"
     },
     {
       "symbol": "ZAIBATSU",
@@ -1195,17 +2287,6 @@
       "status": "whale_reviewed"
     },
     {
-      "symbol": "DOXA",
-      "failed": [
-        "deployer_concentration",
-        "website_product_truth",
-        "contract_risk",
-        "sm_pass",
-        "sniper_pressure"
-      ],
-      "status": "killed"
-    },
-    {
       "symbol": "DORK",
       "failed": [
         "buyer_quality",
@@ -1213,80 +2294,15 @@
         "sniper_cluster"
       ],
       "status": "whale_reviewed"
-    },
-    {
-      "symbol": "NOCK",
-      "failed": [
-        "website_product_truth",
-        "site_points_to_ca",
-        "clone_count",
-        "contract_risk",
-        "flow_quality",
-        "boosts_vs_flow",
-        "sm_pass"
-      ],
-      "status": "killed"
-    },
-    {
-      "symbol": "BASEMATE",
-      "failed": [
-        "sm_pass"
-      ],
-      "status": "briefed"
-    },
-    {
-      "symbol": "BOOTS",
-      "failed": [
-        "clone_count"
-      ],
-      "status": "briefed"
-    },
-    {
-      "symbol": "MON",
-      "failed": [
-        "contract_name_vs_ticker",
-        "srm_buy_claim_path"
-      ],
-      "status": "killed"
-    },
-    {
-      "symbol": "EARN",
-      "failed": [
-        "srm_buy_claim_path"
-      ],
-      "status": "classified"
-    },
-    {
-      "symbol": "BOND",
-      "failed": [
-        "website_shell",
-        "dev_wallet_history",
-        "buyer_quality"
-      ],
-      "status": "deprioritized"
-    },
-    {
-      "symbol": "MEMESTOCK",
-      "failed": [
-        "sm_gate"
-      ],
-      "status": "whale_reviewed"
-    },
-    {
-      "symbol": "VAUTH",
-      "failed": [
-        "website_product_truth"
-      ],
-      "status": "whale_reviewed"
     }
   ],
   "accuracy": {
     "available": true,
-    "tracked": 20,
-    "graded": 16,
-    "pending": 4,
+    "tracked": 21,
+    "graded": 18,
+    "pending": 3,
     "verdicts": {
-      "flat": 16
+      "flat": 18
     },
     "by_score_band": {
       "70-77": {
@@ -1314,24 +2330,34 @@
         "delisted": 0
       },
       "<60": {
-        "n": 6,
+        "n": 7,
         "winner": 0,
         "loser": 0,
         "rug": 0,
-        "flat": 6,
+        "flat": 7,
+        "delisted": 0
+      },
+      "78+": {
+        "n": 1,
+        "winner": 0,
+        "loser": 0,
+        "rug": 0,
+        "flat": 1,
         "delisted": 0
       }
     },
-    "note": "peak-based vs the baseline captured at decision time"
+    "note": "peak-based vs baseline at decision time"
   },
   "meta": {
     "ping_budget": {
       "date": "2026-08-03",
       "count": 0
     },
-    "last_scan_at": "2026-08-03T15:18:09Z",
-    "version": 2,
+    "last_scan_at": "2026-08-03T15:32:57Z",
+    "version": 3,
     "new_this_run": 5,
-    "total_rows": 42
+    "total_rows": 42,
+    "notify_cards": 2,
+    "update_mode": "publish_script_plus_git_push"
   }
 }
