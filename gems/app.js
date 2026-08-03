@@ -46,7 +46,7 @@ function shortCa(ca) {
   return ca.slice(0, 6) + "…" + ca.slice(-4);
 }
 function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&", "<": "<", ">": ">", '"': """, "'": "'" }[c]));
+  return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 async function unlock(password, auth) {
   const hash = await sha256Hex(password);
