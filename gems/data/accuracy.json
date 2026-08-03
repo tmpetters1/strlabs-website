@@ -1,10 +1,10 @@
 {
   "available": true,
   "tracked": 23,
-  "graded": 21,
-  "pending": 2,
+  "graded": 22,
+  "pending": 1,
   "verdicts": {
-    "flat": 21
+    "flat": 22
   },
   "by_score_band": {
     "70-77": {
@@ -24,11 +24,11 @@
       "delisted": 0
     },
     "unscored": {
-      "n": 5,
+      "n": 6,
       "winner": 0,
       "loser": 0,
       "rug": 0,
-      "flat": 5,
+      "flat": 6,
       "delisted": 0
     },
     "<60": {
