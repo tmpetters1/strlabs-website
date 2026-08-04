@@ -1,22 +1,26 @@
 # Gem Radar — Trading Strategy
 
-> Owner: Tor-Magnus (human). Desk agents are research-only — no swaps, no private keys, no unsolicited trade execution.
-> This document is the desk's standing thesis, sizing, and risk framework. Updated by Conductor/Macro as focus shifts; human is the only executor unless explicitly instructed otherwise for a specific, easy, safe action.
+> Owner: Tor-Magnus (human capital). **Executor: Conductor (Ant)** — authorized 2026-08-04 to control wallet and execute spot trades on Robinhood + Base.
+> Specialists stay research/orchestration. Only Conductor signs txs. Never print/Discord/commit the private key.
 
 ## Mandate
 
-- Research-only pipeline (Scout → Class → Whale → Research → Conductor) surfaces candidates.
-- Fills are **human-executed** by default. The desk logs positions Tor-Magnus reports (`memory/positions.yaml`) and reconciles against the live wallet (`state/wallet_holdings_rh.json`). It does not trade on its own initiative.
-- Primary chain: **Robinhood** (RH chain, id 4663, weight 1.0). Secondary: Base (0.7), BSC (0.5). Solana weight 0 (disabled 2026-08-04, noise).
-- Wallet (public address, safe to publish): `0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0`. Never print, log, or transmit the private key. It lives only in `~/.openclaw/.env` (`PRIVATE_KEY`) for trading scripts, and only gets used if Tor-Magnus explicitly asks for an execution and the action is small/safe/reversible-in-intent.
+- Pipeline (Scout → Class → Whale → Research → Conductor) surfaces candidates; Conductor decides and **executes** buys/sells within these rails.
+- Log every fill to `state/trading/trades.jsonl` + update `memory/positions.yaml` / `state/trading/positions.json`. Reconcile vs live wallet scans.
+- Active trade chains: **Robinhood (primary)** + **Base (primary peer)**. BSC secondary/watch. Solana weight 0 (disabled 2026-08-04, noise).
+- Wallet (public): `0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0`. Key only in `~/.openclaw/.env` (`PRIVATE_KEY`), in-process for signing — never exfiltrate.
+- Pre-trade gate still required: dd_checklist + score/liq/kill-list. No blind apes. Hard-confirm path in code (route, amount in, min out, gas) before broadcast.
 
 ## Capital
 
-- Working capital: **~$220** total, currently ~100% deployed:
-  - Native RH ETH: ~0.0465 ETH (~$87 at $1,874/ETH) — **this is gas, not a trading position**. Keep a floor of at least 0.01 ETH (~$19) untouched at all times so a sell/rotation is never gas-blocked.
-  - DTF (DeFi Traded Fund): ~517,559 tokens (~$137 at current price) — the only funded trading position right now.
-  - Effective deployable trading capital after the gas floor: **~$180–200**.
-- This is a micro-cap bankroll. Treat every position as a full-loss candidate (rug, delist, liquidity pull) — never size a single RH microcap position such that a total loss impairs the ability to keep researching and taking the *next* trade.
+- Working capital: **~$220** on RH today, plus optional Base sleeve Tor-Magnus may top up.
+  - Native RH ETH: ~0.0465 ETH — **gas + optional WETH buy inventory**. Floor **≥0.015 ETH** on RH always (sells must never be gas-blocked).
+  - DTF: ~517,559 tokens (~$137) — live RH bag; manage under invalidation rules.
+  - **Base sleeve (requested):** yes — keep dry powder on Base. Target **$60–100** total on Base:
+    - **~$50–80 USDC** (buy inventory)
+    - **~$10–20 ETH** gas on Base (floor ≥0.005 ETH)
+  - Do **not** bridge the whole RH stack while DTF is open; fund Base as a **separate top-up** from Tor-Magnus when possible.
+- Micro-cap bankroll. Every bag can go to zero. Never size so one loss kills the next trade + gas floors on both chains.
 
 ## Position Sizing
 
@@ -60,7 +64,7 @@ Every open position stays in the active research loop, not just new candidates:
 - Watch the same `watch_triggers` recorded at notify time (e.g. DTF: `labeled_sm`, `prize_contract_verified`, `stock_distributions_continue`, `holders_gt_300`) — these are the specific facts that would upgrade or downgrade conviction.
 - Any lesson added to `memory/lessons.md` or `context/LEARNED.md` that touches an open position's category/mechanism gets applied retroactively to that position, not just to future candidates.
 
-## RH-First Execution Notes
+## Execution Notes (RH + Base)
 
 - Robinhood chain (id 4663) is the primary venue. Pairs observed so far are Uniswap-family V2/V3/V4 pools, quoted in WETH or USDG.
 - **Correction (verified 2026-08-04, live-probed — do not use the older assumption that RH isn't a Kyber chain):** KyberSwap Aggregator **does** list Robinhood chain (id 4663, path `robinhood`) as a supported network — status **Provisional** (newly added, "may be discontinued following evaluation" per Kyber's own docs). Confirmed two ways: (1) `docs.kyberswap.com/getting-started/supported-exchanges-and-networks` explicitly lists Robinhood; (2) a live call to `https://aggregator-api.kyberswap.com/robinhood/api/v1/routes` returns HTTP 400 "token not found" (same behavior as a known-good chain path with a dummy token), while a genuinely unsupported chain path returns HTTP 404. Coverage on RH: Aggregator ✅, Limit Order ✅, Zap ❌, Cross-chain Swap ✅. Full writeup: `state/trading/kyber_rh_support.md`.
@@ -77,9 +81,8 @@ Every open position stays in the active research loop, not just new candidates:
 
 ## Current Open Positions (see Trade page for live data)
 
-- **DTF** (DeFi Traded Fund, robinhood) — `rwa-finance/stock-reward-mining`, peer to GLD/SRM class; USDG-quoted, verified AMD flowing into a confirmed staking contract (38.6% of supply staked). Entry price $0.0003254; current ~$0.000264 (≈ -19% from entry). Desk score 81 (notify). Wallet-confirmed balance: 517,558.97 DTF.
-- **BOOTS** (Boots Has Landed, robinhood) — meme/brainrot, multi-platform organic launch (X/YouTube/Telegram/TikTok/Instagram). Entry price $0.000043969 (~$43k MC est.); current ~$0.0000092 (≈ -79% from entry, MC ~$9.2k). Desk score 72 (watch, sub-bar).
-  - **Reconciliation flag:** `memory/positions.yaml` marks BOOTS `status: open`, but the live wallet scan (`state/wallet_holdings_rh.json`) shows **zero BOOTS balance** and no `size_tokens`/`size_usd` was ever recorded on the fill. Either the position was never actually filled with tracked size, or it was sold off-record. Resolve this with Tor-Magnus before treating BOOTS as a live loss — do not carry a -79% "position" in PnL reporting until the wallet discrepancy is confirmed either way.
+- **DTF** (DeFi Traded Fund, robinhood) — `rwa-finance/stock-reward-mining`, peer to GLD/SRM class; USDG-quoted, verified AMD flowing into a confirmed staking contract. Entry price $0.0003254. Desk score 81 (notify). Wallet-confirmed balance: ~517,559 DTF.
+- **BOOTS** — sold 2026-08-04 (Tor-Magnus). Removed from tracker; no PnL carried.
 
 ## Risk Framework (desk-wide, applies above sizing rules)
 

@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T12:59:24.675943+00:00",
+  "published_at": "2026-08-04T13:14:24.190048+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -191,6 +191,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/UniFrog"
+    },
+    {
+      "symbol": "STOCKIMPALER",
+      "chain": "robinhood",
+      "token": "0x5c0033cE0029f709A51313E20615f74E1D00a549",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/STOCKIMPALER"
     },
     {
       "symbol": "FAFE",
@@ -389,6 +398,15 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "MEATSPIN",
+      "chain": "robinhood",
+      "token": "0x285eC8958774074CD924103d040FB92be9d2d42A",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/MEATSPIN"
     },
     {
       "symbol": "\u8774\u8776DAO",

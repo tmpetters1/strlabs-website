@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-08-04T12:45:59Z",
+  "generated_at": "2026-08-04T13:02:37Z",
   "entries": [
+    {
+      "date": "2026-08-04",
+      "title": "rule `agent-executed-trading`",
+      "observation": "Tor-Magnus 2026-08-04: change no-trading rule; agent controls wallet and executes. Base+RH both good for real projects.",
+      "action": "APPLIED via learn_loop \u2014 Conductor executes spot trades on Robinhood + Base for wallet 0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0 under trading_strategy.md rails. Pre-trade: dd checks + score/liq/kill-list. Post-trade: ledger trades.jsonl + positions + Discord activity. Never print/exfiltrate PRIVATE_KEY. Gas floors: RH >=0.015 ETH, Base >=0.005 ETH. No leverage/perps. - Enforcement: unknown type process \u2014 treated as agent_rule",
+      "owner": "conductor"
+    },
     {
       "date": "2026-08-04",
       "title": "BOOTS position untracked in wallet \u2014 human-reported fills need size fields",

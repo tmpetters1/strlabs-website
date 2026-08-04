@@ -1,44 +1,11 @@
 {
-  "generated_at": "2026-08-04T12:45:59Z",
+  "generated_at": "2026-08-04T13:02:37Z",
   "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
   "chain_focus": {
     "primary": "robinhood",
     "note": "Base dust noted separately if wallet holds Base-chain tokens; RH is the desk's primary trading chain."
   },
   "positions": [
-    {
-      "id": "boots-rh-2026-08-03",
-      "status": "open",
-      "symbol": "BOOTS",
-      "name": "Boots Has Landed",
-      "chain": "robinhood",
-      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
-      "pair": "0xE814cC22D86537fF3eDEce645955e40a0717634A",
-      "bought_at": "2026-08-03T17:09:00+02:00",
-      "entry_price_usd": 4.3969e-05,
-      "entry_mc_usd": 43000,
-      "entry_mc_source": "user_estimate",
-      "desk_score": 72,
-      "thesis": "RH meme/brainrot multi-platform organic launch",
-      "links": {
-        "dex": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A",
-        "site": "https://www.bootshaslanded.com",
-        "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BOOTS.md"
-      },
-      "current_price_usd": 8.946e-06,
-      "current_mc_usd": 8947,
-      "current_liq_usd": 7087.95,
-      "vol_h24_usd": 50686.5,
-      "change_h24_pct": -67.77,
-      "price_source": "dexscreener",
-      "price_error": null,
-      "pnl_pct": -79.65384702858832,
-      "wallet_balance_tokens": null,
-      "wallet_confirmed": false,
-      "value_usd": null,
-      "cost_basis_usd": null,
-      "pnl_usd": null
-    },
     {
       "id": "dtf-rh-2026-08-03",
       "status": "open",
@@ -58,34 +25,22 @@
         "site": "https://dtf.finance/",
         "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md"
       },
-      "current_price_usd": 0.0002648,
-      "current_mc_usd": 237458,
-      "current_liq_usd": 53639.8,
-      "vol_h24_usd": 105701.74,
-      "change_h24_pct": 0.53,
+      "current_price_usd": 0.0002502,
+      "current_mc_usd": 224371,
+      "current_liq_usd": 52055.94,
+      "vol_h24_usd": 105875.05,
+      "change_h24_pct": 2.27,
       "price_source": "dexscreener",
       "price_error": null,
-      "pnl_pct": -18.62323294406884,
+      "pnl_pct": -23.110018438844495,
       "wallet_balance_tokens": 517558.9694446674,
       "wallet_confirmed": true,
-      "value_usd": 137.04961510894793,
+      "value_usd": 129.49325415505578,
       "cost_basis_usd": 168.41368865729476,
-      "pnl_usd": -31.364073548346823
+      "pnl_usd": -38.920434502238976
     }
   ],
   "history": [
-    {
-      "id": "boots-rh-2026-08-03",
-      "symbol": "BOOTS",
-      "chain": "robinhood",
-      "side": "buy",
-      "at": "2026-08-03T17:09:00+02:00",
-      "price_usd": 4.3969e-05,
-      "mc_usd": 43000,
-      "size_tokens": null,
-      "size_usd": null,
-      "reported_by": "tor-magnus"
-    },
     {
       "id": "dtf-rh-2026-08-03",
       "symbol": "DTF",
@@ -101,13 +56,13 @@
   ],
   "pnl": {
     "realized_usd": 0.0,
-    "unrealized_usd": -31.36,
-    "unrealized_complete": false,
-    "open_position_count": 2,
+    "unrealized_usd": -38.92,
+    "unrealized_complete": true,
+    "open_position_count": 1,
     "closed_position_count": 0,
     "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
     "wallet_snapshot_at": null,
-    "note": "Unrealized PnL only computed for positions with a wallet-confirmed balance. Sizes not yet confirmed in wallet are shown price/pct only."
+    "note": "All open positions have wallet-confirmed balances."
   },
   "disclaimer": "Experimental agent-assisted research; trades are human-executed only. High risk \u2014 tokens shown may be illiquid, unaudited, or scams. Not financial advice."
 }
