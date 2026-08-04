@@ -1,14 +1,14 @@
 {
   "available": true,
   "tracked": 68,
-  "graded": 58,
-  "pending": 10,
+  "graded": 61,
+  "pending": 7,
   "verdicts": {
-    "flat": 46,
+    "flat": 48,
     "delisted": 1,
-    "winner": 7,
-    "loser": 3,
-    "rug": 1
+    "winner": 6,
+    "loser": 4,
+    "rug": 2
   },
   "by_score_band": {
     "70-77": {
@@ -20,19 +20,19 @@
       "delisted": 0
     },
     "60-69": {
-      "n": 5,
+      "n": 6,
       "winner": 0,
       "loser": 1,
       "rug": 0,
-      "flat": 4,
+      "flat": 5,
       "delisted": 0
     },
     "<60": {
-      "n": 36,
-      "winner": 6,
-      "loser": 1,
-      "rug": 1,
-      "flat": 27,
+      "n": 38,
+      "winner": 5,
+      "loser": 2,
+      "rug": 2,
+      "flat": 28,
       "delisted": 1
     },
     "unscored": {
