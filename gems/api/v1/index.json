@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T12:44:23.905317+00:00",
+  "published_at": "2026-08-04T12:56:45.323710+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -92,6 +92,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/Port"
+    },
+    {
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GRID"
     },
     {
       "symbol": "SAFEVANO",
@@ -380,15 +389,6 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
-    },
-    {
-      "symbol": "GRID",
-      "chain": "robinhood",
-      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
-      "score": null,
-      "status": "whale_reviewed",
-      "notify": false,
-      "path": "/api/v1/token/GRID"
     },
     {
       "symbol": "\u8774\u8776DAO",
