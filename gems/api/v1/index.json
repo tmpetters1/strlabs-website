@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T01:29:21.356111+00:00",
+  "published_at": "2026-08-04T01:44:21.390672+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -76,6 +76,15 @@
       "path": "/api/v1/token/Port"
     },
     {
+      "symbol": "SAFEVANO",
+      "chain": "robinhood",
+      "token": "0xe6613D2Bbd5f5C5bb203C36eE414ffaA4a47a977",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/SAFEVANO"
+    },
+    {
       "symbol": "PIPE",
       "chain": "robinhood",
       "token": "0xD87b957171751980eF2b62fE1Fc3daE5d4D408E9",
@@ -83,6 +92,69 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/PIPE"
+    },
+    {
+      "symbol": "MEMESTOCK",
+      "chain": "bsc",
+      "token": "0xd3F4d386DB69657bb5A61C99276BCF0d97837777",
+      "score": 40.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/MEMESTOCK"
+    },
+    {
+      "symbol": "WINK",
+      "chain": "robinhood",
+      "token": "0x8ad5A580c4215086Dec828d8626b95A06D7D00cc",
+      "score": 35.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/WINK"
+    },
+    {
+      "symbol": "CASHKITTY",
+      "chain": "robinhood",
+      "token": "0xea7D32aFE10bae770f8ad350190A120c27ca12cc",
+      "score": 35.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/CASHKITTY"
+    },
+    {
+      "symbol": "MARVIN",
+      "chain": "base",
+      "token": "0x49b0708bf30496648cea5b85088b7ae38edc2b00",
+      "score": 0.0,
+      "status": "killed",
+      "notify": false,
+      "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "ELE",
+      "chain": "robinhood",
+      "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
+      "score": null,
+      "status": "whale_reviewed",
+      "notify": false,
+      "path": "/api/v1/token/ELE"
+    },
+    {
+      "symbol": "RICE",
+      "chain": "robinhood",
+      "token": "0x811624d7a62E5079052A9B4F8Ec0a139Ef389283",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/RICE"
+    },
+    {
+      "symbol": "OZZY",
+      "chain": "robinhood",
+      "token": "0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/OZZY"
     }
   ]
 }
