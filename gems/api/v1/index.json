@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T21:21:14.479834+00:00",
+  "published_at": "2026-08-04T21:29:26.497922+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -31,15 +31,6 @@
       "path": "/api/v1/token/BASEMATE"
     },
     {
-      "symbol": "LEMON",
-      "chain": "robinhood",
-      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
-      "score": 75.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/LEMON"
-    },
-    {
       "symbol": "ELE",
       "chain": "robinhood",
       "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
@@ -47,6 +38,15 @@
       "status": "tracking",
       "notify": false,
       "path": "/api/v1/token/ELE"
+    },
+    {
+      "symbol": "LEMON",
+      "chain": "robinhood",
+      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "score": 75.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/LEMON"
     },
     {
       "symbol": "BOOTS",
