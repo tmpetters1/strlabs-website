@@ -121,75 +121,75 @@
       "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
       "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
       "market_live": {
-        "price_usd": 0.0002547,
-        "mc": 228369.0,
-        "liq": 52541.34,
-        "vol_h24": 121424.0,
+        "price_usd": 0.0002523,
+        "mc": 226196.0,
+        "liq": 52277.78,
+        "vol_h24": 120837.59,
         "vol_to_liq": 2.31,
-        "change_m5": 0.86,
-        "change_h1": -0.95,
-        "change_h6": -1.44,
-        "change_h24": -8.28,
-        "buys_h1": 59,
-        "sells_h1": 66,
-        "buys_h24": 1811,
-        "sells_h24": 1414,
+        "change_m5": -1.5,
+        "change_h1": -0.2,
+        "change_h6": -1.45,
+        "change_h24": -8.08,
+        "buys_h1": 61,
+        "sells_h1": 71,
+        "buys_h24": 1806,
+        "sells_h24": 1418,
         "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
         "quote": "USDG",
         "dex": "uniswap",
-        "pair_age_minutes": 6041.7
+        "pair_age_minutes": 6056.7
       },
       "charts": {
         "price_series": [
           {
             "t": "24h_ago",
-            "p": 0.000277693
+            "p": 0.0002744778
           },
           {
             "t": "6h_ago",
-            "p": 0.0002584213
+            "p": 0.0002560122
           },
           {
             "t": "1h_ago",
-            "p": 0.0002571429
+            "p": 0.0002528056
           },
           {
             "t": "5m_ago",
-            "p": 0.0002525283
+            "p": 0.0002561421
           },
           {
             "t": "now",
-            "p": 0.0002547
+            "p": 0.0002523
           }
         ],
         "change": {
-          "m5": 0.86,
-          "h1": -0.95,
-          "h6": -1.44,
-          "h24": -8.28
+          "m5": -1.5,
+          "h1": -0.2,
+          "h6": -1.45,
+          "h24": -8.08
         },
         "volume": {
-          "h24": 121424,
-          "h6": 23563.93,
-          "h1": 4735.04,
-          "m5": 238.99
+          "h24": 120837.59,
+          "h6": 23077.97,
+          "h1": 4530.38,
+          "m5": 232.66
         },
         "txns": {
           "m5": {
-            "buys": 7,
-            "sells": 4
+            "buys": 2,
+            "sells": 9
           },
           "h1": {
-            "buys": 59,
-            "sells": 66
+            "buys": 61,
+            "sells": 71
           },
           "h6": {
-            "buys": 460,
-            "sells": 351
+            "buys": 458,
+            "sells": 356
           },
           "h24": {
-            "buys": 1811,
-            "sells": 1414
+            "buys": 1806,
+            "sells": 1418
           }
         }
       },
@@ -293,81 +293,334 @@
       "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
       "mechanism": null,
       "market_live": {
-        "price_usd": 1.746e-06,
-        "mc": 174669.0,
-        "liq": 134189.59,
-        "vol_h24": 50166.38,
+        "price_usd": 1.75e-06,
+        "mc": 175001.0,
+        "liq": 134527.11,
+        "vol_h24": 50204.64,
         "vol_to_liq": 0.37,
-        "change_m5": 0.01,
-        "change_h1": -0.69,
-        "change_h6": -3.46,
-        "change_h24": 30.38,
-        "buys_h1": 1,
-        "sells_h1": 7,
-        "buys_h24": 451,
-        "sells_h24": 789,
+        "change_h1": -0.5,
+        "change_h6": -3.28,
+        "change_h24": 28.95,
+        "buys_h1": 2,
+        "sells_h1": 10,
+        "buys_h24": 452,
+        "sells_h24": 791,
         "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
         "quote": "WETH",
         "dex": "uniswap",
-        "pair_age_minutes": 99871.8
+        "pair_age_minutes": 99886.8
       },
       "charts": {
         "price_series": [
           {
             "t": "24h_ago",
-            "p": 1.3392e-06
+            "p": 1.3571e-06
           },
           {
             "t": "6h_ago",
-            "p": 1.8086e-06
+            "p": 1.8093e-06
           },
           {
             "t": "1h_ago",
-            "p": 1.7581e-06
-          },
-          {
-            "t": "5m_ago",
-            "p": 1.7458e-06
+            "p": 1.7588e-06
           },
           {
             "t": "now",
-            "p": 1.746e-06
+            "p": 1.75e-06
           }
         ],
         "change": {
-          "m5": 0.01,
-          "h1": -0.69,
-          "h6": -3.46,
-          "h24": 30.38
+          "h1": -0.5,
+          "h6": -3.28,
+          "h24": 28.95
         },
         "volume": {
-          "h24": 50166.38,
-          "h6": 9867.29,
-          "h1": 314.18,
-          "m5": 4.55
+          "h24": 50204.64,
+          "h6": 9920.57,
+          "h1": 367.46,
+          "m5": 0
         },
         "txns": {
           "m5": {
             "buys": 0,
-            "sells": 1
+            "sells": 0
           },
           "h1": {
-            "buys": 1,
-            "sells": 7
+            "buys": 2,
+            "sells": 10
           },
           "h6": {
-            "buys": 116,
-            "sells": 202
+            "buys": 117,
+            "sells": 205
           },
           "h24": {
-            "buys": 451,
-            "sells": 789
+            "buys": 452,
+            "sells": 791
           }
         }
       },
       "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
       "brief_excerpt": "# BASEMATE \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Base (8453)\n- **Token:** `0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3`\n- **Main Pair:** `0x4676505f75ef3cf95cf30d6e56134e39fe1f4c3\u2026` (Uniswap v4 / Base)\n- **Dex:** https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **Explorer:** https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **App:** https://basemate.app (live iMessage/WhatsApp crypto remittance agent)\n- **X:** @basemateagent\n- **Deployer:** not retrieved (Etherscan v2 gated for Base) \u2014 unknown, needs manual check\n\n## \u26a0\ufe0f Scam copy: `BASEEMATE` at `0x16b559\u2026` \u2014 NOT this token. Dominant CA is `0x07E61D8a\u2026`.\n\n## Classification + novelty\n- **Category:** defi / **sub:** consumer-payments / messaging-agent\n- **Tags:** base, imessage, whatsapp, remittance, ai-agent, usdc-yield, real-product\n- **Novelty:** medium-high \u2014 iMessage-native crypto payments is a distinct product surface (not a DEX wrapper or generic yield vault). WhatsApp receive side + iMessage send side with zero wallet setup is genuinely novel UX architecture.\n- **Confidence:** 0.78\n\n## Product truth (verified from site)\n**Basemate = \"Send Money in your Texts\" \u2014 iMessage + WhatsApp crypto agent.**\n\nLive metrics from landing page:\n- **12,300 users**\n- **63,000+ messages processed**\n- **$382.2K notional moved**\n\nHow it works:\n1. **Send** \u2014 \"send $200 to Mum\" in iMessage \u2192 moves in seconds to any phone number\n2. **Earn** \u2014 idle USDC auto-routes to best Base yield (Moonwell / Morpho / Aave) in one text\n3. **Trade** \u2014 Uniswap + Aerodrome swaps from chat; perps via Base App\n4. **Save** \u2014 USDC base currency, dollar-denominated\n\n**The moat:** Sender uses iMessage (1.3B US/EU/Gulf senders). Receiver uses WhatsApp (Philippines, India, Mexico, Nigeria, Brazil). Zero apps to install on either side. This directly attacks the $800B remittance market at the UX layer \u2014 no incumbent does zero-install on both sides.\n\n**Product truth verdict: REAL.** Numbers are modest but live. The architecture is legitimate and distinct.\n\n## Market (live ~16:25 UTC)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$163k |\n| Liq | **~$128k** |\n| Vol 24h | ~$77k |\n| Vol/MC | ~0.47\u00d7 |\n| Txns h24 | 390B / 655S (sell-heavy today) |\n| Txns h1 | 4B / 11S (current sell pressure) |\n| \u0394 h1 / h6 / h24 | +1% / +6% / **+30%** |\n| Pair age | ~82 days (not new) |\n| Boosts | **none** (organic) |\n| Holders |",
       "score_line": "76 / 100 \u00b7 Notify: NO (bar 78)"
+    }
+  },
+  {
+    "symbol": "ELE",
+    "chain": "robinhood",
+    "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
+    "score": 75.0,
+    "status": "tracking",
+    "notify": false,
+    "category": "defi",
+    "subcategory": "markets",
+    "url": "https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+    "explorer": "https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765",
+    "mc": 179563.0,
+    "liq": 95294.53,
+    "vol_h24": 322331.73,
+    "detail": {
+      "why_notify": "score 75.0 near/above bar 78.0",
+      "links": {
+        "site": "https://elevator.onl",
+        "x": "https://x.com/elevatorcommx",
+        "dex": "https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+        "explorer": "https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765",
+        "twitter": "https://x.com/elevatorcommx",
+        "telegram": "https://t.me/elevatoronl"
+      },
+      "reasoning": [
+        "Rare RH name with a **full verified Uniswap v4 hook monetary stack actually running**: users deposit into ElevatorCar, controller has authorized at least one ascent, supply already expanded past launch. Book is tradeable (liq ~$95k, vol/liq 3.4\u00d7) with clean free float. Asymmetric if floors keep clearing and SM discovers the mechanism before mc re-rates \u2014 today still early, boost-surfaced, unaudited, no SM."
+      ],
+      "risks": [],
+      "invalidation": [
+        "Car deposits die / app abandons this CA",
+        "authorizeAscent path stalls while narrative claims ongoing floors",
+        "Deployer or team EOA starts dumping double-digit free float",
+        "Liq collapses sub ~$40k or vol/liq goes dead-book",
+        "Social flips hard manufactured / claim-portal",
+        "Manifest/site points off this CA",
+        "Exploit or pause abuse (guardian pause up to 24h exists per docs)"
+      ],
+      "score_stack": [],
+      "checks": {
+        "factory_fence": {
+          "status": "pass",
+          "note": "impl=none deployer=0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE",
+          "by": "scout"
+        },
+        "novelty_honest": {
+          "status": "pass",
+          "note": "none per Class",
+          "by": "class"
+        },
+        "website_shell": {
+          "status": "pass",
+          "note": "elevator.onl + socials present",
+          "by": "class"
+        },
+        "contract_name_vs_ticker": {
+          "status": "pass",
+          "note": "contract ELEToken / name Elevator / ticker ELE match",
+          "by": "class"
+        },
+        "socials_exist": {
+          "status": "pass",
+          "note": "x.com/elevatorcommx + t.me/elevatoronl",
+          "by": "class"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "holders=538; page50; protocol+LP labeled",
+          "by": "whale"
+        },
+        "label_lp_burn_lock": {
+          "status": "pass",
+          "note": "PoolManager~38.7% LP; ElevatorCar~9.5%; ReserveVault~5.4%; no burn top",
+          "by": "whale"
+        },
+        "lp_secured": {
+          "status": "blocked",
+          "note": "V4 PoolManager NFT LP \u2014 burn/lock path N/A",
+          "by": "whale"
+        },
+        "deployer_or_owner": {
+          "status": "pass",
+          "note": "creator 0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE; not serial factory",
+          "by": "class"
+        },
+        "dev_wallet_history": {
+          "status": "pass",
+          "note": "Research: Elevator stack bootstrap not serial farm",
+          "by": "reece"
+        },
+        "buyer_quality": {
+          "status": "pass",
+          "note": "mix stock-basket watch EOA + meme rotators + 7702 agents; no aged SM labels",
+          "by": "whale"
+        },
+        "concentration": {
+          "status": "pass",
+          "note": "ex-protocol EOA top1 1.79 top5 7.4 top10 12.9 flat",
+          "by": "whale"
+        },
+        "smart_money_match": {
+          "status": "pass",
+          "note": "explicit none vs memory/whales",
+          "by": "whale"
+        },
+        "upstream_read": {
+          "status": "pass",
+          "note": "Class defi/markets + Whale product float no SM",
+          "by": "reece"
+        },
+        "website_product_truth": {
+          "status": "pass",
+          "note": "Live app+docs; Car deposit/activate/exit/claim + authorizeAscent success; supply 50340>50000",
+          "by": "reece"
+        },
+        "site_points_to_ca": {
+          "status": "pass",
+          "note": "config.js + deployments/robinhood-mainnet.json bind exact CA/stack/poolId chain 4663 (not homepage HTML string)",
+          "by": "reece"
+        },
+        "social_x_pass": {
+          "status": "pass",
+          "note": "thin \u2014 x_client blocked; x_search boost bots + low eng; not manufactured",
+          "by": "reece"
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "Full verified non-proxy stack; no independent audit",
+          "by": "reece"
+        },
+        "deployer_in_score": {
+          "status": "pass",
+          "note": "Product-stack 8 related contracts same minute; not serial farm; no prior track record",
+          "by": "reece"
+        },
+        "thesis_invalidation": {
+          "status": "pass",
+          "note": "Car death/ascent stall/dump/liq collapse/CA pivot/exploit",
+          "by": "reece"
+        },
+        "score_stack": {
+          "status": "pass",
+          "note": "75 live product + clean float - no SM - thin social - unaudited - boost",
+          "by": "reece"
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "decision hold \u2014 75 < 78; no SM; thin social",
+          "by": null
+        },
+        "clone_count": {
+          "status": "pass",
+          "note": "many bare ELE tickers; this CA unique Elevator product stack",
+          "by": "reece"
+        },
+        "website_shell_vs_product": {
+          "status": "pass",
+          "note": "elevator.onl full mechanism + curve mining + floor model; not vapor shell",
+          "by": "class"
+        },
+        "socials": {
+          "status": "pass",
+          "note": "x.com/elevatorcommx + t.me/elevatoronl on Dex",
+          "by": "class"
+        },
+        "dead_flow": {
+          "status": "pass",
+          "note": "vol24~322k vs liq~93k live book",
+          "by": "class"
+        },
+        "honest_novelty": {
+          "status": "fail",
+          "note": "novelty=none; verified v4 monetary hook + site; conf=0.58",
+          "by": "class"
+        },
+        "github_or_docs": {
+          "status": "pass",
+          "note": "/docs /mechanism sourceCommit 1107c5a4 in config",
+          "by": "reece"
+        }
+      },
+      "holders_notes": null,
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 4.64,
+        "mc": 233922.0,
+        "liq": 115054.23,
+        "vol_h24": 332090.77,
+        "vol_to_liq": 2.89,
+        "change_m5": 22.56,
+        "change_h1": 46.06,
+        "change_h6": 63.7,
+        "change_h24": 20.54,
+        "buys_h1": 46,
+        "sells_h1": 38,
+        "buys_h24": 1050,
+        "sells_h24": 917,
+        "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+        "quote": "WETH",
+        "dex": "uniswap",
+        "pair_age_minutes": 1983.6
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 3.8493446159
+          },
+          {
+            "t": "6h_ago",
+            "p": 2.8344532682
+          },
+          {
+            "t": "1h_ago",
+            "p": 3.1767766671
+          },
+          {
+            "t": "5m_ago",
+            "p": 3.7859007833
+          },
+          {
+            "t": "now",
+            "p": 4.64
+          }
+        ],
+        "change": {
+          "m5": 22.56,
+          "h1": 46.06,
+          "h6": 63.7,
+          "h24": 20.54
+        },
+        "volume": {
+          "h24": 332090.77,
+          "h6": 66293.75,
+          "h1": 15172.86,
+          "m5": 11225.18
+        },
+        "txns": {
+          "m5": {
+            "buys": 16,
+            "sells": 22
+          },
+          "h1": {
+            "buys": 46,
+            "sells": 38
+          },
+          "h6": {
+            "buys": 267,
+            "sells": 200
+          },
+          "h24": {
+            "buys": 1050,
+            "sells": 917
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
+      "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
     }
   }
 ]

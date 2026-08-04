@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T01:44:21.390672+00:00",
+  "published_at": "2026-08-04T01:59:21.526198+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -20,6 +20,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/BASEMATE"
+    },
+    {
+      "symbol": "ELE",
+      "chain": "robinhood",
+      "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
+      "score": 75.0,
+      "status": "tracking",
+      "notify": false,
+      "path": "/api/v1/token/ELE"
     },
     {
       "symbol": "BOOTS",
@@ -121,6 +130,15 @@
       "path": "/api/v1/token/CASHKITTY"
     },
     {
+      "symbol": "UNIHOOD",
+      "chain": "robinhood",
+      "token": "0x99b1887E985a985ECb23AC248421EAc96CB92492",
+      "score": 30.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/UNIHOOD"
+    },
+    {
       "symbol": "MARVIN",
       "chain": "base",
       "token": "0x49b0708bf30496648cea5b85088b7ae38edc2b00",
@@ -128,15 +146,6 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
-    },
-    {
-      "symbol": "ELE",
-      "chain": "robinhood",
-      "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
-      "score": null,
-      "status": "whale_reviewed",
-      "notify": false,
-      "path": "/api/v1/token/ELE"
     },
     {
       "symbol": "RICE",
