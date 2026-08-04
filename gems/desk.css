@@ -133,3 +133,24 @@ th{color:var(--muted);font-size:.72rem;text-transform:uppercase}
 /* strategy holdings */
 .hold-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem;margin-bottom:.75rem}
 .hold-top{display:flex;justify-content:space-between;align-items:center;gap:.75rem;margin-bottom:.55rem;font-weight:700}
+
+/* expandable positions */
+.pos-expand{padding:0;overflow:hidden}
+.pos-summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:flex-start;padding:1rem 1.1rem}
+.pos-summary::-webkit-details-marker{display:none}
+.pos-summary-main{min-width:220px;flex:1}
+.pos-title-row{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;font-size:1.05rem;font-weight:700}
+.pos-thesis{font-size:.82rem;margin-top:.35rem;max-width:42rem}
+.pos-summary-side{text-align:right;min-width:140px}
+.pos-live{font-size:1rem;font-weight:700}
+.pnl-inline{display:block;font-size:1.05rem;font-weight:800;margin-top:.15rem}
+.pos-value{font-size:.75rem;margin-top:.15rem}
+.expand-hint{display:inline-block;margin-top:.35rem;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pos-expand[open] .expand-hint{color:var(--accent)}
+.pos-body{padding:0 1.1rem 1.05rem;border-top:1px solid var(--line)}
+.pos-links{margin:.55rem 0 .75rem;font-size:.85rem}
+.brief-wrap{background:#101010;border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem}
+.brief-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.55rem}
+.brief-body{max-height:28rem;overflow:auto}
+.brief-body.md-article{font-size:.88rem}
+.top .chip.mono{font-size:.72rem}

@@ -1,3 +1,15 @@
+function publicLinks(p) {
+  const dex = Desk.dexUrl(p);
+  const out = [];
+  if (dex) out.push(`<a href="${Desk.esc(dex)}" target="_blank" rel="noopener">DexScreener</a>`);
+  for (const [k, u] of Object.entries(p.links || {})) {
+    if (!u || k === "dex" || k === "brief") continue;
+    if (String(u).startsWith("/") || String(u).startsWith("file:")) continue;
+    out.push(`<a href="${Desk.esc(u)}" target="_blank" rel="noopener">${Desk.esc(k)}</a>`);
+  }
+  return out.join(" · ");
+}
+
 function renderPositions(positions) {
   const root = document.getElementById("positions");
   if (!positions.length) {
@@ -5,68 +17,62 @@ function renderPositions(positions) {
     return;
   }
   root.innerHTML = positions
-    .map((p) => {
+    .map((p, idx) => {
       const pnlCls = Desk.pctClass(p.pnl_pct);
-      const pnlLine = p.wallet_confirmed
-        ? `<div class="pnl-big ${pnlCls}">${Desk.fmtUsd(p.pnl_usd)} <span style="font-size:.6em">(${Desk.fmtPct(p.pnl_pct)})</span></div>`
-        : `<div class="pnl-big ${pnlCls}">${Desk.fmtPct(p.pnl_pct)}</div><div class="muted" style="font-size:.75rem;margin-top:.15rem">size unconfirmed in wallet — % only</div>`;
-      const dex = Desk.dexUrl(p);
-      const links = Object.entries(p.links || {})
-        .map(([k, u]) => {
-          if (!u || String(u).startsWith("/Users/")) return "";
-          return `<a href="${Desk.esc(u)}" target="_blank" rel="noopener" style="margin-right:.6rem">${Desk.esc(k)}</a>`;
-        })
-        .filter(Boolean)
-        .join("");
-      const priceSrc =
-        p.price_source === "dexscreener-live"
-          ? "live DexScreener"
-          : p.price_source || "—";
-      const priceNote =
-        p.current_price_usd == null
-          ? `<div class="muted" style="font-size:.75rem;margin-top:.3rem">live price unavailable${
-              p.price_error ? ": " + Desk.esc(p.price_error) : ""
-            }</div>`
-          : `<div class="muted" style="font-size:.75rem;margin-top:.3rem">price: ${Desk.esc(priceSrc)}${
-              p.price_fetched_at ? " · " + Desk.fmtTime(p.price_fetched_at) : ""
-            }</div>`;
-      return `<article class="pos-card">
-        <div class="pos-head">
-          <h3>${Desk.tickerHtml(p)} <span class="badge blue">${Desk.esc(p.chain)}</span> <span class="badge">score ${
-        p.desk_score ?? "—"
-      }</span></h3>
-          ${pnlLine}
-        </div>
-        <div class="muted" style="font-size:.85rem;margin-bottom:.5rem">${Desk.esc(p.thesis || "")}</div>
-        <div class="kv">
-          <div class="cell"><div class="k">Entry price</div><div class="v mono">${Desk.fmtUsd(p.entry_price_usd, {
-            precise: true,
-          })}</div></div>
-          <div class="cell"><div class="k">Live price</div><div class="v mono">${Desk.fmtUsd(p.current_price_usd, {
-            precise: true,
-          })}</div></div>
-          <div class="cell"><div class="k">Entry MC</div><div class="v">${Desk.fmtUsd(p.entry_mc_usd)}</div></div>
-          <div class="cell"><div class="k">Live MC</div><div class="v">${Desk.fmtUsd(p.current_mc_usd)}</div></div>
-          <div class="cell"><div class="k">Liquidity</div><div class="v">${Desk.fmtUsd(p.current_liq_usd)}</div></div>
-          <div class="cell"><div class="k">1h / 24h</div><div class="v"><span class="${Desk.pctClass(
-            p.change_h1_pct
-          )}">${Desk.fmtPct(p.change_h1_pct)}</span> · <span class="${Desk.pctClass(
+      const pnlCompact = p.wallet_confirmed
+        ? `<span class="pnl-inline ${pnlCls}">${Desk.fmtUsd(p.pnl_usd)} (${Desk.fmtPct(p.pnl_pct)})</span>`
+        : `<span class="pnl-inline ${pnlCls}">${Desk.fmtPct(p.pnl_pct)}</span>`;
+      const bal = p.wallet_confirmed
+        ? Number(p.wallet_balance_tokens).toLocaleString(undefined, { maximumFractionDigits: 0 })
+        : "unconfirmed";
+      const value = p.wallet_confirmed ? Desk.fmtUsd(p.value_usd) : "—";
+      const briefHtml = p.brief_md
+        ? Desk.mdToHtml(p.brief_md)
+        : '<div class="empty">No research brief on file for this position.</div>';
+      const openAttr = idx === 0 ? " open" : "";
+      return `<details class="pos-card pos-expand"${openAttr}>
+        <summary class="pos-summary">
+          <div class="pos-summary-main">
+            <div class="pos-title-row">
+              ${Desk.tickerHtml(p)}
+              <span class="badge blue">${Desk.esc(p.chain || "")}</span>
+              <span class="badge">score ${p.desk_score ?? "—"}</span>
+            </div>
+            <div class="muted pos-thesis">${Desk.esc(p.thesis || "")}</div>
+          </div>
+          <div class="pos-summary-side">
+            <div class="pos-live mono">${Desk.fmtUsd(p.current_price_usd, { precise: true })}</div>
+            ${pnlCompact}
+            <div class="muted pos-value">${value} · ${bal} tok</div>
+            <span class="expand-hint" aria-hidden="true">details</span>
+          </div>
+        </summary>
+        <div class="pos-body">
+          <div class="kv">
+            <div class="cell"><div class="k">Entry price</div><div class="v mono">${Desk.fmtUsd(p.entry_price_usd, {
+              precise: true,
+            })}</div></div>
+            <div class="cell"><div class="k">Live price</div><div class="v mono">${Desk.fmtUsd(p.current_price_usd, {
+              precise: true,
+            })}</div></div>
+            <div class="cell"><div class="k">Entry MC</div><div class="v">${Desk.fmtUsd(p.entry_mc_usd)}</div></div>
+            <div class="cell"><div class="k">Live MC</div><div class="v">${Desk.fmtUsd(p.current_mc_usd)}</div></div>
+            <div class="cell"><div class="k">Liquidity</div><div class="v">${Desk.fmtUsd(p.current_liq_usd)}</div></div>
+            <div class="cell"><div class="k">1h / 24h</div><div class="v"><span class="${Desk.pctClass(
+              p.change_h1_pct
+            )}">${Desk.fmtPct(p.change_h1_pct)}</span> · <span class="${Desk.pctClass(
         p.change_h24_pct
       )}">${Desk.fmtPct(p.change_h24_pct)}</span></div></div>
-          <div class="cell"><div class="k">Wallet balance</div><div class="v mono" style="font-size:.8rem">${
-            p.wallet_confirmed
-              ? Number(p.wallet_balance_tokens).toLocaleString(undefined, { maximumFractionDigits: 0 })
-              : "unconfirmed"
-          }</div></div>
-          <div class="cell"><div class="k">Value now</div><div class="v">${
-            p.wallet_confirmed ? Desk.fmtUsd(p.value_usd) : "—"
-          }</div></div>
+            <div class="cell"><div class="k">Wallet balance</div><div class="v mono" style="font-size:.8rem">${bal}</div></div>
+            <div class="cell"><div class="k">Value now</div><div class="v">${value}</div></div>
+          </div>
+          <div class="pos-links">${publicLinks(p)}</div>
+          <div class="brief-wrap">
+            <div class="brief-label">Research brief</div>
+            <div class="md-article brief-body">${briefHtml}</div>
+          </div>
         </div>
-        <div style="margin-top:.4rem">${
-          dex ? `<a href="${Desk.esc(dex)}" target="_blank" rel="noopener">DexScreener</a> · ` : ""
-        }${links || ""}</div>
-        ${priceNote}
-      </article>`;
+      </details>`;
     })
     .join("");
 }
@@ -128,9 +134,6 @@ function renderPnl(data, positions) {
   }</div></div>
       <div class="stat"><div class="k">Closed</div><div class="v">${pnl.closed_position_count ?? 0}</div></div>
     </div>
-    <div class="muted" style="font-size:.78rem;margin-top:.6rem">${Desk.esc(
-      pnl.note || ""
-    )} Live prices refreshed from DexScreener in-browser.</div>
   `;
 }
 
@@ -138,19 +141,12 @@ async function load() {
   document.getElementById("nav-root").innerHTML = Desk.navHtml("trade");
   const data = await Desk.fetchJson("./data/trading.json");
   document.getElementById("generated-at").textContent = Desk.fmtTime(data.generated_at);
-  document.getElementById("wallet-addr").textContent = data.wallet_address || "—";
-  const note =
-    data.chain_focus &&
-    (Array.isArray(data.chain_focus.primary)
-      ? data.chain_focus.primary.join(" + ") + " · " + (data.chain_focus.note || "")
-      : data.chain_focus.note);
-  document.getElementById("wallet-note").textContent = note || "";
-  document.getElementById("copy-wallet").addEventListener("click", () => {
-    navigator.clipboard?.writeText(data.wallet_address || "");
-    const b = document.getElementById("copy-wallet");
-    b.textContent = "copied";
-    setTimeout(() => (b.textContent = "copy"), 1200);
-  });
+  const walletEl = document.getElementById("wallet-addr");
+  if (walletEl) {
+    const addr = data.wallet_address || "—";
+    walletEl.textContent = Desk.shortAddr(addr);
+    walletEl.title = addr;
+  }
   const livePositions = await Desk.enrichPositionsLive(data.positions || []);
   renderPnl(data, livePositions);
   renderPositions(livePositions);
