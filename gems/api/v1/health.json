@@ -1,7 +1,7 @@
 {
   "ok": true,
   "service": "gem-radar-api",
-  "ts": "2026-08-04T05:44:22Z",
+  "ts": "2026-08-04T05:59:22Z",
   "queue_rows": 29,
   "notify_bar": 78.0,
   "endpoints": [
