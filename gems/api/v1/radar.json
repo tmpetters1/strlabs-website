@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-08-04T05:29:22.155160+00:00",
+  "published_at": "2026-08-04T05:44:22.808140+00:00",
   "updated_at": "2026-08-04T05:07:14Z",
   "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 solana(0.0) \u00b7 metas: stock-reward-mining",
   "filters": {
@@ -68,7 +68,7 @@
       "mc": 226191.0,
       "liq": 52307.0,
       "vol_h24": 139832,
-      "pair_age_minutes": 6266.7,
+      "pair_age_minutes": 6281.7,
       "score": 81.0,
       "status": "briefed",
       "stage_index": 4,
@@ -200,75 +200,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002432,
-          "mc": 218101.0,
-          "liq": 51303.06,
-          "vol_h24": 114580.3,
-          "vol_to_liq": 2.23,
-          "change_m5": 0.29,
-          "change_h1": -1.97,
-          "change_h6": -0.4,
-          "change_h24": -6.88,
-          "buys_h1": 89,
-          "sells_h1": 54,
-          "buys_h24": 1823,
-          "sells_h24": 1424,
+          "price_usd": 0.0002531,
+          "mc": 226912.0,
+          "liq": 52389.78,
+          "vol_h24": 115081.07,
+          "vol_to_liq": 2.2,
+          "change_m5": 1.51,
+          "change_h1": -0.49,
+          "change_h6": 1.88,
+          "change_h24": -3.22,
+          "buys_h1": 86,
+          "sells_h1": 56,
+          "buys_h24": 1824,
+          "sells_h24": 1426,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6266.7
+          "pair_age_minutes": 6281.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0002611684
+              "p": 0.000261521
             },
             {
               "t": "6h_ago",
-              "p": 0.0002441767
+              "p": 0.0002484295
             },
             {
               "t": "1h_ago",
-              "p": 0.0002480873
+              "p": 0.0002543463
             },
             {
               "t": "5m_ago",
-              "p": 0.0002424968
+              "p": 0.000249335
             },
             {
               "t": "now",
-              "p": 0.0002432
+              "p": 0.0002531
             }
           ],
           "change": {
-            "m5": 0.29,
-            "h1": -1.97,
-            "h6": -0.4,
-            "h24": -6.88
+            "m5": 1.51,
+            "h1": -0.49,
+            "h6": 1.88,
+            "h24": -3.22
           },
           "volume": {
-            "h24": 114580.3,
-            "h6": 23933.26,
-            "h1": 4055.58,
-            "m5": 313.29
+            "h24": 115081.07,
+            "h6": 24786.13,
+            "h1": 4910.01,
+            "m5": 369.37
           },
           "txns": {
             "m5": {
-              "buys": 9,
-              "sells": 8
+              "buys": 8,
+              "sells": 4
             },
             "h1": {
-              "buys": 89,
-              "sells": 54
+              "buys": 86,
+              "sells": 56
             },
             "h6": {
-              "buys": 468,
+              "buys": 470,
               "sells": 347
             },
             "h24": {
-              "buys": 1823,
-              "sells": 1424
+              "buys": 1824,
+              "sells": 1426
             }
           }
         },
@@ -285,7 +285,7 @@
       "mc": 162926.0,
       "liq": 128623.0,
       "vol_h24": 76849,
-      "pair_age_minutes": 100096.8,
+      "pair_age_minutes": 100111.8,
       "score": 76.0,
       "status": "briefed",
       "stage_index": 4,
@@ -392,51 +392,51 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.726e-06,
-          "mc": 172670.0,
-          "liq": 133387.03,
-          "vol_h24": 45685.9,
+          "price_usd": 1.724e-06,
+          "mc": 172480.0,
+          "liq": 133264.36,
+          "vol_h24": 44962.35,
           "vol_to_liq": 0.34,
-          "change_h1": 0.33,
-          "change_h6": -3.57,
-          "change_h24": 6.58,
+          "change_h1": 0.22,
+          "change_h6": -3.32,
+          "change_h24": 4.98,
           "buys_h1": 4,
-          "sells_h1": 4,
-          "buys_h24": 408,
-          "sells_h24": 738,
+          "sells_h1": 5,
+          "buys_h24": 404,
+          "sells_h24": 735,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100096.8
+          "pair_age_minutes": 100111.8
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.6194e-06
+              "p": 1.6422e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.7899e-06
+              "p": 1.7832e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.7203e-06
+              "p": 1.7202e-06
             },
             {
               "t": "now",
-              "p": 1.726e-06
+              "p": 1.724e-06
             }
           ],
           "change": {
-            "h1": 0.33,
-            "h6": -3.57,
-            "h24": 6.58
+            "h1": 0.22,
+            "h6": -3.32,
+            "h24": 4.98
           },
           "volume": {
-            "h24": 45685.9,
-            "h6": 2012.99,
-            "h1": 53.84,
+            "h24": 44962.35,
+            "h6": 1803.07,
+            "h1": 66.08,
             "m5": 0
           },
           "txns": {
@@ -446,15 +446,15 @@
             },
             "h1": {
               "buys": 4,
-              "sells": 4
+              "sells": 5
             },
             "h6": {
-              "buys": 14,
-              "sells": 54
+              "buys": 11,
+              "sells": 46
             },
             "h24": {
-              "buys": 408,
-              "sells": 738
+              "buys": 404,
+              "sells": 735
             }
           }
         },
@@ -665,75 +665,69 @@
         "holders_notes": null,
         "mechanism": null,
         "market_live": {
-          "price_usd": 4.61,
-          "mc": 232099.0,
-          "liq": 114358.13,
-          "vol_h24": 309470.25,
-          "vol_to_liq": 2.71,
-          "change_m5": -0.68,
-          "change_h1": -0.17,
-          "change_h6": 76.89,
-          "change_h24": 28.22,
-          "buys_h1": 9,
+          "price_usd": 4.55,
+          "mc": 229416.0,
+          "liq": 113425.3,
+          "vol_h24": 299147.35,
+          "vol_to_liq": 2.64,
+          "change_h1": -2.0,
+          "change_h6": 78.74,
+          "change_h24": -1.88,
+          "buys_h1": 7,
           "sells_h1": 13,
-          "buys_h24": 957,
-          "sells_h24": 853,
+          "buys_h24": 911,
+          "sells_h24": 836,
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2193.6
+          "pair_age_minutes": 2208.6
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 3.5953829356
+              "p": 4.6371789645
             },
             {
               "t": "6h_ago",
-              "p": 2.6061394087
+              "p": 2.5455969565
             },
             {
               "t": "1h_ago",
-              "p": 4.6178503456
-            },
-            {
-              "t": "5m_ago",
-              "p": 4.6415626259
+              "p": 4.6428571429
             },
             {
               "t": "now",
-              "p": 4.61
+              "p": 4.55
             }
           ],
           "change": {
-            "m5": -0.68,
-            "h1": -0.17,
-            "h6": 76.89,
-            "h24": 28.22
+            "h1": -2,
+            "h6": 78.74,
+            "h24": -1.88
           },
           "volume": {
-            "h24": 309470.25,
-            "h6": 46800.71,
-            "h1": 802.06,
-            "m5": 140.65
+            "h24": 299147.35,
+            "h6": 44134.01,
+            "h1": 933.7,
+            "m5": 0
           },
           "txns": {
             "m5": {
-              "buys": 1,
-              "sells": 2
+              "buys": 0,
+              "sells": 0
             },
             "h1": {
-              "buys": 9,
+              "buys": 7,
               "sells": 13
             },
             "h6": {
-              "buys": 168,
-              "sells": 159
+              "buys": 148,
+              "sells": 153
             },
             "h24": {
-              "buys": 957,
-              "sells": 853
+              "buys": 911,
+              "sells": 836
             }
           }
         },
@@ -1785,75 +1779,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002432,
-          "mc": 218101.0,
-          "liq": 51303.06,
-          "vol_h24": 114580.3,
-          "vol_to_liq": 2.23,
-          "change_m5": 0.29,
-          "change_h1": -1.97,
-          "change_h6": -0.4,
-          "change_h24": -6.88,
-          "buys_h1": 89,
-          "sells_h1": 54,
-          "buys_h24": 1823,
-          "sells_h24": 1424,
+          "price_usd": 0.0002531,
+          "mc": 226912.0,
+          "liq": 52389.78,
+          "vol_h24": 115081.07,
+          "vol_to_liq": 2.2,
+          "change_m5": 1.51,
+          "change_h1": -0.49,
+          "change_h6": 1.88,
+          "change_h24": -3.22,
+          "buys_h1": 86,
+          "sells_h1": 56,
+          "buys_h24": 1824,
+          "sells_h24": 1426,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6266.7
+          "pair_age_minutes": 6281.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0002611684
+              "p": 0.000261521
             },
             {
               "t": "6h_ago",
-              "p": 0.0002441767
+              "p": 0.0002484295
             },
             {
               "t": "1h_ago",
-              "p": 0.0002480873
+              "p": 0.0002543463
             },
             {
               "t": "5m_ago",
-              "p": 0.0002424968
+              "p": 0.000249335
             },
             {
               "t": "now",
-              "p": 0.0002432
+              "p": 0.0002531
             }
           ],
           "change": {
-            "m5": 0.29,
-            "h1": -1.97,
-            "h6": -0.4,
-            "h24": -6.88
+            "m5": 1.51,
+            "h1": -0.49,
+            "h6": 1.88,
+            "h24": -3.22
           },
           "volume": {
-            "h24": 114580.3,
-            "h6": 23933.26,
-            "h1": 4055.58,
-            "m5": 313.29
+            "h24": 115081.07,
+            "h6": 24786.13,
+            "h1": 4910.01,
+            "m5": 369.37
           },
           "txns": {
             "m5": {
-              "buys": 9,
-              "sells": 8
+              "buys": 8,
+              "sells": 4
             },
             "h1": {
-              "buys": 89,
-              "sells": 54
+              "buys": 86,
+              "sells": 56
             },
             "h6": {
-              "buys": 468,
+              "buys": 470,
               "sells": 347
             },
             "h24": {
-              "buys": 1823,
-              "sells": 1424
+              "buys": 1824,
+              "sells": 1426
             }
           }
         },
@@ -1957,51 +1951,51 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.726e-06,
-          "mc": 172670.0,
-          "liq": 133387.03,
-          "vol_h24": 45685.9,
+          "price_usd": 1.724e-06,
+          "mc": 172480.0,
+          "liq": 133264.36,
+          "vol_h24": 44962.35,
           "vol_to_liq": 0.34,
-          "change_h1": 0.33,
-          "change_h6": -3.57,
-          "change_h24": 6.58,
+          "change_h1": 0.22,
+          "change_h6": -3.32,
+          "change_h24": 4.98,
           "buys_h1": 4,
-          "sells_h1": 4,
-          "buys_h24": 408,
-          "sells_h24": 738,
+          "sells_h1": 5,
+          "buys_h24": 404,
+          "sells_h24": 735,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100096.8
+          "pair_age_minutes": 100111.8
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.6194e-06
+              "p": 1.6422e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.7899e-06
+              "p": 1.7832e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.7203e-06
+              "p": 1.7202e-06
             },
             {
               "t": "now",
-              "p": 1.726e-06
+              "p": 1.724e-06
             }
           ],
           "change": {
-            "h1": 0.33,
-            "h6": -3.57,
-            "h24": 6.58
+            "h1": 0.22,
+            "h6": -3.32,
+            "h24": 4.98
           },
           "volume": {
-            "h24": 45685.9,
-            "h6": 2012.99,
-            "h1": 53.84,
+            "h24": 44962.35,
+            "h6": 1803.07,
+            "h1": 66.08,
             "m5": 0
           },
           "txns": {
@@ -2011,15 +2005,15 @@
             },
             "h1": {
               "buys": 4,
-              "sells": 4
+              "sells": 5
             },
             "h6": {
-              "buys": 14,
-              "sells": 54
+              "buys": 11,
+              "sells": 46
             },
             "h24": {
-              "buys": 408,
-              "sells": 738
+              "buys": 404,
+              "sells": 735
             }
           }
         },
@@ -2211,75 +2205,69 @@
         "holders_notes": null,
         "mechanism": null,
         "market_live": {
-          "price_usd": 4.61,
-          "mc": 232099.0,
-          "liq": 114358.13,
-          "vol_h24": 309470.25,
-          "vol_to_liq": 2.71,
-          "change_m5": -0.68,
-          "change_h1": -0.17,
-          "change_h6": 76.89,
-          "change_h24": 28.22,
-          "buys_h1": 9,
+          "price_usd": 4.55,
+          "mc": 229416.0,
+          "liq": 113425.3,
+          "vol_h24": 299147.35,
+          "vol_to_liq": 2.64,
+          "change_h1": -2.0,
+          "change_h6": 78.74,
+          "change_h24": -1.88,
+          "buys_h1": 7,
           "sells_h1": 13,
-          "buys_h24": 957,
-          "sells_h24": 853,
+          "buys_h24": 911,
+          "sells_h24": 836,
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2193.6
+          "pair_age_minutes": 2208.6
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 3.5953829356
+              "p": 4.6371789645
             },
             {
               "t": "6h_ago",
-              "p": 2.6061394087
+              "p": 2.5455969565
             },
             {
               "t": "1h_ago",
-              "p": 4.6178503456
-            },
-            {
-              "t": "5m_ago",
-              "p": 4.6415626259
+              "p": 4.6428571429
             },
             {
               "t": "now",
-              "p": 4.61
+              "p": 4.55
             }
           ],
           "change": {
-            "m5": -0.68,
-            "h1": -0.17,
-            "h6": 76.89,
-            "h24": 28.22
+            "h1": -2,
+            "h6": 78.74,
+            "h24": -1.88
           },
           "volume": {
-            "h24": 309470.25,
-            "h6": 46800.71,
-            "h1": 802.06,
-            "m5": 140.65
+            "h24": 299147.35,
+            "h6": 44134.01,
+            "h1": 933.7,
+            "m5": 0
           },
           "txns": {
             "m5": {
-              "buys": 1,
-              "sells": 2
+              "buys": 0,
+              "sells": 0
             },
             "h1": {
-              "buys": 9,
+              "buys": 7,
               "sells": 13
             },
             "h6": {
-              "buys": 168,
-              "sells": 159
+              "buys": 148,
+              "sells": 153
             },
             "h24": {
-              "buys": 957,
-              "sells": 853
+              "buys": 911,
+              "sells": 836
             }
           }
         },
