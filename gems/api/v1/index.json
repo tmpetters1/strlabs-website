@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T02:14:21.916509+00:00",
+  "published_at": "2026-08-04T02:29:22.337499+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -103,6 +103,15 @@
       "path": "/api/v1/token/PIPE"
     },
     {
+      "symbol": "NODE",
+      "chain": "robinhood",
+      "token": "0x180bC9C4f54D960065CbbB345c8f19be03e1Ea55",
+      "score": 42.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/NODE"
+    },
+    {
       "symbol": "MEMESTOCK",
       "chain": "bsc",
       "token": "0xd3F4d386DB69657bb5A61C99276BCF0d97837777",
@@ -110,6 +119,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/MEMESTOCK"
+    },
+    {
+      "symbol": "SNAG",
+      "chain": "robinhood",
+      "token": "0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+      "score": 38.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/SNAG"
     },
     {
       "symbol": "WINK",
@@ -175,22 +193,13 @@
       "path": "/api/v1/token/MARVIN"
     },
     {
-      "symbol": "SNAG",
+      "symbol": "NASDANQ",
       "chain": "robinhood",
-      "token": "0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+      "token": "0x51Fb76BE80ab6daAa345D818f4E06441816b4fEa",
       "score": null,
       "status": "queued",
       "notify": false,
-      "path": "/api/v1/token/SNAG"
-    },
-    {
-      "symbol": "NODE",
-      "chain": "robinhood",
-      "token": "0x180bC9C4f54D960065CbbB345c8f19be03e1Ea55",
-      "score": null,
-      "status": "queued",
-      "notify": false,
-      "path": "/api/v1/token/NODE"
+      "path": "/api/v1/token/NASDANQ"
     },
     {
       "symbol": "RICE",
