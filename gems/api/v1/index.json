@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T10:56:47.414539+00:00",
+  "published_at": "2026-08-04T10:59:23.993053+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -335,6 +335,15 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "WSB",
+      "chain": "robinhood",
+      "token": "0xdba76f1cf96dBeF90E5E1083b70d15Ce6E87b76a",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/WSB"
     },
     {
       "symbol": "\u8774\u8776DAO",
