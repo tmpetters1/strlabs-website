@@ -4,11 +4,11 @@
   "graded": 73,
   "pending": 8,
   "verdicts": {
-    "flat": 59,
+    "flat": 57,
     "delisted": 1,
     "winner": 7,
-    "loser": 4,
-    "rug": 2
+    "loser": 5,
+    "rug": 3
   },
   "by_score_band": {
     "70-77": {
@@ -22,9 +22,9 @@
     "<60": {
       "n": 48,
       "winner": 6,
-      "loser": 2,
-      "rug": 2,
-      "flat": 37,
+      "loser": 3,
+      "rug": 3,
+      "flat": 35,
       "delisted": 1
     },
     "60-69": {
