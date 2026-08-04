@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T22:01:40.540371+00:00",
+  "published_at": "2026-08-04T22:01:46.014243+00:00",
   "notify_bar": 78.0,
   "cards": [
     {
@@ -205,7 +205,7 @@
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 7259.0
+          "pair_age_minutes": 7259.1
         },
         "charts": {
           "price_series": [
@@ -478,7 +478,7 @@
           "pair": "0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd",
           "quote": "ETH",
           "dex": "uniswap",
-          "pair_age_minutes": 25716.1
+          "pair_age_minutes": 25716.2
         },
         "charts": {
           "price_series": [
@@ -649,7 +649,7 @@
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 101089.1
+          "pair_age_minutes": 101089.2
         },
         "charts": {
           "price_series": [
@@ -898,7 +898,7 @@
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 3185.9
+          "pair_age_minutes": 3186.0
         },
         "charts": {
           "price_series": [
@@ -1131,7 +1131,7 @@
           "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 14954.7
+          "pair_age_minutes": 14954.8
         },
         "charts": {
           "price_series": [
