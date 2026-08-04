@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T14:59:35.677293+00:00",
+  "published_at": "2026-08-04T15:14:33.716539+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -115,7 +115,7 @@
       "symbol": "BRACKETS",
       "chain": "robinhood",
       "token": "0x5E453647539D4DD766D7C4c3D6CE589900D39415",
-      "score": 58.0,
+      "score": 63.0,
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/BRACKETS"
@@ -130,78 +130,6 @@
       "path": "/api/v1/token/PIPE"
     },
     {
-      "symbol": "ROBINDEX",
-      "chain": "robinhood",
-      "token": "0xd82f70F530AFf45b831d6eE17062B4E85395C6F3",
-      "score": 48.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/ROBINDEX"
-    },
-    {
-      "symbol": "NODE",
-      "chain": "robinhood",
-      "token": "0x180bC9C4f54D960065CbbB345c8f19be03e1Ea55",
-      "score": 42.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/NODE"
-    },
-    {
-      "symbol": "MEMESTOCK",
-      "chain": "bsc",
-      "token": "0xd3F4d386DB69657bb5A61C99276BCF0d97837777",
-      "score": 40.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/MEMESTOCK"
-    },
-    {
-      "symbol": "SNAG",
-      "chain": "robinhood",
-      "token": "0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
-      "score": 38.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/SNAG"
-    },
-    {
-      "symbol": "POOH",
-      "chain": "robinhood",
-      "token": "0x7453223543bBcb27cC024AD4728068A7ce7852f7",
-      "score": 36.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/POOH"
-    },
-    {
-      "symbol": "WINK",
-      "chain": "robinhood",
-      "token": "0x8ad5A580c4215086Dec828d8626b95A06D7D00cc",
-      "score": 35.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/WINK"
-    },
-    {
-      "symbol": "CASHKITTY",
-      "chain": "robinhood",
-      "token": "0xea7D32aFE10bae770f8ad350190A120c27ca12cc",
-      "score": 35.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/CASHKITTY"
-    },
-    {
-      "symbol": "UniFrog",
-      "chain": "robinhood",
-      "token": "0x12BC14C180c8A46a34177ec6126B7209ad9A9818",
-      "score": 34.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/UniFrog"
-    },
-    {
       "symbol": "STOCKIMPALER",
       "chain": "robinhood",
       "token": "0x5c0033cE0029f709A51313E20615f74E1D00a549",
@@ -211,283 +139,22 @@
       "path": "/api/v1/token/STOCKIMPALER"
     },
     {
-      "symbol": "FAFE",
-      "chain": "robinhood",
-      "token": "0x3cF99D845435b0BB37247e76852BD40A385ceB28",
-      "score": 32.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/FAFE"
-    },
-    {
-      "symbol": "BRACHIO",
-      "chain": "robinhood",
-      "token": "0x752224ca2Fb2b547A6141E2cEDb28f809C6685d0",
-      "score": 32.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/BRACHIO"
-    },
-    {
-      "symbol": "KRABS",
-      "chain": "robinhood",
-      "token": "0xB94641BaCB5872867A9108E5f12726716eD1AB01",
-      "score": 32.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/KRABS"
-    },
-    {
-      "symbol": "DEADEYE",
-      "chain": "robinhood",
-      "token": "0x8C1CC68A2f39c332F3C617CC578A45A165D7E431",
-      "score": 32.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/DEADEYE"
-    },
-    {
-      "symbol": "PRETT",
-      "chain": "robinhood",
-      "token": "0x38a22A55FE0bb97428D1f145Bc8BD0E2d4f12E2c",
-      "score": 30.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/PRETT"
-    },
-    {
-      "symbol": "GBP",
-      "chain": "robinhood",
-      "token": "0x523B2177A71936f89A1e0c2B8dA791a3d8b0b4BA",
-      "score": 30.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/GBP"
-    },
-    {
-      "symbol": "MARSCOIN",
-      "chain": "robinhood",
-      "token": "0xB4Fb8eA6A9E794a7661F6001B1907460449b4e2A",
-      "score": 30.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/MARSCOIN"
-    },
-    {
-      "symbol": "UNIHOOD",
-      "chain": "robinhood",
-      "token": "0x99b1887E985a985ECb23AC248421EAc96CB92492",
-      "score": 30.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/UNIHOOD"
-    },
-    {
-      "symbol": "DREAM",
-      "chain": "robinhood",
-      "token": "0x6E69f04e1Db0beC227d08352cc2DE1F48F22d1E3",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/DREAM"
-    },
-    {
-      "symbol": "\u8d22\u52a1\u4eba\u751f",
-      "chain": "bsc",
-      "token": "0xA9Ff5dde9647E6Be8fa6B054e7749Cd8dDFf7777",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/\u8d22\u52a1\u4eba\u751f"
-    },
-    {
-      "symbol": "WSB",
-      "chain": "robinhood",
-      "token": "0xdba76f1cf96dBeF90E5E1083b70d15Ce6E87b76a",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/WSB"
-    },
-    {
-      "symbol": "\u4e00",
-      "chain": "bsc",
-      "token": "0x77C10C813c04b6d24311981698891781F33b7777",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/\u4e00"
-    },
-    {
-      "symbol": "TQB",
-      "chain": "bsc",
-      "token": "0x3f3129511bc7DadeB1bD19166e9DF9Dcad238888",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/TQB"
-    },
-    {
-      "symbol": "RTX",
-      "chain": "bsc",
-      "token": "0x2Ec39B165e22944d2FEE389219ee64E4924cfffF",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/RTX"
-    },
-    {
-      "symbol": "WHAYLOR",
-      "chain": "bsc",
-      "token": "0xCF414317B1028101EEfBa971E06aBC3f982B7777",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/WHAYLOR"
-    },
-    {
-      "symbol": "NASDANQ",
-      "chain": "robinhood",
-      "token": "0x51Fb76BE80ab6daAa345D818f4E06441816b4fEa",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/NASDANQ"
-    },
-    {
-      "symbol": "LEAK",
-      "chain": "robinhood",
-      "token": "0xa85Bd69EA5492e42bb912A82B4fEED6fe10D5e12",
-      "score": 28.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/LEAK"
-    },
-    {
-      "symbol": "WOOF",
-      "chain": "robinhood",
-      "token": "0xFDDA9524963DA01481f89f01cb51daAaFfF04161",
-      "score": 25.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/WOOF"
-    },
-    {
-      "symbol": "GHC",
-      "chain": "robinhood",
-      "token": "0xB21ec6ec33061F6528993875029B57C227BB11af",
-      "score": 24.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/GHC"
-    },
-    {
-      "symbol": "Bitty",
-      "chain": "bsc",
-      "token": "0xD1959FEbaB11F99fe4695CF4b2e86a8AFd5f7777",
-      "score": 22.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/Bitty"
-    },
-    {
-      "symbol": "TURBO",
-      "chain": "robinhood",
-      "token": "0x808a9D5071E7d5f58490cB7385027536BbE43eF0",
-      "score": 22.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/TURBO"
-    },
-    {
-      "symbol": "AOB",
-      "chain": "bsc",
-      "token": "0xfc0f47393d8B9890ad73F8eB30E713E48E0E7777",
-      "score": 20.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/AOB"
-    },
-    {
-      "symbol": "HOOK",
-      "chain": "robinhood",
-      "token": "0xC24f22BEa439f447eA3a097f59F7455A6902B919",
-      "score": 15.0,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/HOOK"
-    },
-    {
-      "symbol": "MARVIN",
-      "chain": "base",
-      "token": "0x49b0708bf30496648cea5b85088b7ae38edc2b00",
-      "score": 0.0,
-      "status": "killed",
-      "notify": false,
-      "path": "/api/v1/token/MARVIN"
-    },
-    {
-      "symbol": "MEMEFI",
-      "chain": "bsc",
-      "token": "0x53EC3e7D008d3CDF127e2E37C4B1d95eBa757777",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/MEMEFI"
-    },
-    {
-      "symbol": "MEATSPIN",
-      "chain": "robinhood",
-      "token": "0x285eC8958774074CD924103d040FB92be9d2d42A",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/MEATSPIN"
-    },
-    {
-      "symbol": "\u8774\u8776DAO",
-      "chain": "bsc",
-      "token": "0x583590CaFEA868016eb3B83338240791d8527777",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/\u8774\u8776DAO"
-    },
-    {
-      "symbol": "BRAD",
-      "chain": "bsc",
-      "token": "0x3dB1B406a4d50A841948765685ed42ed1f174444",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/BRAD"
-    },
-    {
-      "symbol": "USDE",
-      "chain": "robinhood",
-      "token": "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/USDE"
-    },
-    {
-      "symbol": "RICE",
-      "chain": "robinhood",
-      "token": "0x811624d7a62E5079052A9B4F8Ec0a139Ef389283",
-      "score": null,
-      "status": "deprioritized",
-      "notify": false,
-      "path": "/api/v1/token/RICE"
-    },
-    {
       "symbol": "OZZY",
       "chain": "robinhood",
       "token": "0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D",
-      "score": null,
-      "status": "deprioritized",
+      "score": 18.0,
+      "status": "killed",
       "notify": false,
       "path": "/api/v1/token/OZZY"
+    },
+    {
+      "symbol": "BRO",
+      "chain": "robinhood",
+      "token": "0xF63f9e3351D561b1F31d203cDF089D7181f4d460",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/BRO"
     }
   ]
 }
