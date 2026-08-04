@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T13:25:42Z",
+  "generated_at": "2026-08-04T13:36:34Z",
   "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
   "chain_focus": {
     "primary": [
@@ -28,21 +28,21 @@
       },
       "brief_md": "# DTF \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair:** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG-quoted)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/\n- **X:** @DefiTradedFund\n\n## \u26a0\ufe0f SRM Gate check (DD mandatory before brief)\n- Token name: `DeFi Traded Fund` (intentional, not cosplay) \u2713\n- Pair quote: **USDG** (same denomination as GLD's stock-buy path) \u2713\n- Prize/staking contract (0xA89e38...) actively receiving **AMD Robinhood Token** today at 14:15 UTC \u2713\n- Deployer (team 7702 account 0xD2e482F...) actively moving USDG at 14:13 UTC \u2713\n- No Flap / FlapTaxTokenV3 / clone naming \u2713\n- **SRM verdict: PASS \u2014 real stock-buy path active onchain**\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Tags:** robinhood, usdg-quoted, stock-prize-draw, staking, nvda-tsla-aapl-amd, organized-team, srm-peer\n- **Novelty:** second verified SRM peer (GLD is archetype); distinct prize-draw mechanism vs GLD's grid-lottery\n- **Confidence:** 0.84\n\n## Market (live ~16:40 CEST)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$226k |\n| Liq | ~$52k |\n| Vol 24h | ~$140k |\n| Vol/Liq | **2.67\u00d7** (very active) |\n| Txns h24 | **1,859B / 1,399S** (buy-biased +33%) |\n| Txns h1 | 73B / 69S (balanced) |\n| \u0394 h1 / h24 | +1.86% / \u22122.84% |\n| Pair age | 3.7 days (2026-07-31) |\n| Boosts | none |\n| Holders | 125 |\n| Quote | **USDG** |\n\n## Holder map\n| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713\n\n## Deployer / team structure\n- Token deployed by factory contract `0xa17Be45\u2026` (named \"DeFi Traded Fund\" on Blockscout)\n- Factory called from team EIP-7702 SemiModularAccount `0xD2e482F\u2026`\n- Same 7702 account actively sent USDG at 14:13 UTC today \u2192 confirms live operation\n- SafeProxy (0x5E9cACf\u2026) = Gnosis Safe L2 multisig, received tokens at launch via team 7702 account 2026-08-02 22:32 UTC\n- **No serial rug history visible; organized multi-sig + smart account infra = legitimate team posture**\n\n## SRM mechanism (onchain verified)\n1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**\n\n## Concerns / Risks\n1. **Prize contract (0xA89e38\u2026) is unverified** \u2014 cannot read code; rug mechanism possible but unlikely given public AMD deposits\n2. **125 holders** \u2014 thin; early-stage distribution risk\n3. **h24 \u22122.84%** \u2014 slight price decline despite buy-biased volume; sell-side pressure from early buyers distributing\n4. **Intermediate contract (0xF74247\u2026) also unverified** \u2014 stock routing layer unknown\n5. **No public X engagement visible** (X search blocked; @DefiTradedFund name clean but reach unknown)\n\n## Thesis / why now\nDeFi Traded Fund is the second verified SRM peer to GLD/Bullion on RH. Mechanism is active: AMD tokenized stock entered the prize contract today; USDG moving from team wallet. USDG-quoted pair means the protocol natively prices in the buy currency. $226k MC at $52k liq with 1859 h24 buys is strong organic conviction for a 3.7-day token with zero boosts. Prize-draw mechanism is novel vs GLD's grid-lottery \u2014 different product surface, same verified stock-buy+claim category.\n\n**Why now:** Caught early (3.7d), buy-biased tape, no boosts, team active onchain, real stock flowing.\n\n**Invalidation:**\n1. Prize contract drains without stock distribution (team rug via unverified contract)\n2. Holders drop below 100 or liq collapses below $20k\n3. AMD/stock deposits stop for 48h (mechanism paused/stopped)\n4. Contract verified and shows admin-drain function without timelock\n\n## Score\n**81 / 100 \u2014 Notify: YES**\n\n### Stack\n- + Verified SRM buy-path (AMD stock flowing into prize contract today): +22\n- + USDG-quoted pair (correct mechanism currency): +10\n- + h24 buy-biased 1859/1399, vol/liq 2.67\u00d7: +8\n- + SafeProxy + 7702 team structure (organized, not anon quick-flip): +7\n- + Dominant DTF on RH; clean EOA distro (top 2.6%): +6\n- + Zero boosts, 3.7d organic: +5\n- + SRM second peer (leaf validated): +3\n- \u2212 Prize contract unverified (can't confirm no drain): \u22129\n- \u2212 125 holders (thin): \u22125\n- \u2212 h24 \u22122.84% / h1 mixed signals: \u22123\n- \u2212 No SM in top holders: \u22125\n- \u2212 X reach unknown (search blocked): \u22123\n- = **81** (above bar 78 \u2192 notify YES)\n\n## Checks\n| id | result | note |\n|----|--------|------|\n| website_product_truth | partial | dtf.finance unreachable via fetch; mechanism verified onchain |\n| site_ca_match | blocked | can't verify |\n| social_x_pass | blocked | @DefiTradedFund exists; X search down |\n| contract_risk | partial | token = \"DeFi Traded Fund\" clean; prize contract 0xA89e38 unverified |\n| srm_buy_claim_path | **PASS** | AMD stock confirmed flowing into prize pool TODAY |\n| deployer_history | pass | SafeProxy + 7702 team; no rug; USDG active |\n| clone_count | pass | dominant DTF on RH (second DTF dead $1.77 vol) |\n| sm_pass | no-sm | no DB hit; buy-biased organic tape compensates |\n| notify_gate | **YES** | 81 \u2265 78 \u2014 score qualifies; prize contract risk noted |",
       "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
-      "current_price_usd": 0.0002401,
-      "current_mc_usd": 215256,
-      "current_liq_usd": 50925.36,
-      "vol_h24_usd": 105237.34,
-      "change_h24_pct": -3.02,
-      "change_h1_pct": -9.14,
+      "current_price_usd": 0.0002445,
+      "current_mc_usd": 219218,
+      "current_liq_usd": 51419.77,
+      "vol_h24_usd": 104781.32,
+      "change_h24_pct": -1.13,
+      "change_h1_pct": -7.39,
       "price_source": "dexscreener",
       "price_error": null,
-      "price_fetched_at": "2026-08-04T13:25:42Z",
-      "pnl_pct": -26.213890596189305,
+      "price_fetched_at": "2026-08-04T13:36:34Z",
+      "pnl_pct": -24.86170866625692,
       "wallet_balance_tokens": 517558.9694446674,
       "wallet_confirmed": true,
-      "value_usd": 124.26590856366465,
+      "value_usd": 126.54316802922116,
       "cost_basis_usd": 168.41368865729476,
-      "pnl_usd": -44.147780093630104
+      "pnl_usd": -41.87052062807359
     }
   ],
   "history": [
@@ -61,7 +61,7 @@
   ],
   "pnl": {
     "realized_usd": 0.0,
-    "unrealized_usd": -44.15,
+    "unrealized_usd": -41.87,
     "unrealized_complete": true,
     "open_position_count": 1,
     "closed_position_count": 0,

@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-04T13:25:42Z",
+  "generated_at": "2026-08-04T13:36:34Z",
   "total_candidates": 52,
-  "classified_candidates": 25,
-  "unclassified_candidates": 27,
+  "classified_candidates": 27,
+  "unclassified_candidates": 25,
   "slices": [
     {
       "category": "meme",
       "description": "Pure culture / joke / attention tokens",
-      "count": 17,
-      "pct": 68.0,
+      "count": 19,
+      "pct": 70.4,
       "tokens": [
         {
           "symbol": "BOOTS",
@@ -219,6 +219,22 @@
           "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924"
         },
         {
+          "symbol": "Bitty",
+          "name": "Bitty",
+          "chain": "bsc",
+          "token": "0xD1959FEbaB11F99fe4695CF4b2e86a8AFd5f7777",
+          "pair": "0x40119C818929d4fE18Ba936Dd58A3Ee3E5afCf79",
+          "category": "meme",
+          "subcategory": "brainrot",
+          "score": 22.0,
+          "mc": 20806.0,
+          "liq": 13003.93,
+          "status": "deprioritized",
+          "notify": false,
+          "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
+          "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+        },
+        {
           "symbol": "AOB",
           "name": "All on BINANCE",
           "chain": "bsc",
@@ -249,6 +265,22 @@
           "notify": false,
           "thesis": "bsc dex-boost; mc~578677; liq~73241; vol24~23005; age~175372m",
           "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c"
+        },
+        {
+          "symbol": "MEMEFI",
+          "name": "memefi",
+          "chain": "bsc",
+          "token": "0x53EC3e7D008d3CDF127e2E37C4B1d95eBa757777",
+          "pair": "0x0679AeFd251A503B2787B538b85514A613203410",
+          "category": "meme",
+          "subcategory": "ticker-meta",
+          "score": null,
+          "mc": 190056.0,
+          "liq": 48149.43,
+          "status": "deprioritized",
+          "notify": false,
+          "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
+          "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
         },
         {
           "symbol": "MEATSPIN",
@@ -286,7 +318,7 @@
       "subcategories": [
         {
           "subcategory": "brainrot",
-          "count": 9,
+          "count": 10,
           "tokens": [
             {
               "symbol": "BOOTS",
@@ -401,6 +433,22 @@
               "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3"
             },
             {
+              "symbol": "Bitty",
+              "name": "Bitty",
+              "chain": "bsc",
+              "token": "0xD1959FEbaB11F99fe4695CF4b2e86a8AFd5f7777",
+              "pair": "0x40119C818929d4fE18Ba936Dd58A3Ee3E5afCf79",
+              "category": "meme",
+              "subcategory": "brainrot",
+              "score": 22.0,
+              "mc": 20806.0,
+              "liq": 13003.93,
+              "status": "deprioritized",
+              "notify": false,
+              "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
+              "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+            },
+            {
               "symbol": "MEATSPIN",
               "name": "MEATSPIN",
               "chain": "robinhood",
@@ -436,7 +484,7 @@
         },
         {
           "subcategory": "ticker-meta",
-          "count": 4,
+          "count": 5,
           "tokens": [
             {
               "symbol": "\u8d22\u52a1\u4eba\u751f",
@@ -501,6 +549,22 @@
               "notify": false,
               "thesis": "BSC AOB SPYB venue-ticker multi-CA proxy farm; no site; LP unlocked.",
               "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49"
+            },
+            {
+              "symbol": "MEMEFI",
+              "name": "memefi",
+              "chain": "bsc",
+              "token": "0x53EC3e7D008d3CDF127e2E37C4B1d95eBa757777",
+              "pair": "0x0679AeFd251A503B2787B538b85514A613203410",
+              "category": "meme",
+              "subcategory": "ticker-meta",
+              "score": null,
+              "mc": 190056.0,
+              "liq": 48149.43,
+              "status": "deprioritized",
+              "notify": false,
+              "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
+              "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
             }
           ]
         },
@@ -592,7 +656,7 @@
       "category": "rwa-finance",
       "description": "Tokenized stocks/RWAs and brokerage-adjacent",
       "count": 2,
-      "pct": 8.0,
+      "pct": 7.4,
       "tokens": [
         {
           "symbol": "DTF",
@@ -672,7 +736,7 @@
       "category": "other",
       "description": "Does not fit yet \u2014 prefer proposing new subcategory",
       "count": 2,
-      "pct": 8.0,
+      "pct": 7.4,
       "tokens": [
         {
           "symbol": "SNAG",
@@ -752,7 +816,7 @@
       "category": "defi",
       "description": "Markets, launchpads, yield, trading infra",
       "count": 1,
-      "pct": 4.0,
+      "pct": 3.7,
       "tokens": [
         {
           "symbol": "BASEMATE",
@@ -800,7 +864,7 @@
       "category": "ai-agents",
       "description": "Agent frameworks, economies, tooling for autonomous agents",
       "count": 1,
-      "pct": 4.0,
+      "pct": 3.7,
       "tokens": [
         {
           "symbol": "NODE",
@@ -848,7 +912,7 @@
       "category": "social-attention",
       "description": "Social virality / CT / short-form driven",
       "count": 1,
-      "pct": 4.0,
+      "pct": 3.7,
       "tokens": [
         {
           "symbol": "BRACKETS",
@@ -896,7 +960,7 @@
       "category": "gaming-nft",
       "description": "Games, collectibles, IP",
       "count": 1,
-      "pct": 4.0,
+      "pct": 3.7,
       "tokens": [
         {
           "symbol": "GRID",
@@ -1263,6 +1327,22 @@
       "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924"
     },
     {
+      "symbol": "Bitty",
+      "name": "Bitty",
+      "chain": "bsc",
+      "token": "0xD1959FEbaB11F99fe4695CF4b2e86a8AFd5f7777",
+      "pair": "0x40119C818929d4fE18Ba936Dd58A3Ee3E5afCf79",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 22.0,
+      "mc": 20806.0,
+      "liq": 13003.93,
+      "status": "deprioritized",
+      "notify": false,
+      "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
+      "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+    },
+    {
       "symbol": "AOB",
       "name": "All on BINANCE",
       "chain": "bsc",
@@ -1309,6 +1389,22 @@
       "notify": false,
       "thesis": "bsc dex-boost; mc~578677; liq~73241; vol24~23005; age~175372m",
       "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c"
+    },
+    {
+      "symbol": "MEMEFI",
+      "name": "memefi",
+      "chain": "bsc",
+      "token": "0x53EC3e7D008d3CDF127e2E37C4B1d95eBa757777",
+      "pair": "0x0679AeFd251A503B2787B538b85514A613203410",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "score": null,
+      "mc": 190056.0,
+      "liq": 48149.43,
+      "status": "deprioritized",
+      "notify": false,
+      "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
+      "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
     },
     {
       "symbol": "MEATSPIN",

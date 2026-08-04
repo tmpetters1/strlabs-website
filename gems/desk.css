@@ -154,3 +154,9 @@ th{color:var(--muted);font-size:.72rem;text-transform:uppercase}
 .brief-body{max-height:28rem;overflow:auto}
 .brief-body.md-article{font-size:.88rem}
 .top .chip.mono{font-size:.72rem}
+
+.cat-tickers-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:.45rem 0 .25rem}
+.token-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:.35rem 0 .55rem}
+.token-chip{display:inline-flex;align-items:center;gap:.4rem;background:#0d0d0d;border:1px solid rgba(232,115,74,.35);border-radius:999px;padding:.28rem .7rem;font-size:.82rem}
+.ticker-link{color:#E8734A;font-weight:800;text-decoration:none}
+.ticker-link:hover{text-decoration:underline;color:#ff8f66}
