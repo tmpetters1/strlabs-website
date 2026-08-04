@@ -133,3 +133,43 @@ Existing `publish_radar.py` is unchanged and still owns `radar.json`,
   `desk.css`. No browser-automation tool was reachable from this session to
   do a rendered-pixel check — static verification only; a human should still
   eyeball it once in an actual browser before treating this as fully done.
+
+## Addendum — Pipeline page (2026-08-04, separate session)
+
+- Added `pipeline.html` / `pipeline.js` — an interactive, password-gated diagram
+  of the gem-radar multi-agent desk itself (not queue data): Macro → Scout →
+  Queue → Class → Whale → Research → Conductor → Radar → Learn, plus a Discord
+  rail (#standup/#delegation/#discussion/#decisions-log/#errors) and a shared
+  data-store rail (focus.yaml, kill_list.yaml, dd_checklist.yaml, LEARNED.md,
+  briefs/, state/, memory/whales/). Every stage, channel, store and handoff
+  pill is clickable and opens a shared detail drawer (role/inputs/outputs/
+  scripts/checklist/status vocab, cross-linked). A "Replay path" control
+  animates a token chip through the happy path or a kill/fence path (stops at
+  Class with a "KILLED" flash) using plain CSS transitions — no SVG line
+  math, no external deps. Content is static reference data sourced from
+  `context/ops.yaml`, `COMMS.md`, `dd_checklist.yaml`, `sm_pipeline.md`,
+  `onchain_intel.md`, `focus.yaml`, `kill_list.yaml` — it does not fetch a
+  live `data/*.json` file, so it never goes stale-looking but also never
+  reflects a queue state change without a code edit.
+- Extended `desk.css` with a `pl-*` class block (legend/controls/rails/spine/
+  stage cards/edge pills/token chip/flash/drawer) instead of a separate
+  `pipeline.css` file, matching how `research.html`'s explorer view extended
+  this same file rather than shipping its own stylesheet.
+- Added a `Pipeline` entry to `Desk.NAV_ITEMS` in `desk.js` so every gated
+  page picks up the new nav link automatically via the existing
+  `Desk.navHtml(activeId)` call — no per-page nav markup to touch.
+- Bumped the shared `desk.js`/`desk.css` cache-bust query param to
+  `v=20260804e` on every page that references them (`index.html`,
+  `research.html`, `strategy.html`, `learnings.html`, `trade.html`,
+  `pipeline.html`) so the new nav entry and styles aren't served stale from a
+  prior visit's cache.
+- Verified: `node --check` passes on `pipeline.js`/`desk.js`; every class
+  referenced in `pipeline.html`/`pipeline.js` exists in `desk.css` (scripted
+  cross-check, zero misses); `pipeline.html`, `pipeline.js`, `desk.css`, and
+  `data/auth.json` all serve HTTP 200 from a local static server. Browser
+  navigation to `localhost` was blocked by this session's tool policy
+  (host-target browser control unavailable, sandbox browser not enabled), so
+  there was no rendered-pixel/interaction check this session — a human
+  should click through the gate, a stage card, a channel/store badge, and
+  "Replay path" once in an actual browser before treating this as fully
+  verified.

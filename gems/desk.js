@@ -5,6 +5,7 @@
 
   const NAV_ITEMS = [
     { id: "radar", label: "Radar", href: "./index.html" },
+    { id: "pipeline", label: "Pipeline", href: "./pipeline.html" },
     { id: "trade", label: "Trade", href: "./trade.html" },
     { id: "research", label: "Research", href: "./research.html" },
     { id: "strategy", label: "Strategy", href: "./strategy.html" },

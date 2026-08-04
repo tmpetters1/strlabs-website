@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline · Gem Radar · Str.Labs</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./desk.css?v=20260804e">
+</head><body>
+<div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
+
+<div id="app">
+  <div class="top">
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Pipeline</h1><div class="sub">How the gem-radar desk actually works — agents, handoffs, data stores, Discord rails</div></div></div>
+    <div class="meta">
+      <div class="chip">Stages <strong>9</strong></div>
+      <div class="chip">Notify bar <strong>78</strong></div>
+      <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
+    </div>
+  </div>
+
+  <div id="nav-root"></div>
+
+  <section class="card pl-intro">
+    <h2>How to read this</h2>
+    <p>Every card below is clickable — agents, the shared queue, Discord channels, and data stores all open a detail panel with role, inputs/outputs, key scripts, and status rules. The center column is the main flow (top → bottom); the left rail is where the desk talks in Discord, the right rail is the shared brain it reads and writes. Small pill labels between stages are handoffs — click one to see exactly what moves and how.</p>
+    <div class="pl-legend">
+      <span class="pl-legend-item"><span class="pl-dot agent"></span>Agent / stage</span>
+      <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord channel</span>
+      <span class="pl-legend-item"><span class="pl-dot store"></span>Shared data store</span>
+      <span class="pl-legend-item"><span class="pl-dot kill"></span>Kill / fence path</span>
+    </div>
+    <div class="pl-controls">
+      <button class="pl-btn" id="replay-btn" type="button">▶ Replay path</button>
+      <div class="pl-toggle" role="group" aria-label="Replay path mode">
+        <button id="mode-happy" class="on" type="button">Happy path</button>
+        <button id="mode-kill" type="button">Kill / fence path</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="pl-grid" id="pl-grid">
+    <div class="pl-spine-col" id="pl-spine"></div>
+    <div class="pl-rail pl-rail-discord">
+      <div class="pl-rail-title">Discord rails</div>
+      <div id="rail-channels"></div>
+    </div>
+    <div class="pl-rail pl-rail-store">
+      <div class="pl-rail-title">Shared brain</div>
+      <div id="rail-stores"></div>
+    </div>
+  </div>
+
+  <div class="footer"><div>Reference only · describes the live gem-radar desk, does not read live queue state</div><div class="mono">pipeline.html</div></div>
+</div>
+
+<div class="pl-drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="pl-drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+  <div class="pl-drawer-head">
+    <div><h3 id="drawer-title">—</h3><div class="pl-drawer-kind" id="drawer-kind">—</div></div>
+    <button class="pl-drawer-close" id="drawer-close" type="button" aria-label="Close">✕</button>
+  </div>
+  <div class="pl-drawer-body" id="drawer-body"></div>
+</aside>
+
+<script src="./desk.js?v=20260804e"></script>
+<script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
+<script src="./pipeline.js?v=20260804a"></script>
+</body></html>
