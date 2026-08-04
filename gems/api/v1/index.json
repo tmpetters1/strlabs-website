@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T13:44:23.821712+00:00",
+  "published_at": "2026-08-04T13:58:17.293318+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -44,7 +44,7 @@
       "chain": "robinhood",
       "token": "0x98d456f43FF912577F679f6D148Cb08714Cf4A09",
       "score": 71.0,
-      "status": "whale_reviewed",
+      "status": "tracking",
       "notify": false,
       "path": "/api/v1/token/GLD"
     },
@@ -80,7 +80,7 @@
       "chain": "base",
       "token": "0x460766cC4158Ffbd70fEFFd3d2891237E064AB54",
       "score": 66.0,
-      "status": "whale_reviewed",
+      "status": "tracking",
       "notify": false,
       "path": "/api/v1/token/FIND"
     },
