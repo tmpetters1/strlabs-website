@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T18:39:40.576968+00:00",
+  "published_at": "2026-08-04T18:54:50.460801+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -236,6 +236,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
+    },
+    {
+      "symbol": "FIRE",
+      "chain": "robinhood",
+      "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+      "score": null,
+      "status": "classified",
+      "notify": false,
+      "path": "/api/v1/token/FIRE"
     }
   ]
 }
