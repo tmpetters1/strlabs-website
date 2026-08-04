@@ -1,14 +1,11 @@
-/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v3.
-   Static reference page — no data/*.json fetch, content is the desk's own
-   architecture (agents, handoffs, Discord rails, shared-brain stores) sourced
-   from context/ops.yaml, COMMS.md, dd_checklist.yaml, sm_pipeline.md,
-   onchain_intel.md and focus.yaml/kill_list.yaml. Update this file (not just
-   the yaml) if the desk's stage/channel/store shape changes materially.
-
-   v3 note: layout stretches vertically. Conductor lives on its own orchestration
-   rail (not in the specialist row). Queue is a separate bus lane under the
-   specialists (not an agent card). STAGES/CHANNELS/STORES/EDGES remain the
-   single source of truth for Wireflow + Sequence. */
+/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v4.
+   Static reference page — no data/*.json fetch. Architecture board layout:
+   top = Discord chips + Conductor control bar
+   center = vertical specialist path, Queue bus left, Kill sink right
+   bottom = shared brain
+   Main handoff edges always on; Discord/store secondary edges only on hover
+   (anti-spaghetti). STAGES/CHANNELS/STORES/EDGES remain the single source of
+   truth for Wireflow + Sequence. */
 (function () {
   "use strict";
   const D = window.Desk;
@@ -214,69 +211,105 @@
     return chips.join("");
   }
 
-  // Layout lanes: specialists stay in the middle agent path.
-  // Queue is a bus (not an agent). Conductor is orchestration (not a specialist).
-  const SPECIALIST_IDS = ["macro", "scout", "class", "whale", "research", "radar", "learn"];
-  const ORCH_IDS = ["conductor"];
-  const QUEUE_IDS = ["queue"];
+  // Board layout roles — Conductor and Queue are never specialist-path cards.
+  const PATH_IDS = ["macro", "scout", "class", "whale", "research", "radar", "learn"];
+  // Replay order: queue is a side-bus stop; conductor is the top control-bar gate.
+  const PATH_FLOW = ["macro", "scout", "queue", "class", "whale", "research", "conductor", "radar", "learn"];
 
-  function stageCardHtml(s, displayIdx, extraClass) {
-    const cls = ["wf-stage"];
+  function oneLiner(s, n) {
+    const t = String(s || "").replace(/\s+/g, " ").trim();
+    return t.length > n ? t.slice(0, n - 1).trim() + "…" : t;
+  }
+
+  function pathCardHtml(s, step) {
+    const cls = ["wf-node", "wf-node-agent"];
     if (s.loop) cls.push("pl-loop");
-    if (s.star) cls.push("wf-conductor");
-    if (s.kind === "store" || s.id === "queue") cls.push("wf-queue-card");
-    if (extraClass) cls.push(extraClass);
-    const role = s.role.length > 96 ? s.role.slice(0, 93).trim() + "…" : s.role;
-    const idxLabel = displayIdx == null ? (s.star ? "★" : "·") : String(displayIdx);
     return `<button class="${cls.join(" ")}" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
-      <div class="wf-stage-head">
-        <span class="pl-idx">${esc(idxLabel)}</span>
-        <div><div class="wf-stage-title">${esc(s.title)}${s.star ? ' <span class="pl-badge star">★</span>' : ""}</div><div class="wf-stage-tag">${esc(s.tag)}</div></div>
+      <div class="wf-node-kicker"><span class="wf-step">${step}</span><span class="wf-node-tag">${esc(s.tag)}</span></div>
+      <div class="wf-node-title">${esc(s.title)}</div>
+      <div class="wf-node-blurb">${esc(oneLiner(s.role, 110))}</div>
+    </button>`;
+  }
+
+  function conductorBarHtml(s) {
+    return `<button class="wf-node wf-node-conductor" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
+      <div class="wf-conductor-left">
+        <div class="wf-node-kicker"><span class="wf-step star">★</span><span class="wf-node-tag">${esc(s.tag)}</span></div>
+        <div class="wf-node-title">${esc(s.title)} <span class="wf-pill">orchestration</span></div>
+        <div class="wf-node-blurb">${esc(oneLiner(s.role, 160))}</div>
       </div>
-      <div class="wf-stage-role">${esc(role)}</div>
+      <div class="wf-conductor-meta">
+        <div><strong>Owns</strong> ping budget · trading rails · desk reliability</div>
+        <div><strong>Wakes</strong> specialists on hot signals · watchlist reeval</div>
+        <div><strong>Ping bar</strong> score ≥ 78 · max 8/day · always ≥ 90</div>
+      </div>
+    </button>`;
+  }
+
+  function queueBusHtml(s) {
+    return `<button class="wf-node wf-node-queue" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
+      <div class="wf-node-kicker"><span class="wf-pill bus">bus</span><span class="wf-node-tag">shared state</span></div>
+      <div class="wf-node-title">${esc(s.title)}</div>
+      <div class="wf-node-blurb">${esc(oneLiner(s.role, 140))}</div>
+      <div class="wf-queue-rules">
+        <div>candidates.jsonl</div>
+        <div>only via queue_lib.py</div>
+        <div>identity = (chain, contract)</div>
+        <div class="mono">queued → classified → whale_reviewed → researching → briefed</div>
+      </div>
+    </button>`;
+  }
+
+  function killSinkHtml() {
+    return `<button class="wf-node wf-node-kill" id="wf-kill-sink" data-open="killnode:info" type="button">
+      <div class="wf-node-kicker"><span class="wf-pill kill">sink</span></div>
+      <div class="wf-node-title">✕ KILLED</div>
+      <div class="wf-node-blurb">no brief · no publish · no human ping</div>
+      <ul class="wf-kill-list">
+        <li><strong>Scout</strong> factory_fence / kill_list</li>
+        <li><strong>Class</strong> dead_flow / clone_count</li>
+        <li><strong>Research</strong> serial-rug / clone farm</li>
+      </ul>
     </button>`;
   }
 
   function renderStageNodes() {
-    const stageRoot = document.getElementById("wf-stage-nodes");
+    const pathRoot = document.getElementById("wf-stage-nodes");
     const orchRoot = document.getElementById("wf-orch-nodes");
     const queueRoot = document.getElementById("wf-queue-nodes");
-    let specialistHtml = "";
-    let orchHtml = "";
-    let queueHtml = "";
-    let specialistN = 0;
+    const killRoot = document.getElementById("wf-kill-nodes");
+    const byId = STAGE_BY_ID;
 
-    STAGES.forEach((s) => {
-      if (ORCH_IDS.includes(s.id)) {
-        orchHtml += stageCardHtml(s, null, "wf-orch-card");
-        return;
-      }
-      if (QUEUE_IDS.includes(s.id)) {
-        queueHtml += stageCardHtml(s, null, "wf-queue-card");
-        return;
-      }
-      // default: specialist path (+ anything unexpected stays visible)
-      specialistHtml += stageCardHtml(s, specialistN, SPECIALIST_IDS.includes(s.id) ? "" : "wf-misc-card");
-      specialistN += 1;
-    });
-
-    // Kill sink sits with the specialist path end — still a path outcome, not an agent.
-    specialistHtml += `<button class="wf-kill-sink" id="wf-kill-sink" data-open="killnode:info" type="button">✕ KILLED<span class="sub">no brief · no publish</span></button>`;
-
-    if (stageRoot) stageRoot.innerHTML = specialistHtml;
-    if (orchRoot) orchRoot.innerHTML = orchHtml || "<div class=\"wf-empty\">—</div>";
+    if (orchRoot) {
+      const c = byId.conductor;
+      orchRoot.innerHTML = c ? conductorBarHtml(c) : "";
+    }
     if (queueRoot) {
-      queueRoot.innerHTML = queueHtml
-        + `<div class="wf-queue-note">candidates.jsonl · only via queue_lib.py · identity = (chain, contract)</div>`;
+      const q = byId.queue;
+      queueRoot.innerHTML = q ? queueBusHtml(q) : "";
+    }
+    if (killRoot) killRoot.innerHTML = killSinkHtml();
+
+    if (pathRoot) {
+      let html = "";
+      let step = 0;
+      PATH_IDS.forEach((id) => {
+        const s = byId[id];
+        if (!s) return;
+        html += pathCardHtml(s, step);
+        step += 1;
+      });
+      pathRoot.innerHTML = html;
     }
   }
 
   function renderRail(container, items, type) {
+    if (!container) return;
     container.innerHTML = items
       .map(
-        (it) => `<button class="pl-node ${type}" id="${type}-${it.id}" data-open="${type}:${it.id}" data-node-id="${it.id}" type="button">
-        <div class="pl-node-title">${esc(it.title)}</div>
-        <div class="pl-node-sub">${esc((it.purpose || it.when || "").slice(0, 80))}${(it.purpose || "").length > 80 ? "…" : ""}</div>
+        (it) => `<button class="wf-chip ${type}" id="${type}-${it.id}" data-open="${type}:${it.id}" data-node-id="${it.id}" type="button">
+        <div class="wf-chip-title">${esc(it.title)}</div>
+        <div class="wf-chip-sub">${esc(oneLiner(it.purpose || it.when || "", 54))}</div>
       </button>`
       )
       .join("");
@@ -324,18 +357,44 @@
     return `M${p1.x},${p1.y} Q${cx},${cy} ${p2.x},${p2.y}`;
   }
 
+  // Orthogonal connector: vertical spine / side-rail friendly, less diagonal spaghetti.
+  function orthoPath(p1, p2, bias) {
+    const b = bias || 0;
+    const midY = (p1.y + p2.y) / 2 + b;
+    // mostly vertical handoff
+    if (Math.abs(p2.x - p1.x) < 28) {
+      return `M${p1.x},${p1.y} L${p2.x},${p2.y}`;
+    }
+    // side branch: out horizontally, then vertical, then into target
+    const outX = p1.x + (p2.x > p1.x ? 18 : -18);
+    return `M${p1.x},${p1.y} L${outX},${p1.y} L${outX},${p2.y} L${p2.x},${p2.y}`;
+  }
+
   function shortLabel(s, max) {
     const t = String(s || "").replace(/\s+/g, " ").trim();
     if (t.length <= max) return t;
     return t.slice(0, Math.max(0, max - 1)).trim() + "…";
   }
 
-  let wfEdgePaths = []; // {el, from, to, isKill}
+  let wfEdgePaths = []; // {el, labelEl?, from, to, kind, kill?}
 
   function clearSvgExceptDefs(svg) {
     Array.from(svg.children).forEach((n) => {
       if (n.tagName.toLowerCase() !== "defs") n.remove();
     });
+  }
+
+  function addEdgeLabel(inner, x, y, text, open, kill) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "wf-edge-label" + (kill ? " kill" : "");
+    if (open) btn.setAttribute("data-open", open);
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+    btn.textContent = text;
+    btn.title = text + " — click for details";
+    inner.appendChild(btn);
+    return btn;
   }
 
   function drawWireflow() {
@@ -351,75 +410,121 @@
     const stRect = (id) => { const el = document.getElementById("store-" + id); return el ? relRect(inner, el) : null; };
     const killRect = () => { const el = document.getElementById("wf-kill-sink"); return el ? relRect(inner, el) : null; };
 
-    // main handoff edges
-    EDGES.forEach((e, i) => {
+    // 1) Vertical specialist spine only (Conductor is a top gate, not a path detour).
+    const spinePairs = [
+      { from: "macro", to: "scout", edgeIdx: 0, label: "focus.yaml" },
+      { from: "scout", to: "class", edgeIdx: 2, label: "via queue bus", viaQueue: true },
+      { from: "class", to: "whale", edgeIdx: 3, label: "classified" },
+      { from: "whale", to: "research", edgeIdx: 4, label: "whale_reviewed" },
+      { from: "research", to: "radar", edgeIdx: 5, label: "brief · Conductor gate" },
+      { from: "radar", to: "learn", edgeIdx: 7, label: "outcome track" },
+    ];
+
+    spinePairs.forEach((e) => {
       const ra = stageRect(e.from), rb = stageRect(e.to);
       if (!ra || !rb) return;
-      const { p1, p2 } = connectorPoints(ra, rb);
-      const path = svgEl("path", { d: pathD(p1, p2, 0), class: "wf-path main", "marker-end": "url(#wf-arrow)" });
+      const p1 = { x: ra.cx, y: ra.y + ra.h };
+      const p2 = { x: rb.cx, y: rb.y };
+      const d = `M${p1.x},${p1.y} L${p2.x},${p2.y}`;
+      const path = svgEl("path", { d: d, class: "wf-path main", "marker-end": "url(#wf-arrow)" });
       svg.appendChild(path);
-      wfEdgePaths.push({ el: path, from: e.from, to: e.to });
       const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "wf-edge-label";
-      btn.setAttribute("data-open", "edge:" + i);
-      btn.style.left = mid.x + "px";
-      btn.style.top = (mid.y - 10) + "px";
-      btn.textContent = shortLabel(e.short || e.label, 22);
-      btn.title = e.label + " — click for details";
-      inner.appendChild(btn);
+      // offset labels slightly right so they sit off the vertical stroke
+      const labelEl = addEdgeLabel(inner, mid.x + 56, mid.y, shortLabel(e.label, 22), "edge:" + e.edgeIdx, false);
+      wfEdgePaths.push({ el: path, labelEl: labelEl, from: e.from, to: e.to, kind: "main" });
     });
 
-    // secondary: stage -> channel (posts to)
+    // 1b) Queue bus hops (left rail) — Scout writes, Class reads.
+    const rq = stageRect("queue");
+    const rScout = stageRect("scout");
+    const rClass = stageRect("class");
+    if (rq && rScout) {
+      const p1 = { x: rScout.x, y: rScout.cy };
+      const p2 = { x: rq.x + rq.w, y: rq.y + 36 };
+      const path = svgEl("path", { d: orthoPath(p1, p2, 0), class: "wf-path main to-store-write", "marker-end": "url(#wf-arrow)" });
+      svg.appendChild(path);
+      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+      const labelEl = addEdgeLabel(inner, mid.x, mid.y - 8, "append", "edge:1", false);
+      wfEdgePaths.push({ el: path, labelEl: labelEl, from: "scout", to: "queue", kind: "main" });
+    }
+    if (rq && rClass) {
+      const p1 = { x: rq.x + rq.w, y: rq.y + rq.h - 36 };
+      const p2 = { x: rClass.x, y: rClass.cy };
+      const path = svgEl("path", { d: orthoPath(p1, p2, 0), class: "wf-path main", "marker-end": "url(#wf-arrow)" });
+      svg.appendChild(path);
+      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+      const labelEl = addEdgeLabel(inner, mid.x, mid.y + 8, "read queued", "edge:2", false);
+      wfEdgePaths.push({ el: path, labelEl: labelEl, from: "queue", to: "class", kind: "main" });
+    }
+
+    // 1c) Conductor gate markers (no long detour through the top bar).
+    const rResearch = stageRect("research");
+    const rCond = stageRect("conductor");
+    const rRadar = stageRect("radar");
+    if (rResearch && rCond) {
+      const p1 = { x: rResearch.cx + 40, y: rResearch.y };
+      const p2 = { x: rCond.cx, y: rCond.y + rCond.h };
+      const path = svgEl("path", { d: pathD(p1, p2, 30), class: "wf-path secondary gate", "marker-end": "url(#wf-arrow)" });
+      svg.appendChild(path);
+      wfEdgePaths.push({ el: path, from: "research", to: "conductor", kind: "gate" });
+    }
+    if (rCond && rRadar) {
+      const p1 = { x: rCond.cx + 80, y: rCond.y + rCond.h };
+      const p2 = { x: rRadar.cx + 40, y: rRadar.y };
+      const path = svgEl("path", { d: pathD(p1, p2, -30), class: "wf-path secondary gate", "marker-end": "url(#wf-arrow)" });
+      svg.appendChild(path);
+      wfEdgePaths.push({ el: path, from: "conductor", to: "radar", kind: "gate" });
+    }
+
+    // 2) Kill branches — always visible, right rail.
+    const rk = killRect();
+    if (rk) {
+      KILL_EDGES.forEach((k, i) => {
+        const ra = stageRect(k.from);
+        if (!ra) return;
+        const p1 = { x: ra.x + ra.w, y: ra.cy };
+        const p2 = { x: rk.x, y: rk.y + 28 + i * 34 };
+        const d = orthoPath(p1, p2, 0);
+        const path = svgEl("path", { d: d, class: "wf-path kill", "marker-end": "url(#wf-arrow)" });
+        svg.appendChild(path);
+        const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+        const labelEl = addEdgeLabel(inner, mid.x, mid.y, shortLabel(k.label, 22), "stage:" + k.from, true);
+        wfEdgePaths.push({ el: path, labelEl: labelEl, from: k.from, to: "KILLED", kind: "kill", kill: true });
+      });
+    }
+
+    // 3) Secondary Discord/store wires — drawn but hidden until hover (anti-spaghetti).
     STAGES.forEach((s) => {
       const ra = stageRect(s.id);
       if (!ra) return;
       (s.channels || []).forEach((c) => {
         const rb = chRect(c.id);
         if (!rb) return;
-        const { p1, p2 } = connectorPoints(ra, rb);
-        const path = svgEl("path", { d: pathD(p1, p2, -18), class: "wf-path secondary to-channel", "marker-end": "url(#wf-arrow)" });
+        const p1 = { x: ra.cx, y: ra.y };
+        const p2 = { x: rb.cx, y: rb.y + rb.h };
+        const path = svgEl("path", { d: pathD(p1, p2, -24), class: "wf-path secondary to-channel is-hidden", "marker-end": "url(#wf-arrow)" });
         svg.appendChild(path);
-        wfEdgePaths.push({ el: path, from: s.id, to: "ch:" + c.id });
+        wfEdgePaths.push({ el: path, from: s.id, to: "ch:" + c.id, kind: "secondary" });
       });
       (s.stores || []).forEach((st) => {
         const rb = stRect(st.id);
         if (!rb) return;
         const reads = /read/.test(st.mode);
-        const { p1, p2 } = connectorPoints(ra, rb);
-        const path = svgEl("path", { d: pathD(p1, p2, 18), class: "wf-path secondary " + (reads ? "to-store-read" : "to-store-write"), "marker-end": "url(#wf-arrow)" });
+        const p1 = { x: ra.cx, y: ra.y + ra.h };
+        const p2 = { x: rb.cx, y: rb.y };
+        const path = svgEl("path", {
+          d: pathD(p1, p2, 20),
+          class: "wf-path secondary " + (reads ? "to-store-read" : "to-store-write") + " is-hidden",
+          "marker-end": "url(#wf-arrow)",
+        });
         svg.appendChild(path);
-        wfEdgePaths.push({ el: path, from: s.id, to: "st:" + st.id });
+        wfEdgePaths.push({ el: path, from: s.id, to: "st:" + st.id, kind: "secondary" });
       });
     });
-
-    // kill branches
-    const rk = killRect();
-    if (rk) {
-      KILL_EDGES.forEach((k) => {
-        const ra = stageRect(k.from);
-        if (!ra) return;
-        const { p1, p2 } = connectorPoints(ra, rk);
-        const path = svgEl("path", { d: pathD(p1, p2, 0), class: "wf-path kill", "marker-end": "url(#wf-arrow)" });
-        svg.appendChild(path);
-        wfEdgePaths.push({ el: path, from: k.from, to: "KILLED", kill: true });
-        const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "wf-edge-label kill";
-        btn.setAttribute("data-open", "stage:" + k.from);
-        btn.style.left = mid.x + "px";
-        btn.style.top = (mid.y - 8) + "px";
-        btn.textContent = shortLabel(k.short || k.label, 20);
-        btn.title = k.label + " — click for details";
-        inner.appendChild(btn);
-      });
-    }
   }
 
   function wireHoverHighlight() {
-    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => {
+    document.querySelectorAll("[data-stage-id]").forEach((el) => {
       const id = el.getAttribute("data-stage-id");
       el.addEventListener("mouseenter", () => highlightStage(id));
       el.addEventListener("mouseleave", clearHighlight);
@@ -429,19 +534,30 @@
   }
 
   function highlightStage(id) {
+    document.getElementById("wf-inner")?.classList.add("wf-focus-mode");
     wfEdgePaths.forEach((e) => {
       const related = e.from === id || e.to === id;
       e.el.classList.toggle("hi", related);
       e.el.classList.toggle("dim", !related);
+      // reveal only related secondary wires
+      if (e.kind === "secondary") {
+        e.el.classList.toggle("is-hidden", !related);
+      }
+      if (e.labelEl) e.labelEl.classList.toggle("dim", !related);
     });
-    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => {
+    document.querySelectorAll("[data-stage-id]").forEach((el) => {
       el.classList.toggle("wf-dim", el.getAttribute("data-stage-id") !== id);
     });
   }
 
   function clearHighlight() {
-    wfEdgePaths.forEach((e) => { e.el.classList.remove("hi", "dim"); });
-    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
+    document.getElementById("wf-inner")?.classList.remove("wf-focus-mode");
+    wfEdgePaths.forEach((e) => {
+      e.el.classList.remove("hi", "dim");
+      if (e.kind === "secondary") e.el.classList.add("is-hidden");
+      if (e.labelEl) e.labelEl.classList.remove("dim");
+    });
+    document.querySelectorAll("[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
   }
 
   // ---------------------------------------------------------------- sequence view
@@ -709,7 +825,7 @@
 
   // ---------------------------------------------------------------- replay path animation
 
-  const HAPPY_PATH = STAGES.map((s) => s.id);
+  const HAPPY_PATH = PATH_FLOW.slice();
   const KILL_PATH = ["macro", "scout", "queue", "class", "KILLED"];
   let currentMode = "happy";
   let animating = false;

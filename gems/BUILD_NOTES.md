@@ -246,3 +246,16 @@ swimlanes, sequence-style who-sends-what-where.
 - Specialist path now: Macro → Scout → Class → Whale → Research → Radar → Learn (+ KILLED sink).
 - Cache bust `desk.css` / `pipeline.js` / `desk.js` → `v=20260804h`.
 - Replay path still walks full STAGES order (includes queue + conductor stops via their new lane nodes).
+
+
+## 2026-08-04 20:15 — pipeline wireflow v4 architecture board
+
+Replaced the cramped multi-lane card strip with a real architecture board:
+
+- **Top:** Discord chips + full-width **Conductor control bar** (not in specialist path)
+- **Center grid:** left **Queue bus**, middle **vertical specialist path** (Macro→…→Learn), right **Killed sink**
+- **Bottom:** shared brain chips
+- Main handoffs = clean vertical spine + short queue hops
+- Discord/store wires hidden until hover (anti-spaghetti)
+- Conductor participates as a green gate accent, not a path detour that yanks arrows up/down
+- Cache bust `v=20260804i`

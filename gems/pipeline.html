@@ -5,7 +5,7 @@
 <title>Pipeline · Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804h">
+<link rel="stylesheet" href="./desk.css?v=20260804i">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
@@ -24,13 +24,13 @@
 
   <section class="card pl-intro">
     <h2>How to read this</h2>
-    <p><strong>Wireflow</strong> stretches top → bottom so lanes can breathe: Discord rails on top, Conductor as its own orchestration rail, specialists left → right in the middle, the Queue as a separate bus under them, shared-brain stores on the bottom. Queue and Conductor are <em>not</em> specialist agents in the main path. Arrows are real handoffs (solid orange stages · purple Discord · blue stores · red kill). Canvas fits your screen — zoom/pan as needed. Hover a stage to highlight only its wires; click anything for the detail drawer. <strong>Sequence</strong> is the same handoffs as a timeline. <strong>Legend</strong> spells out every symbol.</p>
+    <p><strong>Wireflow</strong> is an architecture board, not a packed card strip. Top: Discord chips + Conductor control bar. Center: a vertical token path of specialists only, with the Queue bus on the left and the Killed sink on the right. Bottom: shared brain. Main handoffs stay visible; Discord/store wires appear on hover so the board doesn’t turn into spaghetti. Click any node or edge label for the drawer. <strong>Sequence</strong> is the same handoffs as a timeline. <strong>Legend</strong> spells out every symbol.</p>
     <div class="pl-legend">
-      <span class="pl-legend-item"><span class="pl-dot agent"></span>Specialist agent</span>
-      <span class="pl-legend-item"><span class="pl-dot agent" style="box-shadow:0 0 0 2px var(--green)"></span>★ Conductor (orchestration)</span>
-      <span class="pl-legend-item"><span class="pl-dot store"></span>Queue bus / shared store</span>
-      <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord channel</span>
-      <span class="pl-legend-item"><span class="pl-dot kill"></span>Kill / fence path</span>
+      <span class="pl-legend-item"><span class="pl-dot agent"></span>Specialist (main path)</span>
+      <span class="pl-legend-item"><span class="pl-dot agent" style="box-shadow:0 0 0 2px var(--green)"></span>★ Conductor bar</span>
+      <span class="pl-legend-item"><span class="pl-dot store"></span>Queue bus</span>
+      <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord</span>
+      <span class="pl-legend-item"><span class="pl-dot kill"></span>Kill sink</span>
     </div>
     <div class="pl-controls">
       <div class="pl-toggle" id="view-toggle" role="group" aria-label="View">
@@ -58,26 +58,36 @@
     <div class="wf-canvas" id="wf-canvas">
       <div class="wf-world" id="wf-world">
       <div class="wf-inner" id="wf-inner">
-        <div class="wf-lane wf-lane-discord">
-          <div class="wf-lane-label">Discord rails</div>
-          <div class="wf-lane-nodes" id="wf-channel-nodes"></div>
+        <header class="wf-top">
+          <div class="wf-band wf-band-discord">
+            <div class="wf-band-label">Discord rails</div>
+            <div class="wf-band-nodes" id="wf-channel-nodes"></div>
+          </div>
+          <div class="wf-band wf-band-orch" id="wf-orch-nodes"></div>
+        </header>
+
+        <div class="wf-board">
+          <aside class="wf-rail wf-rail-queue">
+            <div class="wf-band-label">Queue bus · not an agent</div>
+            <div id="wf-queue-nodes"></div>
+          </aside>
+
+          <section class="wf-mainpath" aria-label="Specialist token path">
+            <div class="wf-band-label">Specialist path · token flows top → bottom</div>
+            <div class="wf-path-col" id="wf-stage-nodes"></div>
+          </section>
+
+          <aside class="wf-rail wf-rail-kill">
+            <div class="wf-band-label">Fence / kill</div>
+            <div id="wf-kill-nodes"></div>
+          </aside>
         </div>
-        <div class="wf-lane wf-lane-orch">
-          <div class="wf-lane-label">Orchestration — not in the specialist path</div>
-          <div class="wf-lane-nodes" id="wf-orch-nodes"></div>
-        </div>
-        <div class="wf-lane wf-lane-stages">
-          <div class="wf-lane-label">Specialists — main token path, left → right</div>
-          <div class="wf-lane-nodes" id="wf-stage-nodes"></div>
-        </div>
-        <div class="wf-lane wf-lane-queue">
-          <div class="wf-lane-label">Queue bus — shared state, not an agent</div>
-          <div class="wf-lane-nodes" id="wf-queue-nodes"></div>
-        </div>
-        <div class="wf-lane wf-lane-stores">
-          <div class="wf-lane-label">Shared brain</div>
-          <div class="wf-lane-nodes" id="wf-store-nodes"></div>
-        </div>
+
+        <footer class="wf-band wf-band-stores">
+          <div class="wf-band-label">Shared brain</div>
+          <div class="wf-band-nodes" id="wf-store-nodes"></div>
+        </footer>
+
         <svg class="wf-svg" id="wf-svg">
           <defs>
             <marker id="wf-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -128,7 +138,7 @@
       </div>
       <div class="wf-legend-card">
         <h4>Views</h4>
-        <div class="wf-legend-row"><strong>Wireflow</strong> — spatial map stretched vertically: Discord → Conductor rail → specialists → Queue bus → shared brain, with real arrows between lanes.</div>
+        <div class="wf-legend-row"><strong>Wireflow</strong> — architecture board: Discord + Conductor on top, vertical specialist path in the center, Queue left / Kill right, shared brain bottom. Secondary wires on hover only.</div>
         <div class="wf-legend-row"><strong>Sequence</strong> — the same handoffs as a UML-style timeline: one lifeline per actor, messages read top → bottom in the order they actually fire.</div>
         <div class="wf-legend-row"><strong>Legend</strong> — this page.</div>
       </div>
@@ -147,7 +157,7 @@
   <div class="pl-drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="./desk.js?v=20260804h"></script>
+<script src="./desk.js?v=20260804i"></script>
 <script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
-<script src="./pipeline.js?v=20260804h"></script>
+<script src="./pipeline.js?v=20260804i"></script>
 </body></html>
