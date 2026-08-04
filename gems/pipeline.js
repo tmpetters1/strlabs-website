@@ -283,6 +283,12 @@
     return `M${p1.x},${p1.y} Q${cx},${cy} ${p2.x},${p2.y}`;
   }
 
+  function shortLabel(s, max) {
+    const t = String(s || "").replace(/\s+/g, " ").trim();
+    if (t.length <= max) return t;
+    return t.slice(0, Math.max(0, max - 1)).trim() + "…";
+  }
+
   let wfEdgePaths = []; // {el, from, to, isKill}
 
   function clearSvgExceptDefs(svg) {
@@ -318,8 +324,9 @@
       btn.className = "wf-edge-label";
       btn.setAttribute("data-open", "edge:" + i);
       btn.style.left = mid.x + "px";
-      btn.style.top = mid.y + "px";
-      btn.textContent = e.label;
+      btn.style.top = (mid.y - 10) + "px";
+      btn.textContent = shortLabel(e.short || e.label, 18);
+      btn.title = e.label + " — click for details";
       inner.appendChild(btn);
     });
 
@@ -362,8 +369,9 @@
         btn.className = "wf-edge-label kill";
         btn.setAttribute("data-open", "stage:" + k.from);
         btn.style.left = mid.x + "px";
-        btn.style.top = mid.y + "px";
-        btn.textContent = k.label;
+        btn.style.top = (mid.y - 8) + "px";
+        btn.textContent = shortLabel(k.short || k.label, 14);
+        btn.title = k.label + " — click for details";
         inner.appendChild(btn);
       });
     }
@@ -648,7 +656,7 @@
         btn.classList.remove("on");
       }
     });
-    if (name === "wireflow") requestAnimationFrame(() => requestAnimationFrame(drawWireflow));
+    if (name === "wireflow") requestAnimationFrame(() => requestAnimationFrame(() => { drawWireflow(); fitWireflow(28); }));
     if (name === "sequence") requestAnimationFrame(() => requestAnimationFrame(drawSequence));
   }
 
@@ -769,6 +777,134 @@
     document.getElementById("replay-btn").addEventListener("click", () => replay(currentMode));
   }
 
+  // ---------------------------------------------------------------- zoom / pan
+
+  const zoomState = { scale: 1, x: 0, y: 0, min: 0.35, max: 1.75 };
+  let panning = false;
+  let panStart = null;
+
+  function applyZoomTransform() {
+    const world = document.getElementById("wf-world");
+    const pct = document.getElementById("wf-zoom-pct");
+    if (!world) return;
+    world.style.transform = "translate(" + zoomState.x + "px," + zoomState.y + "px) scale(" + zoomState.scale + ")";
+    if (pct) pct.textContent = Math.round(zoomState.scale * 100) + "%";
+  }
+
+  function fitWireflow(pad) {
+    const canvas = document.getElementById("wf-canvas");
+    const inner = document.getElementById("wf-inner");
+    if (!canvas || !inner) return;
+    const p = pad == null ? 28 : pad;
+    // natural content size (unscaled)
+    const cw = canvas.clientWidth;
+    const ch = canvas.clientHeight;
+    const iw = Math.max(inner.scrollWidth, inner.offsetWidth, 1);
+    const ih = Math.max(inner.scrollHeight, inner.offsetHeight, 1);
+    const sx = (cw - p * 2) / iw;
+    const sy = (ch - p * 2) / ih;
+    let s = Math.min(sx, sy, 1);
+    s = Math.max(zoomState.min, Math.min(zoomState.max, s));
+    zoomState.scale = s;
+    zoomState.x = Math.max(0, (cw - iw * s) / 2);
+    zoomState.y = Math.max(12, (ch - ih * s) / 2);
+    applyZoomTransform();
+  }
+
+  function zoomAt(clientX, clientY, nextScale) {
+    const canvas = document.getElementById("wf-canvas");
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    const s0 = zoomState.scale;
+    const s1 = Math.max(zoomState.min, Math.min(zoomState.max, nextScale));
+    if (s1 === s0) return;
+    // keep point under cursor stable
+    const wx = (mx - zoomState.x) / s0;
+    const wy = (my - zoomState.y) / s0;
+    zoomState.scale = s1;
+    zoomState.x = mx - wx * s1;
+    zoomState.y = my - wy * s1;
+    applyZoomTransform();
+  }
+
+  function initZoomPan() {
+    const canvas = document.getElementById("wf-canvas");
+    if (!canvas) return;
+    const zin = document.getElementById("wf-zoom-in");
+    const zout = document.getElementById("wf-zoom-out");
+    const zfit = document.getElementById("wf-zoom-fit");
+    const z100 = document.getElementById("wf-zoom-100");
+    if (zin) zin.addEventListener("click", () => {
+      const r = canvas.getBoundingClientRect();
+      zoomAt(r.left + r.width / 2, r.top + r.height / 2, zoomState.scale * 1.15);
+    });
+    if (zout) zout.addEventListener("click", () => {
+      const r = canvas.getBoundingClientRect();
+      zoomAt(r.left + r.width / 2, r.top + r.height / 2, zoomState.scale / 1.15);
+    });
+    if (zfit) zfit.addEventListener("click", () => fitWireflow(28));
+    if (z100) z100.addEventListener("click", () => {
+      zoomState.scale = 1;
+      zoomState.x = 16;
+      zoomState.y = 16;
+      applyZoomTransform();
+    });
+
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const factor = e.deltaY > 0 ? 1 / 1.1 : 1.1;
+      zoomAt(e.clientX, e.clientY, zoomState.scale * factor);
+    }, { passive: false });
+
+    canvas.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0) return;
+      // don't pan when clicking interactive controls
+      if (e.target.closest("button, a, input, [data-open]")) return;
+      panning = true;
+      panStart = { x: e.clientX, y: e.clientY, ox: zoomState.x, oy: zoomState.y };
+      canvas.classList.add("panning");
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", (e) => {
+      if (!panning || !panStart) return;
+      zoomState.x = panStart.ox + (e.clientX - panStart.x);
+      zoomState.y = panStart.oy + (e.clientY - panStart.y);
+      applyZoomTransform();
+    });
+    const endPan = (e) => {
+      if (!panning) return;
+      panning = false;
+      panStart = null;
+      canvas.classList.remove("panning");
+      try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+    };
+    canvas.addEventListener("pointerup", endPan);
+    canvas.addEventListener("pointercancel", endPan);
+
+    // basic pinch
+    let pinch = null;
+    canvas.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
+        pinch = { dist: Math.hypot(dx, dy) || 1, scale: zoomState.scale };
+      }
+    }, { passive: true });
+    canvas.addEventListener("touchmove", (e) => {
+      if (!pinch || e.touches.length !== 2) return;
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const dist = Math.hypot(dx, dy) || 1;
+      const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      zoomAt(cx, cy, pinch.scale * (dist / pinch.dist));
+    }, { passive: false });
+    canvas.addEventListener("touchend", () => { pinch = null; });
+  }
+
   // ---------------------------------------------------------------- boot
 
   async function load() {
@@ -779,23 +915,32 @@
     wireHoverHighlight();
     initViewToggle();
     initControls();
+    initZoomPan();
 
     // initial connector draw must happen after #app is revealed (boot() flips
     // display:none -> block right after load() resolves); schedule as a
     // macrotask so it runs after that synchronous reveal.
-    setTimeout(() => { drawWireflow(); }, 0);
+    setTimeout(() => {
+      drawWireflow();
+      // double-rAF so layout settles, then fit to viewport (no sideways scroll)
+      requestAnimationFrame(() => requestAnimationFrame(() => fitWireflow(28)));
+    }, 0);
 
     let resizeTimer = null;
     const scheduleRedraw = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if (!document.getElementById("view-wireflow").hidden) drawWireflow();
+        if (!document.getElementById("view-wireflow").hidden) {
+          drawWireflow();
+          fitWireflow(28);
+        }
         if (!document.getElementById("view-sequence").hidden) drawSequence();
-      }, 80);
+      }, 100);
     };
     if (window.ResizeObserver) {
       const ro = new ResizeObserver(scheduleRedraw);
-      ro.observe(document.getElementById("wf-inner"));
+      const canvas = document.getElementById("wf-canvas");
+      if (canvas) ro.observe(canvas);
     }
     window.addEventListener("resize", scheduleRedraw);
   }

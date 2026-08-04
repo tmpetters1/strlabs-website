@@ -5,7 +5,7 @@
 <title>Pipeline · Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804f">
+<link rel="stylesheet" href="./desk.css?v=20260804g">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
@@ -24,7 +24,7 @@
 
   <section class="card pl-intro">
     <h2>How to read this</h2>
-    <p><strong>Wireflow</strong> lays the desk out left → right: Discord rails on top, the main agent/stage flow through the middle, shared-brain stores on the bottom. Arrows are real handoffs — solid orange between stages, thin purple to Discord, thin blue to stores (dashed = reads, solid = writes), dashed red into the <strong>KILLED</strong> sink. Hover a stage to highlight only its wires; click anything — a node, an arrow's label, the kill sink — for the full detail drawer. <strong>Sequence</strong> reads the same handoffs as a top-to-bottom timeline per actor. <strong>Legend</strong> spells out every symbol.</p>
+    <p><strong>Wireflow</strong> lays the desk out left → right: Discord rails on top, the main agent/stage flow through the middle, shared-brain stores on the bottom. Arrows are real handoffs (solid orange stages · purple Discord · blue stores · red kill). Canvas fits your screen — zoom/pan as needed. Hover a stage to highlight only its wires; click anything — a node, an arrow's label, the kill sink — for the full detail drawer. <strong>Sequence</strong> reads the same handoffs as a top-to-bottom timeline per actor. <strong>Legend</strong> spells out every symbol.</p>
     <div class="pl-legend">
       <span class="pl-legend-item"><span class="pl-dot agent"></span>Agent / stage</span>
       <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord channel</span>
@@ -46,7 +46,16 @@
   </section>
 
   <div class="wf-view" id="view-wireflow">
+    <div class="wf-zoombar" id="wf-zoombar">
+      <button type="button" class="pl-btn" id="wf-zoom-out" title="Zoom out">−</button>
+      <button type="button" class="pl-btn" id="wf-zoom-fit" title="Fit to width">Fit</button>
+      <span class="wf-zoom-pct" id="wf-zoom-pct">100%</span>
+      <button type="button" class="pl-btn" id="wf-zoom-in" title="Zoom in">+</button>
+      <button type="button" class="pl-btn" id="wf-zoom-100" title="Actual size">100%</button>
+      <span class="wf-zoom-hint">scroll/pinch zoom · drag to pan · edge labels are short; click for full text</span>
+    </div>
     <div class="wf-canvas" id="wf-canvas">
+      <div class="wf-world" id="wf-world">
       <div class="wf-inner" id="wf-inner">
         <div class="wf-lane wf-lane-discord">
           <div class="wf-lane-label">Discord rails</div>
@@ -67,6 +76,7 @@
             </marker>
           </defs>
         </svg>
+      </div>
       </div>
     </div>
   </div>
@@ -127,7 +137,7 @@
   <div class="pl-drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="./desk.js?v=20260804f"></script>
+<script src="./desk.js?v=20260804g"></script>
 <script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
-<script src="./pipeline.js?v=20260804f"></script>
+<script src="./pipeline.js?v=20260804g"></script>
 </body></html>
