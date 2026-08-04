@@ -1,12 +1,12 @@
 {
   "available": true,
   "tracked": 58,
-  "graded": 53,
-  "pending": 5,
+  "graded": 55,
+  "pending": 3,
   "verdicts": {
-    "flat": 42,
+    "flat": 43,
     "delisted": 1,
-    "winner": 6,
+    "winner": 7,
     "loser": 3,
     "rug": 1
   },
@@ -28,11 +28,11 @@
       "delisted": 0
     },
     "<60": {
-      "n": 31,
-      "winner": 5,
+      "n": 33,
+      "winner": 6,
       "loser": 1,
       "rug": 1,
-      "flat": 23,
+      "flat": 24,
       "delisted": 1
     },
     "unscored": {
