@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T12:42:51Z",
+  "generated_at": "2026-08-04T12:45:59Z",
   "total_candidates": 48,
   "classified_candidates": 23,
   "unclassified_candidates": 25,
@@ -12,11 +12,15 @@
       "subcategories": [
         {
           "subcategory": "brainrot",
-          "count": 8
+          "count": 7
         },
         {
           "subcategory": "ticker-meta",
           "count": 4
+        },
+        {
+          "subcategory": "knockoff",
+          "count": 2
         },
         {
           "subcategory": "animals",
@@ -24,10 +28,6 @@
         },
         {
           "subcategory": "celebrity",
-          "count": 1
-        },
-        {
-          "subcategory": "knockoff",
           "count": 1
         }
       ]

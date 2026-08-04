@@ -84,6 +84,14 @@
     box-shadow: 0 16px 48px rgba(232,115,74,0.15);
   }
 
+  .gems-group { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .sub-link {
+    font-size: 0.75rem; color: #666; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 999px;
+    padding: 3px 12px; transition: color 0.2s, border-color 0.2s;
+  }
+  .sub-link:hover { color: #E8734A; border-color: rgba(232,115,74,0.35); }
+
   /* ========== FOOTER ========== */
   footer { text-align: center; padding-bottom: 0.5rem; }
   footer a {
@@ -140,16 +148,19 @@
         <span class="label">TraKcal</span>
       </a>
 
-      <a href="/gems/" class="app-btn btn-gems">
-        <div class="icon">
-          <svg viewBox="0 0 1024 1024">
-            <rect width="1024" height="1024" rx="224" fill="#1A1A1A"/>
-            <polygon points="512,180 820,420 700,820 324,820 204,420" fill="none" stroke="#E8734A" stroke-width="48" stroke-linejoin="round"/>
-            <polygon points="512,300 700,450 630,700 394,700 324,450" fill="#E8734A" opacity="0.9"/>
-          </svg>
-        </div>
-        <span class="label">Gem Radar</span>
-      </a>
+      <div class="gems-group">
+        <a href="/gems/" class="app-btn btn-gems">
+          <div class="icon">
+            <svg viewBox="0 0 1024 1024">
+              <rect width="1024" height="1024" rx="224" fill="#1A1A1A"/>
+              <polygon points="512,180 820,420 700,820 324,820 204,420" fill="none" stroke="#E8734A" stroke-width="48" stroke-linejoin="round"/>
+              <polygon points="512,300 700,450 630,700 394,700 324,450" fill="#E8734A" opacity="0.9"/>
+            </svg>
+          </div>
+          <span class="label">Gem Radar</span>
+        </a>
+        <a href="/gems/trade.html" class="sub-link">Trade Desk ↗</a>
+      </div>
     </div>
   </div>
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T12:42:51Z",
+  "generated_at": "2026-08-04T12:45:59Z",
   "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
   "chain_focus": {
     "primary": "robinhood",
@@ -28,8 +28,8 @@
       "current_price_usd": 8.946e-06,
       "current_mc_usd": 8947,
       "current_liq_usd": 7087.95,
-      "vol_h24_usd": 50694.38,
-      "change_h24_pct": -68.44,
+      "vol_h24_usd": 50686.5,
+      "change_h24_pct": -67.77,
       "price_source": "dexscreener",
       "price_error": null,
       "pnl_pct": -79.65384702858832,
@@ -58,19 +58,19 @@
         "site": "https://dtf.finance/",
         "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md"
       },
-      "current_price_usd": 0.0002641,
-      "current_mc_usd": 236843,
-      "current_liq_usd": 53566.37,
-      "vol_h24_usd": 105938.38,
-      "change_h24_pct": -1.35,
+      "current_price_usd": 0.0002648,
+      "current_mc_usd": 237458,
+      "current_liq_usd": 53639.8,
+      "vol_h24_usd": 105701.74,
+      "change_h24_pct": 0.53,
       "price_source": "dexscreener",
       "price_error": null,
-      "pnl_pct": -18.838352796558073,
+      "pnl_pct": -18.62323294406884,
       "wallet_balance_tokens": 517558.9694446674,
       "wallet_confirmed": true,
-      "value_usd": 136.68732383033668,
+      "value_usd": 137.04961510894793,
       "cost_basis_usd": 168.41368865729476,
-      "pnl_usd": -31.726364826958076
+      "pnl_usd": -31.364073548346823
     }
   ],
   "history": [
@@ -101,7 +101,7 @@
   ],
   "pnl": {
     "realized_usd": 0.0,
-    "unrealized_usd": -31.73,
+    "unrealized_usd": -31.36,
     "unrealized_complete": false,
     "open_position_count": 2,
     "closed_position_count": 0,

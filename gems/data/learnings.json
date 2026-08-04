@@ -1,6 +1,20 @@
 {
-  "generated_at": "2026-08-04T12:42:51Z",
+  "generated_at": "2026-08-04T12:45:59Z",
   "entries": [
+    {
+      "date": "2026-08-04",
+      "title": "BOOTS position untracked in wallet \u2014 human-reported fills need size fields",
+      "observation": "`memory/positions.yaml` records BOOTS as `status: open` with an entry price, but `size_tokens`/`size_usd` were never filled in on the fill record, and the live wallet scan (`state/wallet_holdings_rh.json`) shows zero BOOTS balance. Without a recorded size, the desk can't tell \"never actually bought\" apart from \"bought and already sold off-record\" or \"wallet scan missed it\".",
+      "action": "Any human-reported fill in `positions.yaml` must include `size_tokens` or `size_usd` at record time, or PnL/reconciliation tooling can't compute cost basis and has to null it out. Trade dashboard should label unconfirmed-balance positions explicitly rather than silently carrying a paper loss that may not be real.",
+      "owner": "conductor"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "KyberSwap RH-chain assumption was wrong \u2014 verify, don't assume",
+      "observation": "A build brief assumed Robinhood chain (4663) is NOT a standard Kyber chain. Live probe of `aggregator-api.kyberswap.com/robinhood/api/v1/routes` returned HTTP 400 \"token not found\" (same shape as a known-good chain with a dummy token), not HTTP 404 (confirmed 404 on a genuinely fake chain path). Kyber's own docs explicitly list Robinhood as a supported network, tagged Provisional.",
+      "action": "KyberSwap Aggregator is the primary execution path on RH chain (with direct-Uniswap fallback for provisional-network hiccups or thin-liq route failures), not a chain to avoid. Never trust an unverified chain-support claim in a brief when a live API probe or docs check is one curl away. Full writeup: `state/trading/kyber_rh_support.md`.",
+      "owner": "conductor"
+    },
     {
       "date": "2026-08-04",
       "title": "Etherscan free plan blocks BSC/Base (GoPlus fallback)",

@@ -92,3 +92,44 @@ Existing `publish_radar.py` is unchanged and still owns `radar.json`,
 - Root `index.html` got a minimal, single-viewport-preserving addition: a
   small "Trade Desk ↗" link under the existing Gem Radar button. QRderobe and
   timereg were not touched.
+- Observed evidence of a concurrent build on this same repo during this
+  session: `trading_strategy.md` and `gems/index.html` were edited mid-task by
+  another process, and `git log` shows this exact file set already committed
+  at HEAD (auto-committed by whatever runs the `chore(gems): publish radar…`
+  loop) plus a now-deleted `gems/trade/{index.html,app.js}` and a now-deleted
+  `gems/data/trading/*.json` nested layout from an earlier/parallel attempt —
+  neither existed on disk when this build started and neither was touched
+  here. Nothing currently links to those paths; left as-is for a human/
+  Conductor call rather than guessing intent.
+
+## Addendum — verification pass (same session)
+
+- Confirmed the two concurrent-build artifacts noted above (`gems/trade/`
+  subdir, `gems/data/trading/` nested dir) were unreferenced by any page and
+  removed them; the live pages only ever read the sibling-file layout
+  (`gems/trade.html` + `gems/data/trading.json`, etc.) described above.
+- Independently verified the KyberSwap-on-Robinhood-chain claim in
+  `state/trading/kyber_rh_support.md` two ways: Kyber's own supported-networks
+  docs list Robinhood, and a live call to
+  `aggregator-api.kyberswap.com/robinhood/api/v1/routes` returns HTTP 400
+  ("token not found" — a recognized, routed chain) rather than HTTP 404 (what
+  a genuinely unsupported chain path returns). This corrects an initial build
+  assumption that RH wasn't a Kyber chain — see `trading_strategy.md`'s
+  RH-First Execution Notes section.
+- Filed the Kyber finding and the BOOTS wallet/positions.yaml size-field gap
+  (BOOTS shows `status: open` in `positions.yaml` but zero confirmed wallet
+  balance, and no fill ever recorded `size_tokens`/`size_usd`) as proper
+  entries in `memory/lessons.md`, then re-ran `publish_trading.py` so both
+  flow through into `data/learnings.json` on the Learnings page (39 entries,
+  up from 37) rather than being one-off edits that a future regeneration
+  would silently drop.
+- Added `gem-radar/state/trading/README.md` (documents every file in that
+  directory and the update cadence) and `state/trading/wallet.json` (public
+  wallet address + native ETH balance/USD snapshot, gas-floor note) — neither
+  is touched by `publish_trading.py`, so they persist across re-runs.
+- Verified every page serves 200 locally (`python3 -m http.server`), every
+  `.js` file passes `node --check`, and every CSS class referenced across
+  `trade.html`/`research.html`/`strategy.html`/`learnings.html` exists in
+  `desk.css`. No browser-automation tool was reachable from this session to
+  do a rendered-pixel check — static verification only; a human should still
+  eyeball it once in an actual browser before treating this as fully done.
