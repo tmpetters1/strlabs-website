@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T17:46:38.452151+00:00",
+  "published_at": "2026-08-04T17:59:25.033564+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -76,15 +76,6 @@
       "path": "/api/v1/token/HDX"
     },
     {
-      "symbol": "Lightoor",
-      "chain": "robinhood",
-      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
-      "score": 69.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/Lightoor"
-    },
-    {
       "symbol": "GENESIS",
       "chain": "robinhood",
       "token": "0x899Df1a46Facc37581DdAc4E74f47488209aade5",
@@ -92,6 +83,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/GENESIS"
+    },
+    {
+      "symbol": "Lightoor",
+      "chain": "robinhood",
+      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
+      "score": 69.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/Lightoor"
     },
     {
       "symbol": "FIND",
@@ -112,15 +112,6 @@
       "path": "/api/v1/token/Port"
     },
     {
-      "symbol": "GRID",
-      "chain": "robinhood",
-      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
-      "score": 64.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/GRID"
-    },
-    {
       "symbol": "SAFEVANO",
       "chain": "robinhood",
       "token": "0xe6613D2Bbd5f5C5bb203C36eE414ffaA4a47a977",
@@ -128,6 +119,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/SAFEVANO"
+    },
+    {
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GRID"
     },
     {
       "symbol": "BRACKETS",
