@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T16:14:25.785562+00:00",
+  "published_at": "2026-08-04T16:28:15.138034+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -74,6 +74,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/HDX"
+    },
+    {
+      "symbol": "GENESIS",
+      "chain": "robinhood",
+      "token": "0x899Df1a46Facc37581DdAc4E74f47488209aade5",
+      "score": 69.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GENESIS"
     },
     {
       "symbol": "Lightoor",
@@ -218,15 +227,6 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
-    },
-    {
-      "symbol": "GENESIS",
-      "chain": "robinhood",
-      "token": "0x899Df1a46Facc37581DdAc4E74f47488209aade5",
-      "score": null,
-      "status": "whale_reviewed",
-      "notify": false,
-      "path": "/api/v1/token/GENESIS"
     }
   ]
 }
