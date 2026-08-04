@@ -236,3 +236,13 @@ swimlanes, sequence-style who-sends-what-where.
   the v1 addendum above, a human should click through Wireflow hover/click,
   Sequence, Legend, and both Replay modes once in an actual browser before
   treating this as fully verified.
+
+
+## 2026-08-04 evening — pipeline wireflow v3 layout
+
+- Stretched wireflow vertically: taller canvas (`min(88vh,980px)`), larger lane gaps, more inner padding/min-height.
+- **Conductor** moved out of the specialist agent row onto its own **orchestration rail** (green-tinted lane under Discord).
+- **Queue** moved out of the agent row onto a separate **queue bus** lane under specialists (blue dashed lane; not an agent card).
+- Specialist path now: Macro → Scout → Class → Whale → Research → Radar → Learn (+ KILLED sink).
+- Cache bust `desk.css` / `pipeline.js` / `desk.js` → `v=20260804h`.
+- Replay path still walks full STAGES order (includes queue + conductor stops via their new lane nodes).

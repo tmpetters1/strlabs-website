@@ -5,7 +5,7 @@
 <title>Pipeline · Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804g">
+<link rel="stylesheet" href="./desk.css?v=20260804h">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
@@ -24,11 +24,12 @@
 
   <section class="card pl-intro">
     <h2>How to read this</h2>
-    <p><strong>Wireflow</strong> lays the desk out left → right: Discord rails on top, the main agent/stage flow through the middle, shared-brain stores on the bottom. Arrows are real handoffs (solid orange stages · purple Discord · blue stores · red kill). Canvas fits your screen — zoom/pan as needed. Hover a stage to highlight only its wires; click anything — a node, an arrow's label, the kill sink — for the full detail drawer. <strong>Sequence</strong> reads the same handoffs as a top-to-bottom timeline per actor. <strong>Legend</strong> spells out every symbol.</p>
+    <p><strong>Wireflow</strong> stretches top → bottom so lanes can breathe: Discord rails on top, Conductor as its own orchestration rail, specialists left → right in the middle, the Queue as a separate bus under them, shared-brain stores on the bottom. Queue and Conductor are <em>not</em> specialist agents in the main path. Arrows are real handoffs (solid orange stages · purple Discord · blue stores · red kill). Canvas fits your screen — zoom/pan as needed. Hover a stage to highlight only its wires; click anything for the detail drawer. <strong>Sequence</strong> is the same handoffs as a timeline. <strong>Legend</strong> spells out every symbol.</p>
     <div class="pl-legend">
-      <span class="pl-legend-item"><span class="pl-dot agent"></span>Agent / stage</span>
+      <span class="pl-legend-item"><span class="pl-dot agent"></span>Specialist agent</span>
+      <span class="pl-legend-item"><span class="pl-dot agent" style="box-shadow:0 0 0 2px var(--green)"></span>★ Conductor (orchestration)</span>
+      <span class="pl-legend-item"><span class="pl-dot store"></span>Queue bus / shared store</span>
       <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord channel</span>
-      <span class="pl-legend-item"><span class="pl-dot store"></span>Shared data store</span>
       <span class="pl-legend-item"><span class="pl-dot kill"></span>Kill / fence path</span>
     </div>
     <div class="pl-controls">
@@ -61,9 +62,17 @@
           <div class="wf-lane-label">Discord rails</div>
           <div class="wf-lane-nodes" id="wf-channel-nodes"></div>
         </div>
+        <div class="wf-lane wf-lane-orch">
+          <div class="wf-lane-label">Orchestration — not in the specialist path</div>
+          <div class="wf-lane-nodes" id="wf-orch-nodes"></div>
+        </div>
         <div class="wf-lane wf-lane-stages">
-          <div class="wf-lane-label">Agents / stages — main token path, left → right</div>
+          <div class="wf-lane-label">Specialists — main token path, left → right</div>
           <div class="wf-lane-nodes" id="wf-stage-nodes"></div>
+        </div>
+        <div class="wf-lane wf-lane-queue">
+          <div class="wf-lane-label">Queue bus — shared state, not an agent</div>
+          <div class="wf-lane-nodes" id="wf-queue-nodes"></div>
         </div>
         <div class="wf-lane wf-lane-stores">
           <div class="wf-lane-label">Shared brain</div>
@@ -95,8 +104,9 @@
     <div class="wf-legend-grid">
       <div class="wf-legend-card">
         <h4>Node types</h4>
-        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-agent)"></span>Agent — a specialist running its own heartbeat</div>
-        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:#101010;border:1px solid var(--green)"></span>★ Conductor — orchestrator, owns ping budget + trading rails</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-agent)"></span>Specialist agent — own heartbeat, owns a stage of the token path</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:#101010;border:1px solid var(--green)"></span>★ Conductor — orchestration rail (not a specialist in the row); ping budget + trading + desk reliability</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-store);border:1.5px dashed rgba(96,165,250,.55)"></span>Queue bus — candidates.jsonl shared state (not an agent)</div>
         <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-channel)"></span>Discord channel — where the desk talks</div>
         <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-store)"></span>Shared store — yaml/json/markdown state every agent reads</div>
         <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-kill);border-radius:5px;border:1.5px dashed var(--pl-kill);opacity:.6"></span>KILLED sink — candidate drops out, no brief / no publish / no ping</div>
@@ -118,7 +128,7 @@
       </div>
       <div class="wf-legend-card">
         <h4>Views</h4>
-        <div class="wf-legend-row"><strong>Wireflow</strong> — spatial map: Discord on top, agent flow in the middle, stores on the bottom, real arrows between all three.</div>
+        <div class="wf-legend-row"><strong>Wireflow</strong> — spatial map stretched vertically: Discord → Conductor rail → specialists → Queue bus → shared brain, with real arrows between lanes.</div>
         <div class="wf-legend-row"><strong>Sequence</strong> — the same handoffs as a UML-style timeline: one lifeline per actor, messages read top → bottom in the order they actually fire.</div>
         <div class="wf-legend-row"><strong>Legend</strong> — this page.</div>
       </div>
@@ -137,7 +147,7 @@
   <div class="pl-drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="./desk.js?v=20260804g"></script>
+<script src="./desk.js?v=20260804h"></script>
 <script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
-<script src="./pipeline.js?v=20260804g"></script>
+<script src="./pipeline.js?v=20260804h"></script>
 </body></html>

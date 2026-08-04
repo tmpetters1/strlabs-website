@@ -1,14 +1,14 @@
-/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v2.
+/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v3.
    Static reference page — no data/*.json fetch, content is the desk's own
    architecture (agents, handoffs, Discord rails, shared-brain stores) sourced
    from context/ops.yaml, COMMS.md, dd_checklist.yaml, sm_pipeline.md,
    onchain_intel.md and focus.yaml/kill_list.yaml. Update this file (not just
    the yaml) if the desk's stage/channel/store shape changes materially.
 
-   v2 note: STAGES/CHANNELS/STORES/EDGES are the single source of truth for
-   both the Wireflow view (spatial: lanes + SVG connectors) and the Sequence
-   view (temporal: lifelines). SEQ_MESSAGES below only orders/labels existing
-   edge and channel data — it does not introduce new facts. */
+   v3 note: layout stretches vertically. Conductor lives on its own orchestration
+   rail (not in the specialist row). Queue is a separate bus lane under the
+   specialists (not an agent card). STAGES/CHANNELS/STORES/EDGES remain the
+   single source of truth for Wireflow + Sequence. */
 (function () {
   "use strict";
   const D = window.Desk;
@@ -214,20 +214,61 @@
     return chips.join("");
   }
 
+  // Layout lanes: specialists stay in the middle agent path.
+  // Queue is a bus (not an agent). Conductor is orchestration (not a specialist).
+  const SPECIALIST_IDS = ["macro", "scout", "class", "whale", "research", "radar", "learn"];
+  const ORCH_IDS = ["conductor"];
+  const QUEUE_IDS = ["queue"];
+
+  function stageCardHtml(s, displayIdx, extraClass) {
+    const cls = ["wf-stage"];
+    if (s.loop) cls.push("pl-loop");
+    if (s.star) cls.push("wf-conductor");
+    if (s.kind === "store" || s.id === "queue") cls.push("wf-queue-card");
+    if (extraClass) cls.push(extraClass);
+    const role = s.role.length > 96 ? s.role.slice(0, 93).trim() + "…" : s.role;
+    const idxLabel = displayIdx == null ? (s.star ? "★" : "·") : String(displayIdx);
+    return `<button class="${cls.join(" ")}" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
+      <div class="wf-stage-head">
+        <span class="pl-idx">${esc(idxLabel)}</span>
+        <div><div class="wf-stage-title">${esc(s.title)}${s.star ? ' <span class="pl-badge star">★</span>' : ""}</div><div class="wf-stage-tag">${esc(s.tag)}</div></div>
+      </div>
+      <div class="wf-stage-role">${esc(role)}</div>
+    </button>`;
+  }
+
   function renderStageNodes() {
-    const root = document.getElementById("wf-stage-nodes");
-    let html = "";
-    STAGES.forEach((s, i) => {
-      html += `<button class="wf-stage${s.loop ? " pl-loop" : ""}" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
-        <div class="wf-stage-head">
-          <span class="pl-idx">${i}</span>
-          <div><div class="wf-stage-title">${esc(s.title)}${s.star ? ' <span class="pl-badge star">★</span>' : ""}</div><div class="wf-stage-tag">${esc(s.tag)}</div></div>
-        </div>
-        <div class="wf-stage-role">${esc(s.role.length > 78 ? s.role.slice(0, 75).trim() + "…" : s.role)}</div>
-      </button>`;
+    const stageRoot = document.getElementById("wf-stage-nodes");
+    const orchRoot = document.getElementById("wf-orch-nodes");
+    const queueRoot = document.getElementById("wf-queue-nodes");
+    let specialistHtml = "";
+    let orchHtml = "";
+    let queueHtml = "";
+    let specialistN = 0;
+
+    STAGES.forEach((s) => {
+      if (ORCH_IDS.includes(s.id)) {
+        orchHtml += stageCardHtml(s, null, "wf-orch-card");
+        return;
+      }
+      if (QUEUE_IDS.includes(s.id)) {
+        queueHtml += stageCardHtml(s, null, "wf-queue-card");
+        return;
+      }
+      // default: specialist path (+ anything unexpected stays visible)
+      specialistHtml += stageCardHtml(s, specialistN, SPECIALIST_IDS.includes(s.id) ? "" : "wf-misc-card");
+      specialistN += 1;
     });
-    html += `<button class="wf-kill-sink" id="wf-kill-sink" data-open="killnode:info" type="button">✕ KILLED<span class="sub">no brief · no publish</span></button>`;
-    root.innerHTML = html;
+
+    // Kill sink sits with the specialist path end — still a path outcome, not an agent.
+    specialistHtml += `<button class="wf-kill-sink" id="wf-kill-sink" data-open="killnode:info" type="button">✕ KILLED<span class="sub">no brief · no publish</span></button>`;
+
+    if (stageRoot) stageRoot.innerHTML = specialistHtml;
+    if (orchRoot) orchRoot.innerHTML = orchHtml || "<div class=\"wf-empty\">—</div>";
+    if (queueRoot) {
+      queueRoot.innerHTML = queueHtml
+        + `<div class="wf-queue-note">candidates.jsonl · only via queue_lib.py · identity = (chain, contract)</div>`;
+    }
   }
 
   function renderRail(container, items, type) {
@@ -325,7 +366,7 @@
       btn.setAttribute("data-open", "edge:" + i);
       btn.style.left = mid.x + "px";
       btn.style.top = (mid.y - 10) + "px";
-      btn.textContent = shortLabel(e.short || e.label, 18);
+      btn.textContent = shortLabel(e.short || e.label, 22);
       btn.title = e.label + " — click for details";
       inner.appendChild(btn);
     });
@@ -370,7 +411,7 @@
         btn.setAttribute("data-open", "stage:" + k.from);
         btn.style.left = mid.x + "px";
         btn.style.top = (mid.y - 8) + "px";
-        btn.textContent = shortLabel(k.short || k.label, 14);
+        btn.textContent = shortLabel(k.short || k.label, 20);
         btn.title = k.label + " — click for details";
         inner.appendChild(btn);
       });
@@ -378,7 +419,7 @@
   }
 
   function wireHoverHighlight() {
-    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => {
+    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => {
       const id = el.getAttribute("data-stage-id");
       el.addEventListener("mouseenter", () => highlightStage(id));
       el.addEventListener("mouseleave", clearHighlight);
@@ -393,14 +434,14 @@
       e.el.classList.toggle("hi", related);
       e.el.classList.toggle("dim", !related);
     });
-    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => {
+    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => {
       el.classList.toggle("wf-dim", el.getAttribute("data-stage-id") !== id);
     });
   }
 
   function clearHighlight() {
     wfEdgePaths.forEach((e) => { e.el.classList.remove("hi", "dim"); });
-    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
+    document.querySelectorAll(".wf-stage[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
   }
 
   // ---------------------------------------------------------------- sequence view
