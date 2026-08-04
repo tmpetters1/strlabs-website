@@ -4,10 +4,10 @@ function tickerLink(t) {
   }
   const esc = (s) => {
     return String(s ?? "")
-      .replace(/&/g, "&")
-      .replace(/</g, "<")
-      .replace(/>/g, ">")
-      .replace(/"/g, """);
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
   };
   const sym = t.symbol || t.ticker || "?";
   const chain = (t.chain || "").toLowerCase();
@@ -31,10 +31,10 @@ function money(n) {
 function escText(s) {
   if (window.Desk && typeof Desk.esc === "function") return Desk.esc(s);
   return String(s ?? "")
-    .replace(/&/g, "&")
-    .replace(/</g, "<")
-    .replace(/>/g, ">")
-    .replace(/"/g, """);
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
 
 function flattenTokens(data) {
@@ -261,3 +261,4 @@ if (window.Desk && typeof Desk.boot === "function") {
     if (err) err.textContent = "desk.js failed to load — cannot unlock";
   });
 }
+
