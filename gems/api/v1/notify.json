@@ -1,0 +1,380 @@
+{
+  "ok": true,
+  "api_version": 1,
+  "published_at": "2026-08-04T01:14:00.273564+00:00",
+  "notify_bar": 78.0,
+  "cards": [
+    {
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "score": 81.0,
+      "status": "briefed",
+      "notify": true,
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "mc": 226191.0,
+      "liq": 52307.0,
+      "vol_h24": 139832,
+      "detail": {
+        "why_notify": "notify flag",
+        "links": {
+          "site": "https://dtf.finance/",
+          "x": "@DefiTradedFund",
+          "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+          "twitter": "https://x.com/DefiTradedFund"
+        },
+        "reasoning": [
+          "DeFi Traded Fund is the second verified SRM peer to GLD/Bullion on RH. Mechanism is active: AMD tokenized stock entered the prize contract today; USDG moving from team wallet. USDG-quoted pair means the protocol natively prices in the buy currency. $226k MC at $52k liq with 1859 h24 buys is strong organic conviction for a 3.7-day token with zero boosts. Prize-draw mechanism is novel vs GLD's grid-lottery \u2014 different product surface, same verified stock-buy+claim category.",
+          "**Why now:** Caught early (3.7d), buy-biased tape, no boosts, team active onchain, real stock flowing.",
+          "**Invalidation:**\n1. Prize contract drains without stock distribution (team rug via unverified contract)\n2. Holders drop below 100 or liq collapses below $20k\n3. AMD/stock deposits stop for 48h (mechanism paused/stopped)\n4. Contract verified and shows admin-drain function without timelock"
+        ],
+        "risks": [
+          "1. **Prize contract (0xA89e38\u2026) is unverified** \u2014 cannot read code; rug mechanism possible but unlikely given public AMD deposits\n2. **125 holders** \u2014 thin; early-stage distribution risk\n3. **h24 \u22122.84%** \u2014 slight price decline despite buy-biased volume; sell-side pressure from early buyers distributing\n4. **Intermediate contract (0xF74247\u2026) also unverified** \u2014 stock routing layer unknown\n5. **No public X engagement visible** (X search blocked; @DefiTradedFund name clean but reach unknown)"
+        ],
+        "invalidation": [],
+        "score_stack": [
+          {
+            "label": "Verified SRM buy-path (AMD stock flowing into prize contract today)",
+            "delta": 22
+          },
+          {
+            "label": "USDG-quoted pair (correct mechanism currency)",
+            "delta": 10
+          },
+          {
+            "label": "h24 buy-biased 1859/1399, vol/liq 2.67\u00d7",
+            "delta": 8
+          },
+          {
+            "label": "SafeProxy + 7702 team structure (organized, not anon quick-flip)",
+            "delta": 7
+          },
+          {
+            "label": "Dominant DTF on RH; clean EOA distro (top 2.6%)",
+            "delta": 6
+          },
+          {
+            "label": "Zero boosts, 3.7d organic",
+            "delta": 5
+          },
+          {
+            "label": "SRM second peer (leaf validated)",
+            "delta": 3
+          }
+        ],
+        "checks": {
+          "srm_buy_claim_path": {
+            "status": "pass",
+            "note": "AMD Robinhood Token flowing into prize pool 0xA89e38 at 14:15 UTC today",
+            "by": null
+          },
+          "usdg_quote": {
+            "status": "pass",
+            "note": "pair quote=USDG; correct SRM denomination",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "pass",
+            "note": "SafeProxy multisig + 7702 team; USDG active 14:13 UTC; no rug",
+            "by": null
+          },
+          "clone_count": {
+            "status": "pass",
+            "note": "dominant DTF; second DTF vol24=.77 dead",
+            "by": null
+          },
+          "contract_risk": {
+            "status": "blocked",
+            "note": "token contract named DeFi Traded Fund; prize pool 0xA89e38 unverified",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no SM; organic buy tape compensates",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "concentration": {
+            "status": "pass",
+            "note": "38.6% in confirmed staking contract (stakingToken()=DTF RPC verified); 5.4% SafeProxy 1/1 dev; ex-protocol top5=24.7% float \u2014 not alarming",
+            "by": "whale"
+          },
+          "deployer_or_owner": {
+            "status": "pass",
+            "note": "SafeProxy owner = 0xc0e3D4A96faC (1-of-1, single dev EOA). Staking contract creator unknown (blocked) but confirmed staking function.",
+            "by": "whale"
+          },
+          "staking_contract_id": {
+            "status": "pass",
+            "note": "0xA89e3852: stakingToken() returns DTF token addr; confirmed staking contract. 38.6% staked = product in use.",
+            "by": "whale"
+          },
+          "social_x_pass": {
+            "status": "pass",
+            "note": "suspect: Sparse RH chatter + multiple scam-like claim portal posts using DTF CA; not organic traction.",
+            "by": "research-social-pass-xai"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
+        "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
+        "market_live": {
+          "price_usd": 0.0002545,
+          "mc": 228175.0,
+          "liq": 52517.69,
+          "vol_h24": 120541.72,
+          "vol_to_liq": 2.3,
+          "change_m5": -0.34,
+          "change_h1": -2.81,
+          "change_h6": 0.97,
+          "change_h24": -7.48,
+          "buys_h1": 65,
+          "sells_h1": 52,
+          "buys_h24": 1825,
+          "sells_h24": 1395,
+          "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "quote": "USDG",
+          "dex": "uniswap",
+          "pair_age_minutes": 6011.3
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 0.0002750757
+            },
+            {
+              "t": "6h_ago",
+              "p": 0.0002520551
+            },
+            {
+              "t": "1h_ago",
+              "p": 0.0002618582
+            },
+            {
+              "t": "5m_ago",
+              "p": 0.0002553683
+            },
+            {
+              "t": "now",
+              "p": 0.0002545
+            }
+          ],
+          "change": {
+            "m5": -0.34,
+            "h1": -2.81,
+            "h6": 0.97,
+            "h24": -7.48
+          },
+          "volume": {
+            "h24": 120541.72,
+            "h6": 22532.18,
+            "h1": 2719.52,
+            "m5": 126.97
+          },
+          "txns": {
+            "m5": {
+              "buys": 3,
+              "sells": 4
+            },
+            "h1": {
+              "buys": 65,
+              "sells": 52
+            },
+            "h6": {
+              "buys": 462,
+              "sells": 346
+            },
+            "h24": {
+              "buys": 1825,
+              "sells": 1395
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md",
+        "brief_excerpt": "# DTF \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair:** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG-quoted)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/\n- **X:** @DefiTradedFund\n\n## \u26a0\ufe0f SRM Gate check (DD mandatory before brief)\n- Token name: `DeFi Traded Fund` (intentional, not cosplay) \u2713\n- Pair quote: **USDG** (same denomination as GLD's stock-buy path) \u2713\n- Prize/staking contract (0xA89e38...) actively receiving **AMD Robinhood Token** today at 14:15 UTC \u2713\n- Deployer (team 7702 account 0xD2e482F...) actively moving USDG at 14:13 UTC \u2713\n- No Flap / FlapTaxTokenV3 / clone naming \u2713\n- **SRM verdict: PASS \u2014 real stock-buy path active onchain**\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Tags:** robinhood, usdg-quoted, stock-prize-draw, staking, nvda-tsla-aapl-amd, organized-team, srm-peer\n- **Novelty:** second verified SRM peer (GLD is archetype); distinct prize-draw mechanism vs GLD's grid-lottery\n- **Confidence:** 0.84\n\n## Market (live ~16:40 CEST)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$226k |\n| Liq | ~$52k |\n| Vol 24h | ~$140k |\n| Vol/Liq | **2.67\u00d7** (very active) |\n| Txns h24 | **1,859B / 1,399S** (buy-biased +33%) |\n| Txns h1 | 73B / 69S (balanced) |\n| \u0394 h1 / h24 | +1.86% / \u22122.84% |\n| Pair age | 3.7 days (2026-07-31) |\n| Boosts | none |\n| Holders | 125 |\n| Quote | **USDG** |\n\n## Holder map\n| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713\n\n## Deployer / team structure\n- Token deployed by factory contract `0xa17Be45\u2026` (named \"DeFi Tra"
+      }
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "category": "defi",
+      "subcategory": "consumer-payments",
+      "url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+      "explorer": "https://basescan.org/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "mc": 162926.0,
+      "liq": 128623.0,
+      "vol_h24": 76849,
+      "detail": {
+        "why_notify": "score 76.0 near/above bar 78.0",
+        "links": {
+          "x": "@basemateagent",
+          "dex": "https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "explorer": "https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+          "site": "https://basemate.app/",
+          "twitter": "http://x.com/basemateagent"
+        },
+        "reasoning": [
+          "Real product, real users, real volume moved. iMessage remittance UX is genuinely novel (zero wallet install, cross-chain send/receive). $163k MC vs $382K notional moved product-side means token is underpriced relative to real activity. Liq/MC at 79% = deep book, hard to wick down. 82-day-old token breaking +30% today suggests a catalyst (likely X post or partnership announcement) \u2014 but no SM fingerprint yet.",
+          "**Asymmetry:** If product continues to grow users/notional, token stays tightly correlated. At $163k MC this is pre-attention for a real fintech product. Gap to FIND-class tokens ($500K-2M MC) exists if press coverage breaks.",
+          "**Invalidation:**\n1. Product metrics stall (users / notional moved plateau) \u2014 check basemate.app monthly\n2. Token deployer exits significant bag without product catalyst\n3. RehypeDoppler hook infra turns out to be bonding/unlock mechanism (needs deployer check)\n4. h24 sell volume exceeds 70% of txns for 3 consecutive days \u2014 distribution mode\n5. Better-funded competitor replicates UX on larger chain"
+        ],
+        "risks": [],
+        "invalidation": [],
+        "score_stack": [],
+        "checks": {
+          "website_product_truth": {
+            "status": "pass",
+            "note": "live app; 12.3K users / 63K msgs / $382K notional from landing page",
+            "by": null
+          },
+          "site_points_to_ca": {
+            "status": "n_a",
+            "note": "app site no CA; scam BASEEMATE confirmed separate",
+            "by": null
+          },
+          "social_x_pass": {
+            "status": "pass",
+            "note": "organic: Sparse-but-real Base mentions around basemate agent; CA shared; no obvious coordinated pump.",
+            "by": "research-social-pass-xai"
+          },
+          "contract_risk": {
+            "status": "pass",
+            "note": "DERC20 Doppler verified; no proxy; deployer 0 other deploys",
+            "by": null
+          },
+          "clone_check": {
+            "status": "pass",
+            "note": "BASEEMATE 0x16b559 is scam; real CA dominant",
+            "by": null
+          },
+          "deployer_history": {
+            "status": "blocked",
+            "note": "0 other Etherscan deploys found; Blockscout Base not checked",
+            "by": null
+          },
+          "sm_pass": {
+            "status": "fail",
+            "note": "no labeled SM; Whale not run for Base",
+            "by": null
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "GO: at/above bar",
+            "by": null
+          },
+          "deployer_owner_id": {
+            "status": "pass",
+            "note": "0x3f0fddb9... \u2014 ERC-4337 smart account, EntryPoint txns since Jun 2025. Product team wallet. No rug history.",
+            "by": "whale"
+          },
+          "dev_wallet_track_history": {
+            "status": "pass",
+            "note": "Smart account active 13+ months. All txns via ERC-4337 EntryPoint. Legitimate infra pattern for a remittance app. No serial deploys, no rug indicators.",
+            "by": "whale"
+          },
+          "top_holders": {
+            "status": "pass",
+            "note": "1,069 holders; LP=33.9% (deepened); top EOA 4.05% (0x1c9011 = LiFi accumulator over 11d \u2014 product affiliate likely); no insider concentration; correcting prior 'airdrop' label.",
+            "by": "whale"
+          },
+          "whale": {
+            "status": "blocked",
+            "note": "No SM in DB; 0x1c9011 (4.05%) is genuine buyer via LiFi but likely product-affiliated. Score stays 76 \u2014 2pts from notify bar. Watch for labeled SM entry.",
+            "by": "whale"
+          }
+        },
+        "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
+        "mechanism": null,
+        "market_live": {
+          "price_usd": 1.753e-06,
+          "mc": 175378.0,
+          "liq": 134262.31,
+          "vol_h24": 50310.93,
+          "vol_to_liq": 0.37,
+          "change_m5": -0.05,
+          "change_h1": -1.02,
+          "change_h6": -3.49,
+          "change_h24": 30.81,
+          "buys_h1": 0,
+          "sells_h1": 9,
+          "buys_h24": 450,
+          "sells_h24": 785,
+          "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+          "quote": "WETH",
+          "dex": "uniswap",
+          "pair_age_minutes": 99841.5
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 1.3401e-06
+            },
+            {
+              "t": "6h_ago",
+              "p": 1.8164e-06
+            },
+            {
+              "t": "1h_ago",
+              "p": 1.7711e-06
+            },
+            {
+              "t": "5m_ago",
+              "p": 1.7539e-06
+            },
+            {
+              "t": "now",
+              "p": 1.753e-06
+            }
+          ],
+          "change": {
+            "m5": -0.05,
+            "h1": -1.02,
+            "h6": -3.49,
+            "h24": 30.81
+          },
+          "volume": {
+            "h24": 50310.93,
+            "h6": 9803.89,
+            "h1": 172.05,
+            "m5": 28.97
+          },
+          "txns": {
+            "m5": {
+              "buys": 0,
+              "sells": 1
+            },
+            "h1": {
+              "buys": 0,
+              "sells": 9
+            },
+            "h6": {
+              "buys": 116,
+              "sells": 201
+            },
+            "h24": {
+              "buys": 450,
+              "sells": 785
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
+        "brief_excerpt": "# BASEMATE \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Base (8453)\n- **Token:** `0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3`\n- **Main Pair:** `0x4676505f75ef3cf95cf30d6e56134e39fe1f4c3\u2026` (Uniswap v4 / Base)\n- **Dex:** https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **Explorer:** https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **App:** https://basemate.app (live iMessage/WhatsApp crypto remittance agent)\n- **X:** @basemateagent\n- **Deployer:** not retrieved (Etherscan v2 gated for Base) \u2014 unknown, needs manual check\n\n## \u26a0\ufe0f Scam copy: `BASEEMATE` at `0x16b559\u2026` \u2014 NOT this token. Dominant CA is `0x07E61D8a\u2026`.\n\n## Classification + novelty\n- **Category:** defi / **sub:** consumer-payments / messaging-agent\n- **Tags:** base, imessage, whatsapp, remittance, ai-agent, usdc-yield, real-product\n- **Novelty:** medium-high \u2014 iMessage-native crypto payments is a distinct product surface (not a DEX wrapper or generic yield vault). WhatsApp receive side + iMessage send side with zero wallet setup is genuinely novel UX architecture.\n- **Confidence:** 0.78\n\n## Product truth (verified from site)\n**Basemate = \"Send Money in your Texts\" \u2014 iMessage + WhatsApp crypto agent.**\n\nLive metrics from landing page:\n- **12,300 users**\n- **63,000+ messages processed**\n- **$382.2K notional moved**\n\nHow it works:\n1. **Send** \u2014 \"send $200 to Mum\" in iMessage \u2192 moves in seconds to any phone number\n2. **Earn** \u2014 idle USDC auto-routes to best Base yield (Moonwell / Morpho / Aave) in one text\n3. **Trade** \u2014 Uniswap + Aerodrome swaps from chat; perps via Base App\n4. **Save** \u2014 USDC base currency, dollar-denominated\n\n**The moat:** Sender uses iMessage (1.3B US/EU/Gulf senders). Receiver uses WhatsApp (Philippines, India, Mexico, Nigeria, Brazil). Zero apps to install on either side. This directly attacks the $800B remittance market at the UX layer \u2014 no incumbent does zero-install on both sides.\n\n**Product truth verdict: REAL.** Numbers are modest but live. The architecture is legitimate and distinct.\n\n## Market (live ~16:25 UTC)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$163k |\n| Liq | **~$128k** |\n| Vol 24h | ~$77k |\n| Vol/MC | ~0.47\u00d7 |\n| Txns h24 | 390B / 655S (sell-heavy today) |\n| Txns h1 | 4B / 11S (current sell pressure) |\n| \u0394 h1 / h6 / h24 | +1% / +6% / **+30%** |\n| Pair age | ~82 days (not new) |\n| Boosts | **none** (organic) |\n| Holders |",
+        "score_line": "76 / 100 \u00b7 Notify: NO (bar 78)"
+      }
+    }
+  ],
+  "count": 2
+}

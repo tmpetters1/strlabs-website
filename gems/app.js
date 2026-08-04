@@ -138,7 +138,7 @@ function render(data) {
   document.getElementById("row-count").textContent = String((data.candidates || []).length);
   document.getElementById("focus-line").textContent = data.focus_summary || "Gem desk live";
   document.getElementById("update-mode").textContent = (data.meta && data.meta.update_mode) || "manual";
-  document.getElementById("source-line").textContent = `v${(data.meta && data.meta.version) || "?"} · ${(data.candidates || []).length} rows · ${(data.notify_cards || []).length} detail cards`;
+  document.getElementById("source-line").textContent = `v${(data.meta && data.meta.version) || "?"} · ${(data.candidates || []).length} rows · ${(data.notify_cards || []).length} detail cards · ${data._source || "api"}`;
   const counts = (data.pipeline && data.pipeline.counts) || {};
   const terminal = (data.pipeline && data.pipeline.terminal) || {};
   const stats = [["queued", counts.queued || 0], ["classified", counts.classified || 0], ["whale", counts.whale_reviewed || 0], ["briefed", counts.briefed || 0], ["notified", counts.notified || 0], ["killed", terminal.killed || 0], ["needs checks", terminal.needs_checks || 0]];
@@ -181,6 +181,34 @@ function render(data) {
   if (!blockers.length) b.innerHTML = '<div class="list-item muted">No blockers surfaced</div>';
   else b.innerHTML = blockers.map((x) => `<div class="list-item"><strong>${esc(x.symbol || "?")}</strong> · ${esc(x.status || "—")} · failed: <span class="mono">${esc((x.failed || []).join(", ") || "—")}</span></div>`).join("");
 }
+async function loadRadarPayload() {
+  const urls = ["./api/v1/radar.json", "./data/radar.json"];
+  let lastErr = null;
+  for (const url of urls) {
+    try {
+      const res = await fetch(url + "?t=" + Date.now(), { cache: "no-store" });
+      if (!res.ok) throw new Error(url + " HTTP " + res.status);
+      const data = await res.json();
+      data._source = url;
+      return data;
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error("No radar payload");
+}
+
+let _pollTimer = null;
+function startPolling() {
+  if (_pollTimer) return;
+  _pollTimer = setInterval(async () => {
+    try {
+      const data = await loadRadarPayload();
+      render(data);
+    } catch (_) {}
+  }, 60000);
+}
+
 async function boot() {
   const err = document.getElementById("gate-error");
   const authRes = await fetch("./data/auth.json", { cache: "no-store" });
@@ -188,9 +216,9 @@ async function boot() {
   const auth = await authRes.json();
   if (!auth.hash) { err.textContent = "auth.json invalid"; return; }
   const loadApp = async () => {
-    const res = await fetch("./data/radar.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load radar.json");
-    render(await res.json());
+    const data = await loadRadarPayload();
+    render(data);
+    startPolling();
   };
   if (alreadyUnlocked(auth)) {
     try { await loadApp(); } catch (e) { err.textContent = e.message; }

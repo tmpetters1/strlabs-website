@@ -1,0 +1,88 @@
+{
+  "ok": true,
+  "api_version": 1,
+  "published_at": "2026-08-04T01:14:00.273564+00:00",
+  "tokens": [
+    {
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "score": 81.0,
+      "status": "briefed",
+      "notify": true,
+      "path": "/api/v1/token/DTF"
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BASEMATE"
+    },
+    {
+      "symbol": "BOOTS",
+      "chain": "robinhood",
+      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
+      "score": 72.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BOOTS"
+    },
+    {
+      "symbol": "GLD",
+      "chain": "robinhood",
+      "token": "0x98d456f43FF912577F679f6D148Cb08714Cf4A09",
+      "score": 71.0,
+      "status": "whale_reviewed",
+      "notify": false,
+      "path": "/api/v1/token/GLD"
+    },
+    {
+      "symbol": "TRSA",
+      "chain": "robinhood",
+      "token": "0x08629f9A1cCe96c60cad043197B796105b45eEc6",
+      "score": 70.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/TRSA"
+    },
+    {
+      "symbol": "Lightoor",
+      "chain": "robinhood",
+      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
+      "score": 69.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/Lightoor"
+    },
+    {
+      "symbol": "FIND",
+      "chain": "base",
+      "token": "0x460766cC4158Ffbd70fEFFd3d2891237E064AB54",
+      "score": 66.0,
+      "status": "whale_reviewed",
+      "notify": false,
+      "path": "/api/v1/token/FIND"
+    },
+    {
+      "symbol": "Port",
+      "chain": "robinhood",
+      "token": "0x14112893F576c12f65B9F0f88E9a9A12723239B5",
+      "score": 65.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/Port"
+    },
+    {
+      "symbol": "PIPE",
+      "chain": "robinhood",
+      "token": "0xD87b957171751980eF2b62fE1Fc3daE5d4D408E9",
+      "score": 58.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/PIPE"
+    }
+  ]
+}
