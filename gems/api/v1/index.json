@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T20:56:36.436945+00:00",
+  "published_at": "2026-08-04T20:57:59.868872+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -13,15 +13,6 @@
       "path": "/api/v1/token/DTF"
     },
     {
-      "symbol": "BASEMATE",
-      "chain": "base",
-      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
-      "score": 76.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/BASEMATE"
-    },
-    {
       "symbol": "FIRE",
       "chain": "robinhood",
       "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
@@ -29,6 +20,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/FIRE"
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BASEMATE"
     },
     {
       "symbol": "LEMON",
