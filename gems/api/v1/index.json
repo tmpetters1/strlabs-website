@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T08:14:23.943244+00:00",
+  "published_at": "2026-08-04T08:29:22.397017+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -200,6 +200,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/DEADEYE"
+    },
+    {
+      "symbol": "GBP",
+      "chain": "robinhood",
+      "token": "0x523B2177A71936f89A1e0c2B8dA791a3d8b0b4BA",
+      "score": 30.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/GBP"
     },
     {
       "symbol": "MARSCOIN",
