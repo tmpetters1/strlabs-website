@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T01:14:00.273564+00:00",
+  "published_at": "2026-08-04T01:14:20.339800+00:00",
   "notify_bar": 78.0,
   "cards": [
     {
@@ -142,7 +142,7 @@
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6011.3
+          "pair_age_minutes": 6011.7
         },
         "charts": {
           "price_series": [
@@ -314,7 +314,7 @@
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 99841.5
+          "pair_age_minutes": 99841.8
         },
         "charts": {
           "price_series": [
