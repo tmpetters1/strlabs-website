@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T16:07:00.400019+00:00",
+  "published_at": "2026-08-04T16:14:25.785562+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -148,6 +148,15 @@
       "path": "/api/v1/token/STOCKIMPALER"
     },
     {
+      "symbol": "GME",
+      "chain": "bsc",
+      "token": "0xfe50F26AAF67740E66DA23E49c68BfaB42357777",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/GME"
+    },
+    {
       "symbol": "BRO",
       "chain": "robinhood",
       "token": "0xF63f9e3351D561b1F31d203cDF089D7181f4d460",
@@ -196,8 +205,8 @@
       "symbol": "NATO",
       "chain": "base",
       "token": "0x0bf43486ba5b80c0ff742d5e31576abc63d8c0e8",
-      "score": null,
-      "status": "queued",
+      "score": 10.0,
+      "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/NATO"
     },
@@ -205,10 +214,19 @@
       "symbol": "(RNDR)",
       "chain": "base",
       "token": "0x6eba7f17438051fd00d8dc6fa63191cdc29a2666",
-      "score": null,
-      "status": "queued",
+      "score": 5.0,
+      "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
+    },
+    {
+      "symbol": "GENESIS",
+      "chain": "robinhood",
+      "token": "0x899Df1a46Facc37581DdAc4E74f47488209aade5",
+      "score": null,
+      "status": "whale_reviewed",
+      "notify": false,
+      "path": "/api/v1/token/GENESIS"
     }
   ]
 }
