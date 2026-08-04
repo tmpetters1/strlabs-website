@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-08-04T16:59:30.672424+00:00",
+  "published_at": "2026-08-04T17:00:03.137149+00:00",
   "updated_at": "2026-08-04T16:08:16Z",
   "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 solana(0.0) \u00b7 metas: stock-reward-mining",
   "filters": {
@@ -68,7 +68,7 @@
       "mc": 226191.0,
       "liq": 52307.0,
       "vol_h24": 139832,
-      "pair_age_minutes": 6956.8,
+      "pair_age_minutes": 6957.4,
       "score": 81.0,
       "status": "briefed",
       "stage_index": 4,
@@ -232,7 +232,7 @@
         "market_live": {
           "price_usd": 0.0004108,
           "mc": 368349.0,
-          "liq": 67598.42,
+          "liq": 67598.43,
           "vol_h24": 112390.53,
           "vol_to_liq": 1.66,
           "change_m5": -1.28,
@@ -246,7 +246,7 @@
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6956.8
+          "pair_age_minutes": 6957.4
         },
         "charts": {
           "price_series": [
@@ -315,7 +315,7 @@
       "mc": 162926.0,
       "liq": 128623.0,
       "vol_h24": 76849,
-      "pair_age_minutes": 100787.0,
+      "pair_age_minutes": 100787.5,
       "score": 76.0,
       "status": "briefed",
       "stage_index": 4,
@@ -438,7 +438,7 @@
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100787.0
+          "pair_age_minutes": 100787.5
         },
         "charts": {
           "price_series": [
@@ -508,7 +508,7 @@
       "mc": 179563.0,
       "liq": 95294.53,
       "vol_h24": 188609.29,
-      "pair_age_minutes": 2883.7,
+      "pair_age_minutes": 2884.3,
       "score": 75.0,
       "status": "tracking",
       "stage_index": null,
@@ -717,7 +717,7 @@
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2883.7
+          "pair_age_minutes": 2884.3
         },
         "charts": {
           "price_series": [
@@ -773,7 +773,7 @@
             }
           }
         },
-        "brief_path": "briefs/2026-08-04-ELE.md",
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
         "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
       }
     },
@@ -786,7 +786,7 @@
       "mc": 203369.0,
       "liq": 53137.84,
       "vol_h24": 51800.14,
-      "pair_age_minutes": 14652.6,
+      "pair_age_minutes": 14653.1,
       "score": 73.0,
       "status": "briefed",
       "stage_index": 4,
@@ -974,7 +974,7 @@
           "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 14652.6
+          "pair_age_minutes": 14653.1
         },
         "charts": {
           "price_series": [
@@ -1981,7 +1981,7 @@
         "market_live": {
           "price_usd": 0.0004108,
           "mc": 368349.0,
-          "liq": 67598.42,
+          "liq": 67598.43,
           "vol_h24": 112390.53,
           "vol_to_liq": 1.66,
           "change_m5": -1.28,
@@ -1995,7 +1995,7 @@
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6956.8
+          "pair_age_minutes": 6957.4
         },
         "charts": {
           "price_series": [
@@ -2167,7 +2167,7 @@
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100787.0
+          "pair_age_minutes": 100787.5
         },
         "charts": {
           "price_series": [
@@ -2427,7 +2427,7 @@
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2883.7
+          "pair_age_minutes": 2884.3
         },
         "charts": {
           "price_series": [
@@ -2483,7 +2483,7 @@
             }
           }
         },
-        "brief_path": "briefs/2026-08-04-ELE.md",
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
         "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
       }
     },
@@ -2665,7 +2665,7 @@
           "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 14652.6
+          "pair_age_minutes": 14653.1
         },
         "charts": {
           "price_series": [
