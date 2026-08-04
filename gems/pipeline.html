@@ -5,7 +5,7 @@
 <title>Pipeline · Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804e">
+<link rel="stylesheet" href="./desk.css?v=20260804f">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
@@ -24,7 +24,7 @@
 
   <section class="card pl-intro">
     <h2>How to read this</h2>
-    <p>Every card below is clickable — agents, the shared queue, Discord channels, and data stores all open a detail panel with role, inputs/outputs, key scripts, and status rules. The center column is the main flow (top → bottom); the left rail is where the desk talks in Discord, the right rail is the shared brain it reads and writes. Small pill labels between stages are handoffs — click one to see exactly what moves and how.</p>
+    <p><strong>Wireflow</strong> lays the desk out left → right: Discord rails on top, the main agent/stage flow through the middle, shared-brain stores on the bottom. Arrows are real handoffs — solid orange between stages, thin purple to Discord, thin blue to stores (dashed = reads, solid = writes), dashed red into the <strong>KILLED</strong> sink. Hover a stage to highlight only its wires; click anything — a node, an arrow's label, the kill sink — for the full detail drawer. <strong>Sequence</strong> reads the same handoffs as a top-to-bottom timeline per actor. <strong>Legend</strong> spells out every symbol.</p>
     <div class="pl-legend">
       <span class="pl-legend-item"><span class="pl-dot agent"></span>Agent / stage</span>
       <span class="pl-legend-item"><span class="pl-dot channel"></span>Discord channel</span>
@@ -32,6 +32,11 @@
       <span class="pl-legend-item"><span class="pl-dot kill"></span>Kill / fence path</span>
     </div>
     <div class="pl-controls">
+      <div class="pl-toggle" id="view-toggle" role="group" aria-label="View">
+        <button id="view-wireflow-btn" class="on" type="button">Wireflow</button>
+        <button id="view-sequence-btn" type="button">Sequence</button>
+        <button id="view-legend-btn" type="button">Legend</button>
+      </div>
       <button class="pl-btn" id="replay-btn" type="button">▶ Replay path</button>
       <div class="pl-toggle" role="group" aria-label="Replay path mode">
         <button id="mode-happy" class="on" type="button">Happy path</button>
@@ -40,15 +45,73 @@
     </div>
   </section>
 
-  <div class="pl-grid" id="pl-grid">
-    <div class="pl-spine-col" id="pl-spine"></div>
-    <div class="pl-rail pl-rail-discord">
-      <div class="pl-rail-title">Discord rails</div>
-      <div id="rail-channels"></div>
+  <div class="wf-view" id="view-wireflow">
+    <div class="wf-canvas" id="wf-canvas">
+      <div class="wf-inner" id="wf-inner">
+        <div class="wf-lane wf-lane-discord">
+          <div class="wf-lane-label">Discord rails</div>
+          <div class="wf-lane-nodes" id="wf-channel-nodes"></div>
+        </div>
+        <div class="wf-lane wf-lane-stages">
+          <div class="wf-lane-label">Agents / stages — main token path, left → right</div>
+          <div class="wf-lane-nodes" id="wf-stage-nodes"></div>
+        </div>
+        <div class="wf-lane wf-lane-stores">
+          <div class="wf-lane-label">Shared brain</div>
+          <div class="wf-lane-nodes" id="wf-store-nodes"></div>
+        </div>
+        <svg class="wf-svg" id="wf-svg">
+          <defs>
+            <marker id="wf-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"></path>
+            </marker>
+          </defs>
+        </svg>
+      </div>
     </div>
-    <div class="pl-rail pl-rail-store">
-      <div class="pl-rail-title">Shared brain</div>
-      <div id="rail-stores"></div>
+  </div>
+
+  <div class="wf-view" id="view-sequence" hidden>
+    <div class="wf-seq" id="wf-seq">
+      <div class="wf-seq-inner" id="wf-seq-inner">
+        <div class="wf-seq-head" id="wf-seq-head"></div>
+        <svg class="wf-seq-svg" id="wf-seq-svg"></svg>
+        <div class="wf-seq-body" id="wf-seq-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-view" id="view-legend" hidden>
+    <div class="wf-legend-grid">
+      <div class="wf-legend-card">
+        <h4>Node types</h4>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-agent)"></span>Agent — a specialist running its own heartbeat</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:#101010;border:1px solid var(--green)"></span>★ Conductor — orchestrator, owns ping budget + trading rails</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-channel)"></span>Discord channel — where the desk talks</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-store)"></span>Shared store — yaml/json/markdown state every agent reads</div>
+        <div class="wf-legend-row"><span class="wf-legend-swatch" style="background:var(--pl-kill);border-radius:5px;border:1.5px dashed var(--pl-kill);opacity:.6"></span>KILLED sink — candidate drops out, no brief / no publish / no ping</div>
+      </div>
+      <div class="wf-legend-card">
+        <h4>Connector types</h4>
+        <div class="wf-legend-row"><span class="wf-legend-line"></span>Handoff — the main queued-token path between stages</div>
+        <div class="wf-legend-row"><span class="wf-legend-line channel"></span>Posts to — an agent writing into a Discord channel</div>
+        <div class="wf-legend-row"><span class="wf-legend-line store"></span>Writes to — solid blue into a shared store</div>
+        <div class="wf-legend-row"><span class="wf-legend-line store dashed"></span>Reads from — dashed blue out of a shared store</div>
+        <div class="wf-legend-row"><span class="wf-legend-line kill"></span>Kill / fence — dashed red into the KILLED sink</div>
+      </div>
+      <div class="wf-legend-card">
+        <h4>Interactions</h4>
+        <div class="wf-legend-row">Click any node, arrow label, or the kill sink → opens the detail drawer (role, inputs/outputs, scripts, checklist).</div>
+        <div class="wf-legend-row">Hover a stage → highlights only its own wires, dims the rest of the canvas.</div>
+        <div class="wf-legend-row">Replay path → animates a token chip through the happy path or the kill/fence path, stage by stage.</div>
+        <div class="wf-legend-row">Esc or click the backdrop → closes the drawer.</div>
+      </div>
+      <div class="wf-legend-card">
+        <h4>Views</h4>
+        <div class="wf-legend-row"><strong>Wireflow</strong> — spatial map: Discord on top, agent flow in the middle, stores on the bottom, real arrows between all three.</div>
+        <div class="wf-legend-row"><strong>Sequence</strong> — the same handoffs as a UML-style timeline: one lifeline per actor, messages read top → bottom in the order they actually fire.</div>
+        <div class="wf-legend-row"><strong>Legend</strong> — this page.</div>
+      </div>
     </div>
   </div>
 
@@ -64,7 +127,7 @@
   <div class="pl-drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="./desk.js?v=20260804e"></script>
+<script src="./desk.js?v=20260804f"></script>
 <script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
-<script src="./pipeline.js?v=20260804a"></script>
+<script src="./pipeline.js?v=20260804f"></script>
 </body></html>

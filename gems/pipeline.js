@@ -1,9 +1,14 @@
-/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization.
+/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v2.
    Static reference page — no data/*.json fetch, content is the desk's own
    architecture (agents, handoffs, Discord rails, shared-brain stores) sourced
    from context/ops.yaml, COMMS.md, dd_checklist.yaml, sm_pipeline.md,
    onchain_intel.md and focus.yaml/kill_list.yaml. Update this file (not just
-   the yaml) if the desk's stage/channel/store shape changes materially. */
+   the yaml) if the desk's stage/channel/store shape changes materially.
+
+   v2 note: STAGES/CHANNELS/STORES/EDGES are the single source of truth for
+   both the Wireflow view (spatial: lanes + SVG connectors) and the Sequence
+   view (temporal: lifelines). SEQ_MESSAGES below only orders/labels existing
+   edge and channel data — it does not introduce new facts. */
 (function () {
   "use strict";
   const D = window.Desk;
@@ -68,6 +73,7 @@
       scripts: ["scripts/dex_client.py", "scripts/uniswap_launches.py", "scripts/explorer_client.py fence", "scripts/queue_lib.py"],
       cadence: "10m heartbeat, max 5 candidates/run",
       checklist: "scout_before_queue: live_filters, not_duplicate, ca_pair_chain, source_tagged, links_captured, factory_fence",
+      killNote: "factory_fence / kill_list hit before queueing → never enters the queue at all (silent skip, not a kill event on a row).",
       channels: [{ id: "standup", note: "empty_scan" }, { id: "delegation", note: "candidates_found" }],
       stores: [{ id: "focus", mode: "reads" }, { id: "kill-list", mode: "reads" }] },
 
@@ -113,6 +119,7 @@
       checklist: "research_before_brief: upstream_read, website_product_truth, site_points_to_ca, social_x_pass, contract_risk, deployer_in_score, thesis_invalidation, score_stack, notify_gate",
       notifyNote: "notify_gate is a top-level DECISION, not just a passed check. “notify_gate: pass” on the checklist means the gate was evaluated — it is not clearance to ping a human on its own.",
       failCaps: "website_product_truth fail → cap score ≤69. dev_wallet_history serial-rug fail → kill or ≤40. dead_flow fail → kill. clone_count farm fail → kill. concentration_extreme → cap notify unless LP locked + thesis is strong.",
+      killNote: "dev_wallet_history serial-rug fail or a clone_count farm fail → kill even this late, not just capped.",
       channels: [{ id: "discussion", note: "brief_ready" }],
       stores: [{ id: "briefs", mode: "writes" }, { id: "dd-checklist", mode: "reads" }] },
 
@@ -166,6 +173,14 @@
       what: "Published/tracked token enters outcome_check.py's 1h/6h/24h/7d windows.", trigger: "Every publish; watchlist_monitor also feeds reevals back into this loop." },
   ];
 
+  // kill/fence branches into the KILLED sink — sourced from the same stage
+  // objects' killNote fields, not new facts.
+  const KILL_EDGES = [
+    { from: "scout", label: "factory_fence / kill_list" },
+    { from: "class", label: "dead_flow / clone_count" },
+    { from: "research", label: "serial-rug / clone farm" },
+  ];
+
   const CH_BY_ID = Object.fromEntries(CHANNELS.map((c) => [c.id, c]));
   const ST_BY_ID = Object.fromEntries(STORES.map((s) => [s.id, s]));
   const STAGE_BY_ID = Object.fromEntries(STAGES.map((s) => [s.id, s]));
@@ -184,28 +199,7 @@
 
   function esc(s) { return D.esc(s); }
 
-  function renderStages() {
-    const root = document.getElementById("pl-spine");
-    let html = "";
-    STAGES.forEach((s, i) => {
-      html += `<button class="pl-stage${s.loop ? " pl-loop" : ""}" id="stage-${s.id}" data-open="stage:${s.id}" type="button">
-        <div class="pl-stage-head">
-          <span class="pl-idx">${i}</span>
-          <div><div class="pl-stage-title">${esc(s.title)}${s.star ? ' <span class="pl-badge star">★ orchestrator</span>' : ""}</div><div class="pl-stage-tag">${esc(s.tag)}</div></div>
-        </div>
-        <div class="pl-stage-role">${esc(s.role)}</div>
-        <div class="pl-badges">${badgesHtml(s)}</div>
-      </button>`;
-      if (i < EDGES.length) {
-        const e = EDGES[i];
-        html += `<div class="pl-edge" id="edge-${e.from}-${e.to}">
-          <div class="pl-edge-line"></div>
-          <button class="pl-edge-label" data-open="edge:${i}" type="button">${esc(e.label)} ↓</button>
-        </div>`;
-      }
-    });
-    root.innerHTML = html;
-  }
+  // ---------------------------------------------------------------- wireflow render
 
   function badgesHtml(s) {
     const chips = [];
@@ -220,18 +214,290 @@
     return chips.join("");
   }
 
+  function renderStageNodes() {
+    const root = document.getElementById("wf-stage-nodes");
+    let html = "";
+    STAGES.forEach((s, i) => {
+      html += `<button class="wf-stage${s.loop ? " pl-loop" : ""}" id="stage-${s.id}" data-open="stage:${s.id}" data-stage-id="${s.id}" type="button">
+        <div class="wf-stage-head">
+          <span class="pl-idx">${i}</span>
+          <div><div class="wf-stage-title">${esc(s.title)}${s.star ? ' <span class="pl-badge star">★</span>' : ""}</div><div class="wf-stage-tag">${esc(s.tag)}</div></div>
+        </div>
+        <div class="wf-stage-role">${esc(s.role.length > 78 ? s.role.slice(0, 75).trim() + "…" : s.role)}</div>
+      </button>`;
+    });
+    html += `<button class="wf-kill-sink" id="wf-kill-sink" data-open="killnode:info" type="button">✕ KILLED<span class="sub">no brief · no publish</span></button>`;
+    root.innerHTML = html;
+  }
+
   function renderRail(container, items, type) {
     container.innerHTML = items
       .map(
-        (it) => `<button class="pl-node ${type}" data-open="${type}:${it.id}" type="button">
+        (it) => `<button class="pl-node ${type}" id="${type}-${it.id}" data-open="${type}:${it.id}" data-node-id="${it.id}" type="button">
         <div class="pl-node-title">${esc(it.title)}</div>
-        <div class="pl-node-sub">${esc((it.purpose || it.when || "").slice(0, 90))}${(it.purpose || "").length > 90 ? "…" : ""}</div>
+        <div class="pl-node-sub">${esc((it.purpose || it.when || "").slice(0, 80))}${(it.purpose || "").length > 80 ? "…" : ""}</div>
       </button>`
       )
       .join("");
   }
 
-  // --- drawer ---
+  // -------------------------------------------------------------- svg connector engine
+
+  function relRect(container, el) {
+    const c = container.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    return { x: r.left - c.left, y: r.top - c.top, w: r.width, h: r.height, cx: r.left - c.left + r.width / 2, cy: r.top - c.top + r.height / 2 };
+  }
+
+  function boxEdgePoint(rect, dirX, dirY) {
+    const hw = rect.w / 2, hh = rect.h / 2;
+    if (!dirX && !dirY) return { x: rect.cx, y: rect.cy };
+    const tx = dirX ? hw / Math.abs(dirX) : Infinity;
+    const ty = dirY ? hh / Math.abs(dirY) : Infinity;
+    const t = Math.min(tx, ty);
+    return { x: rect.cx + dirX * t, y: rect.cy + dirY * t };
+  }
+
+  function connectorPoints(rectA, rectB) {
+    let dx = rectB.cx - rectA.cx, dy = rectB.cy - rectA.cy;
+    const len = Math.hypot(dx, dy) || 1;
+    dx /= len; dy /= len;
+    return { p1: boxEdgePoint(rectA, dx, dy), p2: boxEdgePoint(rectB, -dx, -dy) };
+  }
+
+  const SVGNS = "http://www.w3.org/2000/svg";
+  function svgEl(tag, attrs) {
+    const el = document.createElementNS(SVGNS, tag);
+    Object.keys(attrs || {}).forEach((k) => el.setAttribute(k, attrs[k]));
+    return el;
+  }
+
+  function pathD(p1, p2, curve) {
+    if (!curve) return `M${p1.x},${p1.y} L${p2.x},${p2.y}`;
+    const mx = (p1.x + p2.x) / 2, my = (p1.y + p2.y) / 2;
+    const dx = p2.x - p1.x, dy = p2.y - p1.y;
+    const nx = -dy, ny = dx;
+    const nlen = Math.hypot(nx, ny) || 1;
+    const off = curve;
+    const cx = mx + (nx / nlen) * off, cy = my + (ny / nlen) * off;
+    return `M${p1.x},${p1.y} Q${cx},${cy} ${p2.x},${p2.y}`;
+  }
+
+  let wfEdgePaths = []; // {el, from, to, isKill}
+
+  function clearSvgExceptDefs(svg) {
+    Array.from(svg.children).forEach((n) => {
+      if (n.tagName.toLowerCase() !== "defs") n.remove();
+    });
+  }
+
+  function drawWireflow() {
+    const inner = document.getElementById("wf-inner");
+    const svg = document.getElementById("wf-svg");
+    if (!inner || !svg || inner.offsetParent === null) return;
+    clearSvgExceptDefs(svg);
+    document.querySelectorAll("#view-wireflow .wf-edge-label").forEach((n) => n.remove());
+    wfEdgePaths = [];
+
+    const stageRect = (id) => { const el = document.getElementById("stage-" + id); return el ? relRect(inner, el) : null; };
+    const chRect = (id) => { const el = document.getElementById("channel-" + id); return el ? relRect(inner, el) : null; };
+    const stRect = (id) => { const el = document.getElementById("store-" + id); return el ? relRect(inner, el) : null; };
+    const killRect = () => { const el = document.getElementById("wf-kill-sink"); return el ? relRect(inner, el) : null; };
+
+    // main handoff edges
+    EDGES.forEach((e, i) => {
+      const ra = stageRect(e.from), rb = stageRect(e.to);
+      if (!ra || !rb) return;
+      const { p1, p2 } = connectorPoints(ra, rb);
+      const path = svgEl("path", { d: pathD(p1, p2, 0), class: "wf-path main", "marker-end": "url(#wf-arrow)" });
+      svg.appendChild(path);
+      wfEdgePaths.push({ el: path, from: e.from, to: e.to });
+      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "wf-edge-label";
+      btn.setAttribute("data-open", "edge:" + i);
+      btn.style.left = mid.x + "px";
+      btn.style.top = mid.y + "px";
+      btn.textContent = e.label;
+      inner.appendChild(btn);
+    });
+
+    // secondary: stage -> channel (posts to)
+    STAGES.forEach((s) => {
+      const ra = stageRect(s.id);
+      if (!ra) return;
+      (s.channels || []).forEach((c) => {
+        const rb = chRect(c.id);
+        if (!rb) return;
+        const { p1, p2 } = connectorPoints(ra, rb);
+        const path = svgEl("path", { d: pathD(p1, p2, -18), class: "wf-path secondary to-channel", "marker-end": "url(#wf-arrow)" });
+        svg.appendChild(path);
+        wfEdgePaths.push({ el: path, from: s.id, to: "ch:" + c.id });
+      });
+      (s.stores || []).forEach((st) => {
+        const rb = stRect(st.id);
+        if (!rb) return;
+        const reads = /read/.test(st.mode);
+        const { p1, p2 } = connectorPoints(ra, rb);
+        const path = svgEl("path", { d: pathD(p1, p2, 18), class: "wf-path secondary " + (reads ? "to-store-read" : "to-store-write"), "marker-end": "url(#wf-arrow)" });
+        svg.appendChild(path);
+        wfEdgePaths.push({ el: path, from: s.id, to: "st:" + st.id });
+      });
+    });
+
+    // kill branches
+    const rk = killRect();
+    if (rk) {
+      KILL_EDGES.forEach((k) => {
+        const ra = stageRect(k.from);
+        if (!ra) return;
+        const { p1, p2 } = connectorPoints(ra, rk);
+        const path = svgEl("path", { d: pathD(p1, p2, 0), class: "wf-path kill", "marker-end": "url(#wf-arrow)" });
+        svg.appendChild(path);
+        wfEdgePaths.push({ el: path, from: k.from, to: "KILLED", kill: true });
+        const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "wf-edge-label kill";
+        btn.setAttribute("data-open", "stage:" + k.from);
+        btn.style.left = mid.x + "px";
+        btn.style.top = mid.y + "px";
+        btn.textContent = k.label;
+        inner.appendChild(btn);
+      });
+    }
+  }
+
+  function wireHoverHighlight() {
+    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => {
+      const id = el.getAttribute("data-stage-id");
+      el.addEventListener("mouseenter", () => highlightStage(id));
+      el.addEventListener("mouseleave", clearHighlight);
+      el.addEventListener("focus", () => highlightStage(id));
+      el.addEventListener("blur", clearHighlight);
+    });
+  }
+
+  function highlightStage(id) {
+    wfEdgePaths.forEach((e) => {
+      const related = e.from === id || e.to === id;
+      e.el.classList.toggle("hi", related);
+      e.el.classList.toggle("dim", !related);
+    });
+    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => {
+      el.classList.toggle("wf-dim", el.getAttribute("data-stage-id") !== id);
+    });
+  }
+
+  function clearHighlight() {
+    wfEdgePaths.forEach((e) => { e.el.classList.remove("hi", "dim"); });
+    document.querySelectorAll("#wf-stage-nodes .wf-stage[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
+  }
+
+  // ---------------------------------------------------------------- sequence view
+
+  const SEQ_LANES = [
+    { id: "scout", label: "Scout" },
+    { id: "class", label: "Class" },
+    { id: "whale", label: "Whale" },
+    { id: "research", label: "Research" },
+    { id: "conductor", label: "Conductor" },
+    { id: "radar", label: "Radar" },
+    { id: "discord", label: "Discord", discord: true },
+  ];
+
+  // Only orders/labels the same EDGES + channel data above — no new facts.
+  const SEQ_MESSAGES = [
+    { note: "scout", text: EDGES[0].what },
+    { note: "scout", text: EDGES[1].label },
+    { from: "scout", to: "class", open: { type: "edge", id: 2 }, text: EDGES[2].label },
+    { from: "scout", to: "discord", open: { type: "channel", id: "standup" }, text: "#standup" },
+    { from: "scout", to: "discord", open: { type: "channel", id: "delegation" }, text: "#delegation" },
+    { kill: "scout", open: { type: "stage", id: "scout" }, text: "✕ factory_fence / kill_list → KILLED" },
+    { from: "class", to: "whale", open: { type: "edge", id: 3 }, text: EDGES[3].label },
+    { from: "class", to: "discord", open: { type: "channel", id: "decisions-log" }, text: "#decisions-log" },
+    { kill: "class", open: { type: "stage", id: "class" }, text: "✕ dead_flow / clone_count → KILLED" },
+    { from: "whale", to: "research", open: { type: "edge", id: 4 }, text: EDGES[4].label },
+    { from: "whale", to: "discord", open: { type: "channel", id: "discussion" }, text: "#discussion · whale_hit" },
+    { from: "research", to: "conductor", open: { type: "edge", id: 5 }, text: EDGES[5].label },
+    { from: "research", to: "discord", open: { type: "channel", id: "discussion" }, text: "#discussion · brief_ready" },
+    { kill: "research", open: { type: "stage", id: "research" }, text: "✕ serial-rug / clone farm → KILLED" },
+    { from: "conductor", to: "radar", open: { type: "edge", id: 6 }, text: EDGES[6].label },
+    { from: "radar", to: "discord", open: { type: "channel", id: "standup" }, text: "#standup · dashboard_publish" },
+    { note: "radar", text: EDGES[7].what + " (→ Learn)" },
+  ];
+
+  const SEQ_ROW_H = 46, SEQ_TOP = 18;
+
+  function renderSeqHeads() {
+    const head = document.getElementById("wf-seq-head");
+    head.innerHTML = SEQ_LANES.map((l) => `<div class="wf-lane-hdr${l.discord ? " discord" : ""}" id="seqlane-${l.id}" data-open="${l.discord ? "" : "stage:" + l.id}">${esc(l.label)}</div>`).join("");
+  }
+
+  function drawSequence() {
+    const inner = document.getElementById("wf-seq-inner");
+    const svg = document.getElementById("wf-seq-svg");
+    const body = document.getElementById("wf-seq-body");
+    if (!inner || !svg || inner.offsetParent === null) return;
+    clearSvgExceptDefs(svg);
+    body.innerHTML = "";
+
+    const laneX = {};
+    let headBottom = 60;
+    const headEl = document.getElementById("wf-seq-head");
+    if (headEl) headBottom = relRect(inner, headEl).y + relRect(inner, headEl).h + 14;
+    SEQ_LANES.forEach((l) => {
+      const el = document.getElementById("seqlane-" + l.id);
+      if (!el) return;
+      const r = relRect(inner, el);
+      laneX[l.id] = r.cx;
+    });
+
+    const bodyH = SEQ_TOP + SEQ_MESSAGES.length * SEQ_ROW_H + 30;
+    const totalH = headBottom + bodyH;
+    inner.style.height = totalH + "px";
+    svg.setAttribute("height", totalH);
+
+    // lifelines
+    SEQ_LANES.forEach((l) => {
+      const x = laneX[l.id];
+      if (x == null) return;
+      svg.appendChild(svgEl("line", { x1: x, y1: 6, x2: x, y2: totalH - 20, class: "wf-seq-lifeline" }));
+    });
+
+    SEQ_MESSAGES.forEach((m, i) => {
+      const y = headBottom + SEQ_TOP + i * SEQ_ROW_H;
+      if (m.from && m.to) {
+        const x1 = laneX[m.from], x2 = laneX[m.to];
+        if (x1 == null || x2 == null) return;
+        const path = svgEl("path", { d: `M${x1},${y} L${x2},${y}`, class: "wf-path", "marker-end": "url(#wf-arrow)" });
+        svg.appendChild(path);
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "wf-seq-msg";
+        btn.style.left = ((x1 + x2) / 2) + "px";
+        btn.style.top = (y - 6) + "px";
+        btn.textContent = m.text;
+        if (m.open) btn.setAttribute("data-open", m.open.type + ":" + m.open.id);
+        body.appendChild(btn);
+      } else if (m.note || m.kill) {
+        const laneId = m.note || m.kill;
+        const x = laneX[laneId];
+        if (x == null) return;
+        const div = document.createElement("div");
+        div.className = "wf-seq-note" + (m.kill ? " wf-seq-kill" : "");
+        div.style.left = x + "px";
+        div.style.top = (y - 10) + "px";
+        div.textContent = m.text;
+        if (m.open) div.setAttribute("data-open", m.open.type + ":" + m.open.id);
+        body.appendChild(div);
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------- drawer
+
   const drawer = document.getElementById("drawer");
   const backdrop = document.getElementById("drawer-backdrop");
   const drawerTitle = document.getElementById("drawer-title");
@@ -243,6 +509,7 @@
     if (type === "channel") return openChannelDrawer(id);
     if (type === "store") return openStoreDrawer(id);
     if (type === "edge") return openEdgeDrawer(id);
+    if (type === "killnode") return openKillDrawer();
   }
 
   function sec(title, bodyHtml) {
@@ -328,6 +595,20 @@
     show();
   }
 
+  function openKillDrawer() {
+    drawerTitle.textContent = "KILLED";
+    drawerKind.textContent = "Sink · not published";
+    let body = sec("What this means", `<p>The candidate drops out of the pipeline entirely — no brief, no dashboard publish, no human ping. It can happen at more than one stage; earlier is cheaper.</p>`);
+    body += sec("Where it fires", list([
+      "Scout — factory_fence or kill_list.yaml hit before the row is even queued (silent skip).",
+      "Class — dead_flow fail, or a clone_count fail on a fenced factory farm.",
+      "Research — dev_wallet_history serial-rug fail or a clone_count farm fail, caught even this late.",
+    ]));
+    body += sec("Related", `<div class="pl-chain"><span class="pl-badge" data-open="stage:scout">Scout</span><span class="pl-badge" data-open="stage:class">Class</span><span class="pl-badge" data-open="stage:research">Research</span><span class="pl-badge st" data-open="store:kill-list">kill_list.yaml</span></div>`);
+    drawerBody.innerHTML = body;
+    show();
+  }
+
   function show() {
     drawer.classList.add("open");
     backdrop.classList.add("open");
@@ -340,7 +621,9 @@
   document.addEventListener("click", (e) => {
     const openEl = e.target.closest("[data-open]");
     if (openEl) {
-      const [type, id] = openEl.getAttribute("data-open").split(":");
+      const val = openEl.getAttribute("data-open");
+      if (!val) return;
+      const [type, id] = val.split(":");
       openDrawer(type, id);
       return;
     }
@@ -350,32 +633,58 @@
     if (e.key === "Escape") hide();
   });
 
-  // --- replay path animation ---
+  // ---------------------------------------------------------------- view toggle
+
+  const VIEWS = ["wireflow", "sequence", "legend"];
+  function setView(name) {
+    VIEWS.forEach((v) => {
+      const el = document.getElementById("view-" + v);
+      const btn = document.getElementById("view-" + v + "-btn");
+      if (v === name) {
+        el.hidden = false;
+        btn.classList.add("on");
+      } else {
+        el.hidden = true;
+        btn.classList.remove("on");
+      }
+    });
+    if (name === "wireflow") requestAnimationFrame(() => requestAnimationFrame(drawWireflow));
+    if (name === "sequence") requestAnimationFrame(() => requestAnimationFrame(drawSequence));
+  }
+
+  function initViewToggle() {
+    document.getElementById("view-wireflow-btn").addEventListener("click", () => setView("wireflow"));
+    document.getElementById("view-sequence-btn").addEventListener("click", () => setView("sequence"));
+    document.getElementById("view-legend-btn").addEventListener("click", () => setView("legend"));
+  }
+
+  // ---------------------------------------------------------------- replay path animation
+
   const HAPPY_PATH = STAGES.map((s) => s.id);
-  const KILL_PATH = ["macro", "scout", "queue", "class"];
+  const KILL_PATH = ["macro", "scout", "queue", "class", "KILLED"];
   let currentMode = "happy";
   let animating = false;
 
   function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
   function ensureChip() {
-    let chip = document.getElementById("pl-token-chip");
+    let chip = document.getElementById("wf-token-chip");
     if (!chip) {
       chip = document.createElement("div");
-      chip.id = "pl-token-chip";
-      chip.className = "pl-token-chip";
+      chip.id = "wf-token-chip";
+      chip.className = "wf-token-chip";
       chip.textContent = "● token";
-      document.getElementById("pl-spine").appendChild(chip);
+      document.getElementById("wf-inner").appendChild(chip);
     }
     return chip;
   }
   function ensureFlash() {
-    let flash = document.getElementById("pl-flash");
+    let flash = document.getElementById("wf-flash");
     if (!flash) {
       flash = document.createElement("div");
-      flash.id = "pl-flash";
-      flash.className = "pl-flash";
-      document.getElementById("pl-spine").appendChild(flash);
+      flash.id = "wf-flash";
+      flash.className = "wf-flash";
+      document.getElementById("wf-inner").appendChild(flash);
     }
     return flash;
   }
@@ -383,39 +692,52 @@
     const flash = ensureFlash();
     flash.classList.toggle("kill", !!kill);
     flash.textContent = text;
-    const spine = document.getElementById("pl-spine");
-    const spineRect = spine.getBoundingClientRect();
-    const elRect = afterEl.getBoundingClientRect();
-    flash.style.top = elRect.bottom - spineRect.top + 6 + "px";
+    const inner = document.getElementById("wf-inner");
+    const r = relRect(inner, afterEl);
+    flash.style.left = r.cx + "px";
+    flash.style.top = (r.y + r.h + 8) + "px";
     flash.style.opacity = "1";
     setTimeout(() => { flash.style.opacity = "0"; }, 1300);
   }
 
+  function stopElFor(id) {
+    return id === "KILLED" ? document.getElementById("wf-kill-sink") : document.getElementById("stage-" + id);
+  }
+
   async function replay(mode) {
     if (animating) return;
+    setView("wireflow");
+    await sleep(90);
     animating = true;
     const btn = document.getElementById("replay-btn");
     btn.disabled = true;
     btn.textContent = "■ Running…";
     document.querySelectorAll(".pl-hit,.pl-hit-kill").forEach((el) => el.classList.remove("pl-hit", "pl-hit-kill"));
+    wfEdgePaths.forEach((e) => e.el.classList.remove("replay-active"));
     const stops = mode === "kill" ? KILL_PATH : HAPPY_PATH;
-    const spine = document.getElementById("pl-spine");
+    const inner = document.getElementById("wf-inner");
+    const canvas = document.getElementById("wf-canvas");
     const chip = ensureChip();
     chip.classList.toggle("kill-mode", mode === "kill");
     chip.style.opacity = "0";
     await sleep(60);
     let lastEl = null;
     for (let i = 0; i < stops.length; i++) {
-      const el = document.getElementById("stage-" + stops[i]);
+      const el = stopElFor(stops[i]);
       if (!el) continue;
-      const spineRect = spine.getBoundingClientRect();
-      const elRect = el.getBoundingClientRect();
-      chip.style.top = elRect.top - spineRect.top + elRect.height / 2 - 12 + "px";
-      chip.style.left = elRect.left - spineRect.left + 18 + "px";
+      el.scrollIntoView({ inline: "center", block: "nearest" });
+      const r = relRect(inner, el);
+      chip.style.top = (r.cy - 12) + "px";
+      chip.style.left = (r.x + 14) + "px";
       chip.style.opacity = "1";
       el.classList.add(mode === "kill" ? "pl-hit-kill" : "pl-hit");
+      if (i > 0) {
+        const prevId = stops[i - 1];
+        const edge = wfEdgePaths.find((e) => (e.from === prevId && e.to === stops[i]) || (mode === "kill" && e.kill && e.from === prevId && e.to === "KILLED"));
+        if (edge) edge.el.classList.add("replay-active");
+      }
       lastEl = el;
-      await sleep(600);
+      await sleep(650);
       if (i < stops.length - 1) el.classList.remove("pl-hit", "pl-hit-kill");
     }
     if (lastEl) {
@@ -424,6 +746,7 @@
     }
     await sleep(1400);
     chip.style.opacity = "0";
+    wfEdgePaths.forEach((e) => e.el.classList.remove("replay-active"));
     if (lastEl) lastEl.classList.remove("pl-hit", "pl-hit-kill");
     btn.disabled = false;
     btn.textContent = "▶ Replay path";
@@ -446,11 +769,35 @@
     document.getElementById("replay-btn").addEventListener("click", () => replay(currentMode));
   }
 
+  // ---------------------------------------------------------------- boot
+
   async function load() {
-    renderStages();
-    renderRail(document.getElementById("rail-channels"), CHANNELS, "channel");
-    renderRail(document.getElementById("rail-stores"), STORES, "store");
+    renderStageNodes();
+    renderRail(document.getElementById("wf-channel-nodes"), CHANNELS, "channel");
+    renderRail(document.getElementById("wf-store-nodes"), STORES, "store");
+    renderSeqHeads();
+    wireHoverHighlight();
+    initViewToggle();
     initControls();
+
+    // initial connector draw must happen after #app is revealed (boot() flips
+    // display:none -> block right after load() resolves); schedule as a
+    // macrotask so it runs after that synchronous reveal.
+    setTimeout(() => { drawWireflow(); }, 0);
+
+    let resizeTimer = null;
+    const scheduleRedraw = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (!document.getElementById("view-wireflow").hidden) drawWireflow();
+        if (!document.getElementById("view-sequence").hidden) drawSequence();
+      }, 80);
+    };
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(scheduleRedraw);
+      ro.observe(document.getElementById("wf-inner"));
+    }
+    window.addEventListener("resize", scheduleRedraw);
   }
 
   D.boot(load);

@@ -173,3 +173,66 @@ Existing `publish_radar.py` is unchanged and still owns `radar.json`,
   should click through the gate, a stage card, a channel/store badge, and
   "Replay path" once in an actual browser before treating this as fully
   verified.
+
+## Addendum — Pipeline page v2: true wireflow (2026-08-04, separate session)
+
+Tor-Magnus asked "is it wireflow?" about the v1 vertical process-map Pipeline
+page, then said "yes please" to a proper wireflow rebuild: real arrows,
+swimlanes, sequence-style who-sends-what-where.
+
+- `pipeline.js` rewritten around the same `CHANNELS`/`STORES`/`STAGES`/`EDGES`
+  data model (facts unchanged, verbatim) plus a new `KILL_EDGES` array that
+  only labels existing `killNote` facts — no new content invented.
+- **Wireflow view** (default): three horizontal lanes inside a
+  horizontally-scrollable `#wf-canvas` — Discord rails on top, the 9-stage
+  agent flow left → right in the middle, shared-brain stores on the bottom —
+  plus a red dashed `KILLED` sink node. A generic SVG connector engine
+  (`relRect` + `boxEdgePoint` + `connectorPoints`) computes every arrow from
+  live `getBoundingClientRect()` positions, so it works unmodified whether
+  the lane is a horizontal row (desktop) or a vertical stack (mobile,
+  `max-width:900px`) — no separate mobile layout code path. Main handoffs are
+  solid orange with a clickable label pill; secondary wires are thin purple
+  (→ Discord), thin blue solid/dashed (→ store write/read); kill branches
+  (Scout fence, Class dead_flow, Research serial-rug/clone) are dashed red
+  into the sink. Hovering a stage dims every unrelated wire and node.
+- **Sequence view** (toggle): a lightweight UML-style timeline — one
+  lifeline per Scout/Class/Whale/Research/Conductor/Radar/Discord, messages
+  drawn top→bottom in real handoff order, reusing the same `EDGES`/channel
+  data via a `SEQ_MESSAGES` array that only orders and labels it.
+- **Legend view** (toggle): static reference for node types, connector
+  types, interactions, and the three views.
+- Replay path animation ported to the new layout (chip moves stage-to-stage
+  inside `#wf-inner`, `scrollIntoView`'d as it goes) and now also lights up
+  the SVG edge it's currently traversing (`.wf-path.replay-active`,
+  `stroke-dashoffset` march); kill-mode replay ends at the `KILLED` sink
+  instead of stopping on Class.
+- Click-to-drawer behavior is unchanged (`data-open="type:id"` delegation) —
+  added a `killnode` drawer type explaining what "killed" means and where it
+  can fire, cross-linked to Scout/Class/Research and `kill_list.yaml`.
+- `desk.css`: replaced the old `.pl-grid`/`.pl-rail`/`.pl-spine-col` vertical
+  layout with `.wf-*` lane/canvas/svg/sequence/legend rules; kept every
+  `.pl-node`/`.pl-badge`/`.pl-drawer`/`.pl-dsec` rule since the drawer and
+  rail-node styling carried over unchanged.
+- Bumped the shared `desk.css` cache-bust query param to `v=20260804f` on
+  every page that references it (`index.html`, `research.html`,
+  `strategy.html`, `learnings.html`, `trade.html`, `pipeline.html`).
+  `desk.js` was not touched this session, so its `?v=` query was left as-is
+  except on `pipeline.html`/`pipeline.js` where it was bumped alongside the
+  page's own script version for consistency.
+- Verified: `node --check` passes on `pipeline.js`; scripted cross-check of
+  every class/id referenced in `pipeline.html`/`pipeline.js` against
+  `desk.css` definitions and DOM ids (zero real misses — a few false
+  positives from dynamically-templated ids were manually confirmed present).
+  Caught and fixed two real bugs during self-review before shipping: (1) the
+  SVG-clear helper only removed `<path>`/`<g>` children, which would have
+  let sequence-view `<line>` lifelines pile up on every redraw/resize — now
+  clears all non-`<defs>` children; (2) the sequence lifelines were drawn
+  with a CSS class (`wf-path secondary`) whose stylesheet rule would have
+  overridden the inline `stroke="var(--line)"` attribute, coloring them
+  agent-orange instead of neutral grey — now a dedicated `.wf-seq-lifeline`
+  class. No headless browser or display was available in this sandbox
+  (`node`/`npx puppeteer` absent, no `chromium`/`google-chrome` binary), so
+  there was no rendered-pixel/interaction smoke test this session — same as
+  the v1 addendum above, a human should click through Wireflow hover/click,
+  Sequence, Legend, and both Replay modes once in an actual browser before
+  treating this as fully verified.
