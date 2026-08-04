@@ -137,7 +137,7 @@
         "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
         "quote": "USDG",
         "dex": "uniswap",
-        "pair_age_minutes": 6745.6
+        "pair_age_minutes": 6746.7
       },
       "charts": {
         "price_series": [
@@ -309,7 +309,7 @@
         "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
         "quote": "WETH",
         "dex": "uniswap",
-        "pair_age_minutes": 100575.7
+        "pair_age_minutes": 100576.8
       },
       "charts": {
         "price_series": [
@@ -555,27 +555,27 @@
       "market_live": {
         "price_usd": 2.51,
         "mc": 126720.0,
-        "liq": 74641.82,
-        "vol_h24": 207037.82,
+        "liq": 74641.46,
+        "vol_h24": 206983.53,
         "vol_to_liq": 2.77,
-        "change_m5": 1.12,
+        "change_m5": 0.4,
         "change_h1": -30.13,
         "change_h6": -37.92,
-        "change_h24": -52.25,
+        "change_h24": -52.08,
         "buys_h1": 55,
         "sells_h1": 22,
-        "buys_h24": 775,
+        "buys_h24": 774,
         "sells_h24": 563,
         "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
         "quote": "WETH",
         "dex": "uniswap",
-        "pair_age_minutes": 2672.5
+        "pair_age_minutes": 2673.6
       },
       "charts": {
         "price_series": [
           {
             "t": "24h_ago",
-            "p": 5.2565445026
+            "p": 5.2378964942
           },
           {
             "t": "6h_ago",
@@ -587,7 +587,7 @@
           },
           {
             "t": "5m_ago",
-            "p": 2.4821993671
+            "p": 2.5
           },
           {
             "t": "now",
@@ -595,21 +595,21 @@
           }
         ],
         "change": {
-          "m5": 1.12,
+          "m5": 0.4,
           "h1": -30.13,
           "h6": -37.92,
-          "h24": -52.25
+          "h24": -52.08
         },
         "volume": {
-          "h24": 207037.82,
+          "h24": 206983.53,
           "h6": 30307.85,
           "h1": 15736.72,
-          "m5": 1377.95
+          "m5": 328.74
         },
         "txns": {
           "m5": {
-            "buys": 7,
-            "sells": 5
+            "buys": 2,
+            "sells": 3
           },
           "h1": {
             "buys": 55,
@@ -620,7 +620,7 @@
             "sells": 63
           },
           "h24": {
-            "buys": 775,
+            "buys": 774,
             "sells": 563
           }
         }
