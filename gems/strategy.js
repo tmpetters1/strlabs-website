@@ -37,16 +37,17 @@ function renderHoldings(positions) {
 }
 
 async function load() {
-  document.getElementById("nav-root").innerHTML = Desk.navHtml("strategy");
+  const nav = document.getElementById("nav-root");
+  if (nav) nav.innerHTML = Desk.navHtml("strategy");
   const [md, trading] = await Promise.all([
     Desk.fetchText("./data/strategy.md"),
     Desk.fetchJson("./data/trading.json").catch(() => ({ positions: [] })),
   ]);
-  document.getElementById("strategy-body").innerHTML = Desk.mdToHtml(md);
+  const body = document.getElementById("strategy-body");
+  if (body) body.innerHTML = Desk.mdToHtml(md);
   const live = await Desk.enrichPositionsLive(trading.positions || []);
   renderHoldings(live);
-  const gen = document.getElementById("generated-at");
-  if (gen) gen.textContent = Desk.fmtTime(trading.generated_at);
+  Desk.setText("generated-at", Desk.fmtTime(trading.generated_at));
 }
 
 Desk.boot(load);

@@ -16,8 +16,10 @@ function tokenChips(tokens) {
 
 function renderPie(data) {
   const slices = (data.slices || []).map((s) => ({ label: s.category, count: s.count }));
-  document.getElementById("pie-chart").innerHTML = Desk.pieSVG(slices, { size: 240, stroke: 32 });
-  document.getElementById("legend").innerHTML = Desk.legendHtml(slices);
+  const pie = document.getElementById("pie-chart");
+  const legend = document.getElementById("legend");
+  if (pie) pie.innerHTML = Desk.pieSVG(slices, { size: 240, stroke: 32 });
+  if (legend) legend.innerHTML = Desk.legendHtml(slices);
 }
 
 function renderCoverage(data) {
@@ -30,7 +32,8 @@ function renderCoverage(data) {
     ["unclassified", data.unclassified_candidates ?? 0],
     ["tickers shown", tickerCount],
   ];
-  document.getElementById("coverage-stats").innerHTML = stats
+  const cov = document.getElementById("coverage-stats");
+  if (cov) cov.innerHTML = stats
     .map(([k, v]) => `<div class="stat"><div class="k">${Desk.esc(k)}</div><div class="v">${v}</div></div>`)
     .join("");
 }
@@ -98,9 +101,10 @@ function renderTickerTable(data) {
 }
 
 async function load() {
-  document.getElementById("nav-root").innerHTML = Desk.navHtml("research");
+  const nav = document.getElementById("nav-root");
+  if (nav) nav.innerHTML = Desk.navHtml("research");
   const data = await Desk.fetchJson("./data/taxonomy_pie.json");
-  document.getElementById("generated-at").textContent = Desk.fmtTime(data.generated_at);
+  Desk.setText("generated-at", Desk.fmtTime(data.generated_at));
   renderPie(data);
   renderCoverage(data);
   renderBreakdown(data);

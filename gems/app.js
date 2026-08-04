@@ -128,17 +128,23 @@ function renderNotifyCards(cards) {
     </article>`;
   }).join("");
 }
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value == null ? "" : String(value);
+}
 function render(data) {
-  document.getElementById("app").style.display = "block";
-  document.getElementById("gate").style.display = "none";
+  const appEl = document.getElementById("app");
+  const gateEl = document.getElementById("gate");
+  if (appEl) appEl.style.display = "block";
+  if (gateEl) gateEl.style.display = "none";
   const filters = data.filters || {};
   const bar = filters.notify_min_score ?? 78;
-  document.getElementById("notify-bar").textContent = String(bar);
-  document.getElementById("published-at").textContent = fmtTime(data.published_at || data.updated_at);
-  document.getElementById("row-count").textContent = String((data.candidates || []).length);
-  document.getElementById("focus-line").textContent = data.focus_summary || "Gem desk live";
-  document.getElementById("update-mode").textContent = (data.meta && data.meta.update_mode) || "manual";
-  document.getElementById("source-line").textContent = `v${(data.meta && data.meta.version) || "?"} · ${(data.candidates || []).length} rows · ${(data.notify_cards || []).length} detail cards · ${data._source || "api"}`;
+  setText("notify-bar", String(bar));
+  setText("published-at", fmtTime(data.published_at || data.updated_at));
+  setText("row-count", String((data.candidates || []).length));
+  setText("focus-line", data.focus_summary || "Gem desk live");
+  setText("update-mode", (data.meta && data.meta.update_mode) || "manual");
+  setText("source-line", `v${(data.meta && data.meta.version) || "?"} · ${(data.candidates || []).length} rows · ${(data.notify_cards || []).length} detail cards · ${data._source || "api"}`);
   const counts = (data.pipeline && data.pipeline.counts) || {};
   const terminal = (data.pipeline && data.pipeline.terminal) || {};
   const stats = [["queued", counts.queued || 0], ["classified", counts.classified || 0], ["whale", counts.whale_reviewed || 0], ["briefed", counts.briefed || 0], ["notified", counts.notified || 0], ["killed", terminal.killed || 0], ["needs checks", terminal.needs_checks || 0]];
@@ -211,30 +217,42 @@ function startPolling() {
 
 async function boot() {
   const err = document.getElementById("gate-error");
-  const authRes = await fetch("./data/auth.json", { cache: "no-store" });
-  if (!authRes.ok) { err.textContent = "auth.json missing"; return; }
-  const auth = await authRes.json();
-  if (!auth.hash) { err.textContent = "auth.json invalid"; return; }
+  const setErr = (msg) => { if (err) err.textContent = msg || ""; };
+  let auth;
+  try {
+    const authRes = await fetch("./data/auth.json", { cache: "no-store" });
+    if (!authRes.ok) { setErr("auth.json missing"); return; }
+    auth = await authRes.json();
+    if (!auth || !auth.hash) { setErr("auth.json invalid"); return; }
+  } catch (e) {
+    setErr(e.message || "auth load failed");
+    return;
+  }
   const loadApp = async () => {
     const data = await loadRadarPayload();
     render(data);
     startPolling();
   };
   if (alreadyUnlocked(auth)) {
-    try { await loadApp(); } catch (e) { err.textContent = e.message; }
+    try { await loadApp(); } catch (e) { setErr(e.message || String(e)); }
     return;
   }
   const go = async () => {
-    err.textContent = "";
+    setErr("");
     try {
-      await unlock(document.getElementById("pw").value || "", auth);
+      const pwEl = document.getElementById("pw");
+      await unlock((pwEl && pwEl.value) || "", auth);
       await loadApp();
     } catch (e) {
-      err.textContent = e.message || "Unlock failed";
+      setErr(e.message || "Unlock failed");
     }
   };
-  document.getElementById("unlock").addEventListener("click", go);
-  document.getElementById("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
-  document.getElementById("pw").focus();
+  const btn = document.getElementById("unlock");
+  const pw = document.getElementById("pw");
+  if (btn) btn.addEventListener("click", go);
+  if (pw) {
+    pw.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); });
+    pw.focus();
+  }
 }
 boot();

@@ -17,9 +17,10 @@ function renderTimeline(entries) {
 }
 
 async function load() {
-  document.getElementById("nav-root").innerHTML = Desk.navHtml("learnings");
+  const nav = document.getElementById("nav-root");
+  if (nav) nav.innerHTML = Desk.navHtml("learnings");
   const data = await Desk.fetchJson("./data/learnings.json");
-  document.getElementById("generated-at").textContent = Desk.fmtTime(data.generated_at);
+  Desk.setText("generated-at", Desk.fmtTime(data.generated_at));
   renderTimeline(data.entries || []);
 }
 

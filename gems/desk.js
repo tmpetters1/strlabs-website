@@ -184,33 +184,49 @@
   }
 
   // Boots a gated page: shows #gate until unlocked, then calls loadFn() and reveals #app.
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value == null ? "" : String(value);
+    return el;
+  }
+
   async function boot(loadFn) {
     const err = document.getElementById("gate-error");
-    const authRes = await fetch("./data/auth.json", { cache: "no-store" });
-    if (!authRes.ok) { if (err) err.textContent = "auth.json missing"; return; }
-    const auth = await authRes.json();
-    if (!auth.hash) { if (err) err.textContent = "auth.json invalid"; return; }
+    const setErr = (msg) => { if (err) err.textContent = msg || ""; };
+    let auth;
+    try {
+      const authRes = await fetch("./data/auth.json", { cache: "no-store" });
+      if (!authRes.ok) { setErr("auth.json missing"); return; }
+      auth = await authRes.json();
+      if (!auth || !auth.hash) { setErr("auth.json invalid"); return; }
+    } catch (e) {
+      setErr(e.message || "auth load failed");
+      return;
+    }
     const reveal = () => {
-      document.getElementById("app").style.display = "block";
-      document.getElementById("gate").style.display = "none";
+      const app = document.getElementById("app");
+      const gate = document.getElementById("gate");
+      if (app) app.style.display = "block";
+      if (gate) gate.style.display = "none";
     };
     const run = async () => {
       try {
         await loadFn();
         reveal();
       } catch (e) {
-        if (err) err.textContent = e.message || String(e);
-        else console.error(e);
+        console.error(e);
+        setErr(e.message || String(e));
       }
     };
     if (alreadyUnlocked(auth)) { await run(); return; }
     const go = async () => {
-      if (err) err.textContent = "";
+      setErr("");
       try {
-        await unlock(document.getElementById("pw").value || "", auth);
+        const pwEl = document.getElementById("pw");
+        await unlock((pwEl && pwEl.value) || "", auth);
         await run();
       } catch (e) {
-        if (err) err.textContent = e.message || "Unlock failed";
+        setErr(e.message || "Unlock failed");
       }
     };
     const btn = document.getElementById("unlock");
@@ -301,7 +317,7 @@
   }
 
   global.Desk = {
-    esc, fmtUsd, fmtPct, fmtTime, pctClass, shortAddr,
+    esc, fmtUsd, fmtPct, fmtTime, pctClass, shortAddr, setText,
     navHtml, mdToHtml, pieSVG, legendHtml,
     fetchJson, fetchText, boot,
     dexUrl, tickerHtml, fetchDexPair, enrichPositionsLive,

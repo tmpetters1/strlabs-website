@@ -138,9 +138,10 @@ function renderPnl(data, positions) {
 }
 
 async function load() {
-  document.getElementById("nav-root").innerHTML = Desk.navHtml("trade");
+  const nav = document.getElementById("nav-root");
+  if (nav) nav.innerHTML = Desk.navHtml("trade");
   const data = await Desk.fetchJson("./data/trading.json");
-  document.getElementById("generated-at").textContent = Desk.fmtTime(data.generated_at);
+  Desk.setText("generated-at", Desk.fmtTime(data.generated_at));
   const walletEl = document.getElementById("wallet-addr");
   if (walletEl) {
     const addr = data.wallet_address || "—";
