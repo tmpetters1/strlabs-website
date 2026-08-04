@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T07:44:23.419744+00:00",
+  "published_at": "2026-08-04T07:59:23.142542+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -94,6 +94,15 @@
       "path": "/api/v1/token/SAFEVANO"
     },
     {
+      "symbol": "BRACKETS",
+      "chain": "robinhood",
+      "token": "0x5E453647539D4DD766D7C4c3D6CE589900D39415",
+      "score": 58.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BRACKETS"
+    },
+    {
       "symbol": "PIPE",
       "chain": "robinhood",
       "token": "0xD87b957171751980eF2b62fE1Fc3daE5d4D408E9",
@@ -166,6 +175,15 @@
       "path": "/api/v1/token/UniFrog"
     },
     {
+      "symbol": "BRACHIO",
+      "chain": "robinhood",
+      "token": "0x752224ca2Fb2b547A6141E2cEDb28f809C6685d0",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/BRACHIO"
+    },
+    {
       "symbol": "KRABS",
       "chain": "robinhood",
       "token": "0xB94641BaCB5872867A9108E5f12726716eD1AB01",
@@ -200,6 +218,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/UNIHOOD"
+    },
+    {
+      "symbol": "WHAYLOR",
+      "chain": "bsc",
+      "token": "0xCF414317B1028101EEfBa971E06aBC3f982B7777",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/WHAYLOR"
     },
     {
       "symbol": "NASDANQ",
@@ -245,6 +272,24 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "\u8774\u8776DAO",
+      "chain": "bsc",
+      "token": "0x583590CaFEA868016eb3B83338240791d8527777",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/\u8774\u8776DAO"
+    },
+    {
+      "symbol": "BRAD",
+      "chain": "bsc",
+      "token": "0x3dB1B406a4d50A841948765685ed42ed1f174444",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/BRAD"
     },
     {
       "symbol": "USDE",
