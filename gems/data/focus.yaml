@@ -91,3 +91,9 @@ paths:
   dashboard_url: https://strlabs.app/gems/
   # Custom subdomain needs DNS CNAME — not live yet:
   dashboard_url_custom: https://gems.strlabs.app/
+
+# Extra discovery surfaces (Scout / Research)
+discovery_sources:
+  uniswap_launches_proxy: true   # scripts/uniswap_launches.py
+  x_social_pass: true            # scripts/research_social_pass.py
+
