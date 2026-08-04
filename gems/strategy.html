@@ -12,8 +12,9 @@
 
 <div id="app">
   <div class="top">
-    <div class="brand"><div class="brand-mark">G</div><div><h1>Strategy</h1><div class="sub">Standing thesis, sizing, and risk framework</div></div></div>
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Strategy</h1><div class="sub">Standing thesis, sizing, risk rails · live holdings strip</div></div></div>
     <div class="meta">
+      <div class="chip">Holdings <strong id="generated-at">—</strong></div>
       <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
     </div>
   </div>
@@ -22,11 +23,16 @@
 
   <div class="grid">
     <section class="card span-12">
+      <h2>Open holdings · live DexScreener</h2>
+      <div id="strategy-holdings"></div>
+    </section>
+
+    <section class="card span-12">
       <div class="md-article" id="strategy-body"></div>
     </section>
   </div>
 
-  <div class="footer"><div>Source: `context/trading_strategy.md`</div><div class="mono" id="source-line">data/strategy.md</div></div>
+  <div class="footer"><div>Source: context/trading_strategy.md · prices refreshed live from DexScreener</div><div class="mono" id="source-line">data/strategy.md + data/trading.json</div></div>
 </div>
 
 <script src="./desk.js"></script>

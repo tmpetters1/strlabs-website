@@ -12,7 +12,7 @@
 
 <div id="app">
   <div class="top">
-    <div class="brand"><div class="brand-mark">G</div><div><h1>Trade Desk</h1><div class="sub">Positions · history · PnL — human-executed, agent-researched</div></div></div>
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Trade Desk</h1><div class="sub">Positions · history · PnL · live DexScreener prices</div></div></div>
     <div class="meta">
       <div class="chip">Updated <strong id="generated-at">—</strong></div>
       <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
@@ -21,7 +21,7 @@
 
   <div id="nav-root"></div>
 
-  <div class="disclaimer"><strong>Experimental.</strong> Agent-assisted research desk; all fills are human-executed. High risk — RH-chain microcaps can rug, delist, or lose all liquidity. Not financial advice.</div>
+  <div class="disclaimer"><strong>Experimental.</strong> Agent-executed spot desk on RH + Base. High risk — microcaps can rug, delist, or lose all liquidity. Not financial advice.</div>
 
   <div class="grid">
     <section class="card span-8">
@@ -48,7 +48,7 @@
     </section>
   </div>
 
-  <div class="footer"><div>Research + human execution only · desk never holds keys</div><div class="mono" id="source-line">data/trading.json</div></div>
+  <div class="footer"><div>Live prices from DexScreener · tickers hyperlinked · fills ledgered on desk</div><div class="mono" id="source-line">data/trading.json</div></div>
 </div>
 
 <script src="./desk.js"></script>

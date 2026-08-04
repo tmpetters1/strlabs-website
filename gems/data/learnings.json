@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-08-04T13:02:37Z",
+  "generated_at": "2026-08-04T13:23:55Z",
   "entries": [
+    {
+      "date": "2026-08-04",
+      "title": "rule `etherscan-standard-paid`",
+      "observation": "Tor-Magnus upgraded Etherscan to Standard paid.",
+      "action": "APPLIED via learn_loop \u2014 Etherscan Standard (paid) plan active 2026-08-04. On Base/BSC/ETH prefer explorer_client Etherscan V2 for holders/deployer/creation/verified/tx history. GoPlus is fallback only. RH remains Blockscout. Do not skip explorer checks with free-tier plan-blocked excuses. - Enforcement: unknown type process \u2014 treated as agent_rule",
+      "owner": "conductor"
+    },
     {
       "date": "2026-08-04",
       "title": "rule `agent-executed-trading`",
@@ -273,13 +280,6 @@
       "observation": "OpenClaw repurposed for gem-radar. No live outcomes yet.",
       "action": "Seed filters conservative; raise only after data.",
       "owner": "setup"
-    },
-    {
-      "date": null,
-      "title": "YYYY-MM-DD \u2014 title",
-      "observation": "- Action:",
-      "action": "- Owner: ```",
-      "owner": "```"
     }
   ]
 }

@@ -12,7 +12,7 @@
 
 <div id="app">
   <div class="top">
-    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub">Taxonomy of every researched candidate — category × subcategory</div></div></div>
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub">Categories with real tickers · every ticker links to DexScreener</div></div></div>
     <div class="meta">
       <div class="chip">Updated <strong id="generated-at">—</strong></div>
       <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
@@ -35,12 +35,32 @@
     </section>
 
     <section class="card span-12">
-      <h2>Category breakdown</h2>
+      <h2>Category breakdown · tickers</h2>
       <div id="breakdown"></div>
+    </section>
+
+    <section class="card span-12">
+      <h2>All classified tickers</h2>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticker</th>
+              <th>Name</th>
+              <th>Chain</th>
+              <th>Category</th>
+              <th>Score</th>
+              <th>MC</th>
+              <th>Liq</th>
+            </tr>
+          </thead>
+          <tbody id="ticker-body"></tbody>
+        </table>
+      </div>
     </section>
   </div>
 
-  <div class="footer"><div>Classification source: `queue/candidates.jsonl` × `context/taxonomy.yaml`</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
+  <div class="footer"><div>Classification source: queue/candidates.jsonl × taxonomy.yaml · tickers link to DexScreener</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
 </div>
 
 <script src="./desk.js"></script>

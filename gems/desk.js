@@ -222,10 +222,89 @@
     }
   }
 
+  function dexUrl(p) {
+    if (!p) return null;
+    if (p.dex_url) return p.dex_url;
+    if (p.links && p.links.dex) return p.links.dex;
+    const chain = (p.chain || "").toLowerCase();
+    if (p.pair && chain) return `https://dexscreener.com/${chain}/${p.pair}`;
+    if (p.token && chain) return `https://dexscreener.com/${chain}/${p.token}`;
+    return null;
+  }
+
+  function tickerHtml(p, opts) {
+    opts = opts || {};
+    const sym = p.symbol || p.ticker || "?";
+    const url = dexUrl(p);
+    const label = opts.noDollar ? esc(sym) : ("$" + esc(sym));
+    if (!url) return `<span class="ticker">${label}</span>`;
+    return `<a class="ticker-link" href="${esc(url)}" target="_blank" rel="noopener">${label}</a>`;
+  }
+
+  async function fetchDexPair(chain, pair) {
+    if (!chain || !pair) return null;
+    const url = `https://api.dexscreener.com/latest/dex/pairs/${encodeURIComponent(chain)}/${encodeURIComponent(pair)}`;
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) return null;
+      const data = await res.json();
+      const p = (data.pairs && data.pairs[0]) || data.pair || null;
+      if (!p) return null;
+      return {
+        price_usd: p.priceUsd != null ? Number(p.priceUsd) : null,
+        mc: p.marketCap != null ? Number(p.marketCap) : (p.fdv != null ? Number(p.fdv) : null),
+        liq_usd: p.liquidity && p.liquidity.usd != null ? Number(p.liquidity.usd) : null,
+        vol_h24: p.volume && p.volume.h24 != null ? Number(p.volume.h24) : null,
+        change_h24: p.priceChange && p.priceChange.h24 != null ? Number(p.priceChange.h24) : null,
+        change_h1: p.priceChange && p.priceChange.h1 != null ? Number(p.priceChange.h1) : null,
+        url: p.url || null,
+        fetched_at: new Date().toISOString(),
+        source: "dexscreener-live",
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function enrichPositionsLive(positions) {
+    const out = [];
+    for (const pos of positions || []) {
+      const live = await fetchDexPair(pos.chain, pos.pair);
+      if (!live || live.price_usd == null) { out.push(pos); continue; }
+      const next = { ...pos };
+      next.current_price_usd = live.price_usd;
+      if (live.mc != null) next.current_mc_usd = live.mc;
+      if (live.liq_usd != null) next.current_liq_usd = live.liq_usd;
+      if (live.vol_h24 != null) next.vol_h24_usd = live.vol_h24;
+      if (live.change_h24 != null) next.change_h24_pct = live.change_h24;
+      if (live.change_h1 != null) next.change_h1_pct = live.change_h1;
+      next.price_source = live.source;
+      next.price_fetched_at = live.fetched_at;
+      if (live.url) {
+        next.dex_url = live.url;
+        next.links = { ...(next.links || {}), dex: live.url };
+      }
+      const entry = Number(next.entry_price_usd);
+      const cur = Number(next.current_price_usd);
+      if (entry > 0 && cur > 0) {
+        next.pnl_pct = ((cur - entry) / entry) * 100;
+        if (next.wallet_confirmed && next.wallet_balance_tokens != null) {
+          const bal = Number(next.wallet_balance_tokens);
+          next.value_usd = bal * cur;
+          next.cost_basis_usd = bal * entry;
+          next.pnl_usd = next.value_usd - next.cost_basis_usd;
+        }
+      }
+      out.push(next);
+    }
+    return out;
+  }
+
   global.Desk = {
     esc, fmtUsd, fmtPct, fmtTime, pctClass, shortAddr,
     navHtml, mdToHtml, pieSVG, legendHtml,
     fetchJson, fetchText, boot,
+    dexUrl, tickerHtml, fetchDexPair, enrichPositionsLive,
     PALETTE,
   };
 })(window);

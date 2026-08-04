@@ -1,9 +1,12 @@
 {
-  "generated_at": "2026-08-04T13:02:37Z",
+  "generated_at": "2026-08-04T13:23:55Z",
   "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
   "chain_focus": {
-    "primary": "robinhood",
-    "note": "Base dust noted separately if wallet holds Base-chain tokens; RH is the desk's primary trading chain."
+    "primary": [
+      "robinhood",
+      "base"
+    ],
+    "note": "RH + Base primary. Live prices from DexScreener on publish + browser refresh."
   },
   "positions": [
     {
@@ -25,19 +28,22 @@
         "site": "https://dtf.finance/",
         "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md"
       },
-      "current_price_usd": 0.0002502,
-      "current_mc_usd": 224371,
-      "current_liq_usd": 52055.94,
-      "vol_h24_usd": 105875.05,
-      "change_h24_pct": 2.27,
+      "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "current_price_usd": 0.0002403,
+      "current_mc_usd": 215475,
+      "current_liq_usd": 50952.9,
+      "vol_h24_usd": 105345.62,
+      "change_h24_pct": -3.16,
+      "change_h1_pct": -9.04,
       "price_source": "dexscreener",
       "price_error": null,
-      "pnl_pct": -23.110018438844495,
+      "price_fetched_at": "2026-08-04T13:23:55Z",
+      "pnl_pct": -26.152427781192372,
       "wallet_balance_tokens": 517558.9694446674,
       "wallet_confirmed": true,
-      "value_usd": 129.49325415505578,
+      "value_usd": 124.36942035755358,
       "cost_basis_usd": 168.41368865729476,
-      "pnl_usd": -38.920434502238976
+      "pnl_usd": -44.04426829974118
     }
   ],
   "history": [
@@ -56,7 +62,7 @@
   ],
   "pnl": {
     "realized_usd": 0.0,
-    "unrealized_usd": -38.92,
+    "unrealized_usd": -44.04,
     "unrealized_complete": true,
     "open_position_count": 1,
     "closed_position_count": 0,
@@ -64,5 +70,5 @@
     "wallet_snapshot_at": null,
     "note": "All open positions have wallet-confirmed balances."
   },
-  "disclaimer": "Experimental agent-assisted research; trades are human-executed only. High risk \u2014 tokens shown may be illiquid, unaudited, or scams. Not financial advice."
+  "disclaimer": "Experimental agent-executed spot desk (RH+Base). High risk \u2014 tokens may be illiquid, unaudited, or scams. Not financial advice."
 }

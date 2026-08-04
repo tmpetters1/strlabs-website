@@ -18,7 +18,7 @@
   - DTF: ~517,559 tokens (~$137) — live RH bag; manage under invalidation rules.
   - **Base sleeve (requested):** yes — keep dry powder on Base. Target **$60–100** total on Base:
     - **~$50–80 USDC** (buy inventory)
-    - **~$10–20 ETH** gas on Base (floor ≥0.005 ETH)
+    - **~$10–20 ETH** gas on Base (floor ≥0.0005 ETH (Base gas is cheap; 0.001+ is enough for many swaps))
   - Do **not** bridge the whole RH stack while DTF is open; fund Base as a **separate top-up** from Tor-Magnus when possible.
 - Micro-cap bankroll. Every bag can go to zero. Never size so one loss kills the next trade + gas floors on both chains.
 

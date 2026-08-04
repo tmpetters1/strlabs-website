@@ -113,3 +113,23 @@ th{color:var(--muted);font-size:.72rem;text-transform:uppercase}
   .top{flex-direction:column}
   .meta{justify-content:flex-start}
 }
+
+/* research tickers */
+.token-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.45rem 0 .2rem}
+.token-chip{display:inline-flex;align-items:center;gap:.35rem;background:#101010;border:1px solid var(--line);border-radius:999px;padding:.22rem .55rem;font-size:.78rem}
+.token-chip .chip-meta{color:var(--muted);font-size:.68rem}
+.ticker-link{color:var(--accent);font-weight:700;text-decoration:none}
+.ticker-link:hover{text-decoration:underline}
+.ticker{font-weight:700}
+.cat-block{margin-bottom:1.15rem;padding-bottom:.85rem;border-bottom:1px solid var(--line)}
+.cat-block:last-child{border-bottom:0}
+.cat-head{display:flex;align-items:center;gap:.5rem;font-weight:700;margin-bottom:.25rem}
+.cat-name{text-transform:capitalize}
+.cat-desc{font-size:.8rem;margin:.15rem 0 .35rem 1.7rem}
+.sub-block{margin:.35rem 0 .45rem 1.1rem}
+.sub-head{font-size:.82rem;color:var(--muted);margin-bottom:.2rem}
+.sub-list{margin-top:.35rem}
+
+/* strategy holdings */
+.hold-card{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem;margin-bottom:.75rem}
+.hold-top{display:flex;justify-content:space-between;align-items:center;gap:.75rem;margin-bottom:.55rem;font-weight:700}
