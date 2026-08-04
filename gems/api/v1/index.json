@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T14:29:25.209320+00:00",
+  "published_at": "2026-08-04T14:44:28.837478+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -407,6 +407,24 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "ROBINDEX",
+      "chain": "robinhood",
+      "token": "0xd82f70F530AFf45b831d6eE17062B4E85395C6F3",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/ROBINDEX"
+    },
+    {
+      "symbol": "GHC",
+      "chain": "robinhood",
+      "token": "0xB21ec6ec33061F6528993875029B57C227BB11af",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/GHC"
     },
     {
       "symbol": "MEMEFI",
