@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T18:56:48.438402+00:00",
+  "published_at": "2026-08-04T19:10:08.314323+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -11,6 +11,15 @@
       "status": "briefed",
       "notify": true,
       "path": "/api/v1/token/DTF"
+    },
+    {
+      "symbol": "FIRE",
+      "chain": "robinhood",
+      "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/FIRE"
     },
     {
       "symbol": "BASEMATE",
@@ -236,15 +245,6 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
-    },
-    {
-      "symbol": "FIRE",
-      "chain": "robinhood",
-      "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
-      "score": null,
-      "status": "classified",
-      "notify": false,
-      "path": "/api/v1/token/FIRE"
     }
   ]
 }
