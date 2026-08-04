@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T08:44:23.331506+00:00",
+  "published_at": "2026-08-04T08:59:42.558138+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -47,6 +47,15 @@
       "status": "whale_reviewed",
       "notify": false,
       "path": "/api/v1/token/GLD"
+    },
+    {
+      "symbol": "HDX",
+      "chain": "robinhood",
+      "token": "0x19Aac52AF5F735bEE21B708F8C76B62C4A96895a",
+      "score": 70.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/HDX"
     },
     {
       "symbol": "TRSA",
@@ -227,6 +236,24 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/UNIHOOD"
+    },
+    {
+      "symbol": "TQB",
+      "chain": "bsc",
+      "token": "0x3f3129511bc7DadeB1bD19166e9DF9Dcad238888",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/TQB"
+    },
+    {
+      "symbol": "RTX",
+      "chain": "bsc",
+      "token": "0x2Ec39B165e22944d2FEE389219ee64E4924cfffF",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/RTX"
     },
     {
       "symbol": "WHAYLOR",
