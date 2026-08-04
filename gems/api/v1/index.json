@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T15:44:25.055889+00:00",
+  "published_at": "2026-08-04T15:46:32.457050+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -164,6 +164,33 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/OZZY"
+    },
+    {
+      "symbol": "LEMON",
+      "chain": "robinhood",
+      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/LEMON"
+    },
+    {
+      "symbol": "USEDCAR",
+      "chain": "robinhood",
+      "token": "0xeff44b72a8641DB970CD7E9d3078C9EF8367b2b3",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/USEDCAR"
+    },
+    {
+      "symbol": "GASTER",
+      "chain": "robinhood",
+      "token": "0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/GASTER"
     }
   ]
 }
