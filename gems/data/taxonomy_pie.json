@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-08-04T12:42:51Z",
+  "total_candidates": 48,
+  "classified_candidates": 23,
+  "unclassified_candidates": 25,
+  "slices": [
+    {
+      "category": "meme",
+      "description": "Pure culture / joke / attention tokens",
+      "count": 15,
+      "pct": 65.2,
+      "subcategories": [
+        {
+          "subcategory": "brainrot",
+          "count": 8
+        },
+        {
+          "subcategory": "ticker-meta",
+          "count": 4
+        },
+        {
+          "subcategory": "animals",
+          "count": 1
+        },
+        {
+          "subcategory": "celebrity",
+          "count": 1
+        },
+        {
+          "subcategory": "knockoff",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "rwa-finance",
+      "description": "Tokenized stocks/RWAs and brokerage-adjacent",
+      "count": 2,
+      "pct": 8.7,
+      "subcategories": [
+        {
+          "subcategory": "stock-reward-mining",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "category": "other",
+      "description": "Does not fit yet \u2014 prefer proposing new subcategory",
+      "count": 2,
+      "pct": 8.7,
+      "subcategories": [
+        {
+          "subcategory": "unclassified",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "category": "defi",
+      "description": "Markets, launchpads, yield, trading infra",
+      "count": 1,
+      "pct": 4.3,
+      "subcategories": [
+        {
+          "subcategory": "consumer-payments",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "ai-agents",
+      "description": "Agent frameworks, economies, tooling for autonomous agents",
+      "count": 1,
+      "pct": 4.3,
+      "subcategories": [
+        {
+          "subcategory": "agent-frameworks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "social-attention",
+      "description": "Social virality / CT / short-form driven",
+      "count": 1,
+      "pct": 4.3,
+      "subcategories": [
+        {
+          "subcategory": "community-takeover",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "gaming-nft",
+      "description": "Games, collectibles, IP",
+      "count": 1,
+      "pct": 4.3,
+      "subcategories": [
+        {
+          "subcategory": "games",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

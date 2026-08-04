@@ -1,0 +1,12 @@
+{
+  "address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+  "chain": "robinhood",
+  "chain_id": 4663,
+  "explorer": "https://robinhoodchain.blockscout.com/address/0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+  "native_eth": 0.04653773157641316,
+  "eth_usd_price": 1874.46,
+  "native_eth_usd": 87.23,
+  "gas_floor_eth": 0.01,
+  "price_source": "coingecko",
+  "snapshot_at": "2026-08-04T14:41:00Z"
+}

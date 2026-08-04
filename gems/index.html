@@ -43,12 +43,17 @@ th{color:var(--muted);font-size:.72rem;text-transform:uppercase}.sym{font-weight
 .stack{display:grid;gap:.25rem;margin-top:.4rem}.stack-row{display:flex;justify-content:space-between;gap:.5rem;font-size:.8rem;padding:.2rem 0;border-bottom:1px dashed rgba(255,255,255,.05)}
 .checks{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}.mech{font-size:.84rem;color:#cfcfcf;white-space:pre-wrap;background:#101010;border-radius:10px;padding:.65rem;border:1px solid var(--line);max-height:160px;overflow:auto}
 .sec{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:.7rem 0 .25rem}
+.desk-nav{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.85rem}
+.nav-link{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:.5rem 1rem;font-size:.85rem;font-weight:600;color:var(--muted);text-decoration:none;transition:all .15s ease}
+.nav-link:hover{color:var(--text);text-decoration:none;border-color:rgba(255,255,255,.18)}
+.nav-link.active{color:#fff;background:linear-gradient(135deg,rgba(232,115,74,.25),rgba(232,115,74,.12));border-color:rgba(232,115,74,.5)}
 </style></head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
 <div id="app"><div class="top"><div class="brand"><div class="brand-mark">G</div><div><h1>Gem Radar</h1><div class="sub" id="focus-line">Loading…</div></div></div>
 <div class="meta"><div class="chip">Published <strong id="published-at">—</strong></div><div class="chip">Rows <strong id="row-count">—</strong></div>
 <div class="chip">Notify bar <strong id="notify-bar">78</strong></div><div class="chip">Mode <strong id="update-mode">push</strong></div><div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div></div></div>
+<div id="nav-root"></div>
 <div class="grid">
 <section class="card span-12"><h2>Notification-worthy</h2><div id="notify-cards" class="notify-grid"></div></section>
 <section class="card span-8"><h2>Pipeline</h2><div class="stats" id="pipeline-stats"></div></section>
@@ -56,4 +61,6 @@ th{color:var(--muted);font-size:.72rem;text-transform:uppercase}.sym{font-weight
 <section class="card span-12"><h2>Candidates</h2><div style="overflow-x:auto"><table><thead><tr><th>Token</th><th>Score</th><th>Status</th><th>Waiting</th><th>Market</th><th>Checks</th><th>Touch</th></tr></thead><tbody id="cand-body"></tbody></table></div></section>
 <section class="card span-12"><h2>Blockers</h2><div id="blockers" class="list"></div></section>
 </div><div class="footer"><div>Research only · no trading keys on this desk</div><div class="mono" id="source-line">data/radar.json</div></div></div>
+<script src="./desk.js"></script>
+<script>document.getElementById("nav-root").innerHTML = Desk.navHtml("radar");</script>
 <script src="./app.js"></script></body></html>

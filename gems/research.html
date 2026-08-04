@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research · Gem Radar · Str.Labs</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./desk.css">
+</head><body>
+<div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
+
+<div id="app">
+  <div class="top">
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub">Taxonomy of every researched candidate — category × subcategory</div></div></div>
+    <div class="meta">
+      <div class="chip">Updated <strong id="generated-at">—</strong></div>
+      <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
+    </div>
+  </div>
+
+  <div id="nav-root"></div>
+
+  <div class="grid">
+    <section class="card span-8">
+      <h2>Category mix</h2>
+      <div class="pie-wrap">
+        <div id="pie-chart"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </section>
+    <section class="card span-4">
+      <h2>Pipeline coverage</h2>
+      <div class="stats" id="coverage-stats"></div>
+    </section>
+
+    <section class="card span-12">
+      <h2>Category breakdown</h2>
+      <div id="breakdown"></div>
+    </section>
+  </div>
+
+  <div class="footer"><div>Classification source: `queue/candidates.jsonl` × `context/taxonomy.yaml`</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
+</div>
+
+<script src="./desk.js"></script>
+<script src="./research.js"></script>
+</body></html>

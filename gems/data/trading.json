@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-08-04T12:42:51Z",
+  "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+  "chain_focus": {
+    "primary": "robinhood",
+    "note": "Base dust noted separately if wallet holds Base-chain tokens; RH is the desk's primary trading chain."
+  },
+  "positions": [
+    {
+      "id": "boots-rh-2026-08-03",
+      "status": "open",
+      "symbol": "BOOTS",
+      "name": "Boots Has Landed",
+      "chain": "robinhood",
+      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
+      "pair": "0xE814cC22D86537fF3eDEce645955e40a0717634A",
+      "bought_at": "2026-08-03T17:09:00+02:00",
+      "entry_price_usd": 4.3969e-05,
+      "entry_mc_usd": 43000,
+      "entry_mc_source": "user_estimate",
+      "desk_score": 72,
+      "thesis": "RH meme/brainrot multi-platform organic launch",
+      "links": {
+        "dex": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A",
+        "site": "https://www.bootshaslanded.com",
+        "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BOOTS.md"
+      },
+      "current_price_usd": 8.946e-06,
+      "current_mc_usd": 8947,
+      "current_liq_usd": 7087.95,
+      "vol_h24_usd": 50694.38,
+      "change_h24_pct": -68.44,
+      "price_source": "dexscreener",
+      "price_error": null,
+      "pnl_pct": -79.65384702858832,
+      "wallet_balance_tokens": null,
+      "wallet_confirmed": false,
+      "value_usd": null,
+      "cost_basis_usd": null,
+      "pnl_usd": null
+    },
+    {
+      "id": "dtf-rh-2026-08-03",
+      "status": "open",
+      "symbol": "DTF",
+      "name": "DeFi Traded Fund",
+      "chain": "robinhood",
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "bought_at": "2026-08-03T17:09:00+02:00",
+      "entry_price_usd": 0.0003254,
+      "entry_mc_usd": 226000,
+      "entry_mc_source": "unknown",
+      "desk_score": 81,
+      "thesis": "SRM peer \u2014 prize-draw staking, AMD into pool, USDG-quoted",
+      "links": {
+        "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+        "site": "https://dtf.finance/",
+        "brief": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-DTF.md"
+      },
+      "current_price_usd": 0.0002641,
+      "current_mc_usd": 236843,
+      "current_liq_usd": 53566.37,
+      "vol_h24_usd": 105938.38,
+      "change_h24_pct": -1.35,
+      "price_source": "dexscreener",
+      "price_error": null,
+      "pnl_pct": -18.838352796558073,
+      "wallet_balance_tokens": 517558.9694446674,
+      "wallet_confirmed": true,
+      "value_usd": 136.68732383033668,
+      "cost_basis_usd": 168.41368865729476,
+      "pnl_usd": -31.726364826958076
+    }
+  ],
+  "history": [
+    {
+      "id": "boots-rh-2026-08-03",
+      "symbol": "BOOTS",
+      "chain": "robinhood",
+      "side": "buy",
+      "at": "2026-08-03T17:09:00+02:00",
+      "price_usd": 4.3969e-05,
+      "mc_usd": 43000,
+      "size_tokens": null,
+      "size_usd": null,
+      "reported_by": "tor-magnus"
+    },
+    {
+      "id": "dtf-rh-2026-08-03",
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "side": "buy",
+      "at": "2026-08-03T17:09:00+02:00",
+      "price_usd": 0.0003254,
+      "mc_usd": null,
+      "size_tokens": null,
+      "size_usd": null,
+      "reported_by": "tor-magnus"
+    }
+  ],
+  "pnl": {
+    "realized_usd": 0.0,
+    "unrealized_usd": -31.73,
+    "unrealized_complete": false,
+    "open_position_count": 2,
+    "closed_position_count": 0,
+    "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+    "wallet_snapshot_at": null,
+    "note": "Unrealized PnL only computed for positions with a wallet-confirmed balance. Sizes not yet confirmed in wallet are shown price/pct only."
+  },
+  "disclaimer": "Experimental agent-assisted research; trades are human-executed only. High risk \u2014 tokens shown may be illiquid, unaudited, or scams. Not financial advice."
+}

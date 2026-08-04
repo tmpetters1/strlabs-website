@@ -1,0 +1,10 @@
+{
+  "realized_usd": 0.0,
+  "unrealized_usd": -31.78,
+  "unrealized_complete": false,
+  "open_position_count": 2,
+  "closed_position_count": 0,
+  "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+  "wallet_snapshot_at": null,
+  "note": "Unrealized PnL only computed for positions with a wallet-confirmed balance. Sizes not yet confirmed in wallet are shown price/pct only."
+}

@@ -1,0 +1,529 @@
+{
+  "generated_at": "2026-08-04T14:45:00Z",
+  "source": "queue/candidates.jsonl",
+  "total_candidates": 48,
+  "slices": [
+    {
+      "category": "meme",
+      "count": 18,
+      "pct": 37.5,
+      "color": "#E8734A",
+      "leaves": [
+        {
+          "subcategory": "brainrot",
+          "count": 8
+        },
+        {
+          "subcategory": "ticker-meta",
+          "count": 4
+        },
+        {
+          "subcategory": "animals",
+          "count": 3
+        },
+        {
+          "subcategory": "knockoff",
+          "count": 2
+        },
+        {
+          "subcategory": "celebrity",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "unknown",
+      "count": 13,
+      "pct": 27.1,
+      "color": "#4B5563",
+      "leaves": [
+        {
+          "subcategory": "unknown",
+          "count": 13
+        }
+      ]
+    },
+    {
+      "category": "defi",
+      "count": 6,
+      "pct": 12.5,
+      "color": "#60A5FA",
+      "leaves": [
+        {
+          "subcategory": "markets",
+          "count": 4
+        },
+        {
+          "subcategory": "consumer-payments",
+          "count": 1
+        },
+        {
+          "subcategory": "stock-paired",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "rwa-finance",
+      "count": 3,
+      "pct": 6.2,
+      "color": "#34D399",
+      "leaves": [
+        {
+          "subcategory": "stock-reward-mining",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "category": "gaming-nft",
+      "count": 2,
+      "pct": 4.2,
+      "color": "#FBBF24",
+      "leaves": [
+        {
+          "subcategory": "games",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "category": "infrastructure",
+      "count": 2,
+      "pct": 4.2,
+      "color": "#A78BFA",
+      "leaves": [
+        {
+          "subcategory": "identity",
+          "count": 1
+        },
+        {
+          "subcategory": "data",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "other",
+      "count": 2,
+      "pct": 4.2,
+      "color": "#8A8A8A",
+      "leaves": [
+        {
+          "subcategory": "unclassified",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "category": "ai-agents",
+      "count": 1,
+      "pct": 2.1,
+      "color": "#F472B6",
+      "leaves": [
+        {
+          "subcategory": "agent-frameworks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "category": "social-attention",
+      "count": 1,
+      "pct": 2.1,
+      "color": "#22D3EE",
+      "leaves": [
+        {
+          "subcategory": "community-takeover",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "score": 81.0,
+      "notify": true
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "category": "defi",
+      "subcategory": "consumer-payments",
+      "score": 76.0,
+      "notify": false
+    },
+    {
+      "symbol": "BOOTS",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 72.0,
+      "notify": false
+    },
+    {
+      "symbol": "GLD",
+      "chain": "robinhood",
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "score": 71.0,
+      "notify": false
+    },
+    {
+      "symbol": "TRSA",
+      "chain": "robinhood",
+      "category": "defi",
+      "subcategory": "markets",
+      "score": 70.0,
+      "notify": false
+    },
+    {
+      "symbol": "Lightoor",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "knockoff",
+      "score": 69.0,
+      "notify": false
+    },
+    {
+      "symbol": "FIND",
+      "chain": "base",
+      "category": "gaming-nft",
+      "subcategory": "games",
+      "score": 66.0,
+      "notify": false
+    },
+    {
+      "symbol": "Port",
+      "chain": "robinhood",
+      "category": "defi",
+      "subcategory": "markets",
+      "score": 65.0,
+      "notify": false
+    },
+    {
+      "symbol": "PIPE",
+      "chain": "robinhood",
+      "category": "defi",
+      "subcategory": "markets",
+      "score": 58.0,
+      "notify": false
+    },
+    {
+      "symbol": "MARVIN",
+      "chain": "base",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 0.0,
+      "notify": false
+    },
+    {
+      "symbol": "SAFEVANO",
+      "chain": "robinhood",
+      "category": "infrastructure",
+      "subcategory": "identity",
+      "score": 64.0,
+      "notify": false
+    },
+    {
+      "symbol": "RICE",
+      "chain": "robinhood",
+      "category": "infrastructure",
+      "subcategory": "data",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "OZZY",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "ELE",
+      "chain": "robinhood",
+      "category": "defi",
+      "subcategory": "markets",
+      "score": 75.0,
+      "notify": false
+    },
+    {
+      "symbol": "WINK",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "animals",
+      "score": 35.0,
+      "notify": false
+    },
+    {
+      "symbol": "CASHKITTY",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "animals",
+      "score": 35.0,
+      "notify": false
+    },
+    {
+      "symbol": "MEMESTOCK",
+      "chain": "bsc",
+      "category": "defi",
+      "subcategory": "stock-paired",
+      "score": 40.0,
+      "notify": false
+    },
+    {
+      "symbol": "UNIHOOD",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 30.0,
+      "notify": false
+    },
+    {
+      "symbol": "SNAG",
+      "chain": "robinhood",
+      "category": "other",
+      "subcategory": "unclassified",
+      "score": 38.0,
+      "notify": false
+    },
+    {
+      "symbol": "LEAK",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "WOOF",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 25.0,
+      "notify": false
+    },
+    {
+      "symbol": "DEADEYE",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 32.0,
+      "notify": false
+    },
+    {
+      "symbol": "NODE",
+      "chain": "robinhood",
+      "category": "ai-agents",
+      "subcategory": "agent-frameworks",
+      "score": 42.0,
+      "notify": false
+    },
+    {
+      "symbol": "NASDANQ",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "HOOK",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 15.0,
+      "notify": false
+    },
+    {
+      "symbol": "MARSCOIN",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 30.0,
+      "notify": false
+    },
+    {
+      "symbol": "UniFrog",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 34.0,
+      "notify": false
+    },
+    {
+      "symbol": "KRABS",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 32.0,
+      "notify": false
+    },
+    {
+      "symbol": "POOH",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 36.0,
+      "notify": false
+    },
+    {
+      "symbol": "USDE",
+      "chain": "robinhood",
+      "category": "other",
+      "subcategory": "unclassified",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "BRACHIO",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "animals",
+      "score": 32.0,
+      "notify": false
+    },
+    {
+      "symbol": "BRACKETS",
+      "chain": "robinhood",
+      "category": "social-attention",
+      "subcategory": "community-takeover",
+      "score": 58.0,
+      "notify": false
+    },
+    {
+      "symbol": "WHAYLOR",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "celebrity",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "蝴蝶DAO",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "knockoff",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "BRAD",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "GBP",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 30.0,
+      "notify": false
+    },
+    {
+      "symbol": "HDX",
+      "chain": "robinhood",
+      "category": "rwa-finance",
+      "subcategory": "stock-reward-mining",
+      "score": 70.0,
+      "notify": false
+    },
+    {
+      "symbol": "RTX",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "TQB",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "PRETT",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 30.0,
+      "notify": false
+    },
+    {
+      "symbol": "一",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "FAFE",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 32.0,
+      "notify": false
+    },
+    {
+      "symbol": "WSB",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "DREAM",
+      "chain": "robinhood",
+      "category": "meme",
+      "subcategory": "brainrot",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "财务人生",
+      "chain": "bsc",
+      "category": "meme",
+      "subcategory": "ticker-meta",
+      "score": 28.0,
+      "notify": false
+    },
+    {
+      "symbol": "TURBO",
+      "chain": "robinhood",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "AOB",
+      "chain": "bsc",
+      "category": "unknown",
+      "subcategory": "unknown",
+      "score": null,
+      "notify": false
+    },
+    {
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "category": "gaming-nft",
+      "subcategory": "games",
+      "score": null,
+      "notify": false
+    }
+  ]
+}
