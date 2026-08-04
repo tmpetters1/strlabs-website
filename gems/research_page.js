@@ -179,6 +179,29 @@
     });
   }
 
+  
+  function allCatTokensRaw(slice) {
+    const out = [];
+    const seen = new Set();
+    for (const sc of slice.subcategories || []) {
+      for (const t of sc.tokens || []) {
+        const k = tokenKey(t);
+        if (seen.has(k)) continue;
+        seen.add(k);
+        out.push(Object.assign({ category: slice.category, subcategory: sc.subcategory }, t));
+      }
+    }
+    if (!(slice.subcategories || []).length) {
+      for (const t of slice.tokens || []) {
+        const k = tokenKey(t);
+        if (seen.has(k)) continue;
+        seen.add(k);
+        out.push(Object.assign({ category: slice.category, subcategory: t.subcategory || "unclassified" }, t));
+      }
+    }
+    return out;
+  }
+
   function allCatTokens(slice) {
     const out = [];
     const seen = new Set();
@@ -346,14 +369,14 @@
       .map((s, i) => {
         const color = palette[i % palette.length];
         const catOpen = state.openCats.has(s.category);
-        const catTokens = allCatTokens(s);
-        if (!catTokens.length && state.chain !== "all") return "";
-        const subs = sortSubs(s.subcategories || []).filter((sc) => filterTokens(sc.tokens || []).length);
+        const catTokens = allCatTokensRaw(s);
+        if (!catTokens.length) return "";
+        const subs = (s.subcategories || []).filter((sc) => (sc.tokens || []).length);
         const subsHtml = subs
           .map((sc) => {
             const key = subKey(s.category, sc.subcategory);
             const open = state.openSubs.has(key);
-            const toks = sortTokens(filterTokens(sc.tokens || []));
+            const toks = (sc.tokens || []).slice();
             return (
               '<details class="sub-acc" data-sub-key="' +
               esc(key) +
@@ -489,7 +512,7 @@
     if (banner) {
       banner.textContent =
         flat.length +
-        " tickers · categories fixed · sort " +
+        " tickers · explorer fixed · table sort " +
         state.sortBy +
         " " +
         state.sortDir +

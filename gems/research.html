@@ -6,14 +6,14 @@
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804r2">
+<link rel="stylesheet" href="./desk.css?v=20260804r3">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
 
 <div id="app">
   <div class="top">
-    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub" id="ticker-banner">Category pie · expand subs for tickers · sort tickers below</div></div></div>
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub" id="ticker-banner">Category pie · expand subs · sort only the table below</div></div></div>
     <div class="meta">
       <div class="chip">Updated <strong id="generated-at">—</strong></div>
       <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
@@ -33,14 +33,25 @@
     <section class="card span-4">
       <h2>Coverage</h2>
       <div class="stats" id="coverage-stats"></div>
-      <p class="hint-line">Categories stay in fixed pie order. Sort only applies to tickers / subs.</p>
+      <p class="hint-line">Explorer is fixed taxonomy order. Sort/filter live on the ticker table only.</p>
     </section>
 
     <section class="card span-12">
       <div class="section-head">
         <h2 style="margin:0">Taxonomy explorer</h2>
         <div class="controls" id="explorer-controls">
-          <label class="ctl">Sort tickers
+          <button type="button" class="ctl-btn" id="expand-all">Expand all</button>
+          <button type="button" class="ctl-btn" id="collapse-all">Collapse all</button>
+        </div>
+      </div>
+      <div id="explorer" class="explorer"></div>
+    </section>
+
+    <section class="card span-12">
+      <div class="section-head">
+        <h2 style="margin:0">Sorted tickers</h2>
+        <div class="controls" id="table-controls">
+          <label class="ctl">Sort
             <select id="sort-by">
               <option value="score">score</option>
               <option value="mc">market cap</option>
@@ -61,17 +72,6 @@
               <option value="all">all</option>
             </select>
           </label>
-          <button type="button" class="ctl-btn" id="expand-all">Expand all</button>
-          <button type="button" class="ctl-btn" id="collapse-all">Collapse all</button>
-        </div>
-      </div>
-      <div id="explorer" class="explorer"></div>
-    </section>
-
-    <section class="card span-12">
-      <div class="section-head">
-        <h2 style="margin:0">Sorted tickers</h2>
-        <div class="controls">
           <span class="muted mono" id="sorted-count">—</span>
         </div>
       </div>
@@ -95,9 +95,9 @@
     </section>
   </div>
 
-  <div class="footer"><div>Tickers under expandable subs · age = pair age · categories unsorted</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
+  <div class="footer"><div>Explorer fixed · table sortable · age = pair age</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
 </div>
 
-<script src="./desk.js?v=20260804r2"></script>
-<script src="./research_page.js?v=2"></script>
+<script src="./desk.js?v=20260804r3"></script>
+<script src="./research_page.js?v=3"></script>
 </body></html>
