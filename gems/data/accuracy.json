@@ -1,8 +1,8 @@
 {
   "available": true,
-  "tracked": 33,
+  "tracked": 36,
   "graded": 27,
-  "pending": 6,
+  "pending": 9,
   "verdicts": {
     "flat": 25,
     "loser": 1,

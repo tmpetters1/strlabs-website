@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T01:59:21.526198+00:00",
+  "published_at": "2026-08-04T02:14:21.916509+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -130,6 +130,15 @@
       "path": "/api/v1/token/CASHKITTY"
     },
     {
+      "symbol": "DEADEYE",
+      "chain": "robinhood",
+      "token": "0x8C1CC68A2f39c332F3C617CC578A45A165D7E431",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/DEADEYE"
+    },
+    {
       "symbol": "UNIHOOD",
       "chain": "robinhood",
       "token": "0x99b1887E985a985ECb23AC248421EAc96CB92492",
@@ -139,6 +148,24 @@
       "path": "/api/v1/token/UNIHOOD"
     },
     {
+      "symbol": "LEAK",
+      "chain": "robinhood",
+      "token": "0xa85Bd69EA5492e42bb912A82B4fEED6fe10D5e12",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/LEAK"
+    },
+    {
+      "symbol": "WOOF",
+      "chain": "robinhood",
+      "token": "0xFDDA9524963DA01481f89f01cb51daAaFfF04161",
+      "score": 25.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/WOOF"
+    },
+    {
       "symbol": "MARVIN",
       "chain": "base",
       "token": "0x49b0708bf30496648cea5b85088b7ae38edc2b00",
@@ -146,6 +173,24 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "SNAG",
+      "chain": "robinhood",
+      "token": "0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/SNAG"
+    },
+    {
+      "symbol": "NODE",
+      "chain": "robinhood",
+      "token": "0x180bC9C4f54D960065CbbB345c8f19be03e1Ea55",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/NODE"
     },
     {
       "symbol": "RICE",
