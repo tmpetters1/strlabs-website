@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T22:40:11.285038+00:00",
+  "published_at": "2026-08-04T23:09:28.835776+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -101,6 +101,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/Lightoor"
+    },
+    {
+      "symbol": "TSLR",
+      "chain": "robinhood",
+      "token": "0x24117e8e9312223e8fE02078c1EF8077e9b66Ba3",
+      "score": 66.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/TSLR"
     },
     {
       "symbol": "FIND",
