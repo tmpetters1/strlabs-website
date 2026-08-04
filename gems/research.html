@@ -6,14 +6,14 @@
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804h">
+<link rel="stylesheet" href="./desk.css?v=20260804r1">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
 
 <div id="app">
   <div class="top">
-    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub" id="ticker-banner">Categories with real tickers · every ticker links to DexScreener</div></div></div>
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Research Mix</h1><div class="sub" id="ticker-banner">Category pie · expand subs for tickers · sorted desk view</div></div></div>
     <div class="meta">
       <div class="chip">Updated <strong id="generated-at">—</strong></div>
       <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
@@ -23,26 +23,6 @@
   <div id="nav-root"></div>
 
   <div class="grid">
-    <section class="card span-12">
-      <h2>All classified tickers</h2>
-      <div style="overflow-x:auto">
-        <table>
-          <thead>
-            <tr>
-              <th>Ticker</th>
-              <th>Name</th>
-              <th>Chain</th>
-              <th>Category</th>
-              <th>Score</th>
-              <th>MC</th>
-              <th>Liq</th>
-            </tr>
-          </thead>
-          <tbody id="ticker-body"></tbody>
-        </table>
-      </div>
-    </section>
-
     <section class="card span-8">
       <h2>Category mix</h2>
       <div class="pie-wrap">
@@ -51,19 +31,72 @@
       </div>
     </section>
     <section class="card span-4">
-      <h2>Pipeline coverage</h2>
+      <h2>Coverage</h2>
       <div class="stats" id="coverage-stats"></div>
+      <p class="hint-line">Tickers live under subcategories only. Expand a sub to inspect.</p>
     </section>
 
     <section class="card span-12">
-      <h2>Category breakdown · tickers</h2>
-      <div id="breakdown"></div>
+      <div class="section-head">
+        <h2 style="margin:0">Taxonomy explorer</h2>
+        <div class="controls" id="explorer-controls">
+          <label class="ctl">Sort
+            <select id="sort-by">
+              <option value="count">count</option>
+              <option value="score">score</option>
+              <option value="mc">market cap</option>
+              <option value="liq">liquidity</option>
+              <option value="symbol">ticker</option>
+              <option value="name">name</option>
+            </select>
+          </label>
+          <label class="ctl">Order
+            <select id="sort-dir">
+              <option value="desc">desc</option>
+              <option value="asc">asc</option>
+            </select>
+          </label>
+          <label class="ctl">Chain
+            <select id="chain-filter">
+              <option value="all">all</option>
+            </select>
+          </label>
+          <button type="button" class="ctl-btn" id="expand-all">Expand all</button>
+          <button type="button" class="ctl-btn" id="collapse-all">Collapse all</button>
+        </div>
+      </div>
+      <div id="explorer" class="explorer"></div>
+    </section>
+
+    <section class="card span-12">
+      <div class="section-head">
+        <h2 style="margin:0">Sorted tickers</h2>
+        <div class="controls">
+          <span class="muted mono" id="sorted-count">—</span>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="compact-table">
+          <thead>
+            <tr>
+              <th data-sort="symbol" class="th-sort">Ticker</th>
+              <th data-sort="name" class="th-sort">Name</th>
+              <th data-sort="chain" class="th-sort">Chain</th>
+              <th data-sort="category" class="th-sort">Category / sub</th>
+              <th data-sort="score" class="th-sort">Score</th>
+              <th data-sort="mc" class="th-sort">MC</th>
+              <th data-sort="liq" class="th-sort">Liq</th>
+            </tr>
+          </thead>
+          <tbody id="ticker-body"></tbody>
+        </table>
+      </div>
     </section>
   </div>
 
-  <div class="footer"><div>Classification source: queue/candidates.jsonl × taxonomy.yaml · tickers link to DexScreener</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
+  <div class="footer"><div>Tickers only under expandable subs · pie stays top-level</div><div class="mono" id="source-line">data/taxonomy_pie.json</div></div>
 </div>
 
-<script src="./desk.js?v=20260804h"></script>
-<script src="./research_tickers.js?v=3"></script>
+<script src="./desk.js?v=20260804r1"></script>
+<script src="./research_page.js?v=1"></script>
 </body></html>
