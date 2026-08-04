@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T04:59:22.286587+00:00",
+  "published_at": "2026-08-04T05:14:28.449192+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -130,6 +130,15 @@
       "path": "/api/v1/token/SNAG"
     },
     {
+      "symbol": "POOH",
+      "chain": "robinhood",
+      "token": "0x7453223543bBcb27cC024AD4728068A7ce7852f7",
+      "score": 36.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/POOH"
+    },
+    {
       "symbol": "WINK",
       "chain": "robinhood",
       "token": "0x8ad5A580c4215086Dec828d8626b95A06D7D00cc",
@@ -146,6 +155,24 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/CASHKITTY"
+    },
+    {
+      "symbol": "UniFrog",
+      "chain": "robinhood",
+      "token": "0x12BC14C180c8A46a34177ec6126B7209ad9A9818",
+      "score": 34.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/UniFrog"
+    },
+    {
+      "symbol": "KRABS",
+      "chain": "robinhood",
+      "token": "0xB94641BaCB5872867A9108E5f12726716eD1AB01",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/KRABS"
     },
     {
       "symbol": "DEADEYE",
