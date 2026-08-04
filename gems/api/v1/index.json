@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T09:29:23.324072+00:00",
+  "published_at": "2026-08-04T09:44:23.641091+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -184,6 +184,15 @@
       "path": "/api/v1/token/UniFrog"
     },
     {
+      "symbol": "FAFE",
+      "chain": "robinhood",
+      "token": "0x3cF99D845435b0BB37247e76852BD40A385ceB28",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/FAFE"
+    },
+    {
       "symbol": "BRACHIO",
       "chain": "robinhood",
       "token": "0x752224ca2Fb2b547A6141E2cEDb28f809C6685d0",
@@ -245,6 +254,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/UNIHOOD"
+    },
+    {
+      "symbol": "\u4e00",
+      "chain": "bsc",
+      "token": "0x77C10C813c04b6d24311981698891781F33b7777",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/\u4e00"
     },
     {
       "symbol": "TQB",
@@ -317,15 +335,6 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
-    },
-    {
-      "symbol": "\u4e00",
-      "chain": "bsc",
-      "token": "0x77C10C813c04b6d24311981698891781F33b7777",
-      "score": null,
-      "status": "queued",
-      "notify": false,
-      "path": "/api/v1/token/\u4e00"
     },
     {
       "symbol": "\u8774\u8776DAO",
