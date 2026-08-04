@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T12:14:23.728865+00:00",
+  "published_at": "2026-08-04T12:27:47.049256+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -344,6 +344,24 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "DREAM",
+      "chain": "robinhood",
+      "token": "0x6E69f04e1Db0beC227d08352cc2DE1F48F22d1E3",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/DREAM"
+    },
+    {
+      "symbol": "\u8d22\u52a1\u4eba\u751f",
+      "chain": "bsc",
+      "token": "0xA9Ff5dde9647E6Be8fa6B054e7749Cd8dDFf7777",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/\u8d22\u52a1\u4eba\u751f"
     },
     {
       "symbol": "\u8774\u8776DAO",
