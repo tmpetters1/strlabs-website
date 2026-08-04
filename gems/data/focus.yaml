@@ -2,8 +2,8 @@
 # Do not hardcode chain logic in prompts alone; read this file every session.
 
 version: 1
-updated_at: "2026-08-03"
-updated_by: macro
+updated_at: "2026-08-04"
+updated_by: ant+macro
 # See also: ops.yaml (discord activity + wake routes), COMMS.md
 
 active_chains:
@@ -22,9 +22,9 @@ active_chains:
     chainid: 56
     notes: "Fast meme volume; high noise — stricter filters"
   - id: solana
-    weight: 0.25
+    weight: 0.0
     explorer: none
-    notes: "Secondary unless narrative crosses over"
+    notes: "OFF for Scout queue — no holder stack; re-enable only with Sol tooling + Macro ok"
 
 launchpads:
   - name: Bankr
@@ -58,15 +58,23 @@ watch_x:
 # These are READ AT RUNTIME by scripts/scout_scan.py via common.focus().
 # Change them here — do not hardcode filter values in a script or a prompt.
 filters:
-  min_liq_usd: 5000
+  min_liq_usd: 8000
   min_mc_usd: 15000
   max_mc_usd: 2000000
-  max_candidates_per_run: 5
+  max_candidates_per_run: 3
   notify_min_score: 78
   max_discord_pings_per_day: 8
   # Set >0 to skip brand-new pairs (sniper window). 0 = no age filter.
   min_pair_age_minutes: 0
   max_top1_pct_ex_lp: 25.0
+  # Anti-flood / queue hygiene (Scout + queue_lib prune enforce)
+  min_chain_weight_to_scan: 0.4   # sol@0 and dust chains never enter Scout
+  max_queue_rows: 25             # hard cap; Scout refuses append when full of noise
+  min_keep_score: 58             # prune drops unscored + below this
+  require_website_or_socials: true
+  min_vol_to_liq: 0.15           # dead books
+  goplus_fence_base_bsc: true    # Scout runs GoPlus on Base/BSC finalists
+  stock_quote_min_liq_usd: 8000  # stock-quoted pairs need real book
 
 # Scout builds its Dex search queries from launchpad `signals`, `hot_metas` ids
 # and `watch_x` handles above — adding a launchpad here changes what is scanned.
