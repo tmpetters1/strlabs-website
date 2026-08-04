@@ -1,13 +1,13 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T17:10:10.680202+00:00",
+  "published_at": "2026-08-04T17:28:34.847175+00:00",
   "tokens": [
     {
       "symbol": "DTF",
       "chain": "robinhood",
       "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
-      "score": 81.0,
+      "score": 92.0,
       "status": "briefed",
       "notify": true,
       "path": "/api/v1/token/DTF"
