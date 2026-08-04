@@ -259,3 +259,7 @@ Replaced the cramped multi-lane card strip with a real architecture board:
 - Discord/store wires hidden until hover (anti-spaghetti)
 - Conductor participates as a green gate accent, not a path detour that yanks arrows up/down
 - Cache bust `v=20260804i`
+
+## 2026-08-04 20:35 — pipeline wireflow v5 no floating labels
+
+Floating wire labels (append / read queued / whale_reviewed / factory_fence / …) covered cards. Removed all canvas edge labels. Handoff + fence copy now lives as clickable lists in the left rail under the Queue bus. Wires stay unlabeled. Cache `v=20260804j`.

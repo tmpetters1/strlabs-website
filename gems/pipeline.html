@@ -5,7 +5,7 @@
 <title>Pipeline · Gem Radar · Str.Labs</title>
 <meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./desk.css?v=20260804i">
+<link rel="stylesheet" href="./desk.css?v=20260804j">
 </head><body>
 <div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
 <input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
@@ -53,7 +53,7 @@
       <span class="wf-zoom-pct" id="wf-zoom-pct">100%</span>
       <button type="button" class="pl-btn" id="wf-zoom-in" title="Zoom in">+</button>
       <button type="button" class="pl-btn" id="wf-zoom-100" title="Actual size">100%</button>
-      <span class="wf-zoom-hint">scroll/pinch zoom · drag to pan · edge labels are short; click for full text</span>
+      <span class="wf-zoom-hint">scroll/pinch zoom · drag to pan · handoffs live in the left list (not on the wires)</span>
     </div>
     <div class="wf-canvas" id="wf-canvas">
       <div class="wf-world" id="wf-world">
@@ -67,9 +67,13 @@
         </header>
 
         <div class="wf-board">
-          <aside class="wf-rail wf-rail-queue">
+          <aside class="wf-rail wf-rail-left">
             <div class="wf-band-label">Queue bus · not an agent</div>
             <div id="wf-queue-nodes"></div>
+            <div class="wf-band-label wf-handoff-label">Handoffs</div>
+            <div class="wf-handoff-list" id="wf-handoff-list" aria-label="Handoff list"></div>
+            <div class="wf-band-label wf-fence-label">Fences → killed</div>
+            <div class="wf-handoff-list kill" id="wf-fence-list" aria-label="Fence list"></div>
           </aside>
 
           <section class="wf-mainpath" aria-label="Specialist token path">
@@ -78,7 +82,7 @@
           </section>
 
           <aside class="wf-rail wf-rail-kill">
-            <div class="wf-band-label">Fence / kill</div>
+            <div class="wf-band-label">Kill sink</div>
             <div id="wf-kill-nodes"></div>
           </aside>
         </div>
@@ -131,7 +135,7 @@
       </div>
       <div class="wf-legend-card">
         <h4>Interactions</h4>
-        <div class="wf-legend-row">Click any node, arrow label, or the kill sink → opens the detail drawer (role, inputs/outputs, scripts, checklist).</div>
+        <div class="wf-legend-row">Click any node, left-rail handoff/fence row, or the kill sink → opens the detail drawer. Wire labels are not drawn on the canvas.</div>
         <div class="wf-legend-row">Hover a stage → highlights only its own wires, dims the rest of the canvas.</div>
         <div class="wf-legend-row">Replay path → animates a token chip through the happy path or the kill/fence path, stage by stage.</div>
         <div class="wf-legend-row">Esc or click the backdrop → closes the drawer.</div>
@@ -157,7 +161,7 @@
   <div class="pl-drawer-body" id="drawer-body"></div>
 </aside>
 
-<script src="./desk.js?v=20260804i"></script>
+<script src="./desk.js?v=20260804j"></script>
 <script>document.getElementById("nav-root").innerHTML = Desk.navHtml("pipeline");</script>
-<script src="./pipeline.js?v=20260804i"></script>
+<script src="./pipeline.js?v=20260804j"></script>
 </body></html>

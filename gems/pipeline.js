@@ -1,11 +1,11 @@
-/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v4.
-   Static reference page — no data/*.json fetch. Architecture board layout:
+/* BUILD NOTE (2026-08-04): Gem Radar pipeline visualization — wireflow v5.
+   Architecture board layout:
    top = Discord chips + Conductor control bar
-   center = vertical specialist path, Queue bus left, Kill sink right
-   bottom = shared brain
-   Main handoff edges always on; Discord/store secondary edges only on hover
-   (anti-spaghetti). STAGES/CHANNELS/STORES/EDGES remain the single source of
-   truth for Wireflow + Sequence. */
+   center = vertical specialist path; left = Queue bus + handoff/fence lists;
+   right = Kill sink; bottom = shared brain.
+   No floating wire labels on the canvas (they covered cards). Handoff copy
+   lives in the left list. Secondary Discord/store edges only on hover.
+   STAGES/CHANNELS/STORES/EDGES remain the single source of truth. */
 (function () {
   "use strict";
   const D = window.Desk;
@@ -265,11 +265,7 @@
       <div class="wf-node-kicker"><span class="wf-pill kill">sink</span></div>
       <div class="wf-node-title">✕ KILLED</div>
       <div class="wf-node-blurb">no brief · no publish · no human ping</div>
-      <ul class="wf-kill-list">
-        <li><strong>Scout</strong> factory_fence / kill_list</li>
-        <li><strong>Class</strong> dead_flow / clone_count</li>
-        <li><strong>Research</strong> serial-rug / clone farm</li>
-      </ul>
+      <div class="wf-node-blurb" style="margin-top:.55rem;color:#f0b4b4">Fence reasons are listed on the left — click a row for the stage that fires it.</div>
     </button>`;
   }
 
@@ -301,6 +297,7 @@
       });
       pathRoot.innerHTML = html;
     }
+    // handoff/fence lists are rendered separately (left rail)
   }
 
   function renderRail(container, items, type) {
@@ -384,17 +381,41 @@
     });
   }
 
-  function addEdgeLabel(inner, x, y, text, open, kill) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "wf-edge-label" + (kill ? " kill" : "");
-    if (open) btn.setAttribute("data-open", open);
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
-    btn.textContent = text;
-    btn.title = text + " — click for details";
-    inner.appendChild(btn);
-    return btn;
+  // Left-rail lists replace floating wire labels (labels were covering cards).
+  const HANDOFF_ROWS = [
+    { open: "edge:0", from: "macro", to: "scout", title: "Macro → Scout", detail: "focus.yaml read every session" },
+    { open: "edge:1", from: "scout", to: "queue", title: "Scout → Queue", detail: "queue_lib.append (verified)" },
+    { open: "edge:2", from: "queue", to: "class", title: "Queue → Class", detail: "status: queued → classify" },
+    { open: "edge:3", from: "class", to: "whale", title: "Class → Whale", detail: "status: classified → holders" },
+    { open: "edge:4", from: "whale", to: "research", title: "Whale → Research", detail: "status: whale_reviewed → deep dive" },
+    { open: "edge:5", from: "research", to: "conductor", title: "Research → Conductor", detail: "brief + notify true/false" },
+    { open: "edge:6", from: "conductor", to: "radar", title: "Conductor → Radar", detail: "checks present + score ≥ 78" },
+    { open: "edge:7", from: "radar", to: "learn", title: "Radar → Learn", detail: "published → outcome tracking" },
+  ];
+
+  function renderHandoffLists() {
+    const hand = document.getElementById("wf-handoff-list");
+    const fence = document.getElementById("wf-fence-list");
+    if (hand) {
+      hand.innerHTML = HANDOFF_ROWS.map((r, i) => `
+        <button type="button" class="wf-list-row" data-open="${esc(r.open)}" data-from="${esc(r.from)}" data-to="${esc(r.to)}">
+          <span class="wf-list-idx">${i + 1}</span>
+          <span class="wf-list-body">
+            <span class="wf-list-title">${esc(r.title)}</span>
+            <span class="wf-list-detail">${esc(r.detail)}</span>
+          </span>
+        </button>`).join("");
+    }
+    if (fence) {
+      fence.innerHTML = KILL_EDGES.map((k) => `
+        <button type="button" class="wf-list-row kill" data-open="stage:${esc(k.from)}" data-from="${esc(k.from)}" data-to="KILLED">
+          <span class="wf-list-idx">✕</span>
+          <span class="wf-list-body">
+            <span class="wf-list-title">${esc(STAGE_BY_ID[k.from] ? STAGE_BY_ID[k.from].title : k.from)} → Killed</span>
+            <span class="wf-list-detail">${esc(k.label)}</span>
+          </span>
+        </button>`).join("");
+    }
   }
 
   function drawWireflow() {
@@ -402,6 +423,7 @@
     const svg = document.getElementById("wf-svg");
     if (!inner || !svg || inner.offsetParent === null) return;
     clearSvgExceptDefs(svg);
+    // v5: no floating edge labels on the canvas
     document.querySelectorAll("#view-wireflow .wf-edge-label").forEach((n) => n.remove());
     wfEdgePaths = [];
 
@@ -412,12 +434,12 @@
 
     // 1) Vertical specialist spine only (Conductor is a top gate, not a path detour).
     const spinePairs = [
-      { from: "macro", to: "scout", edgeIdx: 0, label: "focus.yaml" },
-      { from: "scout", to: "class", edgeIdx: 2, label: "via queue bus", viaQueue: true },
-      { from: "class", to: "whale", edgeIdx: 3, label: "classified" },
-      { from: "whale", to: "research", edgeIdx: 4, label: "whale_reviewed" },
-      { from: "research", to: "radar", edgeIdx: 5, label: "brief · Conductor gate" },
-      { from: "radar", to: "learn", edgeIdx: 7, label: "outcome track" },
+      { from: "macro", to: "scout" },
+      { from: "scout", to: "class" },
+      { from: "class", to: "whale" },
+      { from: "whale", to: "research" },
+      { from: "research", to: "radar" },
+      { from: "radar", to: "learn" },
     ];
 
     spinePairs.forEach((e) => {
@@ -425,39 +447,35 @@
       if (!ra || !rb) return;
       const p1 = { x: ra.cx, y: ra.y + ra.h };
       const p2 = { x: rb.cx, y: rb.y };
-      const d = `M${p1.x},${p1.y} L${p2.x},${p2.y}`;
-      const path = svgEl("path", { d: d, class: "wf-path main", "marker-end": "url(#wf-arrow)" });
+      const path = svgEl("path", {
+        d: `M${p1.x},${p1.y} L${p2.x},${p2.y}`,
+        class: "wf-path main",
+        "marker-end": "url(#wf-arrow)",
+      });
       svg.appendChild(path);
-      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-      // offset labels slightly right so they sit off the vertical stroke
-      const labelEl = addEdgeLabel(inner, mid.x + 56, mid.y, shortLabel(e.label, 22), "edge:" + e.edgeIdx, false);
-      wfEdgePaths.push({ el: path, labelEl: labelEl, from: e.from, to: e.to, kind: "main" });
+      wfEdgePaths.push({ el: path, from: e.from, to: e.to, kind: "main" });
     });
 
-    // 1b) Queue bus hops (left rail) — Scout writes, Class reads.
+    // 1b) Queue bus hops (left rail) — Scout writes, Class reads. No labels on wire.
     const rq = stageRect("queue");
     const rScout = stageRect("scout");
     const rClass = stageRect("class");
     if (rq && rScout) {
       const p1 = { x: rScout.x, y: rScout.cy };
-      const p2 = { x: rq.x + rq.w, y: rq.y + 36 };
+      const p2 = { x: rq.x + rq.w, y: rq.y + Math.min(48, rq.h * 0.35) };
       const path = svgEl("path", { d: orthoPath(p1, p2, 0), class: "wf-path main to-store-write", "marker-end": "url(#wf-arrow)" });
       svg.appendChild(path);
-      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-      const labelEl = addEdgeLabel(inner, mid.x, mid.y - 8, "append", "edge:1", false);
-      wfEdgePaths.push({ el: path, labelEl: labelEl, from: "scout", to: "queue", kind: "main" });
+      wfEdgePaths.push({ el: path, from: "scout", to: "queue", kind: "main" });
     }
     if (rq && rClass) {
-      const p1 = { x: rq.x + rq.w, y: rq.y + rq.h - 36 };
+      const p1 = { x: rq.x + rq.w, y: rq.y + Math.max(rq.h - 48, rq.h * 0.65) };
       const p2 = { x: rClass.x, y: rClass.cy };
       const path = svgEl("path", { d: orthoPath(p1, p2, 0), class: "wf-path main", "marker-end": "url(#wf-arrow)" });
       svg.appendChild(path);
-      const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-      const labelEl = addEdgeLabel(inner, mid.x, mid.y + 8, "read queued", "edge:2", false);
-      wfEdgePaths.push({ el: path, labelEl: labelEl, from: "queue", to: "class", kind: "main" });
+      wfEdgePaths.push({ el: path, from: "queue", to: "class", kind: "main" });
     }
 
-    // 1c) Conductor gate markers (no long detour through the top bar).
+    // 1c) Conductor gate accents (subtle, unlabeled).
     const rResearch = stageRect("research");
     const rCond = stageRect("conductor");
     const rRadar = stageRect("radar");
@@ -476,24 +494,21 @@
       wfEdgePaths.push({ el: path, from: "conductor", to: "radar", kind: "gate" });
     }
 
-    // 2) Kill branches — always visible, right rail.
+    // 2) Kill branches — unlabeled wires into right rail; copy lives in left fence list.
     const rk = killRect();
     if (rk) {
       KILL_EDGES.forEach((k, i) => {
         const ra = stageRect(k.from);
         if (!ra) return;
         const p1 = { x: ra.x + ra.w, y: ra.cy };
-        const p2 = { x: rk.x, y: rk.y + 28 + i * 34 };
-        const d = orthoPath(p1, p2, 0);
-        const path = svgEl("path", { d: d, class: "wf-path kill", "marker-end": "url(#wf-arrow)" });
+        const p2 = { x: rk.x, y: rk.y + 36 + i * 40 };
+        const path = svgEl("path", { d: orthoPath(p1, p2, 0), class: "wf-path kill", "marker-end": "url(#wf-arrow)" });
         svg.appendChild(path);
-        const mid = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
-        const labelEl = addEdgeLabel(inner, mid.x, mid.y, shortLabel(k.label, 22), "stage:" + k.from, true);
-        wfEdgePaths.push({ el: path, labelEl: labelEl, from: k.from, to: "KILLED", kind: "kill", kill: true });
+        wfEdgePaths.push({ el: path, from: k.from, to: "KILLED", kind: "kill", kill: true });
       });
     }
 
-    // 3) Secondary Discord/store wires — drawn but hidden until hover (anti-spaghetti).
+    // 3) Secondary Discord/store wires — hidden until hover.
     STAGES.forEach((s) => {
       const ra = stageRect(s.id);
       if (!ra) return;
@@ -539,14 +554,15 @@
       const related = e.from === id || e.to === id;
       e.el.classList.toggle("hi", related);
       e.el.classList.toggle("dim", !related);
-      // reveal only related secondary wires
-      if (e.kind === "secondary") {
-        e.el.classList.toggle("is-hidden", !related);
-      }
-      if (e.labelEl) e.labelEl.classList.toggle("dim", !related);
+      if (e.kind === "secondary") e.el.classList.toggle("is-hidden", !related);
     });
     document.querySelectorAll("[data-stage-id]").forEach((el) => {
       el.classList.toggle("wf-dim", el.getAttribute("data-stage-id") !== id);
+    });
+    document.querySelectorAll(".wf-list-row").forEach((el) => {
+      const related = el.getAttribute("data-from") === id || el.getAttribute("data-to") === id;
+      el.classList.toggle("hi", related);
+      el.classList.toggle("dim", !related);
     });
   }
 
@@ -555,9 +571,9 @@
     wfEdgePaths.forEach((e) => {
       e.el.classList.remove("hi", "dim");
       if (e.kind === "secondary") e.el.classList.add("is-hidden");
-      if (e.labelEl) e.labelEl.classList.remove("dim");
     });
     document.querySelectorAll("[data-stage-id]").forEach((el) => el.classList.remove("wf-dim"));
+    document.querySelectorAll(".wf-list-row").forEach((el) => el.classList.remove("hi", "dim"));
   }
 
   // ---------------------------------------------------------------- sequence view
@@ -1066,6 +1082,7 @@
 
   async function load() {
     renderStageNodes();
+    renderHandoffLists();
     renderRail(document.getElementById("wf-channel-nodes"), CHANNELS, "channel");
     renderRail(document.getElementById("wf-store-nodes"), STORES, "store");
     renderSeqHeads();
