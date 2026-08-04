@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T13:36:34Z",
+  "generated_at": "2026-08-04T13:57:15Z",
   "total_candidates": 52,
   "classified_candidates": 27,
   "unclassified_candidates": 25,
@@ -24,7 +24,9 @@
           "status": "briefed",
           "notify": false,
           "thesis": null,
-          "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A"
+          "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A",
+          "pair_created_at": 1785728027000,
+          "pair_age_minutes": 2063.4
         },
         {
           "symbol": "STOCKIMPALER",
@@ -40,7 +42,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "STOCKIMPALER RH stock-flip HOOD meme/brainrot; Class conf0.35 novelty none; Whale no SM flat float \u2014 Research skip",
-          "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01"
+          "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01",
+          "pair_created_at": 1785844246000,
+          "pair_age_minutes": 126.5
         },
         {
           "symbol": "FAFE",
@@ -56,7 +60,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "robinhood dex-boost; mc~301735; liq~33051; vol24~867615; age~794m",
-          "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62"
+          "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62",
+          "pair_created_at": 1785788616000,
+          "pair_age_minutes": 1053.6
         },
         {
           "symbol": "BRACHIO",
@@ -72,7 +78,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "Pons dino meme multi-CA farm; live tape, no product, novelty none.",
-          "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76"
+          "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76",
+          "pair_created_at": 1785828127000,
+          "pair_age_minutes": 395.0
         },
         {
           "symbol": "GBP",
@@ -88,7 +96,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "robinhood dex-boost; mc~19266; liq~11525; vol24~16889; age~26585m",
-          "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7"
+          "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7",
+          "pair_created_at": 1784236313000,
+          "pair_age_minutes": 26925.3
         },
         {
           "symbol": "PRETT",
@@ -104,7 +114,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "robinhood dex-profile; mc~16601; liq~10748; vol24~23625; age~251m",
-          "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90"
+          "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90",
+          "pair_created_at": 1785819108000,
+          "pair_age_minutes": 545.4
         },
         {
           "symbol": "\u8d22\u52a1\u4eba\u751f",
@@ -120,7 +132,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-profile; mc~157016; liq~36204; vol24~215426; age~21m",
-          "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b"
+          "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b",
+          "pair_created_at": 1785844553000,
+          "pair_age_minutes": 121.3
         },
         {
           "symbol": "RTX",
@@ -136,7 +150,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-search; mc~73823; liq~31659; vol24~78280; age~5798m; q=stock reward mining",
-          "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573"
+          "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573",
+          "pair_created_at": 1785485460000,
+          "pair_age_minutes": 6106.2
         },
         {
           "symbol": "\u4e00",
@@ -152,7 +168,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-profile; mc~59688; liq~22228; vol24~71993; age~11m",
-          "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f"
+          "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f",
+          "pair_created_at": 1785834979000,
+          "pair_age_minutes": 280.9
         },
         {
           "symbol": "TQB",
@@ -168,7 +186,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-profile; mc~40781; liq~8304; vol24~4926",
-          "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94"
+          "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94",
+          "pair_created_at": null,
+          "pair_age_minutes": null
         },
         {
           "symbol": "WHAYLOR",
@@ -184,7 +204,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "Flap Saylor-pun celebrity farm; multi-CA; pad shell only.",
-          "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6"
+          "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6",
+          "pair_created_at": 1785829347000,
+          "pair_age_minutes": 374.7
         },
         {
           "symbol": "DREAM",
@@ -200,7 +222,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "robinhood dex-boost; mc~19445; liq~11801; vol24~26255; age~2869m",
-          "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3"
+          "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3",
+          "pair_created_at": 1785673664000,
+          "pair_age_minutes": 2969.5
         },
         {
           "symbol": "TURBO",
@@ -216,7 +240,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "Pons TURBO multi-CA boost farm; shell site; serial_farm deployer.",
-          "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924"
+          "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924",
+          "pair_created_at": 1785269977000,
+          "pair_age_minutes": 9697.6
         },
         {
           "symbol": "Bitty",
@@ -232,7 +258,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
-          "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+          "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79",
+          "pair_created_at": 1785848303000,
+          "pair_age_minutes": 58.9
         },
         {
           "symbol": "AOB",
@@ -248,7 +276,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "BSC AOB SPYB venue-ticker multi-CA proxy farm; no site; LP unlocked.",
-          "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49"
+          "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49",
+          "pair_created_at": 1785840151000,
+          "pair_age_minutes": 194.7
         },
         {
           "symbol": "\u8774\u8776DAO",
@@ -264,7 +294,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-boost; mc~578677; liq~73241; vol24~23005; age~175372m",
-          "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c"
+          "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c",
+          "pair_created_at": 1775307775000,
+          "pair_age_minutes": 175734.3
         },
         {
           "symbol": "MEMEFI",
@@ -280,7 +312,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
-          "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
+          "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410",
+          "pair_created_at": 1785753626000,
+          "pair_age_minutes": 1636.8
         },
         {
           "symbol": "MEATSPIN",
@@ -296,7 +330,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "robinhood dex-profile; mc~22767; liq~14086; vol24~123949; age~594m",
-          "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd"
+          "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd",
+          "pair_created_at": 1785812991000,
+          "pair_age_minutes": 647.4
         },
         {
           "symbol": "BRAD",
@@ -312,7 +348,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "bsc dex-boost; mc~19644; liq~13532; vol24~22764; age~75546m",
-          "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8"
+          "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8",
+          "pair_created_at": 1781297387000,
+          "pair_age_minutes": 75907.4
         }
       ],
       "subcategories": [
@@ -334,7 +372,9 @@
               "status": "briefed",
               "notify": false,
               "thesis": null,
-              "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A"
+              "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A",
+              "pair_created_at": 1785728027000,
+              "pair_age_minutes": 2063.4
             },
             {
               "symbol": "STOCKIMPALER",
@@ -350,7 +390,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "STOCKIMPALER RH stock-flip HOOD meme/brainrot; Class conf0.35 novelty none; Whale no SM flat float \u2014 Research skip",
-              "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01"
+              "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01",
+              "pair_created_at": 1785844246000,
+              "pair_age_minutes": 126.5
             },
             {
               "symbol": "FAFE",
@@ -366,7 +408,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "robinhood dex-boost; mc~301735; liq~33051; vol24~867615; age~794m",
-              "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62"
+              "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62",
+              "pair_created_at": 1785788616000,
+              "pair_age_minutes": 1053.6
             },
             {
               "symbol": "GBP",
@@ -382,7 +426,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "robinhood dex-boost; mc~19266; liq~11525; vol24~16889; age~26585m",
-              "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7"
+              "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7",
+              "pair_created_at": 1784236313000,
+              "pair_age_minutes": 26925.3
             },
             {
               "symbol": "PRETT",
@@ -398,7 +444,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "robinhood dex-profile; mc~16601; liq~10748; vol24~23625; age~251m",
-              "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90"
+              "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90",
+              "pair_created_at": 1785819108000,
+              "pair_age_minutes": 545.4
             },
             {
               "symbol": "TQB",
@@ -414,7 +462,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-profile; mc~40781; liq~8304; vol24~4926",
-              "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94"
+              "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94",
+              "pair_created_at": null,
+              "pair_age_minutes": null
             },
             {
               "symbol": "DREAM",
@@ -430,7 +480,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "robinhood dex-boost; mc~19445; liq~11801; vol24~26255; age~2869m",
-              "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3"
+              "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3",
+              "pair_created_at": 1785673664000,
+              "pair_age_minutes": 2969.5
             },
             {
               "symbol": "Bitty",
@@ -446,7 +498,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
-              "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+              "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79",
+              "pair_created_at": 1785848303000,
+              "pair_age_minutes": 58.9
             },
             {
               "symbol": "MEATSPIN",
@@ -462,7 +516,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "robinhood dex-profile; mc~22767; liq~14086; vol24~123949; age~594m",
-              "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd"
+              "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd",
+              "pair_created_at": 1785812991000,
+              "pair_age_minutes": 647.4
             },
             {
               "symbol": "BRAD",
@@ -478,7 +534,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-boost; mc~19644; liq~13532; vol24~22764; age~75546m",
-              "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8"
+              "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8",
+              "pair_created_at": 1781297387000,
+              "pair_age_minutes": 75907.4
             }
           ]
         },
@@ -500,7 +558,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-profile; mc~157016; liq~36204; vol24~215426; age~21m",
-              "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b"
+              "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b",
+              "pair_created_at": 1785844553000,
+              "pair_age_minutes": 121.3
             },
             {
               "symbol": "RTX",
@@ -516,7 +576,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-search; mc~73823; liq~31659; vol24~78280; age~5798m; q=stock reward mining",
-              "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573"
+              "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573",
+              "pair_created_at": 1785485460000,
+              "pair_age_minutes": 6106.2
             },
             {
               "symbol": "\u4e00",
@@ -532,7 +594,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-profile; mc~59688; liq~22228; vol24~71993; age~11m",
-              "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f"
+              "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f",
+              "pair_created_at": 1785834979000,
+              "pair_age_minutes": 280.9
             },
             {
               "symbol": "AOB",
@@ -548,7 +612,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "BSC AOB SPYB venue-ticker multi-CA proxy farm; no site; LP unlocked.",
-              "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49"
+              "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49",
+              "pair_created_at": 1785840151000,
+              "pair_age_minutes": 194.7
             },
             {
               "symbol": "MEMEFI",
@@ -564,7 +630,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
-              "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
+              "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410",
+              "pair_created_at": 1785753626000,
+              "pair_age_minutes": 1636.8
             }
           ]
         },
@@ -586,7 +654,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "Pons TURBO multi-CA boost farm; shell site; serial_farm deployer.",
-              "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924"
+              "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924",
+              "pair_created_at": 1785269977000,
+              "pair_age_minutes": 9697.6
             },
             {
               "symbol": "\u8774\u8776DAO",
@@ -602,7 +672,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "bsc dex-boost; mc~578677; liq~73241; vol24~23005; age~175372m",
-              "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c"
+              "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c",
+              "pair_created_at": 1775307775000,
+              "pair_age_minutes": 175734.3
             }
           ]
         },
@@ -624,7 +696,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "Pons dino meme multi-CA farm; live tape, no product, novelty none.",
-              "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76"
+              "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76",
+              "pair_created_at": 1785828127000,
+              "pair_age_minutes": 395.0
             }
           ]
         },
@@ -646,7 +720,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "Flap Saylor-pun celebrity farm; multi-CA; pad shell only.",
-              "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6"
+              "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6",
+              "pair_created_at": 1785829347000,
+              "pair_age_minutes": 374.7
             }
           ]
         }
@@ -672,7 +748,9 @@
           "status": "briefed",
           "notify": true,
           "thesis": "SRM peer to GLD: prize-draw staking with real tokenized stocks (AMD flowing into pool today); USDG-quoted; buy-biased h24; organized team (SafeProxy+7702)",
-          "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5"
+          "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+          "pair_created_at": 1785445360000,
+          "pair_age_minutes": 6774.5
         },
         {
           "symbol": "HDX",
@@ -688,7 +766,9 @@
           "status": "briefed",
           "notify": false,
           "thesis": "HDX HoodX RH: live SRM peer to GLD \u2014 buybackAndDistribute + distributeAll stock proven; liq~$5k holders25 no SM social blocked \u2192 70 watch notify NO",
-          "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578"
+          "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578",
+          "pair_created_at": 1785827774000,
+          "pair_age_minutes": 401.0
         }
       ],
       "subcategories": [
@@ -710,7 +790,9 @@
               "status": "briefed",
               "notify": true,
               "thesis": "SRM peer to GLD: prize-draw staking with real tokenized stocks (AMD flowing into pool today); USDG-quoted; buy-biased h24; organized team (SafeProxy+7702)",
-              "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5"
+              "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+              "pair_created_at": 1785445360000,
+              "pair_age_minutes": 6774.5
             },
             {
               "symbol": "HDX",
@@ -726,7 +808,9 @@
               "status": "briefed",
               "notify": false,
               "thesis": "HDX HoodX RH: live SRM peer to GLD \u2014 buybackAndDistribute + distributeAll stock proven; liq~$5k holders25 no SM social blocked \u2192 70 watch notify NO",
-              "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578"
+              "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578",
+              "pair_created_at": 1785827774000,
+              "pair_age_minutes": 401.0
             }
           ]
         }
@@ -752,7 +836,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "SNAG empty-surface protocol name; deployer~20% + proxy~50%; no SM \u2014 deprioritized",
-          "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7"
+          "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+          "pair_created_at": null,
+          "pair_age_minutes": null
         },
         {
           "symbol": "USDE",
@@ -768,7 +854,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "tracked-wallet buy (1 wallet(s)): gld-silent-bag",
-          "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34"
+          "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+          "pair_created_at": null,
+          "pair_age_minutes": null
         }
       ],
       "subcategories": [
@@ -790,7 +878,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "SNAG empty-surface protocol name; deployer~20% + proxy~50%; no SM \u2014 deprioritized",
-              "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7"
+              "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+              "pair_created_at": null,
+              "pair_age_minutes": null
             },
             {
               "symbol": "USDE",
@@ -806,7 +896,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "tracked-wallet buy (1 wallet(s)): gld-silent-bag",
-              "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34"
+              "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+              "pair_created_at": null,
+              "pair_age_minutes": null
             }
           ]
         }
@@ -832,7 +924,9 @@
           "status": "briefed",
           "notify": false,
           "thesis": "iMessage/WhatsApp crypto remittance agent on Base; real users, real notional, novel zero-install UX; 76/100 watch",
-          "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c"
+          "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+          "pair_created_at": 1779815553000,
+          "pair_age_minutes": 100604.6
         }
       ],
       "subcategories": [
@@ -854,7 +948,9 @@
               "status": "briefed",
               "notify": false,
               "thesis": "iMessage/WhatsApp crypto remittance agent on Base; real users, real notional, novel zero-install UX; 76/100 watch",
-              "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c"
+              "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+              "pair_created_at": 1779815553000,
+              "pair_age_minutes": 100604.6
             }
           ]
         }
@@ -880,7 +976,9 @@
           "status": "deprioritized",
           "notify": false,
           "thesis": "NODE AI thin fresh; site copy present; serial_launcher + no SM \u2014 deprioritized pending proof",
-          "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee"
+          "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee",
+          "pair_created_at": 1785808342000,
+          "pair_age_minutes": 724.8
         }
       ],
       "subcategories": [
@@ -902,7 +1000,9 @@
               "status": "deprioritized",
               "notify": false,
               "thesis": "NODE AI thin fresh; site copy present; serial_launcher + no SM \u2014 deprioritized pending proof",
-              "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee"
+              "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee",
+              "pair_created_at": 1785808342000,
+              "pair_age_minutes": 724.8
             }
           ]
         }
@@ -928,7 +1028,9 @@
           "status": "briefed",
           "notify": false,
           "thesis": "SportsBrackets RH migration: real media site + stake/LP structure; NO SM; CA unbound on site; watch only.",
-          "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342"
+          "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342",
+          "pair_created_at": 1785824212000,
+          "pair_age_minutes": 460.3
         }
       ],
       "subcategories": [
@@ -950,7 +1052,9 @@
               "status": "briefed",
               "notify": false,
               "thesis": "SportsBrackets RH migration: real media site + stake/LP structure; NO SM; CA unbound on site; watch only.",
-              "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342"
+              "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342",
+              "pair_created_at": 1785824212000,
+              "pair_age_minutes": 460.3
             }
           ]
         }
@@ -976,7 +1080,9 @@
           "status": "briefed",
           "notify": false,
           "thesis": "GRID Virtuals RH: real site+CA bind + liquid book; app/game still RH testnet; buyback/stake unproven; serial deployer; top bag concentrated \u2192 64 watch notify NO",
-          "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27"
+          "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27",
+          "pair_created_at": 1784174770000,
+          "pair_age_minutes": 27951.1
         }
       ],
       "subcategories": [
@@ -998,7 +1104,9 @@
               "status": "briefed",
               "notify": false,
               "thesis": "GRID Virtuals RH: real site+CA bind + liquid book; app/game still RH testnet; buyback/stake unproven; serial deployer; top bag concentrated \u2192 64 watch notify NO",
-              "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27"
+              "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27",
+              "pair_created_at": 1784174770000,
+              "pair_age_minutes": 27951.1
             }
           ]
         }
@@ -1020,7 +1128,9 @@
       "status": "briefed",
       "notify": true,
       "thesis": "SRM peer to GLD: prize-draw staking with real tokenized stocks (AMD flowing into pool today); USDG-quoted; buy-biased h24; organized team (SafeProxy+7702)",
-      "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5"
+      "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "pair_created_at": 1785445360000,
+      "pair_age_minutes": 6774.5
     },
     {
       "symbol": "BASEMATE",
@@ -1036,7 +1146,9 @@
       "status": "briefed",
       "notify": false,
       "thesis": "iMessage/WhatsApp crypto remittance agent on Base; real users, real notional, novel zero-install UX; 76/100 watch",
-      "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c"
+      "dex_url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+      "pair_created_at": 1779815553000,
+      "pair_age_minutes": 100604.6
     },
     {
       "symbol": "BOOTS",
@@ -1052,7 +1164,9 @@
       "status": "briefed",
       "notify": false,
       "thesis": null,
-      "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A"
+      "dex_url": "https://dexscreener.com/robinhood/0xE814cC22D86537fF3eDEce645955e40a0717634A",
+      "pair_created_at": 1785728027000,
+      "pair_age_minutes": 2063.4
     },
     {
       "symbol": "HDX",
@@ -1068,7 +1182,9 @@
       "status": "briefed",
       "notify": false,
       "thesis": "HDX HoodX RH: live SRM peer to GLD \u2014 buybackAndDistribute + distributeAll stock proven; liq~$5k holders25 no SM social blocked \u2192 70 watch notify NO",
-      "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578"
+      "dex_url": "https://dexscreener.com/robinhood/0x183a8d787566cdb574a09122d3d3013c7bed92d4f4f59acf005920a98513a578",
+      "pair_created_at": 1785827774000,
+      "pair_age_minutes": 401.0
     },
     {
       "symbol": "GRID",
@@ -1084,7 +1200,9 @@
       "status": "briefed",
       "notify": false,
       "thesis": "GRID Virtuals RH: real site+CA bind + liquid book; app/game still RH testnet; buyback/stake unproven; serial deployer; top bag concentrated \u2192 64 watch notify NO",
-      "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27"
+      "dex_url": "https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27",
+      "pair_created_at": 1784174770000,
+      "pair_age_minutes": 27951.1
     },
     {
       "symbol": "BRACKETS",
@@ -1100,7 +1218,9 @@
       "status": "briefed",
       "notify": false,
       "thesis": "SportsBrackets RH migration: real media site + stake/LP structure; NO SM; CA unbound on site; watch only.",
-      "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342"
+      "dex_url": "https://dexscreener.com/robinhood/0x5c5c7264aee5be47fc2ec4ac2b5db475e8ae5342",
+      "pair_created_at": 1785824212000,
+      "pair_age_minutes": 460.3
     },
     {
       "symbol": "NODE",
@@ -1116,7 +1236,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "NODE AI thin fresh; site copy present; serial_launcher + no SM \u2014 deprioritized pending proof",
-      "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee"
+      "dex_url": "https://dexscreener.com/robinhood/0x247a8dc5c262a9d3eaf74155ad8976b29e7b49ee",
+      "pair_created_at": 1785808342000,
+      "pair_age_minutes": 724.8
     },
     {
       "symbol": "SNAG",
@@ -1132,7 +1254,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "SNAG empty-surface protocol name; deployer~20% + proxy~50%; no SM \u2014 deprioritized",
-      "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7"
+      "dex_url": "https://dexscreener.com/robinhood/0xbe8274CEbF024CD3aA8537da80fBa358f1c76DD7",
+      "pair_created_at": null,
+      "pair_age_minutes": null
     },
     {
       "symbol": "STOCKIMPALER",
@@ -1148,7 +1272,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "STOCKIMPALER RH stock-flip HOOD meme/brainrot; Class conf0.35 novelty none; Whale no SM flat float \u2014 Research skip",
-      "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01"
+      "dex_url": "https://dexscreener.com/robinhood/0x004d5a5a16e3249c9076e20a143deef9c4d2dc01",
+      "pair_created_at": 1785844246000,
+      "pair_age_minutes": 126.5
     },
     {
       "symbol": "FAFE",
@@ -1164,7 +1290,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "robinhood dex-boost; mc~301735; liq~33051; vol24~867615; age~794m",
-      "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62"
+      "dex_url": "https://dexscreener.com/robinhood/0x0183c470cf636799eb8ee5c6c86217d51db01d62",
+      "pair_created_at": 1785788616000,
+      "pair_age_minutes": 1053.6
     },
     {
       "symbol": "BRACHIO",
@@ -1180,7 +1308,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "Pons dino meme multi-CA farm; live tape, no product, novelty none.",
-      "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76"
+      "dex_url": "https://dexscreener.com/robinhood/0x6ba9984003a95eb5d6ba3988fcb234141585cf76",
+      "pair_created_at": 1785828127000,
+      "pair_age_minutes": 395.0
     },
     {
       "symbol": "GBP",
@@ -1196,7 +1326,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "robinhood dex-boost; mc~19266; liq~11525; vol24~16889; age~26585m",
-      "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7"
+      "dex_url": "https://dexscreener.com/robinhood/0xd7d0ad5bdffc0aae6b6da9c4de486ae78b24a6b7",
+      "pair_created_at": 1784236313000,
+      "pair_age_minutes": 26925.3
     },
     {
       "symbol": "PRETT",
@@ -1212,7 +1344,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "robinhood dex-profile; mc~16601; liq~10748; vol24~23625; age~251m",
-      "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90"
+      "dex_url": "https://dexscreener.com/robinhood/0x7c321c821d44ac4dedefb1e97e64df2b5eee8c90",
+      "pair_created_at": 1785819108000,
+      "pair_age_minutes": 545.4
     },
     {
       "symbol": "\u8d22\u52a1\u4eba\u751f",
@@ -1228,7 +1362,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-profile; mc~157016; liq~36204; vol24~215426; age~21m",
-      "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b"
+      "dex_url": "https://dexscreener.com/bsc/0x97c5058dc0266d545c38a94aa5ce9d470d620e8b",
+      "pair_created_at": 1785844553000,
+      "pair_age_minutes": 121.3
     },
     {
       "symbol": "RTX",
@@ -1244,7 +1380,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-search; mc~73823; liq~31659; vol24~78280; age~5798m; q=stock reward mining",
-      "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573"
+      "dex_url": "https://dexscreener.com/bsc/0x13f4b5d9f7902a25d339f7557b972b8ee86f5573",
+      "pair_created_at": 1785485460000,
+      "pair_age_minutes": 6106.2
     },
     {
       "symbol": "\u4e00",
@@ -1260,7 +1398,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-profile; mc~59688; liq~22228; vol24~71993; age~11m",
-      "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f"
+      "dex_url": "https://dexscreener.com/bsc/0x3d15287a20ae2e7c7b49b4feefacbe8307dc640f",
+      "pair_created_at": 1785834979000,
+      "pair_age_minutes": 280.9
     },
     {
       "symbol": "TQB",
@@ -1276,7 +1416,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-profile; mc~40781; liq~8304; vol24~4926",
-      "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94"
+      "dex_url": "https://dexscreener.com/bsc/0xb14af06c7366f65dc066984cd7b481e8c82bdc94",
+      "pair_created_at": null,
+      "pair_age_minutes": null
     },
     {
       "symbol": "WHAYLOR",
@@ -1292,7 +1434,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "Flap Saylor-pun celebrity farm; multi-CA; pad shell only.",
-      "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6"
+      "dex_url": "https://dexscreener.com/bsc/0x34b97da4feeb55924b8278e5b37657c6682475c6",
+      "pair_created_at": 1785829347000,
+      "pair_age_minutes": 374.7
     },
     {
       "symbol": "DREAM",
@@ -1308,7 +1452,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "robinhood dex-boost; mc~19445; liq~11801; vol24~26255; age~2869m",
-      "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3"
+      "dex_url": "https://dexscreener.com/robinhood/0xde4733170b24db76114f4068da5068eb6bb47ba3",
+      "pair_created_at": 1785673664000,
+      "pair_age_minutes": 2969.5
     },
     {
       "symbol": "TURBO",
@@ -1324,7 +1470,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "Pons TURBO multi-CA boost farm; shell site; serial_farm deployer.",
-      "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924"
+      "dex_url": "https://dexscreener.com/robinhood/0xc75e2c1f6e1cfe329c3807757123df2cd7dba924",
+      "pair_created_at": 1785269977000,
+      "pair_age_minutes": 9697.6
     },
     {
       "symbol": "Bitty",
@@ -1340,7 +1488,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "Bitty BSC low meme Class brainrot Whale no SM Research skip",
-      "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79"
+      "dex_url": "https://dexscreener.com/bsc/0x40119c818929d4fe18ba936dd58a3ee3e5afcf79",
+      "pair_created_at": 1785848303000,
+      "pair_age_minutes": 58.9
     },
     {
       "symbol": "AOB",
@@ -1356,7 +1506,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "BSC AOB SPYB venue-ticker multi-CA proxy farm; no site; LP unlocked.",
-      "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49"
+      "dex_url": "https://dexscreener.com/bsc/0xb2ad73ef403ad6984e1117ff8a2a7b9f0e264b49",
+      "pair_created_at": 1785840151000,
+      "pair_age_minutes": 194.7
     },
     {
       "symbol": "USDE",
@@ -1372,7 +1524,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "tracked-wallet buy (1 wallet(s)): gld-silent-bag",
-      "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34"
+      "dex_url": "https://dexscreener.com/robinhood/0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+      "pair_created_at": null,
+      "pair_age_minutes": null
     },
     {
       "symbol": "\u8774\u8776DAO",
@@ -1388,7 +1542,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-boost; mc~578677; liq~73241; vol24~23005; age~175372m",
-      "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c"
+      "dex_url": "https://dexscreener.com/bsc/0x77ba00e3e5b645e9647fc3f04d61c697c899ce0c",
+      "pair_created_at": 1775307775000,
+      "pair_age_minutes": 175734.3
     },
     {
       "symbol": "MEMEFI",
@@ -1404,7 +1560,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-profile; mc~190056; liq~48149; vol24~1851057; age~1604m",
-      "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410"
+      "dex_url": "https://dexscreener.com/bsc/0x0679aefd251a503b2787b538b85514a613203410",
+      "pair_created_at": 1785753626000,
+      "pair_age_minutes": 1636.8
     },
     {
       "symbol": "MEATSPIN",
@@ -1420,7 +1578,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "robinhood dex-profile; mc~22767; liq~14086; vol24~123949; age~594m",
-      "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd"
+      "dex_url": "https://dexscreener.com/robinhood/0xebc09faf28ad758021272bf42188c34718d238fd",
+      "pair_created_at": 1785812991000,
+      "pair_age_minutes": 647.4
     },
     {
       "symbol": "BRAD",
@@ -1436,7 +1596,9 @@
       "status": "deprioritized",
       "notify": false,
       "thesis": "bsc dex-boost; mc~19644; liq~13532; vol24~22764; age~75546m",
-      "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8"
+      "dex_url": "https://dexscreener.com/bsc/0x13a9dafa6c65c88f53ebd561e587dea3aa09c9f8",
+      "pair_created_at": 1781297387000,
+      "pair_age_minutes": 75907.4
     }
   ]
 }

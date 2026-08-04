@@ -1,7 +1,7 @@
 (function () {
   const state = {
     data: null,
-    sortBy: "count",
+    sortBy: "score",
     sortDir: "desc",
     chain: "all",
     openCats: new Set(),
@@ -30,6 +30,29 @@
   function num(v) {
     const n = Number(v);
     return Number.isFinite(n) ? n : null;
+  }
+
+  function ageMinutes(t) {
+    if (!t) return null;
+    if (t.pair_age_minutes != null && Number.isFinite(Number(t.pair_age_minutes))) {
+      return Number(t.pair_age_minutes);
+    }
+    const created = t.pair_created_at || t.pairCreatedAt || t.created_at_ms;
+    if (created == null) return null;
+    const ms = Number(created);
+    if (!Number.isFinite(ms)) return null;
+    // Dex uses ms epoch; allow seconds if small
+    const createdMs = ms < 1e12 ? ms * 1000 : ms;
+    return Math.max(0, (Date.now() - createdMs) / 60000);
+  }
+
+  function fmtAge(t) {
+    const mins = ageMinutes(t);
+    if (mins == null || !Number.isFinite(mins)) return "—";
+    const totalMin = Math.max(0, Math.floor(mins));
+    const days = Math.floor(totalMin / (60 * 24));
+    const hours = Math.floor((totalMin % (60 * 24)) / 60);
+    return days + "days, " + hours + "hours";
   }
 
   function dexUrl(t) {
@@ -76,7 +99,9 @@
   function maxOf(tokens, field) {
     let best = null;
     for (const t of tokens) {
-      const v = num(t[field]);
+      let v;
+      if (field === "age") v = ageMinutes(t);
+      else v = num(t[field]);
       if (v == null) continue;
       if (best == null || v > best) best = v;
     }
@@ -96,7 +121,7 @@
   }
 
   function sortTokens(tokens) {
-    const by = state.sortBy === "count" ? "score" : state.sortBy;
+    const by = state.sortBy;
     const dir = state.sortDir;
     return tokens.slice().sort((x, y) => {
       let av;
@@ -113,6 +138,9 @@
       } else if (by === "chain") {
         av = (x.chain || "").toLowerCase();
         bv = (y.chain || "").toLowerCase();
+      } else if (by === "age") {
+        av = ageMinutes(x);
+        bv = ageMinutes(y);
       } else {
         av = num(x[by]);
         bv = num(y[by]);
@@ -123,52 +151,22 @@
     });
   }
 
+  // Subs can still be ordered by ticker sort metric for convenience; categories stay fixed.
   function sortSubs(subs) {
     const by = state.sortBy;
     const dir = state.sortDir;
     return subs.slice().sort((a, b) => {
+      const at = filterTokens(a.tokens || []);
+      const bt = filterTokens(b.tokens || []);
       let av;
       let bv;
-      if (by === "count") {
-        av = filterTokens(a.tokens).length || a.count || 0;
-        bv = filterTokens(b.tokens).length || b.count || 0;
-      } else if (by === "symbol" || by === "name") {
+      if (by === "symbol" || by === "name") {
         av = (a.subcategory || "").toLowerCase();
         bv = (b.subcategory || "").toLowerCase();
       } else if (by === "score") {
-        av = avgScore(filterTokens(a.tokens));
-        bv = avgScore(filterTokens(b.tokens));
-      } else if (by === "mc" || by === "liq") {
-        av = maxOf(filterTokens(a.tokens), by);
-        bv = maxOf(filterTokens(b.tokens), by);
-      } else {
-        av = filterTokens(a.tokens).length;
-        bv = filterTokens(b.tokens).length;
-      }
-      const c = cmpValues(av, bv, dir);
-      if (c) return c;
-      return String(a.subcategory || "").localeCompare(String(b.subcategory || ""));
-    });
-  }
-
-  function sortCats(slices) {
-    const by = state.sortBy;
-    const dir = state.sortDir;
-    return slices.slice().sort((a, b) => {
-      const at = allCatTokens(a);
-      const bt = allCatTokens(b);
-      let av;
-      let bv;
-      if (by === "count") {
-        av = at.length || a.count || 0;
-        bv = bt.length || b.count || 0;
-      } else if (by === "symbol" || by === "name") {
-        av = (a.category || "").toLowerCase();
-        bv = (b.category || "").toLowerCase();
-      } else if (by === "score") {
         av = avgScore(at);
         bv = avgScore(bt);
-      } else if (by === "mc" || by === "liq") {
+      } else if (by === "mc" || by === "liq" || by === "age") {
         av = maxOf(at, by);
         bv = maxOf(bt, by);
       } else {
@@ -177,7 +175,7 @@
       }
       const c = cmpValues(av, bv, dir);
       if (c) return c;
-      return String(a.category || "").localeCompare(String(b.category || ""));
+      return String(a.subcategory || "").localeCompare(String(b.subcategory || ""));
     });
   }
 
@@ -192,7 +190,6 @@
         out.push(Object.assign({ category: slice.category, subcategory: sc.subcategory }, t));
       }
     }
-    // orphan category tokens without sub go into synthetic bucket only if no subs hold them
     if (!(slice.subcategories || []).length) {
       for (const t of filterTokens(slice.tokens || [])) {
         const k = tokenKey(t);
@@ -205,6 +202,7 @@
   }
 
   function normalizeSlices(data) {
+    // Preserve payload order — do not sort categories.
     return (data.slices || []).map((s) => {
       const subs = (s.subcategories || []).map((sc) => ({
         subcategory: sc.subcategory || "unclassified",
@@ -244,7 +242,6 @@
         out.push(t);
       }
     }
-    // fallback flat tokens array if slices empty of tokens
     if (!out.length) {
       for (const t of data.tokens || []) {
         if (!chainOk(t)) continue;
@@ -299,7 +296,12 @@
   }
 
   function tokenRow(t) {
-    const meta = [t.chain, t.score != null ? "score " + t.score : null, t.mc != null ? "mc " + money(t.mc) : null]
+    const meta = [
+      t.chain,
+      fmtAge(t),
+      t.score != null ? "score " + t.score : null,
+      t.mc != null ? "mc " + money(t.mc) : null,
+    ]
       .filter(Boolean)
       .join(" · ");
     return (
@@ -313,6 +315,9 @@
       esc(meta) +
       "</div>" +
       '<div class="tok-nums">' +
+      '<span title="age">' +
+      esc(fmtAge(t)) +
+      "</span>" +
       '<span title="score">' +
       (t.score != null ? esc(String(t.score)) : "—") +
       "</span>" +
@@ -328,7 +333,7 @@
   function renderExplorer(data) {
     const root = document.getElementById("explorer");
     if (!root) return;
-    const slices = sortCats(normalizeSlices(data));
+    const slices = normalizeSlices(data); // fixed category order
     if (!slices.length) {
       root.innerHTML = '<div class="empty">No classified candidates yet.</div>';
       return;
@@ -340,14 +345,14 @@
     root.innerHTML = slices
       .map((s, i) => {
         const color = palette[i % palette.length];
-        const catOpen = state.openCats.has(s.category) ? " open" : "";
+        const catOpen = state.openCats.has(s.category);
         const catTokens = allCatTokens(s);
         if (!catTokens.length && state.chain !== "all") return "";
         const subs = sortSubs(s.subcategories || []).filter((sc) => filterTokens(sc.tokens || []).length);
         const subsHtml = subs
           .map((sc) => {
             const key = subKey(s.category, sc.subcategory);
-            const open = state.openSubs.has(key) ? " open" : "";
+            const open = state.openSubs.has(key);
             const toks = sortTokens(filterTokens(sc.tokens || []));
             return (
               '<details class="sub-acc" data-sub-key="' +
@@ -424,7 +429,7 @@
     const rows = sortTokens(flat);
     if (count) count.textContent = rows.length + " tickers";
     if (!rows.length) {
-      body.innerHTML = '<tr><td colspan="7" class="empty">No tickers for this filter</td></tr>';
+      body.innerHTML = '<tr><td colspan="8" class="empty">No tickers for this filter</td></tr>';
       return;
     }
     body.innerHTML = rows
@@ -446,6 +451,9 @@
           '<td style="text-transform:capitalize">' +
           cat +
           "</td>" +
+          '<td class="mono">' +
+          esc(fmtAge(t)) +
+          "</td>" +
           "<td>" +
           (t.score != null ? t.score : "—") +
           "</td>" +
@@ -464,7 +472,7 @@
   function markSortHeaders() {
     document.querySelectorAll("th.th-sort").forEach((th) => {
       const key = th.getAttribute("data-sort");
-      th.classList.toggle("active", key === state.sortBy || (state.sortBy === "count" && key === "score"));
+      th.classList.toggle("active", key === state.sortBy);
       th.dataset.dir = state.sortDir;
     });
   }
@@ -481,7 +489,7 @@
     if (banner) {
       banner.textContent =
         flat.length +
-        " tickers · expand subs only · sort " +
+        " tickers · categories fixed · sort " +
         state.sortBy +
         " " +
         state.sortDir +
@@ -506,6 +514,11 @@
       by.value = state.sortBy;
       by.addEventListener("change", () => {
         state.sortBy = by.value;
+        // age default: newest first feels right as desc? actually age desc = oldest first. Prefer youngest first = asc minutes.
+        if (state.sortBy === "age" && dir) {
+          state.sortDir = "asc";
+          dir.value = "asc";
+        }
         rerender();
       });
     }
@@ -548,11 +561,12 @@
         if (state.sortBy === key) state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
         else {
           state.sortBy = key;
-          state.sortDir = key === "symbol" || key === "name" || key === "category" || key === "chain" ? "asc" : "desc";
+          state.sortDir =
+            key === "symbol" || key === "name" || key === "category" || key === "chain" || key === "age"
+              ? "asc"
+              : "desc";
         }
-        if (by) by.value = state.sortBy === "category" || state.sortBy === "chain" ? "score" : state.sortBy in { count:1, score:1, mc:1, liq:1, symbol:1, name:1 } ? state.sortBy : "score";
-        // keep select in sync for known keys
-        if (by && ["count", "score", "mc", "liq", "symbol", "name"].includes(state.sortBy)) by.value = state.sortBy;
+        if (by && ["score", "mc", "liq", "age", "symbol", "name"].includes(state.sortBy)) by.value = state.sortBy;
         if (dir) dir.value = state.sortDir;
         rerender();
       });
@@ -573,8 +587,7 @@
       if (el) el.textContent = state.data.generated_at || "—";
     }
 
-    // default: open largest category only; subs collapsed
-    const slices = normalizeSlices(state.data).slice().sort((a, b) => allCatTokens(b).length - allCatTokens(a).length);
+    const slices = normalizeSlices(state.data);
     if (slices[0]) state.openCats.add(slices[0].category);
 
     fillChainFilter(flattenAll(state.data));
