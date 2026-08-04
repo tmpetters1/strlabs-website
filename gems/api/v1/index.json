@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T12:27:47.049256+00:00",
+  "published_at": "2026-08-04T12:29:24.210799+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -256,6 +256,24 @@
       "path": "/api/v1/token/UNIHOOD"
     },
     {
+      "symbol": "DREAM",
+      "chain": "robinhood",
+      "token": "0x6E69f04e1Db0beC227d08352cc2DE1F48F22d1E3",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/DREAM"
+    },
+    {
+      "symbol": "\u8d22\u52a1\u4eba\u751f",
+      "chain": "bsc",
+      "token": "0xA9Ff5dde9647E6Be8fa6B054e7749Cd8dDFf7777",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/\u8d22\u52a1\u4eba\u751f"
+    },
+    {
       "symbol": "WSB",
       "chain": "robinhood",
       "token": "0xdba76f1cf96dBeF90E5E1083b70d15Ce6E87b76a",
@@ -346,22 +364,22 @@
       "path": "/api/v1/token/MARVIN"
     },
     {
-      "symbol": "DREAM",
-      "chain": "robinhood",
-      "token": "0x6E69f04e1Db0beC227d08352cc2DE1F48F22d1E3",
+      "symbol": "AOB",
+      "chain": "bsc",
+      "token": "0xfc0f47393d8B9890ad73F8eB30E713E48E0E7777",
       "score": null,
-      "status": "deprioritized",
+      "status": "queued",
       "notify": false,
-      "path": "/api/v1/token/DREAM"
+      "path": "/api/v1/token/AOB"
     },
     {
-      "symbol": "\u8d22\u52a1\u4eba\u751f",
-      "chain": "bsc",
-      "token": "0xA9Ff5dde9647E6Be8fa6B054e7749Cd8dDFf7777",
+      "symbol": "TURBO",
+      "chain": "robinhood",
+      "token": "0x808a9D5071E7d5f58490cB7385027536BbE43eF0",
       "score": null,
-      "status": "deprioritized",
+      "status": "queued",
       "notify": false,
-      "path": "/api/v1/token/\u8d22\u52a1\u4eba\u751f"
+      "path": "/api/v1/token/TURBO"
     },
     {
       "symbol": "\u8774\u8776DAO",
