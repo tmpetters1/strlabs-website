@@ -1,6 +1,55 @@
 {
-  "generated_at": "2026-08-04T13:57:15Z",
+  "generated_at": "2026-08-04T16:59:29Z",
   "entries": [
+    {
+      "date": "2026-08-04",
+      "title": "rule `onchain-intel-every-whale-pass`",
+      "observation": "Holders snapshot alone misses flow shape, authority, product liveness, factory twins.",
+      "action": "APPLIED via learn_loop \u2014 Every Whale pass also run onchain_intel.py run <chain> <ca> --symbol <SYM> --stamp-queue (with sm_score score-token). Use flow/holder_growth/authority/product/twin stamps in handoff. Authority fail/critical or bytecode twin = hard caution. Holder airdrop_spike is a quality flag not auto-kill. Scout may run authority+twin on finalists when cheap. - Enforcement: agent_rule \u2192 LEARNED.md + SOUL inject",
+      "owner": "ant"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "rule `living-sm-buyer-mine`",
+      "observation": "SM does not only ape day 0; late/mid-life conviction is first-class. Day-0 early is bonus only.",
+      "action": "APPLIED via learn_loop \u2014 Every Whale pass: sm_score.py score-token <chain> <ca> --write --stamp-queue (not list-match only). Hard SM = smart/alpha with multi-play + multi-day holds and low sniper_score. Soft watch is not notify fuel. Seed via sm_mine.py seed-list on meta shift (Base gitlawb-class etc). Never promote snipers/rotators. Insider/deployer soft only. Entry timing: day-0 early is bonus only \u2014 late/mid-life buyers and current holders (days/weeks after launch) are first-class SM candidates. - Enforcement: agent_rule \u2192 LEARNED.md + SOUL inject",
+      "owner": "ant"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "rule `living-sm-buyer-mine`",
+      "observation": "Static lists cannot cover millions of wallets. Discover SM by scoring buyers of seed runners and every researched token.",
+      "action": "APPLIED via learn_loop \u2014 Every Whale pass: sm_score.py score-token <chain> <ca> --write --stamp-queue (not list-match only). Hard SM = smart/alpha with multi-play + multi-day holds and low sniper_score. Soft watch is not notify fuel. Seed via sm_mine.py seed-list on meta shift (Base gitlawb-class etc). Never promote snipers/rotators. Insider/deployer soft only. - Enforcement: agent_rule \u2192 LEARNED.md + SOUL inject",
+      "owner": "ant"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "rule `flap-verified-name-fence`",
+      "observation": "RIZO BSC 0xa0c914 verified name=FlapTaxTokenV3 but explorer fence returned unfenced (impl=null). Class hard-fenced; Scout missed.",
+      "action": "APPLIED via learn_loop \u2014 Fence when etherscan verified contract name matches flaptax/pons templates even if proxy implementation is null; do not trust fence unfenced alone when verified name is FlapTaxTokenV3 - Enforcement: prose_only",
+      "owner": "class"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "rule `kill-list-indent-for-yaml-load`",
+      "observation": "2026-08-04 smart_money_watch queued 22 RH stocks because fence only saw patterns key",
+      "action": "APPLIED via learn_loop \u2014 kill_list.yaml list items must be 2-space indented under keys so common.yaml_load sees issuers/wallets/tokens_blocked; 0-indent lists make fence_check blind. After any kill_list write assert kill_list() has issuers_tokenized_stock. - Enforcement: unknown type infra \u2014 treated as agent_rule",
+      "owner": "conductor"
+    },
+    {
+      "date": "2026-08-04",
+      "title": "kill_list indent broke fence_check",
+      "observation": null,
+      "action": null,
+      "owner": null
+    },
+    {
+      "date": "2026-08-04",
+      "title": "rule `watchlist-traction-reeval`",
+      "observation": "Brief is not end-state. Score>=50 names need living price/holder/flow monitoring; traction wakes Research/Whale.",
+      "action": "APPLIED via learn_loop \u2014 Run watchlist_monitor.py each Conductor heartbeat on score>=50 briefed/tracking. On traction reeval alerts (price/liq/holders/flow; not dead-book or insane micro %): stamp queue.watch, priority=reeval, wake Research (+Whale if holders/SM). 6h cooldown/token. Human ping still only at notify bar after fresh DD. Do not brief-and-forget. - Enforcement: agent_rule \u2192 LEARNED.md + SOUL inject",
+      "owner": "ant"
+    },
     {
       "date": "2026-08-04",
       "title": "rule `etherscan-standard-paid`",
@@ -231,55 +280,6 @@
       "observation": "GLD has real verified stock-basket staking path (ETH\u2192USDG\u2192stock). Novelty is not \"none\" and not pure ticker-meta. Residual vs stock-tokens/stock-paired is clean even at n=1 when code is fully verified.",
       "action": "Promote `rwa-finance/stock-reward-mining` as taxonomy leaf; keep individual tokens score-gated (GLD 62, thin liq). Never file Flap tax-farms / SPY-quoted memes (MEMESTOCK) under this leaf without buy+claim stock path.",
       "owner": "macro"
-    },
-    {
-      "date": "2026-08-03",
-      "title": "DD checklist (did-you-check gate)",
-      "observation": "Agents skip structured self-QA (dev wallet history, website product-truth, clone-count) and hand off incomplete conviction.",
-      "action": "Added `context/dd_checklist.yaml` + `DD_CHECKLIST.md` + `scripts/dd_check.py`. Required checks per role before handoff/brief/notify; Conductor bounces `needs_checks`. Fail caps for vapor UI / serial rug deployers.",
-      "owner": "conductor"
-    },
-    {
-      "date": null,
-      "title": "2026-08-03 Research (GLD/MEMESTOCK)",
-      "observation": null,
-      "action": null,
-      "owner": null
-    },
-    {
-      "date": "2026-08-03",
-      "title": "Class: bankr-search noise + Lighter knockoff",
-      "observation": "dex-search q=bankr surfaces dead Base pairs (BNKR B20 vol~$1, HEIST vol~$18) and RH name clones (BNW) with zero socials. Scout \"perp-terminal\" labels can overfit narrative from ticker (Lightoor \u2260 Lighter infra).",
-      "action": "Class must clone-check bankr-adjacent names (socials/site required). Prefer meme/knockoff over defi when product site is empty shell. Kill dead vol bankr-search hits even if liq large. Hold taxonomy_pending until onchain metrics \u2260 vapor UI.",
-      "owner": "class"
-    },
-    {
-      "date": "2026-08-03",
-      "title": "Class QA: clone farms vs agent-security",
-      "observation": "RH name farms (Lightoor 23 CAs, BNW multi-CA, CATE multi-CA) look product-shaped in first-pass labels but collapse under clone-count + empty socials. Dead Base bankr-search hits (HEIST vol24~18, BNKR B20 vol~$1) pollute queue.",
-      "action": "Always clone-count symbol on-chain before novelty>none; kill vol24<<liq dead books; prefer existing ai-agents leaves unless security/attestation pattern is explicit (VAUTH).",
-      "owner": "class"
-    },
-    {
-      "date": null,
-      "title": "2026-08-03 Research",
-      "observation": null,
-      "action": null,
-      "owner": null
-    },
-    {
-      "date": "2026-08-03",
-      "title": "iCloud dataless gem-radar paths",
-      "observation": "Shared-brain files under iCloud-backed paths can appear present but be APFS dataless; normal reads deadlock/hang until hydrated, and tight disk makes hydrate flaky.",
-      "action": "Prefer local non-dataless root (`~/.openclaw/gem-radar`). If reads hang, check `ls -lO`/brctl and force materialize before scanning; keep Dex client + queue writes local.",
-      "owner": "scout"
-    },
-    {
-      "date": "2026-08-03",
-      "title": "desk bootstrapped",
-      "observation": "OpenClaw repurposed for gem-radar. No live outcomes yet.",
-      "action": "Seed filters conservative; raise only after data.",
-      "owner": "setup"
     }
   ]
 }

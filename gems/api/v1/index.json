@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T16:50:34.679511+00:00",
+  "published_at": "2026-08-04T16:59:30.672424+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -220,6 +220,15 @@
       "path": "/api/v1/token/NATO"
     },
     {
+      "symbol": "MOON",
+      "chain": "base",
+      "token": "0x2c8a36f6f0dc4c1773c430031d24252cd1faa5f2",
+      "score": 8.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/MOON"
+    },
+    {
       "symbol": "(RNDR)",
       "chain": "base",
       "token": "0x6eba7f17438051fd00d8dc6fa63191cdc29a2666",
@@ -227,15 +236,6 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
-    },
-    {
-      "symbol": "MOON",
-      "chain": "base",
-      "token": "0x2c8a36f6f0dc4c1773c430031d24252cd1faa5f2",
-      "score": null,
-      "status": "queued",
-      "notify": false,
-      "path": "/api/v1/token/MOON"
     }
   ]
 }
