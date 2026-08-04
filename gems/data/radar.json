@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-08-04T15:46:32.457050+00:00",
+  "published_at": "2026-08-04T15:59:25.292880+00:00",
   "updated_at": "2026-08-04T15:45:30Z",
   "focus_summary": "robinhood(1.0) \u00b7 base(0.7) \u00b7 bsc(0.5) \u00b7 solana(0.0) \u00b7 metas: stock-reward-mining",
   "filters": {
@@ -68,13 +68,13 @@
       "mc": 226191.0,
       "liq": 52307.0,
       "vol_h24": 139832,
-      "pair_age_minutes": 6883.9,
+      "pair_age_minutes": 6896.7,
       "score": 81.0,
       "status": "briefed",
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:18:53Z",
+      "last_touch_at": "2026-08-04T15:46:52Z",
       "checks_done": 11,
       "checks_failed": [
         "sm_pass"
@@ -200,75 +200,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002392,
-          "mc": 214471.0,
-          "liq": 50861.83,
-          "vol_h24": 103670.75,
-          "vol_to_liq": 2.04,
-          "change_m5": -0.91,
-          "change_h1": -1.43,
-          "change_h6": -3.88,
-          "change_h24": -11.35,
-          "buys_h1": 61,
-          "sells_h1": 57,
-          "buys_h24": 1815,
-          "sells_h24": 1389,
+          "price_usd": 0.000236,
+          "mc": 211644.0,
+          "liq": 50505.44,
+          "vol_h24": 104107.14,
+          "vol_to_liq": 2.06,
+          "change_m5": -2.06,
+          "change_h1": -3.26,
+          "change_h6": -2.25,
+          "change_h24": -12.18,
+          "buys_h1": 55,
+          "sells_h1": 67,
+          "buys_h24": 1813,
+          "sells_h24": 1391,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6883.9
+          "pair_age_minutes": 6896.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0002698252
+              "p": 0.0002687315
             },
             {
               "t": "6h_ago",
-              "p": 0.0002488556
+              "p": 0.0002414322
             },
             {
               "t": "1h_ago",
-              "p": 0.0002426702
+              "p": 0.0002439529
             },
             {
               "t": "5m_ago",
-              "p": 0.0002413967
+              "p": 0.0002409639
             },
             {
               "t": "now",
-              "p": 0.0002392
+              "p": 0.000236
             }
           ],
           "change": {
-            "m5": -0.91,
-            "h1": -1.43,
-            "h6": -3.88,
-            "h24": -11.35
+            "m5": -2.06,
+            "h1": -3.26,
+            "h6": -2.25,
+            "h24": -12.18
           },
           "volume": {
-            "h24": 103670.75,
-            "h6": 28292.98,
-            "h1": 4189.43,
-            "m5": 241.52
+            "h24": 104107.14,
+            "h6": 28647.36,
+            "h1": 4071.87,
+            "m5": 312.46
           },
           "txns": {
             "m5": {
-              "buys": 5,
-              "sells": 10
+              "buys": 1,
+              "sells": 5
             },
             "h1": {
-              "buys": 61,
-              "sells": 57
+              "buys": 55,
+              "sells": 67
             },
             "h6": {
-              "buys": 422,
-              "sells": 354
+              "buys": 415,
+              "sells": 352
             },
             "h24": {
-              "buys": 1815,
-              "sells": 1389
+              "buys": 1813,
+              "sells": 1391
             }
           }
         },
@@ -285,13 +285,13 @@
       "mc": 162926.0,
       "liq": 128623.0,
       "vol_h24": 76849,
-      "pair_age_minutes": 100714.0,
+      "pair_age_minutes": 100726.9,
       "score": 76.0,
       "status": "briefed",
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:18:53Z",
+      "last_touch_at": "2026-08-04T15:46:53Z",
       "checks_done": 12,
       "checks_failed": [
         "sm_pass"
@@ -392,51 +392,51 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.52e-06,
-          "mc": 152072.0,
-          "liq": 123812.21,
-          "vol_h24": 31464.22,
+          "price_usd": 1.526e-06,
+          "mc": 152621.0,
+          "liq": 124281.82,
+          "vol_h24": 31459.58,
           "vol_to_liq": 0.25,
-          "change_h1": 0.42,
-          "change_h6": -10.99,
-          "change_h24": -7.82,
+          "change_h1": 0.78,
+          "change_h6": -10.67,
+          "change_h24": -9.12,
           "buys_h1": 1,
-          "sells_h1": 4,
+          "sells_h1": 5,
           "buys_h24": 231,
-          "sells_h24": 451,
+          "sells_h24": 450,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100714.0
+          "pair_age_minutes": 100726.9
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.6489e-06
+              "p": 1.6791e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.7077e-06
+              "p": 1.7083e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.5136e-06
+              "p": 1.5142e-06
             },
             {
               "t": "now",
-              "p": 1.52e-06
+              "p": 1.526e-06
             }
           ],
           "change": {
-            "h1": 0.42,
-            "h6": -10.99,
-            "h24": -7.82
+            "h1": 0.78,
+            "h6": -10.67,
+            "h24": -9.12
           },
           "volume": {
-            "h24": 31464.22,
-            "h6": 4165.25,
-            "h1": 177.91,
+            "h24": 31459.58,
+            "h6": 4176.69,
+            "h1": 189.34,
             "m5": 0
           },
           "txns": {
@@ -446,15 +446,15 @@
             },
             "h1": {
               "buys": 1,
-              "sells": 4
+              "sells": 5
             },
             "h6": {
               "buys": 12,
-              "sells": 27
+              "sells": 28
             },
             "h24": {
               "buys": 231,
-              "sells": 451
+              "sells": 450
             }
           }
         },
@@ -472,13 +472,13 @@
       "mc": 179563.0,
       "liq": 95294.53,
       "vol_h24": 188609.29,
-      "pair_age_minutes": 2810.8,
+      "pair_age_minutes": 2823.7,
       "score": 75.0,
       "status": "tracking",
       "stage_index": null,
       "waiting_on": "learn",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:18:57Z",
+      "last_touch_at": "2026-08-04T15:46:58Z",
       "checks_done": 28,
       "checks_failed": [
         "honest_novelty"
@@ -665,80 +665,338 @@
         "holders_notes": null,
         "mechanism": null,
         "market_live": {
-          "price_usd": 3.055,
-          "mc": 153819.0,
-          "liq": 85458.8,
-          "vol_h24": 188991.94,
-          "vol_to_liq": 2.21,
-          "change_m5": 1.81,
-          "change_h1": 13.13,
-          "change_h6": -21.41,
-          "change_h24": -13.96,
-          "buys_h1": 20,
-          "sells_h1": 23,
-          "buys_h24": 719,
-          "sells_h24": 527,
+          "price_usd": 3.16,
+          "mc": 159545.0,
+          "liq": 87809.03,
+          "vol_h24": 170055.31,
+          "vol_to_liq": 1.94,
+          "change_m5": -0.7,
+          "change_h1": 4.28,
+          "change_h6": -19,
+          "change_h24": -30.0,
+          "buys_h1": 18,
+          "sells_h1": 17,
+          "buys_h24": 677,
+          "sells_h24": 494,
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2810.8
+          "pair_age_minutes": 2823.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 3.5506741051
+              "p": 4.5142857143
             },
             {
               "t": "6h_ago",
-              "p": 3.8872630106
+              "p": 3.9012345679
             },
             {
               "t": "1h_ago",
-              "p": 2.70043313
+              "p": 3.0303030303
             },
             {
               "t": "5m_ago",
-              "p": 3.0006875552
+              "p": 3.1822759315
             },
             {
               "t": "now",
-              "p": 3.055
+              "p": 3.16
             }
           ],
           "change": {
-            "m5": 1.81,
-            "h1": 13.13,
-            "h6": -21.41,
-            "h24": -13.96
+            "m5": -0.7,
+            "h1": 4.28,
+            "h6": -19,
+            "h24": -30
           },
           "volume": {
-            "h24": 188991.94,
-            "h6": 38810.99,
-            "h1": 8741.31,
-            "m5": 255.09
+            "h24": 170055.31,
+            "h6": 39596.22,
+            "h1": 6294.57,
+            "m5": 112.27
           },
           "txns": {
             "m5": {
-              "buys": 2,
-              "sells": 0
+              "buys": 0,
+              "sells": 2
             },
             "h1": {
-              "buys": 20,
-              "sells": 23
+              "buys": 18,
+              "sells": 17
             },
             "h6": {
-              "buys": 160,
-              "sells": 87
+              "buys": 162,
+              "sells": 91
             },
             "h24": {
-              "buys": 719,
-              "sells": 527
+              "buys": 677,
+              "sells": 494
             }
           }
         },
         "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
         "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
+      }
+    },
+    {
+      "symbol": "LEMON",
+      "chain": "robinhood",
+      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
+      "url": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+      "mc": 203369.0,
+      "liq": 53137.84,
+      "vol_h24": 51800.14,
+      "pair_age_minutes": 14592.5,
+      "score": 73.0,
+      "status": "briefed",
+      "stage_index": 4,
+      "waiting_on": "conductor",
+      "last_touch_by": "reece",
+      "last_touch_at": "2026-08-04T15:53:33Z",
+      "checks_done": 25,
+      "checks_failed": [
+        "dev_wallet_history"
+      ],
+      "checks_blocked": [
+        "website_shell"
+      ],
+      "notify": false,
+      "source": "dex-boost",
+      "brief": true,
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-LEMON.md",
+      "category": "defi",
+      "subcategory": "launchpads",
+      "novelty": "none",
+      "thesis": "LEMON lemon.fun RH: live Instant-V3 launchpad (API 53 launches, verified factory/locker) + hard SM n=5; sell-skew + dust launches + thin social + serial factory residual \u2192 73 watch notify NO",
+      "priority": "watch",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "detail": {
+        "why_notify": "score 73.0 near/above bar 78.0",
+        "links": {
+          "site": "https://lemon.fun",
+          "dex": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+          "x": "https://x.com/lemondotfun",
+          "telegram": "https://t.me/lemondotfun",
+          "twitter": "https://x.com/lemondotfun",
+          "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3"
+        },
+        "reasoning": [
+          "Hard SM found a real RH launchpad coin with verified factory/locker and non-zero API launch stats. Asymmetric only if pad launches stop being dust and fee/LP value accrues visibly to $LEMON while SM holds. Today = **SM + product watch**, not notify: sell-skew tape, thin social, FAIL CAP residual, score under 78."
+        ],
+        "risks": [],
+        "invalidation": [
+          "1. API launch stats stall / factory goes dark\n2. Hard SM cohort exits top holders\n3. LP locker claim fails (NFT movable / unlocked)\n4. Sell-skew persists into dead book (vol/liq collapse)\n5. Site/API abandon this CA\n6. Launchpad revealed as pure fee-extract with zero non-spam traction"
+        ],
+        "score_stack": [],
+        "checks": {
+          "factory_fence": {
+            "status": "pass",
+            "note": "LemonLaunchFactory not Flap/Pons",
+            "by": "reece"
+          },
+          "clone_count": {
+            "status": "pass",
+            "note": "other LEMON dust; this CA official dominant",
+            "by": "reece"
+          },
+          "contract_name_vs_ticker": {
+            "status": "pass",
+            "note": "verified LemonLauncherToken / name Lemon.fun matches pad narrative",
+            "by": "hook"
+          },
+          "website_shell": {
+            "status": "blocked",
+            "note": "lemon.fun live pad UI + CA in terminal URL, BUT public counters TOKENS LAUNCHED=0 combined mcap $0 \u2014 shell metrics vs brochure",
+            "by": "hook"
+          },
+          "socials_exist": {
+            "status": "pass",
+            "note": "x.com/lemondotfun + t.me/lemondotfun",
+            "by": "hook"
+          },
+          "dead_flow": {
+            "status": "pass",
+            "note": "vol/liq~0.97 age~10d live; h24 sell-skewed (365/572)",
+            "by": "hook"
+          },
+          "novelty_honest": {
+            "status": "pass",
+            "note": "novelty=none; defi/launchpads existing leaf; not new primitive",
+            "by": "hook"
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "decision hold \u2014 73<78; hard SM not enough alone",
+            "by": null
+          },
+          "smart_money_match": {
+            "status": "pass",
+            "note": "hard SM n=5 living sm_score",
+            "by": "whale"
+          },
+          "top_holders": {
+            "status": "pass",
+            "note": "1486; V3 LP 15.9%; top EOA 4.06%",
+            "by": "reece"
+          },
+          "label_lp_burn_lock": {
+            "status": "pass",
+            "note": "V3 LP + LemonLaunchLocker path",
+            "by": "reece"
+          },
+          "deployer_or_owner": {
+            "status": "pass",
+            "note": "Deployer 0x2bA793Fd\u2026 not residual top holder.",
+            "by": "whale"
+          },
+          "dev_wallet_history": {
+            "status": "fail",
+            "note": "serial_launcher 18 FAIL CAP factory",
+            "by": "whale"
+          },
+          "buyer_quality": {
+            "status": "pass",
+            "note": "hard SM multi-day holds present",
+            "by": "whale"
+          },
+          "concentration": {
+            "status": "pass",
+            "note": "top EOA 4% OK",
+            "by": "reece"
+          },
+          "lp_secured": {
+            "status": "pass",
+            "note": "API lpLocked=true + locker contract named",
+            "by": "reece"
+          },
+          "sniper_cluster": {
+            "status": "pass",
+            "note": "hard SM wallets multi-day holds \u2014 not pure sniper farm stampede.",
+            "by": "whale"
+          },
+          "upstream_read": {
+            "status": "pass",
+            "note": "Class launchpads + Whale hard SM",
+            "by": "reece"
+          },
+          "website_product_truth": {
+            "status": "pass",
+            "note": "API totalLaunched=53 + factory/locker verified; SSR 0 counters unreliable",
+            "by": "reece"
+          },
+          "site_points_to_ca": {
+            "status": "pass",
+            "note": "terminal + API token detail bind this CA",
+            "by": "reece"
+          },
+          "social_x_pass": {
+            "status": "pass",
+            "note": "thin/self-promo via x_search; x_client blocked credits; not organic clearance",
+            "by": "reece"
+          },
+          "contract_risk": {
+            "status": "pass",
+            "note": "verified LemonLauncherToken; factory/locker verified",
+            "by": "reece"
+          },
+          "deployer_in_score": {
+            "status": "pass",
+            "note": "FAIL CAP folded; product softens farm read",
+            "by": "reece"
+          },
+          "thesis_invalidation": {
+            "status": "pass",
+            "note": "written",
+            "by": "reece"
+          },
+          "score_stack": {
+            "status": "pass",
+            "note": "73 product+SM minus sell-skew/dust/social/FAIL CAP",
+            "by": "reece"
+          }
+        },
+        "holders_notes": "- V3 LP ~**15.9%**\n- Top EOA ~**4.06%** (`0x2F75a321\u2026` \u2014 API lists as token deployer/creator path; not labeled SM)\n- Hard SM via living `sm_score` (**n_hard=5**, n_soft=1) \u2014 multi-play multi-day low-sniper wallets including top-holder slots\n- Free float fragmented after LP; not single-wallet dump optics\n- Deployer/factory `0x2bA793Fd\u2026` = **serial_launcher FAIL CAP** (18 deploys) but **coherent lemon family** (factory role). Product proof softens farm read; **FAIL CAP still blocks notify** without multi-signal clear above bar",
+        "mechanism": null,
+        "market_live": {
+          "price_usd": 0.0002025,
+          "mc": 200517.0,
+          "liq": 52787.11,
+          "vol_h24": 51693.64,
+          "vol_to_liq": 0.98,
+          "change_m5": -0.23,
+          "change_h1": -0.69,
+          "change_h6": 30.94,
+          "change_h24": 80.86,
+          "buys_h1": 25,
+          "sells_h1": 28,
+          "buys_h24": 359,
+          "sells_h24": 579,
+          "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
+          "quote": "WETH",
+          "dex": "uniswap",
+          "pair_age_minutes": 14592.5
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 0.0001119651
+            },
+            {
+              "t": "6h_ago",
+              "p": 0.000154651
+            },
+            {
+              "t": "1h_ago",
+              "p": 0.000203907
+            },
+            {
+              "t": "5m_ago",
+              "p": 0.0002029668
+            },
+            {
+              "t": "now",
+              "p": 0.0002025
+            }
+          ],
+          "change": {
+            "m5": -0.23,
+            "h1": -0.69,
+            "h6": 30.94,
+            "h24": 80.86
+          },
+          "volume": {
+            "h24": 51693.64,
+            "h6": 23030.02,
+            "h1": 6348.58,
+            "m5": 24.7
+          },
+          "txns": {
+            "m5": {
+              "buys": 0,
+              "sells": 2
+            },
+            "h1": {
+              "buys": 25,
+              "sells": 28
+            },
+            "h6": {
+              "buys": 116,
+              "sells": 131
+            },
+            "h24": {
+              "buys": 359,
+              "sells": 579
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-LEMON.md",
+        "brief_excerpt": "# LEMON \u2014 Decision Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed  \n**Source:** Whale hard-SM wake \u00b7 Class defi/launchpads  \n**Notify: NO** (bar 78; hard SM real but sell-skew + dust launches + thin social + serial factory residual)\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3` \u2014 **Lemon.fun** (LemonLauncherToken, verified, non-proxy)\n- **Pair:** `0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5` (Uniswap V3 LEMON/WETH)\n- **Dex:** https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5\n- **Site:** https://lemon.fun \u00b7 Docs https://lemon.fun/docs \u00b7 Terminal binds CA  \n- **X / TG:** https://x.com/lemondotfun \u00b7 https://t.me/lemondotfun\n\n## Classification\n- **defi / launchpads** \u00b7 novelty **none** \u00b7 conf ~0.62\n- Official coin of lemon.fun multi-chain Instant-V3 launchpad (RH primary)\n- Identity = **(robinhood, this CA)** \u2014 other RH LEMON dust CAs exist; this is dominant book + site/API official\n\n## Product truth (running system)\n### Real\n- **Public API live** (not SSR theater):\n  - `GET /api/public/launchpad/stats` \u2192 `totalLaunched=53`, `totalGraduated=213`\n  - `GET /api/public/launchpad/tokens` returns live catalog (many same-day X-bot launches)\n  - `GET /api/public/launchpad/token/0xf0e1\u2026f7a3` \u2192 official pad coin, `lpLocked=true`, socials+site bound, pool matches Dex pair\n- **Docs** detail Instant V3 path: `LemonLaunchFactory.launch` \u2192 token + V3 pool + full-range LP \u2192 `LemonLaunchLocker` (permanent LP NFT, fee split 30/70)\n- **Onchain names match docs:** factory `0x2bA793Fd\u202646DB` = **LemonLaunchFactory** verified; locker `0xc10309cf\u20266903` = **LemonLaunchLocker**; token = **LemonLauncherToken**\n- Site terminal URL hard-binds this CA; homepage/nav reference same CA\n- Fee receiver / NPM / SwapRouter02 addresses published in docs\n\n### Caveats (score honesty)\n- Marketing SSR still flashes **TOKENS LAUNCHED 0 / mcap $0** while API shows 53 \u2014 UI counters unreliable; **API+factory are source of truth**\n- Terminal page often shows **$0 mcap/holders** while Dex/Blockscout live \u2014 indexer UI lag/bug\n- Launch catalog quality is **mostly dust / untraded / X-bot spam** (PennyDick, random LEMON clones, etc.) \u2014 pad works, escape-velocity launches rare\n- \u201cTokenized stock dividends\u201d = documented feature path; **not** verified as material revenue for $LEMON holders this pass\n\n**Verdict:** lemon.fun is a **live launchpad system** (factory+locker+API+launches), not an",
+        "score_line": "73 / 100 \u00b7 Notify: NO"
       }
     },
     {
@@ -756,7 +1014,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:02Z",
+      "last_touch_at": "2026-08-04T15:47:02Z",
       "checks_done": 27,
       "checks_failed": [
         "clone_count"
@@ -792,8 +1050,8 @@
       "status": "tracking",
       "stage_index": null,
       "waiting_on": "learn",
-      "last_touch_by": "conductor",
-      "last_touch_at": "2026-08-04T15:23:23Z",
+      "last_touch_by": "watchlist_monitor",
+      "last_touch_at": "2026-08-04T15:47:04Z",
       "checks_done": 13,
       "checks_failed": [],
       "checks_blocked": [
@@ -826,7 +1084,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:16Z",
+      "last_touch_at": "2026-08-04T15:47:13Z",
       "checks_done": 19,
       "checks_failed": [
         "dev_wallet_history",
@@ -862,7 +1120,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:12Z",
+      "last_touch_at": "2026-08-04T15:47:09Z",
       "checks_done": 26,
       "checks_failed": [],
       "checks_blocked": [
@@ -896,7 +1154,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:26Z",
+      "last_touch_at": "2026-08-04T15:47:16Z",
       "checks_done": 7,
       "checks_failed": [],
       "checks_blocked": [],
@@ -926,7 +1184,7 @@
       "stage_index": null,
       "waiting_on": "learn",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:27Z",
+      "last_touch_at": "2026-08-04T15:47:17Z",
       "checks_done": 9,
       "checks_failed": [],
       "checks_blocked": [
@@ -958,7 +1216,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:33Z",
+      "last_touch_at": "2026-08-04T15:47:20Z",
       "checks_done": 19,
       "checks_failed": [
         "dev_wallet_history",
@@ -994,7 +1252,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:38Z",
+      "last_touch_at": "2026-08-04T15:47:31Z",
       "checks_done": 23,
       "checks_failed": [
         "clone_count"
@@ -1028,7 +1286,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:35Z",
+      "last_touch_at": "2026-08-04T15:47:26Z",
       "checks_done": 25,
       "checks_failed": [
         "clone_count",
@@ -1067,7 +1325,7 @@
       "stage_index": 4,
       "waiting_on": "conductor",
       "last_touch_by": "watchlist_monitor",
-      "last_touch_at": "2026-08-04T15:19:49Z",
+      "last_touch_at": "2026-08-04T15:47:34Z",
       "checks_done": 25,
       "checks_failed": [
         "buyer_quality",
@@ -1102,8 +1360,8 @@
       "status": "briefed",
       "stage_index": 4,
       "waiting_on": "conductor",
-      "last_touch_by": "conductor",
-      "last_touch_at": "2026-08-04T15:23:23Z",
+      "last_touch_by": "watchlist_monitor",
+      "last_touch_at": "2026-08-04T15:47:36Z",
       "checks_done": 19,
       "checks_failed": [
         "dev_wallet_history",
@@ -1276,34 +1534,43 @@
       "explorer": "https://robinhoodchain.blockscout.com/token/0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D"
     },
     {
-      "symbol": "LEMON",
+      "symbol": "GASTER",
       "chain": "robinhood",
-      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
-      "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
-      "url": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
-      "mc": 203369.0,
-      "liq": 53137.84,
-      "vol_h24": 51642.88,
-      "pair_age_minutes": 14577.4,
-      "score": null,
-      "status": "queued",
-      "stage_index": 0,
-      "waiting_on": "class",
-      "last_touch_by": "scout",
-      "last_touch_at": "2026-08-04T15:45:30Z",
-      "checks_done": 1,
-      "checks_failed": [],
-      "checks_blocked": [],
+      "token": "0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1",
+      "pair": "0x9f6c94277D0ACCc5d9f66c2bd9F787106F472C12",
+      "url": "https://dexscreener.com/robinhood/0x9f6c94277d0accc5d9f66c2bd9f787106f472c12",
+      "mc": 163806.0,
+      "liq": 40665.8,
+      "vol_h24": 208223.99,
+      "pair_age_minutes": 60.2,
+      "score": 12.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "conductor",
+      "last_touch_at": "2026-08-04T15:51:41Z",
+      "checks_done": 17,
+      "checks_failed": [
+        "factory_fence",
+        "clone_count",
+        "website_shell",
+        "dev_wallet_history",
+        "buyer_quality",
+        "sniper_cluster"
+      ],
+      "checks_blocked": [
+        "lp_secured"
+      ],
       "notify": false,
-      "source": "dex-boost",
+      "source": "dex-profile",
       "brief": false,
       "brief_path": "",
-      "category": null,
-      "subcategory": null,
-      "novelty": null,
-      "thesis": "robinhood dex-boost; mc~203369; liq~53138; vol24~51643; age~14577m",
-      "priority": null,
-      "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3"
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "GASTER Pirate Gaster: A5 serial farm + sm_score hard_sm=false (noise rotators). No Research.",
+      "priority": "blocked",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1"
     },
     {
       "symbol": "USEDCAR",
@@ -1315,55 +1582,35 @@
       "liq": 12276.51,
       "vol_h24": 130992.38,
       "pair_age_minutes": 45.8,
-      "score": null,
-      "status": "queued",
-      "stage_index": 0,
-      "waiting_on": "class",
-      "last_touch_by": "scout",
-      "last_touch_at": "2026-08-04T15:44:49Z",
-      "checks_done": 1,
-      "checks_failed": [],
-      "checks_blocked": [],
+      "score": 12.0,
+      "status": "killed",
+      "stage_index": null,
+      "waiting_on": "-",
+      "last_touch_by": "conductor",
+      "last_touch_at": "2026-08-04T15:51:41Z",
+      "checks_done": 17,
+      "checks_failed": [
+        "factory_fence",
+        "clone_count",
+        "contract_name_vs_ticker",
+        "website_shell",
+        "dev_wallet_history",
+        "buyer_quality"
+      ],
+      "checks_blocked": [
+        "lp_secured",
+        "sniper_cluster"
+      ],
       "notify": false,
       "source": "dex-profile",
       "brief": false,
       "brief_path": "",
-      "category": null,
-      "subcategory": null,
-      "novelty": null,
-      "thesis": "robinhood dex-profile; mc~18658; liq~12277; vol24~130992; age~46m",
-      "priority": null,
+      "category": "meme",
+      "subcategory": "brainrot",
+      "novelty": "none",
+      "thesis": "USEDCAR Pons meme: serial farm + sm_score hard_sm=false. No Research.",
+      "priority": "blocked",
       "explorer": "https://robinhoodchain.blockscout.com/token/0xeff44b72a8641DB970CD7E9d3078C9EF8367b2b3"
-    },
-    {
-      "symbol": "GASTER",
-      "chain": "robinhood",
-      "token": "0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1",
-      "pair": "0x9f6c94277D0ACCc5d9f66c2bd9F787106F472C12",
-      "url": "https://dexscreener.com/robinhood/0x9f6c94277d0accc5d9f66c2bd9f787106f472c12",
-      "mc": 163806.0,
-      "liq": 40665.8,
-      "vol_h24": 208223.99,
-      "pair_age_minutes": 60.2,
-      "score": null,
-      "status": "queued",
-      "stage_index": 0,
-      "waiting_on": "class",
-      "last_touch_by": "scout",
-      "last_touch_at": "2026-08-04T15:44:42Z",
-      "checks_done": 1,
-      "checks_failed": [],
-      "checks_blocked": [],
-      "notify": false,
-      "source": "dex-profile",
-      "brief": false,
-      "brief_path": "",
-      "category": null,
-      "subcategory": null,
-      "novelty": null,
-      "thesis": "robinhood dex-profile; mc~163806; liq~40666; vol24~208224; age~60m",
-      "priority": null,
-      "explorer": "https://robinhoodchain.blockscout.com/token/0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1"
     }
   ],
   "notify_cards": [
@@ -1489,75 +1736,75 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713",
         "mechanism": "1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**",
         "market_live": {
-          "price_usd": 0.0002392,
-          "mc": 214471.0,
-          "liq": 50861.83,
-          "vol_h24": 103670.75,
-          "vol_to_liq": 2.04,
-          "change_m5": -0.91,
-          "change_h1": -1.43,
-          "change_h6": -3.88,
-          "change_h24": -11.35,
-          "buys_h1": 61,
-          "sells_h1": 57,
-          "buys_h24": 1815,
-          "sells_h24": 1389,
+          "price_usd": 0.000236,
+          "mc": 211644.0,
+          "liq": 50505.44,
+          "vol_h24": 104107.14,
+          "vol_to_liq": 2.06,
+          "change_m5": -2.06,
+          "change_h1": -3.26,
+          "change_h6": -2.25,
+          "change_h24": -12.18,
+          "buys_h1": 55,
+          "sells_h1": 67,
+          "buys_h24": 1813,
+          "sells_h24": 1391,
           "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
           "quote": "USDG",
           "dex": "uniswap",
-          "pair_age_minutes": 6883.9
+          "pair_age_minutes": 6896.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 0.0002698252
+              "p": 0.0002687315
             },
             {
               "t": "6h_ago",
-              "p": 0.0002488556
+              "p": 0.0002414322
             },
             {
               "t": "1h_ago",
-              "p": 0.0002426702
+              "p": 0.0002439529
             },
             {
               "t": "5m_ago",
-              "p": 0.0002413967
+              "p": 0.0002409639
             },
             {
               "t": "now",
-              "p": 0.0002392
+              "p": 0.000236
             }
           ],
           "change": {
-            "m5": -0.91,
-            "h1": -1.43,
-            "h6": -3.88,
-            "h24": -11.35
+            "m5": -2.06,
+            "h1": -3.26,
+            "h6": -2.25,
+            "h24": -12.18
           },
           "volume": {
-            "h24": 103670.75,
-            "h6": 28292.98,
-            "h1": 4189.43,
-            "m5": 241.52
+            "h24": 104107.14,
+            "h6": 28647.36,
+            "h1": 4071.87,
+            "m5": 312.46
           },
           "txns": {
             "m5": {
-              "buys": 5,
-              "sells": 10
+              "buys": 1,
+              "sells": 5
             },
             "h1": {
-              "buys": 61,
-              "sells": 57
+              "buys": 55,
+              "sells": 67
             },
             "h6": {
-              "buys": 422,
-              "sells": 354
+              "buys": 415,
+              "sells": 352
             },
             "h24": {
-              "buys": 1815,
-              "sells": 1389
+              "buys": 1813,
+              "sells": 1391
             }
           }
         },
@@ -1661,51 +1908,51 @@
         "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
         "mechanism": null,
         "market_live": {
-          "price_usd": 1.52e-06,
-          "mc": 152072.0,
-          "liq": 123812.21,
-          "vol_h24": 31464.22,
+          "price_usd": 1.526e-06,
+          "mc": 152621.0,
+          "liq": 124281.82,
+          "vol_h24": 31459.58,
           "vol_to_liq": 0.25,
-          "change_h1": 0.42,
-          "change_h6": -10.99,
-          "change_h24": -7.82,
+          "change_h1": 0.78,
+          "change_h6": -10.67,
+          "change_h24": -9.12,
           "buys_h1": 1,
-          "sells_h1": 4,
+          "sells_h1": 5,
           "buys_h24": 231,
-          "sells_h24": 451,
+          "sells_h24": 450,
           "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 100714.0
+          "pair_age_minutes": 100726.9
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 1.6489e-06
+              "p": 1.6791e-06
             },
             {
               "t": "6h_ago",
-              "p": 1.7077e-06
+              "p": 1.7083e-06
             },
             {
               "t": "1h_ago",
-              "p": 1.5136e-06
+              "p": 1.5142e-06
             },
             {
               "t": "now",
-              "p": 1.52e-06
+              "p": 1.526e-06
             }
           ],
           "change": {
-            "h1": 0.42,
-            "h6": -10.99,
-            "h24": -7.82
+            "h1": 0.78,
+            "h6": -10.67,
+            "h24": -9.12
           },
           "volume": {
-            "h24": 31464.22,
-            "h6": 4165.25,
-            "h1": 177.91,
+            "h24": 31459.58,
+            "h6": 4176.69,
+            "h1": 189.34,
             "m5": 0
           },
           "txns": {
@@ -1715,15 +1962,15 @@
             },
             "h1": {
               "buys": 1,
-              "sells": 4
+              "sells": 5
             },
             "h6": {
               "buys": 12,
-              "sells": 27
+              "sells": 28
             },
             "h24": {
               "buys": 231,
-              "sells": 451
+              "sells": 450
             }
           }
         },
@@ -1915,80 +2162,319 @@
         "holders_notes": null,
         "mechanism": null,
         "market_live": {
-          "price_usd": 3.055,
-          "mc": 153819.0,
-          "liq": 85458.8,
-          "vol_h24": 188991.94,
-          "vol_to_liq": 2.21,
-          "change_m5": 1.81,
-          "change_h1": 13.13,
-          "change_h6": -21.41,
-          "change_h24": -13.96,
-          "buys_h1": 20,
-          "sells_h1": 23,
-          "buys_h24": 719,
-          "sells_h24": 527,
+          "price_usd": 3.16,
+          "mc": 159545.0,
+          "liq": 87809.03,
+          "vol_h24": 170055.31,
+          "vol_to_liq": 1.94,
+          "change_m5": -0.7,
+          "change_h1": 4.28,
+          "change_h6": -19,
+          "change_h24": -30.0,
+          "buys_h1": 18,
+          "sells_h1": 17,
+          "buys_h24": 677,
+          "sells_h24": 494,
           "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
           "quote": "WETH",
           "dex": "uniswap",
-          "pair_age_minutes": 2810.8
+          "pair_age_minutes": 2823.7
         },
         "charts": {
           "price_series": [
             {
               "t": "24h_ago",
-              "p": 3.5506741051
+              "p": 4.5142857143
             },
             {
               "t": "6h_ago",
-              "p": 3.8872630106
+              "p": 3.9012345679
             },
             {
               "t": "1h_ago",
-              "p": 2.70043313
+              "p": 3.0303030303
             },
             {
               "t": "5m_ago",
-              "p": 3.0006875552
+              "p": 3.1822759315
             },
             {
               "t": "now",
-              "p": 3.055
+              "p": 3.16
             }
           ],
           "change": {
-            "m5": 1.81,
-            "h1": 13.13,
-            "h6": -21.41,
-            "h24": -13.96
+            "m5": -0.7,
+            "h1": 4.28,
+            "h6": -19,
+            "h24": -30
           },
           "volume": {
-            "h24": 188991.94,
-            "h6": 38810.99,
-            "h1": 8741.31,
-            "m5": 255.09
+            "h24": 170055.31,
+            "h6": 39596.22,
+            "h1": 6294.57,
+            "m5": 112.27
           },
           "txns": {
             "m5": {
-              "buys": 2,
-              "sells": 0
+              "buys": 0,
+              "sells": 2
             },
             "h1": {
-              "buys": 20,
-              "sells": 23
+              "buys": 18,
+              "sells": 17
             },
             "h6": {
-              "buys": 160,
-              "sells": 87
+              "buys": 162,
+              "sells": 91
             },
             "h24": {
-              "buys": 719,
-              "sells": 527
+              "buys": 677,
+              "sells": 494
             }
           }
         },
         "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
         "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
+      }
+    },
+    {
+      "symbol": "LEMON",
+      "chain": "robinhood",
+      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "score": 73.0,
+      "status": "briefed",
+      "notify": false,
+      "category": "defi",
+      "subcategory": "launchpads",
+      "url": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+      "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "mc": 203369.0,
+      "liq": 53137.84,
+      "vol_h24": 51800.14,
+      "detail": {
+        "why_notify": "score 73.0 near/above bar 78.0",
+        "links": {
+          "site": "https://lemon.fun",
+          "dex": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+          "x": "https://x.com/lemondotfun",
+          "telegram": "https://t.me/lemondotfun",
+          "twitter": "https://x.com/lemondotfun",
+          "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3"
+        },
+        "reasoning": [
+          "Hard SM found a real RH launchpad coin with verified factory/locker and non-zero API launch stats. Asymmetric only if pad launches stop being dust and fee/LP value accrues visibly to $LEMON while SM holds. Today = **SM + product watch**, not notify: sell-skew tape, thin social, FAIL CAP residual, score under 78."
+        ],
+        "risks": [],
+        "invalidation": [
+          "1. API launch stats stall / factory goes dark\n2. Hard SM cohort exits top holders\n3. LP locker claim fails (NFT movable / unlocked)\n4. Sell-skew persists into dead book (vol/liq collapse)\n5. Site/API abandon this CA\n6. Launchpad revealed as pure fee-extract with zero non-spam traction"
+        ],
+        "score_stack": [],
+        "checks": {
+          "factory_fence": {
+            "status": "pass",
+            "note": "LemonLaunchFactory not Flap/Pons",
+            "by": "reece"
+          },
+          "clone_count": {
+            "status": "pass",
+            "note": "other LEMON dust; this CA official dominant",
+            "by": "reece"
+          },
+          "contract_name_vs_ticker": {
+            "status": "pass",
+            "note": "verified LemonLauncherToken / name Lemon.fun matches pad narrative",
+            "by": "hook"
+          },
+          "website_shell": {
+            "status": "blocked",
+            "note": "lemon.fun live pad UI + CA in terminal URL, BUT public counters TOKENS LAUNCHED=0 combined mcap $0 \u2014 shell metrics vs brochure",
+            "by": "hook"
+          },
+          "socials_exist": {
+            "status": "pass",
+            "note": "x.com/lemondotfun + t.me/lemondotfun",
+            "by": "hook"
+          },
+          "dead_flow": {
+            "status": "pass",
+            "note": "vol/liq~0.97 age~10d live; h24 sell-skewed (365/572)",
+            "by": "hook"
+          },
+          "novelty_honest": {
+            "status": "pass",
+            "note": "novelty=none; defi/launchpads existing leaf; not new primitive",
+            "by": "hook"
+          },
+          "notify_gate": {
+            "status": "pass",
+            "note": "decision hold \u2014 73<78; hard SM not enough alone",
+            "by": null
+          },
+          "smart_money_match": {
+            "status": "pass",
+            "note": "hard SM n=5 living sm_score",
+            "by": "whale"
+          },
+          "top_holders": {
+            "status": "pass",
+            "note": "1486; V3 LP 15.9%; top EOA 4.06%",
+            "by": "reece"
+          },
+          "label_lp_burn_lock": {
+            "status": "pass",
+            "note": "V3 LP + LemonLaunchLocker path",
+            "by": "reece"
+          },
+          "deployer_or_owner": {
+            "status": "pass",
+            "note": "Deployer 0x2bA793Fd\u2026 not residual top holder.",
+            "by": "whale"
+          },
+          "dev_wallet_history": {
+            "status": "fail",
+            "note": "serial_launcher 18 FAIL CAP factory",
+            "by": "whale"
+          },
+          "buyer_quality": {
+            "status": "pass",
+            "note": "hard SM multi-day holds present",
+            "by": "whale"
+          },
+          "concentration": {
+            "status": "pass",
+            "note": "top EOA 4% OK",
+            "by": "reece"
+          },
+          "lp_secured": {
+            "status": "pass",
+            "note": "API lpLocked=true + locker contract named",
+            "by": "reece"
+          },
+          "sniper_cluster": {
+            "status": "pass",
+            "note": "hard SM wallets multi-day holds \u2014 not pure sniper farm stampede.",
+            "by": "whale"
+          },
+          "upstream_read": {
+            "status": "pass",
+            "note": "Class launchpads + Whale hard SM",
+            "by": "reece"
+          },
+          "website_product_truth": {
+            "status": "pass",
+            "note": "API totalLaunched=53 + factory/locker verified; SSR 0 counters unreliable",
+            "by": "reece"
+          },
+          "site_points_to_ca": {
+            "status": "pass",
+            "note": "terminal + API token detail bind this CA",
+            "by": "reece"
+          },
+          "social_x_pass": {
+            "status": "pass",
+            "note": "thin/self-promo via x_search; x_client blocked credits; not organic clearance",
+            "by": "reece"
+          },
+          "contract_risk": {
+            "status": "pass",
+            "note": "verified LemonLauncherToken; factory/locker verified",
+            "by": "reece"
+          },
+          "deployer_in_score": {
+            "status": "pass",
+            "note": "FAIL CAP folded; product softens farm read",
+            "by": "reece"
+          },
+          "thesis_invalidation": {
+            "status": "pass",
+            "note": "written",
+            "by": "reece"
+          },
+          "score_stack": {
+            "status": "pass",
+            "note": "73 product+SM minus sell-skew/dust/social/FAIL CAP",
+            "by": "reece"
+          }
+        },
+        "holders_notes": "- V3 LP ~**15.9%**\n- Top EOA ~**4.06%** (`0x2F75a321\u2026` \u2014 API lists as token deployer/creator path; not labeled SM)\n- Hard SM via living `sm_score` (**n_hard=5**, n_soft=1) \u2014 multi-play multi-day low-sniper wallets including top-holder slots\n- Free float fragmented after LP; not single-wallet dump optics\n- Deployer/factory `0x2bA793Fd\u2026` = **serial_launcher FAIL CAP** (18 deploys) but **coherent lemon family** (factory role). Product proof softens farm read; **FAIL CAP still blocks notify** without multi-signal clear above bar",
+        "mechanism": null,
+        "market_live": {
+          "price_usd": 0.0002025,
+          "mc": 200517.0,
+          "liq": 52787.11,
+          "vol_h24": 51693.64,
+          "vol_to_liq": 0.98,
+          "change_m5": -0.23,
+          "change_h1": -0.69,
+          "change_h6": 30.94,
+          "change_h24": 80.86,
+          "buys_h1": 25,
+          "sells_h1": 28,
+          "buys_h24": 359,
+          "sells_h24": 579,
+          "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
+          "quote": "WETH",
+          "dex": "uniswap",
+          "pair_age_minutes": 14592.5
+        },
+        "charts": {
+          "price_series": [
+            {
+              "t": "24h_ago",
+              "p": 0.0001119651
+            },
+            {
+              "t": "6h_ago",
+              "p": 0.000154651
+            },
+            {
+              "t": "1h_ago",
+              "p": 0.000203907
+            },
+            {
+              "t": "5m_ago",
+              "p": 0.0002029668
+            },
+            {
+              "t": "now",
+              "p": 0.0002025
+            }
+          ],
+          "change": {
+            "m5": -0.23,
+            "h1": -0.69,
+            "h6": 30.94,
+            "h24": 80.86
+          },
+          "volume": {
+            "h24": 51693.64,
+            "h6": 23030.02,
+            "h1": 6348.58,
+            "m5": 24.7
+          },
+          "txns": {
+            "m5": {
+              "buys": 0,
+              "sells": 2
+            },
+            "h1": {
+              "buys": 25,
+              "sells": 28
+            },
+            "h6": {
+              "buys": 116,
+              "sells": 131
+            },
+            "h24": {
+              "buys": 359,
+              "sells": 579
+            }
+          }
+        },
+        "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-LEMON.md",
+        "brief_excerpt": "# LEMON \u2014 Decision Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed  \n**Source:** Whale hard-SM wake \u00b7 Class defi/launchpads  \n**Notify: NO** (bar 78; hard SM real but sell-skew + dust launches + thin social + serial factory residual)\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3` \u2014 **Lemon.fun** (LemonLauncherToken, verified, non-proxy)\n- **Pair:** `0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5` (Uniswap V3 LEMON/WETH)\n- **Dex:** https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5\n- **Site:** https://lemon.fun \u00b7 Docs https://lemon.fun/docs \u00b7 Terminal binds CA  \n- **X / TG:** https://x.com/lemondotfun \u00b7 https://t.me/lemondotfun\n\n## Classification\n- **defi / launchpads** \u00b7 novelty **none** \u00b7 conf ~0.62\n- Official coin of lemon.fun multi-chain Instant-V3 launchpad (RH primary)\n- Identity = **(robinhood, this CA)** \u2014 other RH LEMON dust CAs exist; this is dominant book + site/API official\n\n## Product truth (running system)\n### Real\n- **Public API live** (not SSR theater):\n  - `GET /api/public/launchpad/stats` \u2192 `totalLaunched=53`, `totalGraduated=213`\n  - `GET /api/public/launchpad/tokens` returns live catalog (many same-day X-bot launches)\n  - `GET /api/public/launchpad/token/0xf0e1\u2026f7a3` \u2192 official pad coin, `lpLocked=true`, socials+site bound, pool matches Dex pair\n- **Docs** detail Instant V3 path: `LemonLaunchFactory.launch` \u2192 token + V3 pool + full-range LP \u2192 `LemonLaunchLocker` (permanent LP NFT, fee split 30/70)\n- **Onchain names match docs:** factory `0x2bA793Fd\u202646DB` = **LemonLaunchFactory** verified; locker `0xc10309cf\u20266903` = **LemonLaunchLocker**; token = **LemonLauncherToken**\n- Site terminal URL hard-binds this CA; homepage/nav reference same CA\n- Fee receiver / NPM / SwapRouter02 addresses published in docs\n\n### Caveats (score honesty)\n- Marketing SSR still flashes **TOKENS LAUNCHED 0 / mcap $0** while API shows 53 \u2014 UI counters unreliable; **API+factory are source of truth**\n- Terminal page often shows **$0 mcap/holders** while Dex/Blockscout live \u2014 indexer UI lag/bug\n- Launch catalog quality is **mostly dust / untraded / X-bot spam** (PennyDick, random LEMON clones, etc.) \u2014 pad works, escape-velocity launches rare\n- \u201cTokenized stock dividends\u201d = documented feature path; **not** verified as material revenue for $LEMON holders this pass\n\n**Verdict:** lemon.fun is a **live launchpad system** (factory+locker+API+launches), not an",
+        "score_line": "73 / 100 \u00b7 Notify: NO"
       }
     }
   ],
@@ -2002,17 +2488,17 @@
       "notified"
     ],
     "counts": {
-      "queued": 3,
+      "queued": 0,
       "classified": 0,
       "whale_reviewed": 0,
       "researching": 0,
-      "briefed": 11,
+      "briefed": 12,
       "notified": 0
     },
     "terminal": {
       "tracking": 3,
       "deprioritized": 3,
-      "killed": 1,
+      "killed": 3,
       "needs_checks": 0
     }
   },
@@ -2037,6 +2523,13 @@
         "honest_novelty"
       ],
       "status": "tracking"
+    },
+    {
+      "symbol": "LEMON",
+      "failed": [
+        "dev_wallet_history"
+      ],
+      "status": "briefed"
     },
     {
       "symbol": "BOOTS",
@@ -2203,7 +2696,7 @@
     "version": 3,
     "new_this_run": 3,
     "total_rows": 21,
-    "notify_cards": 3,
+    "notify_cards": 4,
     "update_mode": "publish_script_plus_git_push"
   },
   "ok": true,
