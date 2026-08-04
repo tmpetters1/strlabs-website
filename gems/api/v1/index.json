@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T06:29:23.627152+00:00",
+  "published_at": "2026-08-04T06:44:23.404402+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -245,6 +245,15 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "USDE",
+      "chain": "robinhood",
+      "token": "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/USDE"
     },
     {
       "symbol": "RICE",
