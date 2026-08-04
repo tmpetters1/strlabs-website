@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T13:14:24.190048+00:00",
+  "published_at": "2026-08-04T13:28:14.115947+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -398,6 +398,24 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/MARVIN"
+    },
+    {
+      "symbol": "Bitty",
+      "chain": "bsc",
+      "token": "0xD1959FEbaB11F99fe4695CF4b2e86a8AFd5f7777",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/Bitty"
+    },
+    {
+      "symbol": "MEMEFI",
+      "chain": "bsc",
+      "token": "0x53EC3e7D008d3CDF127e2E37C4B1d95eBa757777",
+      "score": null,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/MEMEFI"
     },
     {
       "symbol": "MEATSPIN",
