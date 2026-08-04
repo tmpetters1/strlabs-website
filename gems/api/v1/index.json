@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T15:14:33.716539+00:00",
+  "published_at": "2026-08-04T15:29:36.792686+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -49,15 +49,6 @@
       "path": "/api/v1/token/GLD"
     },
     {
-      "symbol": "HDX",
-      "chain": "robinhood",
-      "token": "0x19Aac52AF5F735bEE21B708F8C76B62C4A96895a",
-      "score": 70.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/HDX"
-    },
-    {
       "symbol": "TRSA",
       "chain": "robinhood",
       "token": "0x08629f9A1cCe96c60cad043197B796105b45eEc6",
@@ -65,6 +56,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/TRSA"
+    },
+    {
+      "symbol": "HDX",
+      "chain": "robinhood",
+      "token": "0x19Aac52AF5F735bEE21B708F8C76B62C4A96895a",
+      "score": 70.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/HDX"
     },
     {
       "symbol": "Lightoor",
@@ -94,15 +94,6 @@
       "path": "/api/v1/token/Port"
     },
     {
-      "symbol": "GRID",
-      "chain": "robinhood",
-      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
-      "score": 64.0,
-      "status": "briefed",
-      "notify": false,
-      "path": "/api/v1/token/GRID"
-    },
-    {
       "symbol": "SAFEVANO",
       "chain": "robinhood",
       "token": "0xe6613D2Bbd5f5C5bb203C36eE414ffaA4a47a977",
@@ -110,6 +101,15 @@
       "status": "briefed",
       "notify": false,
       "path": "/api/v1/token/SAFEVANO"
+    },
+    {
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GRID"
     },
     {
       "symbol": "BRACKETS",
@@ -139,6 +139,24 @@
       "path": "/api/v1/token/STOCKIMPALER"
     },
     {
+      "symbol": "BRO",
+      "chain": "robinhood",
+      "token": "0xF63f9e3351D561b1F31d203cDF089D7181f4d460",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/BRO"
+    },
+    {
+      "symbol": "RIZO",
+      "chain": "bsc",
+      "token": "0xa0c914Fa90bd7563e530BEA095f2a0643Be77777",
+      "score": 18.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/RIZO"
+    },
+    {
       "symbol": "OZZY",
       "chain": "robinhood",
       "token": "0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D",
@@ -146,15 +164,6 @@
       "status": "killed",
       "notify": false,
       "path": "/api/v1/token/OZZY"
-    },
-    {
-      "symbol": "BRO",
-      "chain": "robinhood",
-      "token": "0xF63f9e3351D561b1F31d203cDF089D7181f4d460",
-      "score": null,
-      "status": "queued",
-      "notify": false,
-      "path": "/api/v1/token/BRO"
     }
   ]
 }
