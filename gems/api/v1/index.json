@@ -1,7 +1,7 @@
 {
   "ok": true,
   "api_version": 1,
-  "published_at": "2026-08-04T16:29:25.338657+00:00",
+  "published_at": "2026-08-04T16:50:34.679511+00:00",
   "tokens": [
     {
       "symbol": "DTF",
@@ -227,6 +227,15 @@
       "status": "deprioritized",
       "notify": false,
       "path": "/api/v1/token/(RNDR)"
+    },
+    {
+      "symbol": "MOON",
+      "chain": "base",
+      "token": "0x2c8a36f6f0dc4c1773c430031d24252cd1faa5f2",
+      "score": null,
+      "status": "queued",
+      "notify": false,
+      "path": "/api/v1/token/MOON"
     }
   ]
 }
