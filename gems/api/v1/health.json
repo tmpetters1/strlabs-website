@@ -1,8 +1,8 @@
 {
   "ok": true,
   "service": "gem-radar-api",
-  "ts": "2026-08-04T09:14:23Z",
-  "queue_rows": 40,
+  "ts": "2026-08-04T09:29:23Z",
+  "queue_rows": 41,
   "notify_bar": 78.0,
   "endpoints": [
     "/api/v1/health",
