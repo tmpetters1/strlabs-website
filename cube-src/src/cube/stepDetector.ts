@@ -29,11 +29,11 @@ const STAGE_INFO: Record<Stage, { title: string; hint: string }> = {
   },
   cross: {
     title: 'Solve the cross',
-    hint: 'Get the bottom color cross formed, matching the side colors to their centers.',
+    hint: 'Form the color cross on top (matching the side colors to their centers) - it’s easier to see and turn there. Once it’s done, tap the ⇅ Flip button to send it to the bottom.',
   },
   'first-layer': {
     title: 'Finish the first layer',
-    hint: 'Insert the bottom corners so the whole bottom face and first layer sides are done.',
+    hint: 'Insert the corners on top to finish that layer, then tap ⇅ Flip to move it to the bottom before continuing.',
   },
   f2l: {
     title: 'Finish the second layer (F2L)',
