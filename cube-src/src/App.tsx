@@ -18,6 +18,7 @@ function App() {
   const sceneRef = useRef<CubeSceneHandle>(null);
   const [, setCubeState] = useState<CubeState>(() => new CubeState(3));
   const [frontFace, setFrontFace] = useState<FaceId>('F');
+  const orientationRef = useRef<Record<FaceId, FaceId>>({ U: 'U', D: 'D', L: 'L', R: 'R', F: 'F', B: 'B' });
   const [animating, setAnimating] = useState(false);
   const [stage, setStage] = useState<StageInfo>(() => detectStage(new CubeState(3)));
   const [showHint, setShowHint] = useState(false);
@@ -55,7 +56,10 @@ function App() {
   }, []);
 
   const handleMove = useCallback((move: Move) => {
-    sceneRef.current?.pushMove(move);
+    // Buttons/keyboard use fixed visual labels (U/D/L/R/F/B); remap to whichever world
+    // face is currently occupying that visual position so turns match what's on screen.
+    const resolved = move.slice ? move : { ...move, face: orientationRef.current[move.face] };
+    sceneRef.current?.pushMove(resolved);
     resetHintTimer();
   }, [resetHintTimer]);
 
@@ -84,6 +88,7 @@ function App() {
   const handleScramble = () => {
     const moves = randomScramble(n);
     sceneRef.current?.scramble(moves);
+    setHistory([]);
     resetHintTimer();
   };
 
@@ -159,6 +164,7 @@ function App() {
             blindMode={blindMode}
             onStateChange={handleStateChange}
             onFrontFaceChange={setFrontFace}
+            onOrientationChange={(map) => { orientationRef.current = map; }}
             onAnimatingChange={setAnimating}
             onMoveApplied={handleMoveApplied}
           />

@@ -109,27 +109,64 @@ const WORLD_FACE_DIR: Record<FaceId, THREE.Vector3> = {
   B: new THREE.Vector3(0, 0, -1),
 };
 
-function FrontFaceHighlight({ n, onFrontFaceChange }: { n: number; onFrontFaceChange: (f: FaceId) => void }) {
+const OPPOSITE_FACE: Record<FaceId, FaceId> = { U: 'D', D: 'U', L: 'R', R: 'L', F: 'B', B: 'F' };
+
+function nearestFace(dir: THREE.Vector3): FaceId {
+  let best: FaceId = 'F';
+  let bestDot = -Infinity;
+  (Object.keys(WORLD_FACE_DIR) as FaceId[]).forEach((f) => {
+    const d = dir.dot(WORLD_FACE_DIR[f]);
+    if (d > bestDot) {
+      bestDot = d;
+      best = f;
+    }
+  });
+  return best;
+}
+
+function FrontFaceHighlight({
+  n,
+  onFrontFaceChange,
+  onOrientationChange,
+}: {
+  n: number;
+  onFrontFaceChange: (f: FaceId) => void;
+  onOrientationChange: (map: Record<FaceId, FaceId>) => void;
+}) {
   const ref = useRef<THREE.Group>(null);
   const { camera } = useThree();
   const lastFace = useRef<FaceId | null>(null);
+  const lastMapKey = useRef<string | null>(null);
   const half = n / 2 + 0.03;
 
   useFrame(() => {
     const camDir = camera.position.clone().normalize();
-    let best: FaceId = 'F';
-    let bestDot = -Infinity;
-    (Object.keys(WORLD_FACE_DIR) as FaceId[]).forEach((f) => {
-      const d = camDir.dot(WORLD_FACE_DIR[f]);
-      if (d > bestDot) {
-        bestDot = d;
-        best = f;
-      }
-    });
+    const best = nearestFace(camDir);
     if (best !== lastFace.current) {
       lastFace.current = best;
       onFrontFaceChange(best);
     }
+
+    // Map each visual (screen-relative) direction to the world face currently occupying it,
+    // so the buttons/keyboard always turn what's visually R/L/U/D/F/B from the current view.
+    const rightDir = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+    const upDir = new THREE.Vector3(0, 1, 0).applyQuaternion(camera.quaternion);
+    const mapF = best;
+    const mapR = nearestFace(rightDir);
+    const mapU = nearestFace(upDir);
+    const mapKey = `${mapF}${mapR}${mapU}`;
+    if (mapKey !== lastMapKey.current) {
+      lastMapKey.current = mapKey;
+      onOrientationChange({
+        F: mapF,
+        B: OPPOSITE_FACE[mapF],
+        R: mapR,
+        L: OPPOSITE_FACE[mapR],
+        U: mapU,
+        D: OPPOSITE_FACE[mapU],
+      });
+    }
+
     if (ref.current) {
       const dir = WORLD_FACE_DIR[best];
       ref.current.position.set(dir.x * half, dir.y * half, dir.z * half);
@@ -176,6 +213,7 @@ interface CubeSceneProps {
   blindMode: boolean;
   onStateChange: (state: CubeState) => void;
   onFrontFaceChange: (face: FaceId) => void;
+  onOrientationChange: (map: Record<FaceId, FaceId>) => void;
   onAnimatingChange: (animating: boolean) => void;
   onMoveApplied: (move: Move) => void;
 }
@@ -282,7 +320,7 @@ function RotatingRig({
 }
 
 const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene(
-  { n, blindMode, onStateChange, onFrontFaceChange, onAnimatingChange, onMoveApplied },
+  { n, blindMode, onStateChange, onFrontFaceChange, onOrientationChange, onAnimatingChange, onMoveApplied },
   ref
 ) {
   const cubeStateRef = useRef(new CubeState(n));
@@ -294,7 +332,13 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
       queueRef.current.push(move);
     },
     scramble: (moves: Move[]) => {
-      queueRef.current.push(...moves);
+      // Apply instantly, with no animation - a scramble isn't meant to be watched move-by-move.
+      queueRef.current = [];
+      for (const move of moves) {
+        cubeStateRef.current.applyMove(move);
+      }
+      setVersion((v) => v + 1);
+      onStateChange(cubeStateRef.current);
     },
     reset: () => {
       queueRef.current = [];
@@ -324,7 +368,7 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
         onAnimatingChange={onAnimatingChange}
         onMoveApplied={onMoveApplied}
       />
-      <FrontFaceHighlight n={n} onFrontFaceChange={onFrontFaceChange} />
+      <FrontFaceHighlight n={n} onFrontFaceChange={onFrontFaceChange} onOrientationChange={onOrientationChange} />
       <OrbitControls
         enablePan={false}
         enableZoom={true}

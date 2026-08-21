@@ -63,7 +63,7 @@ export function selectMoveCubies(cubies: Cubie[], n: number, move: Move): Cubie[
   const threshold = maxCoord - move.depth + 0.5;
   return cubies.filter((c) => {
     const coord = axis === 'x' ? c.pos[0] : axis === 'y' ? c.pos[1] : c.pos[2];
-    return sign * coord > threshold - 1;
+    return sign * coord > threshold;
   });
 }
 
