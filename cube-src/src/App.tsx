@@ -7,6 +7,8 @@ import { detectStage, getExactHint, type ExactHint, type StageInfo } from './cub
 import { invertMove, moveToNotation } from './cube/moves';
 import { randomScramble } from './cube/scramble';
 import { useKeyboardControls } from './hooks/useKeyboardControls';
+import { useKeyBindings } from './hooks/useKeyBindings';
+import { BindingsPanel } from './components/BindingsPanel';
 import './App.css';
 
 const SIZES = [3, 4, 5] as const;
@@ -113,7 +115,9 @@ function App() {
     resetHintTimer();
   }, [redoStack, resetHintTimer]);
 
-  useKeyboardControls(n, handleMove, false);
+  const { bindings, setBinding, resetBindings } = useKeyBindings();
+  useKeyboardControls(n, handleMove, false, bindings);
+  const [bindingsOpen, setBindingsOpen] = useState(false);
 
   const [isTouch] = useState(() => window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
@@ -203,6 +207,9 @@ function App() {
           </button>
           <button className="ghost-btn" onClick={handleScramble}>Scramble</button>
           <button className="ghost-btn" onClick={handleReset}>Reset</button>
+          <button className="icon-btn" onClick={() => setBindingsOpen(true)} title="Keyboard bindings" aria-label="Keyboard bindings">
+            ⌨
+          </button>
           {canFullscreen && (
             <button className="icon-btn" onClick={toggleFullscreen} title={isFullscreen ? 'Exit full screen' : 'Full screen'} aria-label="Toggle full screen">
               {isFullscreen ? '⤡' : '⤢'}
@@ -218,7 +225,8 @@ function App() {
         </span>
         {!isTouch && (
           <span className="kbd-hint">
-            ↑↓←→ U/D/L/R &nbsp;·&nbsp; Space F &nbsp;·&nbsp; Alt B &nbsp;·&nbsp; Shift ' &nbsp;·&nbsp; Ctrl wide
+            WASD orbit view &nbsp;·&nbsp; Shift ' &nbsp;·&nbsp; Ctrl wide &nbsp;·&nbsp;
+            <button className="kbd-hint-link" onClick={() => setBindingsOpen(true)}>edit turn keys ⌨</button>
           </span>
         )}
         <span className="move-count">{history.length} moves</span>
@@ -279,6 +287,15 @@ function App() {
       </main>
 
       <SliceBar n={n} onMove={handleMove} disabled={false} />
+
+      {bindingsOpen && (
+        <BindingsPanel
+          bindings={bindings}
+          onSetBinding={setBinding}
+          onReset={resetBindings}
+          onClose={() => setBindingsOpen(false)}
+        />
+      )}
     </div>
   );
 }

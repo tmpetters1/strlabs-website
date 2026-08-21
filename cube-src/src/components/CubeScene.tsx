@@ -1,7 +1,9 @@
-import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, RoundedBox } from '@react-three/drei';
 import * as THREE from 'three';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
+import { keyCaptureLock } from '../hooks/keyCaptureLock';
 import { CubeState } from '../cube/state';
 import { selectMoveCubies } from '../cube/engine';
 import type { FaceId, Move } from '../cube/types';
@@ -218,10 +220,10 @@ interface CameraOrientAnim {
 // Smoothly spins the camera (around Y, keeping its current radius/elevation) so a
 // given world face becomes the visual front - used to line an algorithm hint's
 // required viewing angle up with what the on-screen buttons actually turn.
-const CameraOrienter = forwardRef<{ orientFront: (face: FaceId) => void }, unknown>(function CameraOrienter(
-  _props,
-  ref
-) {
+const CameraOrienter = forwardRef<
+  { orientFront: (face: FaceId) => void },
+  { controlsRef: React.MutableRefObject<OrbitControlsImpl | null> }
+>(function CameraOrienter({ controlsRef }, ref) {
   const { camera } = useThree();
   const animRef = useRef<CameraOrientAnim | null>(null);
 
@@ -252,11 +254,71 @@ const CameraOrienter = forwardRef<{ orientFront: (face: FaceId) => void }, unkno
     const sin = Math.sin(angle);
     camera.position.set(a.startPos.x * cos + a.startPos.z * sin, a.startPos.y, -a.startPos.x * sin + a.startPos.z * cos);
     camera.lookAt(0, 0, 0);
+    controlsRef.current?.update();
     if (t >= 1) animRef.current = null;
   });
 
   return null;
 });
+
+function isTypingTarget(target: EventTarget | null): boolean {
+  const el = target as HTMLElement | null;
+  return !!el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+}
+
+// WASD orbits the camera around the cube (A/D = spin left/right, W/S = tilt
+// up/down) at a constant angular speed while held, independent of any
+// pointer-drag orbiting the mouse/touch OrbitControls already provide.
+function WasdOrbit({ controlsRef }: { controlsRef: React.MutableRefObject<OrbitControlsImpl | null> }) {
+  const { camera } = useThree();
+  const heldRef = useRef<Set<string>>(new Set());
+
+  useEffect(() => {
+    const WASD = new Set(['w', 'a', 's', 'd']);
+    function onKeyDown(e: KeyboardEvent) {
+      if (isTypingTarget(e.target) || keyCaptureLock.locked) return;
+      const key = e.key.toLowerCase();
+      if (!WASD.has(key)) return;
+      e.preventDefault();
+      heldRef.current.add(key);
+    }
+    function onKeyUp(e: KeyboardEvent) {
+      heldRef.current.delete(e.key.toLowerCase());
+    }
+    function onBlur() {
+      heldRef.current.clear();
+    }
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+    window.addEventListener('blur', onBlur);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('blur', onBlur);
+    };
+  }, []);
+
+  useFrame((_, delta) => {
+    const held = heldRef.current;
+    if (keyCaptureLock.locked) {
+      held.clear();
+      return;
+    }
+    if (held.size === 0) return;
+    const speed = 1.8; // radians/sec
+    const spherical = new THREE.Spherical().setFromVector3(camera.position);
+    if (held.has('a')) spherical.theta += speed * delta;
+    if (held.has('d')) spherical.theta -= speed * delta;
+    if (held.has('w')) spherical.phi -= speed * delta;
+    if (held.has('s')) spherical.phi += speed * delta;
+    spherical.phi = Math.max(0.15, Math.min(Math.PI - 0.15, spherical.phi));
+    camera.position.setFromSpherical(spherical);
+    camera.lookAt(0, 0, 0);
+    controlsRef.current?.update();
+  });
+
+  return null;
+}
 
 interface CubeSceneProps {
   n: number;
@@ -319,7 +381,7 @@ function RotatingRig({
         move,
         affectedIds: new Set(affected.map((c) => c.id)),
         startTime: performance.now(),
-        duration: 110,
+        duration: 240,
         fromAngle: 0,
         toAngle: totalAngle,
         axis,
@@ -331,7 +393,9 @@ function RotatingRig({
     if (animRef.current && groupRef.current) {
       const a = animRef.current;
       const t = Math.min(1, (performance.now() - a.startTime) / a.duration);
-      const eased = 1 - Math.pow(1 - t, 3);
+      // Ease-in-out so the turn reads as one smooth, even motion (direction is
+      // easy to see) rather than a fast snap that decelerates at the end.
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       const angle = a.fromAngle + (a.toAngle - a.fromAngle) * eased;
       groupRef.current.setRotationFromAxisAngle(a.axis, angle);
 
@@ -377,6 +441,7 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
   const queueRef = useRef<Move[]>([]);
   const [, setVersion] = useState(0);
   const orienterRef = useRef<{ orientFront: (face: FaceId) => void }>(null);
+  const orbitControlsRef = useRef<OrbitControlsImpl | null>(null);
 
   useImperativeHandle(ref, () => ({
     pushMove: (move: Move) => {
@@ -423,8 +488,10 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
         onMoveApplied={onMoveApplied}
       />
       <FrontFaceHighlight n={n} onFrontFaceChange={onFrontFaceChange} onOrientationChange={onOrientationChange} />
-      <CameraOrienter ref={orienterRef} />
+      <CameraOrienter ref={orienterRef} controlsRef={orbitControlsRef} />
+      <WasdOrbit controlsRef={orbitControlsRef} />
       <OrbitControls
+        ref={orbitControlsRef}
         enablePan={false}
         enableZoom={true}
         minDistance={n * 1.6}

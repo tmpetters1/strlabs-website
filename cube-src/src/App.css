@@ -241,6 +241,18 @@ html, body, #root {
   text-overflow: ellipsis;
 }
 
+.kbd-hint-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .move-count {
   margin-left: auto;
   flex-shrink: 0;
@@ -530,4 +542,92 @@ html, body, #root {
   .slice-pair .face-btn { width: 34px; max-width: 34px; }
   .slice-bar { gap: 12px; }
   .ghost-btn { padding: 8px 12px; }
+}
+
+/* ---------- Bindings panel ---------- */
+
+.bindings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 6, 9, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.bindings-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.bindings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.bindings-header h2 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.bindings-note {
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.bindings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.bindings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bindings-action {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.bindings-key {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 110px;
+  text-align: center;
+}
+
+.bindings-key:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.bindings-key.listening {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
