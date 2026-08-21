@@ -23,15 +23,17 @@ function dirsEqual(a: Vec3, b: Vec3): boolean {
   return Math.abs(a[0] - b[0]) < 0.01 && Math.abs(a[1] - b[1]) < 0.01 && Math.abs(a[2] - b[2]) < 0.01;
 }
 
-function cornerPosition(a: FaceId, b: FaceId, max: number): Vec3 {
+function cornerPosition(a: FaceId, b: FaceId, max: number, topFace: FaceId): Vec3 {
   const da = WORLD_FACE_DIR[a];
   const db = WORLD_FACE_DIR[b];
-  return [(da[0] + db[0]) * max, max, (da[2] + db[2]) * max];
+  const topY = WORLD_FACE_DIR[topFace][1];
+  return [(da[0] + db[0]) * max, topY * max, (da[2] + db[2]) * max];
 }
 
-function edgePosition(a: FaceId, max: number): Vec3 {
+function edgePosition(a: FaceId, max: number, topFace: FaceId): Vec3 {
   const da = WORLD_FACE_DIR[a];
-  return [da[0] * max, max, da[2] * max];
+  const topY = WORLD_FACE_DIR[topFace][1];
+  return [da[0] * max, topY * max, da[2] * max];
 }
 
 interface CornerState {
@@ -48,18 +50,27 @@ function findCubieStickers(cube: CubeState, targetPos: Vec3) {
   return cube.getAllStickers().filter((s) => dirsEqual(s.pos, targetPos));
 }
 
-function analyzeCorners(cube: CubeState): CornerState[] {
+// `topFace` is whichever GEOMETRIC face is currently the "last layer" needing
+// orientation - U by default, but D when the solver worked from the top down
+// and hasn't physically flipped yet. Note this is independent of which
+// *original* identity (U or D) the pieces sitting there happen to carry: once
+// a whole-cube flip has happened, the pieces at geometric D can well be
+// U-family pieces (and vice versa) - so we find whichever of the two is
+// actually present as the piece's marker sticker, rather than assuming it
+// matches topFace's own letter.
+function analyzeCorners(cube: CubeState, topFace: FaceId): CornerState[] {
   const max = (cube.n - 1) / 2;
   return FACE_CYCLE.map((a, i) => {
     const b = FACE_CYCLE[(i + 1) % 4];
-    const stickers = findCubieStickers(cube, cornerPosition(a, b, max));
-    const uSticker = stickers.find((s) => s.color === 'U')!;
+    const stickers = findCubieStickers(cube, cornerPosition(a, b, max, topFace));
+    const marker = stickers.find((s) => s.color === 'U' || s.color === 'D');
+    if (!marker) return { orientation: 0 as const, identity: '' };
     let orientation: 0 | 1 | 2 = 0;
-    if (dirsEqual(uSticker.worldDir, WORLD_FACE_DIR.U)) orientation = 0;
-    else if (dirsEqual(uSticker.worldDir, WORLD_FACE_DIR[a])) orientation = 1;
+    if (dirsEqual(marker.worldDir, WORLD_FACE_DIR[topFace])) orientation = 0;
+    else if (dirsEqual(marker.worldDir, WORLD_FACE_DIR[a])) orientation = 1;
     else orientation = 2;
     const identity = stickers
-      .filter((s) => s.color !== 'U')
+      .filter((s) => s.color !== marker.color)
       .map((s) => s.color)
       .sort()
       .join('');
@@ -67,13 +78,14 @@ function analyzeCorners(cube: CubeState): CornerState[] {
   });
 }
 
-function analyzeEdges(cube: CubeState): EdgeState[] {
+function analyzeEdges(cube: CubeState, topFace: FaceId): EdgeState[] {
   const max = (cube.n - 1) / 2;
   return FACE_CYCLE.map((a) => {
-    const stickers = findCubieStickers(cube, edgePosition(a, max));
-    const uSticker = stickers.find((s) => s.color === 'U')!;
-    const oriented = dirsEqual(uSticker.worldDir, WORLD_FACE_DIR.U);
-    const identity = stickers.find((s) => s.color !== 'U')!.color;
+    const stickers = findCubieStickers(cube, edgePosition(a, max, topFace));
+    const marker = stickers.find((s) => s.color === 'U' || s.color === 'D');
+    if (!marker) return { oriented: false, identity: a };
+    const oriented = dirsEqual(marker.worldDir, WORLD_FACE_DIR[topFace]);
+    const identity = stickers.find((s) => s.color !== marker.color)!.color;
     return { oriented, identity };
   });
 }
@@ -85,9 +97,9 @@ interface Signature {
   edgeId: FaceId[];
 }
 
-function computeSignature(cube: CubeState): Signature {
-  const corners = analyzeCorners(cube);
-  const edges = analyzeEdges(cube);
+function computeSignature(cube: CubeState, topFace: FaceId = 'U'): Signature {
+  const corners = analyzeCorners(cube, topFace);
+  const edges = analyzeEdges(cube, topFace);
   return {
     cornerOri: corners.map((c) => c.orientation),
     cornerId: corners.map((c) => c.identity),
@@ -233,8 +245,8 @@ function matchRotation<T>(current: T[], canonical: T[]): number | null {
   return null;
 }
 
-export function detectPll(cube: CubeState): CaseMatch | null {
-  const sig = computeSignature(cube);
+export function detectPll(cube: CubeState, topFace: FaceId = 'U'): CaseMatch | null {
+  const sig = computeSignature(cube, topFace);
   for (const c of PLL_CASES) {
     const kCorner = matchRotation(sig.cornerId, c.signature.cornerId);
     if (kCorner === null) continue;
@@ -245,8 +257,8 @@ export function detectPll(cube: CubeState): CaseMatch | null {
   return null;
 }
 
-export function detectOllEdgePhase(cube: CubeState): CaseMatch | null {
-  const sig = computeSignature(cube);
+export function detectOllEdgePhase(cube: CubeState, topFace: FaceId = 'U'): CaseMatch | null {
+  const sig = computeSignature(cube, topFace);
   if (sig.edgeOri.every(Boolean)) return null;
   for (const c of OLL_EDGE_CASES) {
     const k = matchRotation(sig.edgeOri, c.signature.edgeOri);
@@ -255,8 +267,8 @@ export function detectOllEdgePhase(cube: CubeState): CaseMatch | null {
   return null;
 }
 
-export function detectOllCornerPhase(cube: CubeState): CaseMatch | null {
-  const sig = computeSignature(cube);
+export function detectOllCornerPhase(cube: CubeState, topFace: FaceId = 'U'): CaseMatch | null {
+  const sig = computeSignature(cube, topFace);
   if (sig.cornerOri.every((o) => o === 0)) return null;
   for (const c of OLL_CORNER_CASES) {
     const k = matchRotation(sig.cornerOri, c.signature.cornerOri);
