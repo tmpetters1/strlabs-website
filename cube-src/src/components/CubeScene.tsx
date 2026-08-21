@@ -399,7 +399,11 @@ function RotatingRig({
           : 1
         : FACE_SIGN[move.face];
       const dir = -sign; // clockwise-from-outside visual direction
-      const totalAngle = dir * move.turns * (Math.PI / 2);
+      // A prime turn (turns === 3) is the same final state as one quarter-turn the
+      // other way, but animating the full 3/4 sweep forward reads as spinning the
+      // wrong direction. Take the short way around instead.
+      const effectiveTurns = move.turns === 3 ? -1 : move.turns;
+      const totalAngle = dir * effectiveTurns * (Math.PI / 2);
       animRef.current = {
         move,
         affectedIds: new Set(affected.map((c) => c.id)),
