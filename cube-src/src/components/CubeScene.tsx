@@ -53,7 +53,15 @@ function basisToQuaternion(basis: [[number, number, number], [number, number, nu
   return q;
 }
 
-function CubieMesh({ cubie, blindMode }: { cubie: CubeState['cubies'][number]; blindMode: boolean }) {
+function CubieMesh({
+  cubie,
+  blindMode,
+  animRef,
+}: {
+  cubie: CubeState['cubies'][number];
+  blindMode: boolean;
+  animRef: React.MutableRefObject<AnimState | null>;
+}) {
   const stickerKeys = useMemo(
     () => LOCAL_ORDER.filter((key) => cubie.stickers[key]),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,8 +71,25 @@ function CubieMesh({ cubie, blindMode }: { cubie: CubeState['cubies'][number]; b
   const groupRef = useRef<THREE.Group>(null);
   useFrame(() => {
     if (!groupRef.current) return;
-    groupRef.current.position.set(cubie.pos[0], cubie.pos[1], cubie.pos[2]);
-    groupRef.current.quaternion.copy(basisToQuaternion(cubie.basis));
+    const a = animRef.current;
+    if (a && a.affectedIds.has(cubie.id)) {
+      // This cubie is mid-turn: apply the in-progress rotation on top of its
+      // pre-turn position/orientation, staying mounted the whole time (no
+      // remount between the "static" and "spinning" states, which used to
+      // cause a one-frame snap back to the group origin at the animation's
+      // start and end).
+      const t = Math.min(1, (performance.now() - a.startTime) / a.duration);
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const angle = a.fromAngle + (a.toAngle - a.fromAngle) * eased;
+      const spinQ = new THREE.Quaternion().setFromAxisAngle(a.axis, angle);
+      groupRef.current.position
+        .set(cubie.pos[0], cubie.pos[1], cubie.pos[2])
+        .applyQuaternion(spinQ);
+      groupRef.current.quaternion.copy(spinQ).multiply(basisToQuaternion(cubie.basis));
+    } else {
+      groupRef.current.position.set(cubie.pos[0], cubie.pos[1], cubie.pos[2]);
+      groupRef.current.quaternion.copy(basisToQuaternion(cubie.basis));
+    }
   });
 
   return (
@@ -350,8 +375,6 @@ function RotatingRig({
   onMoveApplied: (move: Move) => void;
 }) {
   const animRef = useRef<AnimState | null>(null);
-  const groupRef = useRef<THREE.Group>(null);
-  const [animatingIds, setAnimatingIds] = useState<Set<number> | null>(null);
 
   useFrame(() => {
     if (!animRef.current && queueRef.current.length > 0) {
@@ -387,49 +410,30 @@ function RotatingRig({
         axis,
       };
       onAnimatingChange(true);
-      setAnimatingIds(new Set(affected.map((c) => c.id)));
     }
 
-    if (animRef.current && groupRef.current) {
+    if (animRef.current) {
       const a = animRef.current;
       const t = Math.min(1, (performance.now() - a.startTime) / a.duration);
-      // Ease-in-out so the turn reads as one smooth, even motion (direction is
-      // easy to see) rather than a fast snap that decelerates at the end.
-      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      const angle = a.fromAngle + (a.toAngle - a.fromAngle) * eased;
-      groupRef.current.setRotationFromAxisAngle(a.axis, angle);
-
       if (t >= 1) {
         cubeStateRef.current.applyMove(a.move);
-        groupRef.current.setRotationFromAxisAngle(a.axis, 0);
         animRef.current = null;
         onAnimatingChange(false);
         onStateChange(cubeStateRef.current);
         onMoveApplied(a.move);
         setVersion((v) => v + 1);
-        setAnimatingIds(null);
       }
     }
   });
 
   const state = cubeStateRef.current;
-  const affectedSet = animatingIds;
-  const staticCubies = affectedSet ? state.cubies.filter((c) => !affectedSet.has(c.id)) : state.cubies;
-  const spinningCubies = affectedSet ? state.cubies.filter((c) => affectedSet.has(c.id)) : [];
 
   return (
-    <>
-      <group>
-        {staticCubies.map((c) => (
-          <CubieMesh key={c.id} cubie={c} blindMode={blindMode} />
-        ))}
-      </group>
-      <group ref={groupRef}>
-        {spinningCubies.map((c) => (
-          <CubieMesh key={c.id} cubie={c} blindMode={blindMode} />
-        ))}
-      </group>
-    </>
+    <group>
+      {state.cubies.map((c) => (
+        <CubieMesh key={c.id} cubie={c} blindMode={blindMode} animRef={animRef} />
+      ))}
+    </group>
   );
 }
 
