@@ -1,0 +1,17 @@
+{
+  "api_version": 1,
+  "mode": "static-api",
+  "preferred": [
+    "./api/v1/radar.json",
+    "./data/radar.json"
+  ],
+  "endpoints": {
+    "health": "./api/v1/health.json",
+    "radar": "./api/v1/radar.json",
+    "notify": "./api/v1/notify.json",
+    "index": "./api/v1/index.json"
+  },
+  "poll_seconds": 60,
+  "auth": "./data/auth.json",
+  "note": "Static GH Pages API. Local live server: python3 scripts/dashboard_api.py serve"
+}

@@ -1,0 +1,132 @@
+{
+  "generated_at": "2026-08-04T16:59:29Z",
+  "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+  "chain_focus": {
+    "primary": [
+      "robinhood",
+      "base"
+    ]
+  },
+  "positions": [
+    {
+      "id": "dtf-rh-2026-08-03",
+      "status": "open",
+      "symbol": "DTF",
+      "name": "DeFi Traded Fund",
+      "chain": "robinhood",
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "bought_at": "2026-08-03T17:09:00+02:00",
+      "entry_price_usd": 0.0003254,
+      "entry_mc_usd": null,
+      "entry_mc_source": null,
+      "desk_score": 81,
+      "thesis": "SRM peer \u2014 prize-draw staking, AMD into pool, USDG-quoted",
+      "links": {
+        "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+        "site": "https://dtf.finance/"
+      },
+      "brief_md": "# DTF \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair:** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG-quoted)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/\n- **X:** @DefiTradedFund\n\n## \u26a0\ufe0f SRM Gate check (DD mandatory before brief)\n- Token name: `DeFi Traded Fund` (intentional, not cosplay) \u2713\n- Pair quote: **USDG** (same denomination as GLD's stock-buy path) \u2713\n- Prize/staking contract (0xA89e38...) actively receiving **AMD Robinhood Token** today at 14:15 UTC \u2713\n- Deployer (team 7702 account 0xD2e482F...) actively moving USDG at 14:13 UTC \u2713\n- No Flap / FlapTaxTokenV3 / clone naming \u2713\n- **SRM verdict: PASS \u2014 real stock-buy path active onchain**\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Tags:** robinhood, usdg-quoted, stock-prize-draw, staking, nvda-tsla-aapl-amd, organized-team, srm-peer\n- **Novelty:** second verified SRM peer (GLD is archetype); distinct prize-draw mechanism vs GLD's grid-lottery\n- **Confidence:** 0.84\n\n## Market (live ~16:40 CEST)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$226k |\n| Liq | ~$52k |\n| Vol 24h | ~$140k |\n| Vol/Liq | **2.67\u00d7** (very active) |\n| Txns h24 | **1,859B / 1,399S** (buy-biased +33%) |\n| Txns h1 | 73B / 69S (balanced) |\n| \u0394 h1 / h24 | +1.86% / \u22122.84% |\n| Pair age | 3.7 days (2026-07-31) |\n| Boosts | none |\n| Holders | 125 |\n| Quote | **USDG** |\n\n## Holder map\n| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xA89e3852\u2026 | **Prize/Staking Pool** (receives AMD today) | **38.6%** |\n| 2 | 0x8366a39C\u2026 | PoolManager (LP) | 13.6% |\n| 3 | 0x5E9cAcf7\u2026 | **SafeProxy (team Safe)** | 5.4% |\n| 4 | 0x142136\u2026 | EOA | 2.6% |\n| 5 | 0x5d9102\u2026 | EOA | 2.1% |\n| 6 | 0xC55826\u2026 | EOA | 2.1% |\n| 7\u201311 | \u2014 | EOAs | ~1.6\u20131.9% each |\n\n- **LP**: 13.6% \u2713\n- **Prize contract**: 38.6% \u2014 receives stock tokens, not team bag \u2713\n- **Team Safe**: 5.4% \u2014 multisig treasury, organized team \u2713\n- **Top EOA**: 2.6% \u2014 no dominant whale/sniper \u2713\n- **Top10 EOAs ex-contracts**: ~18% spread across 125 holders \u2713\n\n## Deployer / team structure\n- Token deployed by factory contract `0xa17Be45\u2026` (named \"DeFi Traded Fund\" on Blockscout)\n- Factory called from team EIP-7702 SemiModularAccount `0xD2e482F\u2026`\n- Same 7702 account actively sent USDG at 14:13 UTC today \u2192 confirms live operation\n- SafeProxy (0x5E9cACf\u2026) = Gnosis Safe L2 multisig, received tokens at launch via team 7702 account 2026-08-02 22:32 UTC\n- **No serial rug history visible; organized multi-sig + smart account infra = legitimate team posture**\n\n## SRM mechanism (onchain verified)\n1. Users stake DTF \u2192 tokens flow into prize contract 0xA89e38\u2026\n2. Protocol earns fees / sells DTF buys \u2192 denominated in USDG (pair quote)\n3. USDG used to buy tokenized stocks (NVDA/TSLA/AAPL/AMD) on RH infrastructure\n4. AMD Robinhood Token flowed INTO prize contract at 14:15 UTC today via 0xF74247\u2026 (unverified intermediate)\n5. Stakers win prize draws \u2192 claim tokenized stocks\n\n**Evidence of live mechanism: AMD stock flowing into prize pool TODAY. USDG moving TODAY. Both sides of the loop confirmed.**\n\n## Concerns / Risks\n1. **Prize contract (0xA89e38\u2026) is unverified** \u2014 cannot read code; rug mechanism possible but unlikely given public AMD deposits\n2. **125 holders** \u2014 thin; early-stage distribution risk\n3. **h24 \u22122.84%** \u2014 slight price decline despite buy-biased volume; sell-side pressure from early buyers distributing\n4. **Intermediate contract (0xF74247\u2026) also unverified** \u2014 stock routing layer unknown\n5. **No public X engagement visible** (X search blocked; @DefiTradedFund name clean but reach unknown)\n\n## Thesis / why now\nDeFi Traded Fund is the second verified SRM peer to GLD/Bullion on RH. Mechanism is active: AMD tokenized stock entered the prize contract today; USDG moving from team wallet. USDG-quoted pair means the protocol natively prices in the buy currency. $226k MC at $52k liq with 1859 h24 buys is strong organic conviction for a 3.7-day token with zero boosts. Prize-draw mechanism is novel vs GLD's grid-lottery \u2014 different product surface, same verified stock-buy+claim category.\n\n**Why now:** Caught early (3.7d), buy-biased tape, no boosts, team active onchain, real stock flowing.\n\n**Invalidation:**\n1. Prize contract drains without stock distribution (team rug via unverified contract)\n2. Holders drop below 100 or liq collapses below $20k\n3. AMD/stock deposits stop for 48h (mechanism paused/stopped)\n4. Contract verified and shows admin-drain function without timelock\n\n## Score\n**81 / 100 \u2014 Notify: YES**\n\n### Stack\n- + Verified SRM buy-path (AMD stock flowing into prize contract today): +22\n- + USDG-quoted pair (correct mechanism currency): +10\n- + h24 buy-biased 1859/1399, vol/liq 2.67\u00d7: +8\n- + SafeProxy + 7702 team structure (organized, not anon quick-flip): +7\n- + Dominant DTF on RH; clean EOA distro (top 2.6%): +6\n- + Zero boosts, 3.7d organic: +5\n- + SRM second peer (leaf validated): +3\n- \u2212 Prize contract unverified (can't confirm no drain): \u22129\n- \u2212 125 holders (thin): \u22125\n- \u2212 h24 \u22122.84% / h1 mixed signals: \u22123\n- \u2212 No SM in top holders: \u22125\n- \u2212 X reach unknown (search blocked): \u22123\n- = **81** (above bar 78 \u2192 notify YES)\n\n## Checks\n| id | result | note |\n|----|--------|------|\n| website_product_truth | partial | dtf.finance unreachable via fetch; mechanism verified onchain |\n| site_ca_match | blocked | can't verify |\n| social_x_pass | blocked | @DefiTradedFund exists; X search down |\n| contract_risk | partial | token = \"DeFi Traded Fund\" clean; prize contract 0xA89e38 unverified |\n| srm_buy_claim_path | **PASS** | AMD stock confirmed flowing into prize pool TODAY |\n| deployer_history | pass | SafeProxy + 7702 team; no rug; USDG active |\n| clone_count | pass | dominant DTF on RH (second DTF dead $1.77 vol) |\n| sm_pass | no-sm | no DB hit; buy-biased organic tape compensates |\n| notify_gate | **YES** | 81 \u2265 78 \u2014 score qualifies; prize contract risk noted |",
+      "dex_url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+      "current_price_usd": 0.0004108,
+      "current_mc_usd": 368349,
+      "current_liq_usd": 67598.42,
+      "vol_h24_usd": 112430.93,
+      "change_h24_pct": 57.86,
+      "change_h1_pct": 74.04,
+      "price_source": "dexscreener",
+      "price_error": null,
+      "price_fetched_at": "2026-08-04T16:59:23Z",
+      "pnl_pct": 26.244622003687773,
+      "wallet_balance_tokens": 258779.48472233373,
+      "wallet_confirmed": true,
+      "value_usd": 106.3066123239347,
+      "cost_basis_usd": 84.20684432864739,
+      "pnl_usd": 22.09976799528731
+    },
+    {
+      "id": "grid-rh-2026-08-04",
+      "status": "open",
+      "symbol": "GRID",
+      "name": "GRID by Virtuals",
+      "chain": "robinhood",
+      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
+      "pair": "0xa0726Fae0881bA6041171ab86D5Ff34E980E0F27",
+      "bought_at": null,
+      "entry_price_usd": 0.0014327844,
+      "entry_mc_usd": null,
+      "entry_mc_source": null,
+      "desk_score": 64,
+      "thesis": "Human-directed buy after manual research request earlier today",
+      "links": {
+        "dex": "https://dexscreener.com/robinhood/0xa0726Fae0881bA6041171ab86D5Ff34E980E0F27"
+      },
+      "brief_md": "# GRID \u2014 Decision Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed  \n**Source:** Human queue (Tor-Magnus) \u00b7 Class gaming-nft/games conf0.66  \n**Notify: NO** (bar 78; testnet game + serial deployer + unproven buyback/stake)\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x727701F88f09Fed71eb217Bcea88b3F314CF7079` \u2014 **GRID by Virtuals**\n- **Primary pair:** `0xa0726Fae0881bA6041171ab86D5Ff34E980E0F27` (Uniswap **v2** GRID/VIRTUAL)\n- **Secondary:** GRID/NVDA v4 thin book (~$5k liq)\n- **Dex:** https://dexscreener.com/robinhood/0xa0726fae0881ba6041171ab86d5ff34e980e0f27\n- **Site:** https://www.gridarena.xyz/ \u00b7 App: https://app.gridarena.xyz/\n- **X:** https://x.com/grid_arena\n\n## Classification\n- **gaming-nft / games** \u00b7 launchpad **virtuals** \u00b7 narrative prediction-game\n- **novelty: none** (stock-grid prediction + Virtuals agent packaging, not new primitive)\n- Research conf **0.62** (Class 0.66; testnet + claim gaps trim)\n- Identity = **(robinhood, this CA)** \u2014 GRID ticker ~26 CAs; this is sole Virtuals-named + site-bound dominant book\n\n## Contract surface\n| Item | Finding |\n|------|---------|\n| Type | eip1167 minimal proxy |\n| Implementation | `0x581f7B99\u20261419b` **AgentTokenV4** (verified) |\n| Deployer | `0x43E4C17b\u2026c2d4` \u2192 **serial_launcher** (36 verified, no coherent family) **FAIL CAP** |\n| Fence | unfenced (not Flap/Pons/CashCat) |\n| Tax surface | AgentTokenV4 exposes `projectBuy/SellTax`, `distributeTaxTokens`, LP registry \u2014 **tax rails exist**; not proof of \u201c30% fee\u2192buyback\u201d game loop |\n\n## Product truth (score the running system)\n### What is real\n- **Marketing site is a real Next app**, not empty shell: stake/buyback/airdrop copy, roadmap, live-round UI chrome.\n- **Site hard-binds this CA** `0x727701F8\u20267079` (+ pair `0xa0726Fae\u20260F27`) in page HTML \u2014 **site\u2192CA pass**.\n- **Token is mainnet-liquid** ~19d, holders **617**, mc ~**$1.45M**, primary liq ~**$129k** vs VIRTUAL, vol24 ~**$96k**.\n- Virtuals agent-token path is real template (AgentTokenV4), not random meme bytecode.\n\n### What is not mainnet-live (critical)\n- Roadmap copy: **\u201cQ3 2026 Testnet Launch + Airdrop Season 1\u201d** \u2014 public testnet / early play, not \u201cmainnet grids settled.\u201d\n- App HTML env references **chainId `46630` (RH testnet)** repeatedly (`NEXT_PUBLIC_*`); app address surface points at testnet-side config, **not** this mainnet CA as the live game settlement chain.\n- **Stake fee-rebates** and **\u201c30% platform fees buy back $GRID\u201d** = marketing claims.  \n  - No verified mainnet game fee\u2192buyback\u2192staker distribution loop closed this pass.  \n  - AgentToken tax methods \u2260 GridArena platform fee buyback proof.\n- Leaderboard / round timer on marketing can be UI theater until testnet/mainnet settlement txs are attached.\n\n**Verdict:** Token + brand + CA bind = real. **Playable mainnet GridArena + buyback/stake economics = not proven.** Score roadmap as roadmap.\n\n## Market (live Research pull)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$1.45M |\n| Liq (primary V2 VIRTUAL) | ~$129k |\n| Vol 24h | ~$96k |\n| Tx h24 | ~187 buys / 158 sells |\n| Age | ~19d |\n| Holders | 617 |\n| Quote | VIRTUAL (Virtuals ecosystem beta) |\n\n## Holders / distribution (Research pull; Whale wake sent)\n| Bucket | ~% | Note |\n|--------|---:|------|\n| `0xd7C2CAFe\u2026Cc00` contract (unverified eip1167) | **36.5%** | Large launch inflows from EOAs; not labeled LP \u2014 **team/vesting/bonding-style bag** until named |\n| `0xe2890629\u2026eE8a` EOA | **18.95%** | Multi Virtuals agent bag (GRID/VEX/KARMA/RAXOL/\u2026 equal-ish) \u2014 **agent-farm wallet**, not SM registry |\n| UniswapV3Pool | 6.05% | LP-ish |\n| `0x829d1853\u2026224a` EOA | 4.48% | Same multi-agent pattern |\n| UniswapV2Pair (primary) | 4.42% | Labeled LP |\n| Rest | fragmented | retail / 7702 dust |\n\n- **SM match:** none vs `memory/whales`\n- **Concentration:** top unlabeled contract + farm EOA dominate free float after thin LP labels\n- **LP secured:** V2 pair holds ~4.4% token-side only \u2014 **not** a strong burn/lock story from holder page alone\n\n## Social / X\n- `social_x_pass` = **blocked** (xAI credits exhausted). Not a pass.\n- Class noted @grid_arena + Season Zero giveaway \u2014 treat as present, not organic-verified.\n\n## Thesis / why now\nHuman-asked Virtuals GRID: liquid RH agent token with a polished GridArena front-end and honest CA bind. The **asymmetric question is mainnet game go-live**, not ticker existence. Until testnet\u2192mainnet settlement and fee\u2192buyback/stake are onchain, this is a **narrative + liquidity watch**, not a notify.\n\n## Invalidation\n1. App stays testnet-only while mc bleeds / liq exits\n2. Unlabeled 36% contract dumps into book\n3. Buyback/stake claims remain marketing with zero matching txs >30d after \u201claunch\u201d messaging\n4. Virtuals pair liquidity rug / tax recipient extract\n5. Site CA pivot to another GRID clone\n6. Serial deployer pattern used to farm more GRID-named shells\n\n## Score\n**64 / 100** \u00b7 **Notify: NO**\n\n### Stack\n- + Mainnet liquid book (mc/liq/holders/age): **+12**\n- + Real site + exact CA/pair bind: **+10**\n- + Virtuals AgentTokenV4 legitimate template: **+6**\n- + Live marketing product surface (not parked domain): **+4**\n- \u2212 Game/app still **testnet / Q3 testnet roadmap** (score running system): **-14**\n- \u2212 Buyback + stake rebate claims **unproven onchain**: **-10**\n- \u2212 Deployer **serial_launcher FAIL CAP**: **-8**\n- \u2212 Top contract ~36% + multi-agent EOA ~19%: **-8**\n- \u2212 Ticker clone farm noise: **-3**\n- \u2212 Social blocked / no SM: **-3**\n- = **64**\n\n## Checks\n| Check | Status | Note |\n|-------|--------|------|\n| upstream_read | pass | Class complete; Whale wake sent mid-DD |\n| website_product_truth | pass | Real app shell; **mainnet game not live** \u2014 noted |\n| site_points_to_ca | pass | www binds exact CA+pair |\n| social_x_pass | **blocked** | xAI credits |\n| contract_risk | pass | AgentTokenV4 verified proxy; tax knobs exist; unaudited game |\n| factory_fence | pass | unfenced Virtuals |\n| dev_wallet_history | fail | serial_launcher 36 \u2014 FAIL CAP |\n| deployer_in_score | pass | folded into score/notify |\n| top_holders | pass | 617; top contract 36.5%; farm EOA 19% |\n| label_lp_burn_lock | pass | V2 4.4% + V3 6.0% labeled; top bag not LP |\n| smart_money_match | pass | none |\n| buyer_quality | fail | multi-agent farm tops; no aged SM |\n| concentration | fail | 36% unlabeled contract + 19% EOA |\n| lp_secured | blocked | no clean burn/lock proof |\n| clone_count | fail | ~26 GRID CAs noise (identity still this CA) |\n| thesis_invalidation | pass | written |\n| score_stack | pass | 64 |\n| notify_gate | pass | decision **hold** \u2014 64<78; testnet; serial; claims open |\n\n## Action\n- **No human ping.** Conductor may relay brief to #discussion.\n- Re-open / rescore triggers:\n  1. App `chainId` moves to **4663 mainnet** with play/settlement txs\n  2. Onchain **fee\u2192GRID buyback** and/or **stake rebate** txs\n  3. Top 36% contract labeled + distribution schedule, or float improves\n  4. Hard SM hit\n  5. Social credits restored + organic pass\n- Whale: confirm SM/labels if not already stamped; no escalate expected without SM.",
+      "dex_url": "https://dexscreener.com/robinhood/0xa0726Fae0881bA6041171ab86D5Ff34E980E0F27",
+      "current_price_usd": 0.00142,
+      "current_mc_usd": 1420819,
+      "current_liq_usd": 125902.55,
+      "vol_h24_usd": 111713.2,
+      "change_h24_pct": 28.69,
+      "change_h1_pct": -6.27,
+      "price_source": "dexscreener",
+      "price_error": null,
+      "price_fetched_at": "2026-08-04T16:59:24Z",
+      "pnl_pct": -0.8922766049099905,
+      "wallet_balance_tokens": 70047.84965540789,
+      "wallet_confirmed": true,
+      "value_usd": 99.4679465106792,
+      "cost_basis_usd": 100.3634662398138,
+      "pnl_usd": -0.8955197291346053
+    }
+  ],
+  "history": [
+    {
+      "id": "dtf-rh-2026-08-03",
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "side": "buy",
+      "at": "2026-08-03T17:09:00+02:00",
+      "price_usd": 0.0003254,
+      "mc_usd": null,
+      "size_tokens": 517558.9694446674,
+      "size_usd": null,
+      "reported_by": "tor-magnus"
+    },
+    {
+      "id": "dtf-rh-2026-08-03",
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "side": "sell",
+      "at": null,
+      "price_usd": null,
+      "mc_usd": null,
+      "size_tokens": 258779.4847223337,
+      "size_usd": null,
+      "reported_by": null
+    },
+    {
+      "id": "grid-rh-2026-08-04",
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "side": "buy",
+      "at": null,
+      "price_usd": 0.0014327844,
+      "mc_usd": null,
+      "size_tokens": 70047.84965540789,
+      "size_usd": 100.36346821819824,
+      "reported_by": null
+    }
+  ],
+  "pnl": {
+    "realized_usd": 0.0,
+    "unrealized_usd": 21.2,
+    "unrealized_complete": true,
+    "open_position_count": 2,
+    "closed_position_count": 0,
+    "wallet_address": "0x80630a7ed74f6feD614097Db8Cf2A945f4afa9E0",
+    "wallet_snapshot_at": null,
+    "note": "All open positions have wallet-confirmed balances."
+  },
+  "disclaimer": "Experimental agent-executed spot desk (RH+Base). High risk \u2014 tokens may be illiquid, unaudited, or scams. Not financial advice."
+}

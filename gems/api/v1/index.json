@@ -1,0 +1,259 @@
+{
+  "ok": true,
+  "api_version": 1,
+  "published_at": "2026-08-04T23:09:28.835776+00:00",
+  "tokens": [
+    {
+      "symbol": "DTF",
+      "chain": "robinhood",
+      "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+      "score": 92.0,
+      "status": "briefed",
+      "notify": true,
+      "path": "/api/v1/token/DTF"
+    },
+    {
+      "symbol": "FIRE",
+      "chain": "robinhood",
+      "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/FIRE"
+    },
+    {
+      "symbol": "BASEMATE",
+      "chain": "base",
+      "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+      "score": 76.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BASEMATE"
+    },
+    {
+      "symbol": "ELE",
+      "chain": "robinhood",
+      "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
+      "score": 75.0,
+      "status": "tracking",
+      "notify": false,
+      "path": "/api/v1/token/ELE"
+    },
+    {
+      "symbol": "LEMON",
+      "chain": "robinhood",
+      "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+      "score": 75.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/LEMON"
+    },
+    {
+      "symbol": "BOOTS",
+      "chain": "robinhood",
+      "token": "0x6CfC39AC2d986FaAAe6e360C3fBD63403D0Fb29b",
+      "score": 72.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BOOTS"
+    },
+    {
+      "symbol": "GLD",
+      "chain": "robinhood",
+      "token": "0x98d456f43FF912577F679f6D148Cb08714Cf4A09",
+      "score": 71.0,
+      "status": "tracking",
+      "notify": false,
+      "path": "/api/v1/token/GLD"
+    },
+    {
+      "symbol": "TRSA",
+      "chain": "robinhood",
+      "token": "0x08629f9A1cCe96c60cad043197B796105b45eEc6",
+      "score": 70.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/TRSA"
+    },
+    {
+      "symbol": "HDX",
+      "chain": "robinhood",
+      "token": "0x19Aac52AF5F735bEE21B708F8C76B62C4A96895a",
+      "score": 70.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/HDX"
+    },
+    {
+      "symbol": "GENESIS",
+      "chain": "robinhood",
+      "token": "0x899Df1a46Facc37581DdAc4E74f47488209aade5",
+      "score": 69.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GENESIS"
+    },
+    {
+      "symbol": "Lightoor",
+      "chain": "robinhood",
+      "token": "0x067d5708e1aE03393368b8D5e2F0b02e75a36Ba3",
+      "score": 69.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/Lightoor"
+    },
+    {
+      "symbol": "TSLR",
+      "chain": "robinhood",
+      "token": "0x24117e8e9312223e8fE02078c1EF8077e9b66Ba3",
+      "score": 66.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/TSLR"
+    },
+    {
+      "symbol": "FIND",
+      "chain": "base",
+      "token": "0x460766cC4158Ffbd70fEFFd3d2891237E064AB54",
+      "score": 66.0,
+      "status": "tracking",
+      "notify": false,
+      "path": "/api/v1/token/FIND"
+    },
+    {
+      "symbol": "Port",
+      "chain": "robinhood",
+      "token": "0x14112893F576c12f65B9F0f88E9a9A12723239B5",
+      "score": 65.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/Port"
+    },
+    {
+      "symbol": "SAFEVANO",
+      "chain": "robinhood",
+      "token": "0xe6613D2Bbd5f5C5bb203C36eE414ffaA4a47a977",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/SAFEVANO"
+    },
+    {
+      "symbol": "GRID",
+      "chain": "robinhood",
+      "token": "0x727701F88f09Fed71eb217Bcea88b3F314CF7079",
+      "score": 64.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/GRID"
+    },
+    {
+      "symbol": "BRACKETS",
+      "chain": "robinhood",
+      "token": "0x5E453647539D4DD766D7C4c3D6CE589900D39415",
+      "score": 63.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/BRACKETS"
+    },
+    {
+      "symbol": "PIPE",
+      "chain": "robinhood",
+      "token": "0xD87b957171751980eF2b62fE1Fc3daE5d4D408E9",
+      "score": 58.0,
+      "status": "briefed",
+      "notify": false,
+      "path": "/api/v1/token/PIPE"
+    },
+    {
+      "symbol": "STOCKIMPALER",
+      "chain": "robinhood",
+      "token": "0x5c0033cE0029f709A51313E20615f74E1D00a549",
+      "score": 32.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/STOCKIMPALER"
+    },
+    {
+      "symbol": "GME",
+      "chain": "bsc",
+      "token": "0xfe50F26AAF67740E66DA23E49c68BfaB42357777",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/GME"
+    },
+    {
+      "symbol": "BRO",
+      "chain": "robinhood",
+      "token": "0xF63f9e3351D561b1F31d203cDF089D7181f4d460",
+      "score": 28.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/BRO"
+    },
+    {
+      "symbol": "RIZO",
+      "chain": "bsc",
+      "token": "0xa0c914Fa90bd7563e530BEA095f2a0643Be77777",
+      "score": 18.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/RIZO"
+    },
+    {
+      "symbol": "OZZY",
+      "chain": "robinhood",
+      "token": "0xd3cA926df830941D22C6d8aA83f7Bd0A7031480D",
+      "score": 18.0,
+      "status": "killed",
+      "notify": false,
+      "path": "/api/v1/token/OZZY"
+    },
+    {
+      "symbol": "GASTER",
+      "chain": "robinhood",
+      "token": "0x37918f555A1c2f356F5Bee50B3a8CB820ab56fA1",
+      "score": 12.0,
+      "status": "killed",
+      "notify": false,
+      "path": "/api/v1/token/GASTER"
+    },
+    {
+      "symbol": "USEDCAR",
+      "chain": "robinhood",
+      "token": "0xeff44b72a8641DB970CD7E9d3078C9EF8367b2b3",
+      "score": 12.0,
+      "status": "killed",
+      "notify": false,
+      "path": "/api/v1/token/USEDCAR"
+    },
+    {
+      "symbol": "NATO",
+      "chain": "base",
+      "token": "0x0bf43486ba5b80c0ff742d5e31576abc63d8c0e8",
+      "score": 10.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/NATO"
+    },
+    {
+      "symbol": "MOON",
+      "chain": "base",
+      "token": "0x2c8a36f6f0dc4c1773c430031d24252cd1faa5f2",
+      "score": 8.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/MOON"
+    },
+    {
+      "symbol": "(RNDR)",
+      "chain": "base",
+      "token": "0x6eba7f17438051fd00d8dc6fa63191cdc29a2666",
+      "score": 5.0,
+      "status": "deprioritized",
+      "notify": false,
+      "path": "/api/v1/token/(RNDR)"
+    }
+  ]
+}

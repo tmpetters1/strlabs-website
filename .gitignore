@@ -1,3 +1,4 @@
+# local only
 .DS_Store
 .letta/
 gems/data/auth.json

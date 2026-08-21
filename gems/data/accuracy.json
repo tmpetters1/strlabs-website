@@ -1,0 +1,56 @@
+{
+  "available": true,
+  "tracked": 82,
+  "graded": 73,
+  "pending": 9,
+  "verdicts": {
+    "flat": 56,
+    "delisted": 1,
+    "winner": 7,
+    "loser": 6,
+    "rug": 3
+  },
+  "by_score_band": {
+    "70-77": {
+      "n": 6,
+      "winner": 1,
+      "loser": 1,
+      "rug": 0,
+      "flat": 4,
+      "delisted": 0
+    },
+    "<60": {
+      "n": 48,
+      "winner": 6,
+      "loser": 4,
+      "rug": 3,
+      "flat": 34,
+      "delisted": 1
+    },
+    "60-69": {
+      "n": 6,
+      "winner": 0,
+      "loser": 1,
+      "rug": 0,
+      "flat": 5,
+      "delisted": 0
+    },
+    "unscored": {
+      "n": 12,
+      "winner": 0,
+      "loser": 0,
+      "rug": 0,
+      "flat": 12,
+      "delisted": 0
+    },
+    "78+": {
+      "n": 1,
+      "winner": 0,
+      "loser": 0,
+      "rug": 0,
+      "flat": 1,
+      "delisted": 0
+    }
+  },
+  "note": "peak-based vs baseline at decision time"
+}

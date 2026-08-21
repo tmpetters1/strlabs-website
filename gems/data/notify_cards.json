@@ -1,0 +1,1195 @@
+[
+  {
+    "symbol": "DTF",
+    "chain": "robinhood",
+    "token": "0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+    "score": 92.0,
+    "status": "briefed",
+    "notify": true,
+    "category": "rwa-finance",
+    "subcategory": "stock-reward-mining",
+    "url": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+    "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+    "mc": 350174.0,
+    "liq": 65833.73,
+    "vol_h24": 111990.79,
+    "detail": {
+      "why_notify": "notify flag",
+      "links": {
+        "site": "https://dtf.finance/",
+        "x": "@DefiTradedFund",
+        "dex": "https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+        "explorer": "https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361",
+        "twitter": "https://x.com/DefiTradedFund"
+      },
+      "reasoning": [
+        "DTF remains the cleanest live SRM book on RH after GLD-class. Traction reeval confirms the machine is still running: stock inflows into prize today, buy-biased tape through a +50% day, liq rebuilt, and living SM registry now lights up **18 hard** multi-day wallets that the day-0 brief missed. Already notify-tier; reeval raises conviction, does not invent a new story.",
+        "**Invalidation (unchanged + tightened):**\n1. Prize drains without stock distributions / claims go dark >48h\n2. Liq < $20k or holders roll over hard\n3. Hard SM exits cluster (n_hard collapse) with sell-skew tape\n4. Prize/router verified with naked admin-drain and no timelock\n5. Site CA bind breaks or portfolio zeros while tape stays hot (theater)"
+      ],
+      "risks": [],
+      "invalidation": [],
+      "score_stack": [],
+      "checks": {
+        "srm_buy_claim_path": {
+          "status": "pass",
+          "note": "prize still receiving tokenized stocks today (TSLA sample 17:15Z); claims path live",
+          "by": "reece"
+        },
+        "usdg_quote": {
+          "status": "pass",
+          "note": "pair quote=USDG; correct SRM denomination",
+          "by": null
+        },
+        "deployer_history": {
+          "status": "pass",
+          "note": "SafeProxy multisig + 7702 team; USDG active 14:13 UTC; no rug",
+          "by": null
+        },
+        "clone_count": {
+          "status": "pass",
+          "note": "dominant DTF; second DTF vol24=.77 dead",
+          "by": null
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "token clean name; prize/router unverified residual",
+          "by": "reece"
+        },
+        "sm_pass": {
+          "status": "pass",
+          "note": "reeval override: HARD SM n_hard=18 (was fail/no SM on original brief).",
+          "by": "whale"
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "decision notify \u2014 92\u226578; already notify-tier; always_ping\u226590 \u2192 Conductor",
+          "by": null
+        },
+        "concentration": {
+          "status": "pass",
+          "note": "staking+LP+Safe labeled not dump EOAs",
+          "by": "reece"
+        },
+        "deployer_or_owner": {
+          "status": "pass",
+          "note": "token factory/deployer 0xa17Be452\u2026; SafeProxy owner path 0xc0e3D4A96faC (1-of-1). Staking creator blocked/unknown.",
+          "by": "whale"
+        },
+        "staking_contract_id": {
+          "status": "pass",
+          "note": "0xA89e3852: stakingToken() returns DTF token addr; confirmed staking contract. 38.6% staked = product in use.",
+          "by": "whale"
+        },
+        "social_x_pass": {
+          "status": "pass",
+          "note": "thin/suspect via x_search; x_client blocked xAI credits",
+          "by": "reece"
+        },
+        "onchain_flow": {
+          "status": "pass",
+          "note": "transfers=50 src=blockscout-v2; uniq_in=24 uniq_out=24; mints=0 burns=0; uniq_in_bias=0.5",
+          "by": "onchain_intel"
+        },
+        "holder_growth": {
+          "status": "pass",
+          "note": "unique_receivers_sampled=24 top_holders=25 counter=141.0 shape=airdrop_spike",
+          "by": "onchain_intel"
+        },
+        "lp_timeline": {
+          "status": "pass",
+          "note": "lp_status soft-fail: HTTP 422 https://robinhoodchain.blockscout.com/api/v2/tokens/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5/holders {\"errors\":[{\"title\":\"Invalid value\",\"source\":{\"pointer\":\"/address_hash_param\"},\"det",
+          "by": "onchain_intel"
+        },
+        "authority_surface": {
+          "status": "pass",
+          "note": "GoPlus does not index Robinhood chain (4663); verified source",
+          "by": "onchain_intel"
+        },
+        "product_events": {
+          "status": "pass",
+          "note": "verified=True name=DTF product_hits=[] live_signal=weak/none src_chars=23881",
+          "by": "onchain_intel"
+        },
+        "bytecode_twin": {
+          "status": "pass",
+          "note": "sha=3e53cbcab896e7d5\u2026 len=1877",
+          "by": "onchain_intel"
+        },
+        "smart_money_match": {
+          "status": "pass",
+          "note": "MATCH 0x14213621\u2026 tier=smart via=registry plays=6 multi_day=6; +15 more hard",
+          "by": "sm_score"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "prize38.6% PM11% Safe5.4% topEOA2.6% holders141",
+          "by": "reece"
+        },
+        "label_lp_burn_lock": {
+          "status": "pass",
+          "note": "PM+prize+Safe labeled",
+          "by": "reece"
+        },
+        "buyer_quality": {
+          "status": "pass",
+          "note": "hard SM multi-day multi-play dense among top/late holders",
+          "by": "whale"
+        },
+        "upstream_read": {
+          "status": "pass",
+          "note": "prior 81 + Class SRM + Whale hard18 + onchain_intel",
+          "by": "reece"
+        },
+        "website_product_truth": {
+          "status": "pass",
+          "note": "dtf.finance live stake/draw + portfolio; prize stock flow confirms",
+          "by": "reece"
+        },
+        "site_points_to_ca": {
+          "status": "pass",
+          "note": "/docs embeds 0x5Edb\u20260361 + stock/router CAs",
+          "by": "reece"
+        },
+        "thesis_invalidation": {
+          "status": "pass",
+          "note": "path live; invalidations listed in reeval brief",
+          "by": "reece"
+        },
+        "score_stack": {
+          "status": "pass",
+          "note": "92 explicit stack in brief",
+          "by": "reece"
+        },
+        "dev_wallet_history": {
+          "status": "pass",
+          "note": "first_timer factory residual; Safe+7702 team posture holds",
+          "by": "whale"
+        },
+        "lp_secured": {
+          "status": "blocked",
+          "note": "V4 poolId residual from Whale; PM holds LP bag",
+          "by": "whale"
+        },
+        "sniper_cluster": {
+          "status": "pass",
+          "note": "hard SM set low sniper_score; early_buyer roles present but multi-day holds dominate \u2014 not pure same-second farm",
+          "by": "whale"
+        },
+        "deployer_in_score": {
+          "status": "pass",
+          "note": "first_timer factory + Safe/7702 folded",
+          "by": "reece"
+        }
+      },
+      "holders_notes": "| Bag | Label | ~% |\n|-----|-------|---:|\n| 0xA89e3852\u2026 | Prize/staking (product) | ~38.6% |\n| 0x8366a39C\u2026 | PoolManager (V4 LP) | ~11.3% |\n| 0x5E9cAcf7\u2026 | SafeProxy team | ~5.4% |\n| Top EOA | 0x142136\u2026 | ~2.6% |\n\n- Ex-protocol EOA top1 ~2.6% / top10 ~18% \u2014 flat free float, not dump bag\n- LP burn/lock on V4 poolId still **blocked** (API 422) \u2014 residual, not new fail\n- Deployer factory `0xa17Be452\u2026` first_timer residual; Safe+7702 team posture holds",
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 0.0005237,
+        "mc": 469532.0,
+        "liq": 76659.95,
+        "vol_h24": 107277.5,
+        "vol_to_liq": 1.4,
+        "change_m5": -0.08,
+        "change_h1": -1.46,
+        "change_h6": 27.68,
+        "change_h24": 110.0,
+        "buys_h1": 65,
+        "sells_h1": 69,
+        "buys_h24": 1735,
+        "sells_h24": 1443,
+        "pair": "0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5",
+        "quote": "USDG",
+        "dex": "uniswap",
+        "pair_age_minutes": 7326.8
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 0.000249381
+          },
+          {
+            "t": "6h_ago",
+            "p": 0.000410166
+          },
+          {
+            "t": "1h_ago",
+            "p": 0.0005314593
+          },
+          {
+            "t": "5m_ago",
+            "p": 0.0005241193
+          },
+          {
+            "t": "now",
+            "p": 0.0005237
+          }
+        ],
+        "change": {
+          "m5": -0.08,
+          "h1": -1.46,
+          "h6": 27.68,
+          "h24": 110
+        },
+        "volume": {
+          "h24": 107277.5,
+          "h6": 20994.89,
+          "h1": 2383.41,
+          "m5": 143.86
+        },
+        "txns": {
+          "m5": {
+            "buys": 3,
+            "sells": 4
+          },
+          "h1": {
+            "buys": 65,
+            "sells": 69
+          },
+          "h6": {
+            "buys": 387,
+            "sells": 399
+          },
+          "h24": {
+            "buys": 1735,
+            "sells": 1443
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-DTF-reeval.md",
+      "brief_excerpt": "# DTF \u2014 Traction Reeval Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed (reeval)\n**Prior:** `briefs/2026-08-03-DTF.md` score **81** notify YES\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x5Edb417509a869b1D8222dEa05257B8c8Ba00361`\n- **Pair (main):** `0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5` (USDG)\n- **Dex:** https://dexscreener.com/robinhood/0x5fec21ea5e3e37eab7a45f11a0d3627ba585c622fe5628f514ded0ae3bb7bdb5\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x5Edb417509a869b1D8222dEa05257B8c8Ba00361\n- **Site:** https://dtf.finance/ \u00b7 docs bind CA on `/docs`\n- **X:** @DefiTradedFund\n- **Prize/staking:** `0xA89e3852dB570dA7F97C4644Eaf864d74324D415` (unverified residual)\n\n## Why reeval\nWatchlist traction fire ~19:10 CEST:\n- h24 **+51\u201357%** \u00b7 h1 **+63\u201378%**\n- liq **$66\u201367.5k** (+~26\u201334% vs prior $52k)\n- mc **$350\u2013368k** (was ~$226k)\n- Whale living SM pack: **HARD SM n_hard=18** (prior brief: no SM)\n\n## Classification + novelty\n- rwa-finance / stock-reward-mining \u00b7 novelty **none** \u00b7 conf ~0.84\n- SRM peer to GLD (prize-draw path vs grid-mine) \u2014 leaf already live\n\n## Market (live ~19:15 CEST)\n| Metric | Prior brief | Reeval |\n|--------|------------:|-------:|\n| MC | ~$226k | **~$350\u2013361k** |\n| Liq | ~$52k | **~$66\u201367k** |\n| Vol 24h | ~$140k | ~$112k |\n| Vol/Liq | 2.67\u00d7 | **~1.7\u00d7** (still active) |\n| Txns h24 | 1859B / 1399S | **~1804B / 1413S** buy-bias |\n| \u0394 h1 / h24 | +1.9% / \u22122.8% | **+63\u201378% / +51\u201357%** |\n| Holders | 125 | **141** |\n| Boosts | 0 | 0 |\n| Quote | USDG | USDG |\n| Age | ~3.7d | ~4.8d (~6980m) |\n\nSecond DTF pair dust (liq~$18, vol~$0.7) \u2014 ignore; identity is main pair.\n\n## SRM gate (mandatory) \u2014 still PASS\n- Site live: stake/draw APY copy + portfolio weights NVDA 28.9% / TSLA 27.1% / AAPL 25.9% / AMD 18.2% (UI ~$18.9k AUM)\n- `/docs` embeds **this CA** `0x5Edb\u20260361` + stock token CAs + router `0xF74247\u2026` \u2192 **site\u2192CA match PASS**\n- Prize `0xA89e\u2026` still receiving tokenized stocks today (tokentx sample: **TSLA** inflow 2026-08-04T17:15Z via router 0xF74247; prior AMD path still in thesis)\n- USDG-quoted main pair unchanged\n- No Flap / Pons / multi-CA farm on primary book\n- **Verdict: running system, not diagram**\n\n## Holders / structure\n| Bag | Label | ~% |\n|-----|-------|---:|\n| 0xA89e3852\u2026 | Prize/staking (product) | ~38.6% |\n| 0x8366a39C\u2026 | PoolManager (V4 LP) | ~11.3% |\n| 0x5E9cAcf7\u2026 | SafeProxy team | ~5.4% |\n| Top EOA | 0x142136\u2026 | ~2.6% |\n\n- Ex-protocol"
+    }
+  },
+  {
+    "symbol": "FIRE",
+    "chain": "robinhood",
+    "token": "0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+    "score": 76.0,
+    "status": "briefed",
+    "notify": false,
+    "category": "rwa-finance",
+    "subcategory": "stock-reward-mining",
+    "url": "https://dexscreener.com/robinhood/0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+    "explorer": "https://robinhoodchain.blockscout.com/token/0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+    "mc": 257922.0,
+    "liq": 25140.52,
+    "vol_h24": 21478.75,
+    "detail": {
+      "why_notify": "score 76.0 near/above bar 78.0",
+      "links": {
+        "site": "https://retirewithfire.org",
+        "dex": "https://dexscreener.com/robinhood/0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd",
+        "explorer": "https://robinhoodchain.blockscout.com/token/0x43eeA882B845a8493152Ebc55cF30aE9281b02d5",
+        "x": "https://x.com/retirewithfire",
+        "telegram": "https://t.me/retirewithfire",
+        "twitter": "https://x.com/retirewithfire"
+      },
+      "reasoning": [
+        "Third verified RH SRM-family system with a **distinct Friday jackpot** surface and hard proof that tokenized stocks (NVDA/TSLA/AAPL/AMD/SPY) actually paid out onchain. Hard SM dense. Unlike DTF, acquisition leg is ops-funded via deployer rather than closed fee loop, liq is thin vs MC, and docs still lie about Base/reflections.",
+        "**Why not notify:** product-thin-liq + team bag + untraced buy leg + social blocked keep score under 78 despite real path + hard SM.",
+        "**Invalidation:**\n1. Jackpot/fundJackpot stops \u22657d or payJackpot never repeats\n2. Deployer dumps the 9.3% bag into thin $25k book\n3. Liq collapses <$12k or holders cliff\n4. Distributor drained without winner payouts\n5. Hard SM cohort exits top holders en masse"
+      ],
+      "risks": [],
+      "invalidation": [],
+      "score_stack": [],
+      "checks": {
+        "clone_count": {
+          "status": "pass",
+          "note": "dominant CA",
+          "by": "class"
+        },
+        "contract_name_vs_ticker": {
+          "status": "pass",
+          "note": "verified FireToken matches FIRE / retirewithfire narrative",
+          "by": "hook"
+        },
+        "website_shell": {
+          "status": "pass",
+          "note": "retirewithfire.org live hold-to-earn / jackpot / dashboard UI (not empty parked domain)",
+          "by": "hook"
+        },
+        "socials_exist": {
+          "status": "pass",
+          "note": "x.com/retirewithfire + t.me/retirewithfire",
+          "by": "hook"
+        },
+        "dead_flow": {
+          "status": "pass",
+          "note": "vol/liq~0.85 age~18d live book; not dead-book",
+          "by": "hook"
+        },
+        "novelty_honest": {
+          "status": "pass",
+          "note": "novelty=none existing SRM leaf",
+          "by": "hook"
+        },
+        "factory_fence": {
+          "status": "pass",
+          "note": "unfenced; not Pons/Flap; coherent fire product_stack",
+          "by": "hook"
+        },
+        "srm_buy_claim_path": {
+          "status": "pass",
+          "note": "PASS FireDistributor payJackpot/fundJackpot tokenized stocks; FireHook burn separate. Research confirmed partial buy / full distribute.",
+          "by": "hook"
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "decision hold \u2014 briefed 76<78 thin liq",
+          "by": null
+        },
+        "onchain_flow": {
+          "status": "pass",
+          "note": "transfers=50 src=blockscout-v2; uniq_in=17 uniq_out=12; mints=0 burns=0; uniq_in_bias=0.586",
+          "by": "onchain_intel"
+        },
+        "holder_growth": {
+          "status": "pass",
+          "note": "unique_receivers_sampled=17 top_holders=25 counter=2022.0 shape=airdrop_spike",
+          "by": "onchain_intel"
+        },
+        "lp_timeline": {
+          "status": "pass",
+          "note": "lp_status soft-fail: HTTP 422 https://robinhoodchain.blockscout.com/api/v2/tokens/0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd/holders {\"errors\":[{\"title\":\"Invalid value\",\"source\":{\"pointer\":\"/address_hash_param\"},\"det",
+          "by": "onchain_intel"
+        },
+        "authority_surface": {
+          "status": "pass",
+          "note": "GoPlus does not index Robinhood chain (4663); verified source",
+          "by": "onchain_intel"
+        },
+        "product_events": {
+          "status": "pass",
+          "note": "verified=True name=FireToken product_hits=[] live_signal=weak/none src_chars=61961",
+          "by": "onchain_intel"
+        },
+        "bytecode_twin": {
+          "status": "pass",
+          "note": "sha=e9ae31f829621eb7\u2026 len=11328",
+          "by": "onchain_intel"
+        },
+        "smart_money_match": {
+          "status": "pass",
+          "note": "MATCH 0x8a43c0d6... tier=smart via=registry plays=32 multi_day=11; +20 more hard (refreshed)",
+          "by": "sm_score"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "team 9.3% PM 5% holders2026",
+          "by": "reece"
+        },
+        "label_lp_burn_lock": {
+          "status": "pass",
+          "note": "PoolManager 0x8366a39C ~5.01% V4 LP. Dead 0xdeaD ~1.14% burned. FireDistributor 0x4AC257e8 + FireHook 0xE3Fa8fA0 product stack (not residual top holders). Top contract 0x82b27040 unlabeled/product-unknown.",
+          "by": "whale"
+        },
+        "deployer_or_owner": {
+          "status": "pass",
+          "note": "Deployer 0xAcc79E7b is #1 holder 9.33% EOA \u2014 team bag. product_stack fire family x3 verified.",
+          "by": "whale"
+        },
+        "dev_wallet_history": {
+          "status": "pass",
+          "note": "deployer_check product_stack: 3 verified fire-family deploys (FireToken/Hook/Distributor) \u2014 built system not serial farm.",
+          "by": "whale"
+        },
+        "buyer_quality": {
+          "status": "pass",
+          "note": "sm_score HARD SM: n_hard=13 n_soft=0 n_scored=16. Multi-play multi-day top holders (e.g. 0x8a43c0d6 32p/11md; 0xb0b17fe4 23p/20md).",
+          "by": "whale"
+        },
+        "concentration": {
+          "status": "pass",
+          "note": "team bag material not majority",
+          "by": "reece"
+        },
+        "lp_secured": {
+          "status": "blocked",
+          "note": "V4 PoolManager holds ~5%; LP burn/lock unproven (poolId soft-fail 422).",
+          "by": "whale"
+        },
+        "sniper_cluster": {
+          "status": "pass",
+          "note": "Hard SM multi-day holders dominate sample \u2014 not pure day-0 sniper farm.",
+          "by": "whale"
+        },
+        "upstream_read": {
+          "status": "pass",
+          "note": "Class SRM + Whale HARD SM n=13",
+          "by": "reece"
+        },
+        "website_product_truth": {
+          "status": "pass",
+          "note": "retirewithfire.org hold/jackpot; score distributor not docs",
+          "by": "reece"
+        },
+        "site_points_to_ca": {
+          "status": "pass",
+          "note": "homepage binds 0x43ee",
+          "by": "reece"
+        },
+        "social_x_pass": {
+          "status": "blocked",
+          "note": "x_client+x_search credits 403",
+          "by": "reece"
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "verified FireToken/Distributor/Hook",
+          "by": "reece"
+        },
+        "deployer_history": {
+          "status": "pass",
+          "note": "product_stack fire x3",
+          "by": "deployer_check"
+        },
+        "thesis_invalidation": {
+          "status": "pass",
+          "note": "jackpot stop / deployer dump / liq collapse",
+          "by": "reece"
+        },
+        "score_stack": {
+          "status": "pass",
+          "note": "76 under bar",
+          "by": "reece"
+        }
+      },
+      "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0xAcc79E7b\u202681B4 | **Deployer EOA (team)** | **9.33%** |\n| 2 | 0x82b27040\u20269212 | Contract (unlabeled) | 5.88% |\n| 3 | 0x8366a39C\u2026 | **PoolManager (LP)** | 5.01% |\n| 4 | 0x8a43c0D6\u2026 | EOA (Whale HARD SM hit) | 2.62% |\n| 5+ | mixed E/C | fragmented | \u22642.4% each |\n\n- LP ~5% \u2014 thin book matches $25k liq\n- Team EOA ~9.3% \u2014 material but not majority dump bag\n- Free float otherwise fragmented across 2k holders",
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 0.0002074,
+        "mc": 205104.0,
+        "liq": 22749.09,
+        "vol_h24": 25439.12,
+        "vol_to_liq": 1.12,
+        "change_h1": -2.57,
+        "change_h6": -12.85,
+        "change_h24": -7.32,
+        "buys_h1": 4,
+        "sells_h1": 4,
+        "buys_h24": 92,
+        "sells_h24": 69,
+        "pair": "0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd",
+        "quote": "ETH",
+        "dex": "uniswap",
+        "pair_age_minutes": 25783.9
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 0.0002237808
+          },
+          {
+            "t": "6h_ago",
+            "p": 0.0002379805
+          },
+          {
+            "t": "1h_ago",
+            "p": 0.0002128708
+          },
+          {
+            "t": "now",
+            "p": 0.0002074
+          }
+        ],
+        "change": {
+          "h1": -2.57,
+          "h6": -12.85,
+          "h24": -7.32
+        },
+        "volume": {
+          "h24": 25439.12,
+          "h6": 7744.76,
+          "h1": 560.33,
+          "m5": 0
+        },
+        "txns": {
+          "m5": {
+            "buys": 0,
+            "sells": 0
+          },
+          "h1": {
+            "buys": 4,
+            "sells": 4
+          },
+          "h6": {
+            "buys": 25,
+            "sells": 20
+          },
+          "h24": {
+            "buys": 92,
+            "sells": 69
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-FIRE.md",
+      "brief_excerpt": "# FIRE \u2014 Decision Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n**Source:** Macro SRM hunt \u2192 Class rwa-finance/stock-reward-mining \u2192 Whale HARD SM\n**Notify: NO** (bar 78; live distributor + hard SM real, but thin liq + untraced fee\u2192buy + team bag + docs contradiction)\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0x43eeA882B845a8493152Ebc55cF30aE9281b02d5` \u2014 **FireToken / FIRE** (verified, non-proxy)\n- **Pair:** `0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd` (ETH-quoted V4-style id)\n- **Dex:** https://dexscreener.com/robinhood/0x2276440d38b33394989f7819f63b1df5ed62e48192706c172cabef1480547efd\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0x43eeA882B845a8493152Ebc55cF30aE9281b02d5\n- **Site:** https://retirewithfire.org \u00b7 Docs https://retirewithfire.org/docs\n- **X / TG:** https://x.com/retirewithfire \u00b7 https://t.me/retirewithfire\n\n## Classification + novelty\n- **Category:** rwa-finance / **sub:** stock-reward-mining\n- **Novelty:** none (existing SRM leaf; peer to GLD/DTF with distinct jackpot/streak surface)\n- **Conf:** Class 0.76\n- Identity = **(robinhood, 0x43ee\u2026)** \u2014 ~5 RH FIRE CAs; this is dominant book\n\n## Product truth (running system \u2014 not brochure)\n### Hard-proven onchain\n| Contract | Address | Live methods / evidence |\n|----------|---------|-------------------------|\n| **FireDistributor** | `0x4AC257e8443f465dB515331c113895bf077f851A` | `fundJackpot` (SPY/AMD/AAPL/TSLA from deployer), `payJackpot` **2026-08-01** paid **SPY+NVDA+TSLA+AAPL+AMD** \u2192 winner `0xC0603f5c\u20263160E`, `setBasket` |\n| **FireHook** | `0xE3Fa8fA0D0A3f59C9B08Ea0Fe36d654A506850cC` | `buybackBurn` (FIRE \u2192 dead), `sweepDividends`, `pushRebates` \u2014 active through 2026-08-04 |\n| **FireToken** | subject CA | verified FireToken |\n\n- Site homepage **hard-binds CA** `0x43ee\u202602d5`; product copy = hold-to-earn stocks + Friday jackpot\n- Deployer `0xAcc79E7b\u202681B4` = **product_stack** (3 verified fire family) \u2014 coherent system not scatter farm\n- **SRM distribute/claim side: PASS** (real tokenized stocks left distributor to winner)\n\n### Gaps (score honesty)\n1. **Fee \u2192 USDG/ETH \u2192 stock buy acquisition leg NOT fully traced.** Stocks enter distributor via **deployer EOA transfers** (`fundJackpot`), not a closed automated fee\u2192buy loop like pure DTF path. Ops-funded jackpot is still real payouts, weaker flywheel proof.\n2. **Docs contradiction:** `/docs` still describes **\"$FIRE Token ERC-20 on Base with linear ti"
+    }
+  },
+  {
+    "symbol": "BASEMATE",
+    "chain": "base",
+    "token": "0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+    "score": 76.0,
+    "status": "briefed",
+    "notify": false,
+    "category": "defi",
+    "subcategory": "consumer-payments",
+    "url": "https://dexscreener.com/base/0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+    "explorer": "https://basescan.org/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+    "mc": 162926.0,
+    "liq": 128623.0,
+    "vol_h24": 76849,
+    "detail": {
+      "why_notify": "score 76.0 near/above bar 78.0",
+      "links": {
+        "x": "@basemateagent",
+        "dex": "https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+        "explorer": "https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3",
+        "site": "https://basemate.app/",
+        "twitter": "http://x.com/basemateagent"
+      },
+      "reasoning": [
+        "Real product, real users, real volume moved. iMessage remittance UX is genuinely novel (zero wallet install, cross-chain send/receive). $163k MC vs $382K notional moved product-side means token is underpriced relative to real activity. Liq/MC at 79% = deep book, hard to wick down. 82-day-old token breaking +30% today suggests a catalyst (likely X post or partnership announcement) \u2014 but no SM fingerprint yet.",
+        "**Asymmetry:** If product continues to grow users/notional, token stays tightly correlated. At $163k MC this is pre-attention for a real fintech product. Gap to FIND-class tokens ($500K-2M MC) exists if press coverage breaks.",
+        "**Invalidation:**\n1. Product metrics stall (users / notional moved plateau) \u2014 check basemate.app monthly\n2. Token deployer exits significant bag without product catalyst\n3. RehypeDoppler hook infra turns out to be bonding/unlock mechanism (needs deployer check)\n4. h24 sell volume exceeds 70% of txns for 3 consecutive days \u2014 distribution mode\n5. Better-funded competitor replicates UX on larger chain"
+      ],
+      "risks": [],
+      "invalidation": [],
+      "score_stack": [],
+      "checks": {
+        "website_product_truth": {
+          "status": "pass",
+          "note": "live app; 12.3K users / 63K msgs / $382K notional from landing page",
+          "by": null
+        },
+        "site_points_to_ca": {
+          "status": "n_a",
+          "note": "app site no CA; scam BASEEMATE confirmed separate",
+          "by": null
+        },
+        "social_x_pass": {
+          "status": "pass",
+          "note": "organic: Sparse-but-real Base mentions around basemate agent; CA shared; no obvious coordinated pump.",
+          "by": "research-social-pass-xai"
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "DERC20 Doppler verified; no proxy; deployer 0 other deploys",
+          "by": null
+        },
+        "clone_check": {
+          "status": "pass",
+          "note": "BASEEMATE 0x16b559 is scam; real CA dominant",
+          "by": null
+        },
+        "deployer_history": {
+          "status": "blocked",
+          "note": "0 other Etherscan deploys found; Blockscout Base not checked",
+          "by": null
+        },
+        "sm_pass": {
+          "status": "fail",
+          "note": "no labeled SM; Whale not run for Base",
+          "by": null
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "GO: at/above bar",
+          "by": null
+        },
+        "deployer_owner_id": {
+          "status": "pass",
+          "note": "0x3f0fddb9... \u2014 ERC-4337 smart account, EntryPoint txns since Jun 2025. Product team wallet. No rug history.",
+          "by": "whale"
+        },
+        "dev_wallet_track_history": {
+          "status": "pass",
+          "note": "Smart account active 13+ months. All txns via ERC-4337 EntryPoint. Legitimate infra pattern for a remittance app. No serial deploys, no rug indicators.",
+          "by": "whale"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "1,069 holders; LP=33.9% (deepened); top EOA 4.05% (0x1c9011 = LiFi accumulator over 11d \u2014 product affiliate likely); no insider concentration; correcting prior 'airdrop' label.",
+          "by": "whale"
+        },
+        "whale": {
+          "status": "blocked",
+          "note": "No SM in DB; 0x1c9011 (4.05%) is genuine buyer via LiFi but likely product-affiliated. Score stays 76 \u2014 2pts from notify bar. Watch for labeled SM entry.",
+          "by": "whale"
+        }
+      },
+      "holders_notes": "| Rank | Address | Label | % |\n|------|---------|-------|---|\n| 1 | 0x498581fF\u2026 | PoolManager (LP) | 23.3% |\n| 2 | 0xbDcE13a1\u2026 | RehypeDopplerHook infra | 3.5% |\n| 3 | 0x4a7eF13b\u2026 | \u2014 | 3.2% |\n| 4 | 0x42801b3f\u2026 | \u2014 | 2.7% |\n| 5 | 0xBF4195ab\u2026 | RehypeDopplerHookInitializer | 2.2% |\n| 6\u201310 | \u2014 | \u2014 | 2.1% / 1.8% / 1.7% / 1.7% / 1.5% |\n\n- **LP 23.3%** \u2014 normal\n- **Top non-LP EOA 3.5%** \u2014 very clean\n- **Top10 ex-pool ~22%** \u2014 well-distributed for an 82-day token\n- **1,069 holders** \u2014 substantial for a DeFi/app token this size\n- No labeled SM in known DB (Whale not run for Base)\n- `RehypeDopplerHookInitializer` in top5 = LP-related infra, not insider bag",
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 1.65e-06,
+        "mc": 165053.0,
+        "liq": 130083.82,
+        "vol_h24": 10602.49,
+        "vol_to_liq": 0.08,
+        "change_h1": 0.14,
+        "change_h6": -0.01,
+        "change_h24": -9.55,
+        "buys_h1": 2,
+        "sells_h1": 3,
+        "buys_h24": 46,
+        "sells_h24": 152,
+        "pair": "0x4676505f75ef3cf95cf30d6e56134e39fe1f4c325ed29e52a5e28e350bee268c",
+        "quote": "WETH",
+        "dex": "uniswap",
+        "pair_age_minutes": 101156.9
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 1.8242e-06
+          },
+          {
+            "t": "6h_ago",
+            "p": 1.6502e-06
+          },
+          {
+            "t": "1h_ago",
+            "p": 1.6477e-06
+          },
+          {
+            "t": "now",
+            "p": 1.65e-06
+          }
+        ],
+        "change": {
+          "h1": 0.14,
+          "h6": -0.01,
+          "h24": -9.55
+        },
+        "volume": {
+          "h24": 10602.49,
+          "h6": 1191.05,
+          "h1": 87.66,
+          "m5": 0
+        },
+        "txns": {
+          "m5": {
+            "buys": 0,
+            "sells": 0
+          },
+          "h1": {
+            "buys": 2,
+            "sells": 3
+          },
+          "h6": {
+            "buys": 8,
+            "sells": 20
+          },
+          "h24": {
+            "buys": 46,
+            "sells": 152
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-03-BASEMATE.md",
+      "brief_excerpt": "# BASEMATE \u2014 Decision Brief\n**Date:** 2026-08-03 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed\n\n## Chain / CA / links\n- **Chain:** Base (8453)\n- **Token:** `0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3`\n- **Main Pair:** `0x4676505f75ef3cf95cf30d6e56134e39fe1f4c3\u2026` (Uniswap v4 / Base)\n- **Dex:** https://dexscreener.com/base/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **Explorer:** https://base.blockscout.com/token/0x07E61D8a4e197dfC269e90D7ECe1dF0D26702bA3\n- **App:** https://basemate.app (live iMessage/WhatsApp crypto remittance agent)\n- **X:** @basemateagent\n- **Deployer:** not retrieved (Etherscan v2 gated for Base) \u2014 unknown, needs manual check\n\n## \u26a0\ufe0f Scam copy: `BASEEMATE` at `0x16b559\u2026` \u2014 NOT this token. Dominant CA is `0x07E61D8a\u2026`.\n\n## Classification + novelty\n- **Category:** defi / **sub:** consumer-payments / messaging-agent\n- **Tags:** base, imessage, whatsapp, remittance, ai-agent, usdc-yield, real-product\n- **Novelty:** medium-high \u2014 iMessage-native crypto payments is a distinct product surface (not a DEX wrapper or generic yield vault). WhatsApp receive side + iMessage send side with zero wallet setup is genuinely novel UX architecture.\n- **Confidence:** 0.78\n\n## Product truth (verified from site)\n**Basemate = \"Send Money in your Texts\" \u2014 iMessage + WhatsApp crypto agent.**\n\nLive metrics from landing page:\n- **12,300 users**\n- **63,000+ messages processed**\n- **$382.2K notional moved**\n\nHow it works:\n1. **Send** \u2014 \"send $200 to Mum\" in iMessage \u2192 moves in seconds to any phone number\n2. **Earn** \u2014 idle USDC auto-routes to best Base yield (Moonwell / Morpho / Aave) in one text\n3. **Trade** \u2014 Uniswap + Aerodrome swaps from chat; perps via Base App\n4. **Save** \u2014 USDC base currency, dollar-denominated\n\n**The moat:** Sender uses iMessage (1.3B US/EU/Gulf senders). Receiver uses WhatsApp (Philippines, India, Mexico, Nigeria, Brazil). Zero apps to install on either side. This directly attacks the $800B remittance market at the UX layer \u2014 no incumbent does zero-install on both sides.\n\n**Product truth verdict: REAL.** Numbers are modest but live. The architecture is legitimate and distinct.\n\n## Market (live ~16:25 UTC)\n| Metric | Value |\n|--------|------:|\n| MC / FDV | ~$163k |\n| Liq | **~$128k** |\n| Vol 24h | ~$77k |\n| Vol/MC | ~0.47\u00d7 |\n| Txns h24 | 390B / 655S (sell-heavy today) |\n| Txns h1 | 4B / 11S (current sell pressure) |\n| \u0394 h1 / h6 / h24 | +1% / +6% / **+30%** |\n| Pair age | ~82 days (not new) |\n| Boosts | **none** (organic) |\n| Holders |",
+      "score_line": "76 / 100 \u00b7 Notify: NO (bar 78)"
+    }
+  },
+  {
+    "symbol": "ELE",
+    "chain": "robinhood",
+    "token": "0xAb634722a079A0a883106785fF1f2e026bC7b765",
+    "score": 75.0,
+    "status": "tracking",
+    "notify": false,
+    "category": "defi",
+    "subcategory": "markets",
+    "url": "https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+    "explorer": "https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765",
+    "mc": 179563.0,
+    "liq": 95294.53,
+    "vol_h24": 188609.29,
+    "detail": {
+      "why_notify": "score 75.0 near/above bar 78.0",
+      "links": {
+        "site": "https://elevator.onl",
+        "x": "https://x.com/elevatorcommx",
+        "dex": "https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+        "explorer": "https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765",
+        "twitter": "https://x.com/elevatorcommx",
+        "telegram": "https://t.me/elevatoronl"
+      },
+      "reasoning": [
+        "Rare RH name with a **full verified Uniswap v4 hook monetary stack actually running**: users deposit into ElevatorCar, controller has authorized at least one ascent, supply already expanded past launch. Book is tradeable (liq ~$95k, vol/liq 3.4\u00d7) with clean free float. Asymmetric if floors keep clearing and SM discovers the mechanism before mc re-rates \u2014 today still early, boost-surfaced, unaudited, no SM."
+      ],
+      "risks": [],
+      "invalidation": [
+        "Car deposits die / app abandons this CA",
+        "authorizeAscent path stalls while narrative claims ongoing floors",
+        "Deployer or team EOA starts dumping double-digit free float",
+        "Liq collapses sub ~$40k or vol/liq goes dead-book",
+        "Social flips hard manufactured / claim-portal",
+        "Manifest/site points off this CA",
+        "Exploit or pause abuse (guardian pause up to 24h exists per docs)"
+      ],
+      "score_stack": [],
+      "checks": {
+        "factory_fence": {
+          "status": "pass",
+          "note": "impl=none deployer=0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE",
+          "by": "scout"
+        },
+        "novelty_honest": {
+          "status": "pass",
+          "note": "none per Class",
+          "by": "class"
+        },
+        "website_shell": {
+          "status": "pass",
+          "note": "elevator.onl + socials present",
+          "by": "class"
+        },
+        "contract_name_vs_ticker": {
+          "status": "pass",
+          "note": "contract ELEToken / name Elevator / ticker ELE match",
+          "by": "class"
+        },
+        "socials_exist": {
+          "status": "pass",
+          "note": "x.com/elevatorcommx + t.me/elevatoronl",
+          "by": "class"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "traction recheck: holders 538\u2192500. Protocol stack PM 40.8% + ElevatorCar 10.7% + ReserveVault 6.3% = 57.7%. EOA top1 1.79% same wallet.",
+          "by": "whale"
+        },
+        "label_lp_burn_lock": {
+          "status": "pass",
+          "note": "traction recheck: PoolManager+ElevatorCar+ReserveVault still labeled.",
+          "by": "whale"
+        },
+        "lp_secured": {
+          "status": "blocked",
+          "note": "V4 PoolManager NFT LP \u2014 burn/lock path N/A",
+          "by": "whale"
+        },
+        "deployer_or_owner": {
+          "status": "pass",
+          "note": "creator 0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE; not serial factory",
+          "by": "class"
+        },
+        "dev_wallet_history": {
+          "status": "pass",
+          "note": "Research: Elevator stack bootstrap not serial farm",
+          "by": "reece"
+        },
+        "buyer_quality": {
+          "status": "pass",
+          "note": "mix stock-basket watch EOA + meme rotators + 7702 agents; no aged SM labels",
+          "by": "whale"
+        },
+        "concentration": {
+          "status": "pass",
+          "note": "traction recheck: EOA float still flat top1 1.79%.",
+          "by": "whale"
+        },
+        "smart_money_match": {
+          "status": "pass",
+          "note": "traction recheck: top EOA 0xa4b45a\u2026 is registry watch-tier (rh-stock-basket-active, tags not-sm) \u2014 NOT hard SM. No new SM hits.",
+          "by": "whale"
+        },
+        "upstream_read": {
+          "status": "pass",
+          "note": "Class defi/markets + Whale product float no SM",
+          "by": "reece"
+        },
+        "website_product_truth": {
+          "status": "pass",
+          "note": "reeval: Car mining still live same-day deposits/activates/exits/claims",
+          "by": "reece"
+        },
+        "site_points_to_ca": {
+          "status": "pass",
+          "note": "config.js + deployments/robinhood-mainnet.json bind exact CA/stack/poolId chain 4663 (not homepage HTML string)",
+          "by": "reece"
+        },
+        "social_x_pass": {
+          "status": "pass",
+          "note": "thin \u2014 x_client blocked; x_search boost bots + low eng; not manufactured",
+          "by": "reece"
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "Full verified non-proxy stack; no independent audit",
+          "by": "reece"
+        },
+        "deployer_in_score": {
+          "status": "pass",
+          "note": "Product-stack 8 related contracts same minute; not serial farm; no prior track record",
+          "by": "reece"
+        },
+        "thesis_invalidation": {
+          "status": "pass",
+          "note": "Car death/ascent stall/dump/liq collapse/CA pivot/exploit",
+          "by": "reece"
+        },
+        "score_stack": {
+          "status": "pass",
+          "note": "75 live product + clean float - no SM - thin social - unaudited - boost",
+          "by": "reece"
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "decision hold \u2014 75<78; car live confirms product, still no SM/organic bar clear",
+          "by": null
+        },
+        "clone_count": {
+          "status": "pass",
+          "note": "many bare ELE tickers; this CA unique Elevator product stack",
+          "by": "reece"
+        },
+        "website_shell_vs_product": {
+          "status": "pass",
+          "note": "elevator.onl full mechanism + curve mining + floor model; not vapor shell",
+          "by": "class"
+        },
+        "socials": {
+          "status": "pass",
+          "note": "x.com/elevatorcommx + t.me/elevatoronl on Dex",
+          "by": "class"
+        },
+        "dead_flow": {
+          "status": "pass",
+          "note": "vol24~322k vs liq~93k live book",
+          "by": "class"
+        },
+        "honest_novelty": {
+          "status": "fail",
+          "note": "novelty=none; verified v4 monetary hook + site; conf=0.58",
+          "by": "class"
+        },
+        "github_or_docs": {
+          "status": "pass",
+          "note": "/docs /mechanism sourceCommit 1107c5a4 in config",
+          "by": "reece"
+        }
+      },
+      "holders_notes": null,
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 2.35,
+        "mc": 118427.0,
+        "liq": 71240.9,
+        "vol_h24": 116917.45,
+        "vol_to_liq": 1.64,
+        "change_m5": -0.13,
+        "change_h1": 2.56,
+        "change_h6": -18.66,
+        "change_h24": 0.22,
+        "buys_h1": 10,
+        "sells_h1": 2,
+        "buys_h24": 459,
+        "sells_h24": 357,
+        "pair": "0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632",
+        "quote": "WETH",
+        "dex": "uniswap",
+        "pair_age_minutes": 3253.7
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 2.344841349
+          },
+          {
+            "t": "6h_ago",
+            "p": 2.8891074502
+          },
+          {
+            "t": "1h_ago",
+            "p": 2.2913416537
+          },
+          {
+            "t": "5m_ago",
+            "p": 2.3530589767
+          },
+          {
+            "t": "now",
+            "p": 2.35
+          }
+        ],
+        "change": {
+          "m5": -0.13,
+          "h1": 2.56,
+          "h6": -18.66,
+          "h24": 0.22
+        },
+        "volume": {
+          "h24": 116917.45,
+          "h6": 10040.42,
+          "h1": 509.41,
+          "m5": 18.12
+        },
+        "txns": {
+          "m5": {
+            "buys": 0,
+            "sells": 1
+          },
+          "h1": {
+            "buys": 10,
+            "sells": 2
+          },
+          "h6": {
+            "buys": 49,
+            "sells": 38
+          },
+          "h24": {
+            "buys": 459,
+            "sells": 357
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-ELE.md",
+      "brief_excerpt": "# $ELE (Elevator) \u2014 Robinhood\n**Date:** 2026-08-04  \n**Identity:** robinhood / `0xAb634722a079A0a883106785fF1f2e026bC7b765`  \n**Score:** 75 \u00b7 **Notify:** NO  \n**Status:** watch\n\n## Chain / CA / links\n- **Chain:** robinhood (4663)\n- **CA:** `0xAb634722a079A0a883106785fF1f2e026bC7b765` (ELEToken, verified)\n- **Pair (canonical poolId):** `0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632` ELE/WETH Uniswap v4\n- **Dex:** https://dexscreener.com/robinhood/0x02ccc5739192844adb218b4784d7bba5ad7b2b6b59a7cdc0f4ea60db8253e632\n- **Explorer:** https://robinhoodchain.blockscout.com/token/0xAb634722a079A0a883106785fF1f2e026bC7b765\n- **Site:** https://elevator.onl \u00b7 mechanism \u00b7 docs \u00b7 **live app** `/app`\n- **Manifest:** https://elevator.onl/deployments/robinhood-mainnet.json\n- **X:** https://x.com/elevatorcommx (community; official @elevatoronl under appeal) \u00b7 TG t.me/elevatoronl\n\n## Classification + novelty\n- **Class:** defi / markets \u00b7 autonomous v4 monetary issuance + curve mining\n- **Novelty:** none (Class conf 0.55) \u2014 sophisticated but not a new desk leaf this pass\n- **Identity:** this CA only. Ticker `ELE` is squatted by many dust RH CAs; **product name Elevator is unique on RH** and this CA is dominant ($95k liq vs dust clones). Stable-chain Elevator copy exists thin \u2014 ignore.\n\n## Market (live Dex ~01:45 UTC)\n- mc ~$178k \u00b7 liq ~$95k \u00b7 vol24 ~$322k \u00b7 vol/liq ~3.4\u00d7 \u00b7 price ~$3.54\n- h24 \u221213% \u00b7 h1 +8% \u00b7 buys/sells h24 1045/914 (buy-biased)\n- pair age ~1.4d (deployed 2026-08-02 16:55 UTC) \u00b7 quote WETH \u00b7 source **dex-boost**\n- liq/mc ~53% \u2014 real book, not vapor depth\n- secondary thin pairs (USDG/ETH dust) \u2014 ignore for tape\n\n## Contract / deployer / product stack\nAll **verified**, non-proxy, same deployer `0xcA021edA4BceFd851EC43315E47B1d931BE4B2CE`, deployed in one minute (product bootstrap \u2014 **not** a serial farm):\n\n| Contract | Address | Role |\n|----------|---------|------|\n| ELEToken | `0xAb6347\u2026b765` | ERC-20, controller-mint, hard cap 21M |\n| ElevatorCar | `0x3fA8cf\u2026DD3a` | Curve mining positions (9.5% supply) |\n| ReserveVault | `0x7A36a6\u2026fd59` | Buyback/stability/ascent inventory (5.4%) |\n| StaircaseController | `0x012903\u20260318` | Floor qualify + authorizeAscent |\n| IssuanceDistributor | `0x4A9ADc\u2026851d` | 88% miners / 10% LP / 2% team |\n| CompressionEngine | `0x0f8e17\u2026673D` | WETH\u2192ELE compression |\n| GenesisLiquidityVault | `0xb79268\u2026a451` | Launch one-sided v4 depth |\n| ElevatorBootstrap | `0x2158c4\u2026c329` | One-time wiring |\n| Elevator Hook | `0xE9"
+    }
+  },
+  {
+    "symbol": "LEMON",
+    "chain": "robinhood",
+    "token": "0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+    "score": 75.0,
+    "status": "briefed",
+    "notify": false,
+    "category": "defi",
+    "subcategory": "launchpads",
+    "url": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+    "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3",
+    "mc": 203369.0,
+    "liq": 53137.84,
+    "vol_h24": 55943.07,
+    "detail": {
+      "why_notify": "score 75.0 near/above bar 78.0",
+      "links": {
+        "site": "https://lemon.fun",
+        "dex": "https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5",
+        "x": "https://x.com/lemondotfun",
+        "telegram": "https://t.me/lemondotfun",
+        "twitter": "https://x.com/lemondotfun",
+        "explorer": "https://robinhoodchain.blockscout.com/token/0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3"
+      },
+      "reasoning": [
+        "Hard SM found a real RH launchpad coin with verified factory/locker and non-zero API launch stats. Asymmetric only if pad launches stop being dust and fee/LP value accrues visibly to $LEMON while SM holds. Today = **SM + product watch**, not notify: sell-skew tape, thin social, FAIL CAP residual, score under 78."
+      ],
+      "risks": [],
+      "invalidation": [
+        "1. API launch stats stall / factory goes dark\n2. Hard SM cohort exits top holders\n3. LP locker claim fails (NFT movable / unlocked)\n4. Sell-skew persists into dead book (vol/liq collapse)\n5. Site/API abandon this CA\n6. Launchpad revealed as pure fee-extract with zero non-spam traction"
+      ],
+      "score_stack": [],
+      "checks": {
+        "factory_fence": {
+          "status": "pass",
+          "note": "LemonLaunchFactory not Flap/Pons",
+          "by": "reece"
+        },
+        "clone_count": {
+          "status": "pass",
+          "note": "other LEMON dust; this CA official dominant",
+          "by": "reece"
+        },
+        "contract_name_vs_ticker": {
+          "status": "pass",
+          "note": "verified LemonLauncherToken / name Lemon.fun matches pad narrative",
+          "by": "hook"
+        },
+        "website_shell": {
+          "status": "blocked",
+          "note": "lemon.fun live pad UI + CA in terminal URL, BUT public counters TOKENS LAUNCHED=0 combined mcap $0 \u2014 shell metrics vs brochure",
+          "by": "hook"
+        },
+        "socials_exist": {
+          "status": "pass",
+          "note": "x.com/lemondotfun + t.me/lemondotfun",
+          "by": "hook"
+        },
+        "dead_flow": {
+          "status": "pass",
+          "note": "vol/liq~0.97 age~10d live; h24 sell-skewed (365/572)",
+          "by": "hook"
+        },
+        "novelty_honest": {
+          "status": "pass",
+          "note": "novelty=none; defi/launchpads existing leaf; not new primitive",
+          "by": "hook"
+        },
+        "notify_gate": {
+          "status": "pass",
+          "note": "decision hold \u2014 75<78; traction alone does not clear sell-skew + serial factory + thin social",
+          "by": null
+        },
+        "smart_money_match": {
+          "status": "pass",
+          "note": "hard SM n=5 prior; living score",
+          "by": "whale"
+        },
+        "top_holders": {
+          "status": "pass",
+          "note": "LP+fragmented EOAs; rechecked",
+          "by": "reece"
+        },
+        "label_lp_burn_lock": {
+          "status": "pass",
+          "note": "V3 LP + LemonLaunchLocker path",
+          "by": "reece"
+        },
+        "deployer_or_owner": {
+          "status": "pass",
+          "note": "Deployer 0x2bA793Fd\u2026 not residual top holder.",
+          "by": "whale"
+        },
+        "dev_wallet_history": {
+          "status": "fail",
+          "note": "serial_launcher 18 FAIL CAP factory",
+          "by": "whale"
+        },
+        "buyer_quality": {
+          "status": "pass",
+          "note": "hard SM multi-day holds present",
+          "by": "whale"
+        },
+        "concentration": {
+          "status": "pass",
+          "note": "top EOA 4% OK",
+          "by": "reece"
+        },
+        "lp_secured": {
+          "status": "pass",
+          "note": "API lpLocked=true + locker contract named",
+          "by": "reece"
+        },
+        "sniper_cluster": {
+          "status": "pass",
+          "note": "hard SM wallets multi-day holds \u2014 not pure sniper farm stampede.",
+          "by": "whale"
+        },
+        "upstream_read": {
+          "status": "pass",
+          "note": "watchlist traction wake on briefed 73",
+          "by": "reece"
+        },
+        "website_product_truth": {
+          "status": "pass",
+          "note": "lemon.fun API/stats still live Instant-V3 pad",
+          "by": "reece"
+        },
+        "site_points_to_ca": {
+          "status": "pass",
+          "note": "prior API token bind + terminal CA",
+          "by": "reece"
+        },
+        "social_x_pass": {
+          "status": "pass",
+          "note": "thin/self-promo via x_search; not organic clearance",
+          "by": "reece"
+        },
+        "contract_risk": {
+          "status": "pass",
+          "note": "verified LemonLauncherToken; serial factory FAIL CAP residual",
+          "by": "reece"
+        },
+        "deployer_in_score": {
+          "status": "pass",
+          "note": "FAIL CAP folded; product softens farm read",
+          "by": "reece"
+        },
+        "thesis_invalidation": {
+          "status": "pass",
+          "note": "no invalidate; sell-skew still main drag vs bar",
+          "by": "reece"
+        },
+        "score_stack": {
+          "status": "pass",
+          "note": "75 = 73 + mild traction; sell-skew/social/factory keep under 78",
+          "by": "reece"
+        }
+      },
+      "holders_notes": "- V3 LP ~**15.9%**\n- Top EOA ~**4.06%** (`0x2F75a321\u2026` \u2014 API lists as token deployer/creator path; not labeled SM)\n- Hard SM via living `sm_score` (**n_hard=5**, n_soft=1) \u2014 multi-play multi-day low-sniper wallets including top-holder slots\n- Free float fragmented after LP; not single-wallet dump optics\n- Deployer/factory `0x2bA793Fd\u2026` = **serial_launcher FAIL CAP** (18 deploys) but **coherent lemon family** (factory role). Product proof softens farm read; **FAIL CAP still blocks notify** without multi-signal clear above bar",
+      "mechanism": null,
+      "market_live": {
+        "price_usd": 0.0001688,
+        "mc": 167189.0,
+        "liq": 47358.18,
+        "vol_h24": 60774.1,
+        "vol_to_liq": 1.28,
+        "change_m5": -0.43,
+        "change_h1": 1.81,
+        "change_h6": 5.14,
+        "change_h24": 56.35,
+        "buys_h1": 9,
+        "sells_h1": 14,
+        "buys_h24": 377,
+        "sells_h24": 534,
+        "pair": "0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5",
+        "quote": "WETH",
+        "dex": "uniswap",
+        "pair_age_minutes": 15022.5
+      },
+      "charts": {
+        "price_series": [
+          {
+            "t": "24h_ago",
+            "p": 0.0001079629
+          },
+          {
+            "t": "6h_ago",
+            "p": 0.0001605478
+          },
+          {
+            "t": "1h_ago",
+            "p": 0.000165799
+          },
+          {
+            "t": "5m_ago",
+            "p": 0.000169529
+          },
+          {
+            "t": "now",
+            "p": 0.0001688
+          }
+        ],
+        "change": {
+          "m5": -0.43,
+          "h1": 1.81,
+          "h6": 5.14,
+          "h24": 56.35
+        },
+        "volume": {
+          "h24": 60774.1,
+          "h6": 11839.97,
+          "h1": 708.1,
+          "m5": 54.37
+        },
+        "txns": {
+          "m5": {
+            "buys": 1,
+            "sells": 6
+          },
+          "h1": {
+            "buys": 9,
+            "sells": 14
+          },
+          "h6": {
+            "buys": 93,
+            "sells": 132
+          },
+          "h24": {
+            "buys": 377,
+            "sells": 534
+          }
+        }
+      },
+      "brief_path": "/Users/tmpettersen/.openclaw/gem-radar/briefs/2026-08-04-LEMON.md",
+      "brief_excerpt": "# LEMON \u2014 Decision Brief\n**Date:** 2026-08-04 \u00b7 **Analyst:** Research (reece) \u00b7 **Status:** briefed  \n**Source:** Whale hard-SM wake \u00b7 Class defi/launchpads  \n**Notify: NO** (bar 78; hard SM real but sell-skew + dust launches + thin social + serial factory residual)\n\n## Chain / CA / links\n- **Chain:** Robinhood (4663)\n- **Token:** `0xf0E17e54239CD945Cd7bEa471a3a2CA6a8C7f7A3` \u2014 **Lemon.fun** (LemonLauncherToken, verified, non-proxy)\n- **Pair:** `0x01fe057d1C5FB09A4ac02860758DDf26Df9336B5` (Uniswap V3 LEMON/WETH)\n- **Dex:** https://dexscreener.com/robinhood/0x01fe057d1c5fb09a4ac02860758ddf26df9336b5\n- **Site:** https://lemon.fun \u00b7 Docs https://lemon.fun/docs \u00b7 Terminal binds CA  \n- **X / TG:** https://x.com/lemondotfun \u00b7 https://t.me/lemondotfun\n\n## Classification\n- **defi / launchpads** \u00b7 novelty **none** \u00b7 conf ~0.62\n- Official coin of lemon.fun multi-chain Instant-V3 launchpad (RH primary)\n- Identity = **(robinhood, this CA)** \u2014 other RH LEMON dust CAs exist; this is dominant book + site/API official\n\n## Product truth (running system)\n### Real\n- **Public API live** (not SSR theater):\n  - `GET /api/public/launchpad/stats` \u2192 `totalLaunched=53`, `totalGraduated=213`\n  - `GET /api/public/launchpad/tokens` returns live catalog (many same-day X-bot launches)\n  - `GET /api/public/launchpad/token/0xf0e1\u2026f7a3` \u2192 official pad coin, `lpLocked=true`, socials+site bound, pool matches Dex pair\n- **Docs** detail Instant V3 path: `LemonLaunchFactory.launch` \u2192 token + V3 pool + full-range LP \u2192 `LemonLaunchLocker` (permanent LP NFT, fee split 30/70)\n- **Onchain names match docs:** factory `0x2bA793Fd\u202646DB` = **LemonLaunchFactory** verified; locker `0xc10309cf\u20266903` = **LemonLaunchLocker**; token = **LemonLauncherToken**\n- Site terminal URL hard-binds this CA; homepage/nav reference same CA\n- Fee receiver / NPM / SwapRouter02 addresses published in docs\n\n### Caveats (score honesty)\n- Marketing SSR still flashes **TOKENS LAUNCHED 0 / mcap $0** while API shows 53 \u2014 UI counters unreliable; **API+factory are source of truth**\n- Terminal page often shows **$0 mcap/holders** while Dex/Blockscout live \u2014 indexer UI lag/bug\n- Launch catalog quality is **mostly dust / untraded / X-bot spam** (PennyDick, random LEMON clones, etc.) \u2014 pad works, escape-velocity launches rare\n- \u201cTokenized stock dividends\u201d = documented feature path; **not** verified as material revenue for $LEMON holders this pass\n\n**Verdict:** lemon.fun is a **live launchpad system** (factory+locker+API+launches), not an",
+      "score_line": "73 / 100 \u00b7 Notify: NO"
+    }
+  }
+]

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Desk · Gem Radar · Str.Labs</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./desk.css?v=20260804f">
+</head><body>
+<div id="gate"><div class="gate-card"><h1>Gem Radar</h1><p>Private Str.Labs desk dashboard. Enter the access password to continue.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button id="unlock" type="button">Unlock</button><div class="gate-error" id="gate-error"></div></div></div>
+
+<div id="app">
+  <div class="top">
+    <div class="brand"><div class="brand-mark">G</div><div><h1>Trade Desk</h1><div class="sub">Positions · history · PnL · live DexScreener prices</div></div></div>
+    <div class="meta">
+      <div class="chip">Updated <strong id="generated-at">—</strong></div>
+      <div class="chip mono" id="wallet-addr" title="Desk wallet">—</div>
+      <div class="chip"><a href="/" style="color:inherit;text-decoration:none">Str.Labs</a></div>
+    </div>
+  </div>
+
+  <div id="nav-root"></div>
+
+  <div class="disclaimer"><strong>Experimental.</strong> Agent-executed spot desk on RH + Base. High risk — microcaps can rug, delist, or lose all liquidity. Not financial advice.</div>
+
+  <div class="grid">
+    <section class="card span-12">
+      <h2>PnL Summary</h2>
+      <div id="pnl-summary"></div>
+    </section>
+
+    <section class="card span-12">
+      <h2>Open Positions</h2>
+      <div id="positions"></div>
+    </section>
+
+    <section class="card span-12">
+      <h2>Trade History</h2>
+      <div style="overflow-x:auto"><table><thead><tr><th>Token</th><th>Side</th><th>When</th><th>Price</th><th>MC at fill</th><th>Size</th><th>By</th></tr></thead><tbody id="history-body"></tbody></table></div>
+    </section>
+  </div>
+
+  <div class="footer"><div>Live prices from DexScreener · expand a position for the research brief</div><div class="mono" id="source-line">data/trading.json</div></div>
+</div>
+
+<script src="./desk.js?v=20260804e"></script>
+<script src="./trade.js?v=20260804c"></script>
+</body></html>

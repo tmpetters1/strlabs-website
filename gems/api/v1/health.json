@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "service": "gem-radar-api",
+  "ts": "2026-08-04T23:09:29Z",
+  "queue_rows": 28,
+  "notify_bar": 78.0,
+  "endpoints": [
+    "/api/v1/health",
+    "/api/v1/radar",
+    "/api/v1/notify",
+    "/api/v1/token/{symbol}"
+  ]
+}
