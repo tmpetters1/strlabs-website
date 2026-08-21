@@ -1,0 +1,154 @@
+import type { FaceId } from './types';
+import { CubeState, WORLD_FACE_DIR } from './state';
+
+export type Stage =
+  | 'centers'
+  | 'edges'
+  | 'cross'
+  | 'first-layer'
+  | 'f2l'
+  | 'oll'
+  | 'pll'
+  | 'solved';
+
+export interface StageInfo {
+  stage: Stage;
+  title: string;
+  hint: string;
+}
+
+const STAGE_INFO: Record<Stage, { title: string; hint: string }> = {
+  centers: {
+    title: 'Build the centers',
+    hint: 'Group each color into a solid center block on its own face before anything else.',
+  },
+  edges: {
+    title: 'Pair the edges',
+    hint: 'Match up the edge pieces that share a color so each edge behaves like a single 3x3 edge.',
+  },
+  cross: {
+    title: 'Solve the cross',
+    hint: 'Get the bottom color cross formed, matching the side colors to their centers.',
+  },
+  'first-layer': {
+    title: 'Finish the first layer',
+    hint: 'Insert the bottom corners so the whole bottom face and first layer sides are done.',
+  },
+  f2l: {
+    title: 'Finish F2L (second layer)',
+    hint: 'Pair and insert the middle-layer edges into their slots next to the corners.',
+  },
+  oll: {
+    title: 'Orient the last layer',
+    hint: 'Get the top face to be a single solid color, ignoring the side stickers for now.',
+  },
+  pll: {
+    title: 'Permute the last layer',
+    hint: 'The top face is oriented — now cycle the last layer pieces into their correct spots.',
+  },
+  solved: {
+    title: 'Solved!',
+    hint: 'The cube is fully solved. Scramble it to practice again.',
+  },
+};
+
+function faceGrid(cube: CubeState, face: FaceId) {
+  const dir = WORLD_FACE_DIR[face];
+  const all = cube.getAllStickers();
+  return all.filter((s) => approxDir(s.worldDir, dir));
+}
+
+function approxDir(a: [number, number, number], b: [number, number, number]) {
+  return Math.abs(a[0] - b[0]) < 0.01 && Math.abs(a[1] - b[1]) < 0.01 && Math.abs(a[2] - b[2]) < 0.01;
+}
+
+const OTHER_AXES: Record<FaceId, [0 | 1 | 2, 0 | 1 | 2]> = {
+  U: [0, 2], D: [0, 2],
+  L: [1, 2], R: [1, 2],
+  F: [0, 1], B: [0, 1],
+};
+
+function centersSolved(cube: CubeState): boolean {
+  const max = (cube.n - 1) / 2;
+  const faces: FaceId[] = ['U', 'D', 'L', 'R', 'F', 'B'];
+  return faces.every((face) => {
+    const grid = faceGrid(cube, face);
+    const [a, b] = OTHER_AXES[face];
+    const inner = grid.filter((s) => Math.abs(s.pos[a]) < max - 0.5 && Math.abs(s.pos[b]) < max - 0.5);
+    if (inner.length === 0) return true;
+    return inner.every((s) => s.color === inner[0].color);
+  });
+}
+
+function edgesPaired(cube: CubeState): boolean {
+  const max = (cube.n - 1) / 2;
+  const faces: FaceId[] = ['U', 'D', 'L', 'R', 'F', 'B'];
+  return faces.every((face) => {
+    const grid = faceGrid(cube, face);
+    const [a, b] = OTHER_AXES[face];
+    // 4 edge lines: a = +max (b varies, not extreme), a = -max, b = +max, b = -max
+    const lines = [
+      grid.filter((s) => s.pos[a] > max - 0.5 && Math.abs(s.pos[b]) < max - 0.5),
+      grid.filter((s) => s.pos[a] < -max + 0.5 && Math.abs(s.pos[b]) < max - 0.5),
+      grid.filter((s) => s.pos[b] > max - 0.5 && Math.abs(s.pos[a]) < max - 0.5),
+      grid.filter((s) => s.pos[b] < -max + 0.5 && Math.abs(s.pos[a]) < max - 0.5),
+    ];
+    return lines.every((line) => line.length === 0 || line.every((s) => s.color === line[0].color));
+  });
+}
+
+function faceMatchesBelow(cube: CubeState, face: FaceId, yThresholdExclusive: number): boolean {
+  const grid = faceGrid(cube, face);
+  const relevant = grid.filter((s) => s.pos[1] < yThresholdExclusive);
+  if (relevant.length === 0) return true;
+  return relevant.every((s) => s.color === relevant[0].color);
+}
+
+export function detectStage(cube: CubeState): StageInfo {
+  const max = (cube.n - 1) / 2;
+
+  if (cube.n > 3 && !centersSolved(cube)) {
+    return { stage: 'centers', ...STAGE_INFO.centers };
+  }
+  if (cube.n > 3 && !edgesPaired(cube)) {
+    return { stage: 'edges', ...STAGE_INFO.edges };
+  }
+  if (!cube.isFaceSolved('D') || !crossFullyDone(cube)) {
+    return { stage: 'cross', ...STAGE_INFO.cross };
+  }
+  const firstLayerDone =
+    cube.isFaceSolved('D') && (['L', 'R', 'F', 'B'] as FaceId[]).every((f) => faceMatchesBelow(cube, f, -max + 0.5));
+  if (!firstLayerDone) {
+    return { stage: 'first-layer', ...STAGE_INFO['first-layer'] };
+  }
+  const f2lDone = (['L', 'R', 'F', 'B'] as FaceId[]).every((f) => faceMatchesBelow(cube, f, max - 0.5));
+  if (!f2lDone) {
+    return { stage: 'f2l', ...STAGE_INFO.f2l };
+  }
+  if (!cube.isFaceSolved('U')) {
+    return { stage: 'oll', ...STAGE_INFO.oll };
+  }
+  if (!cube.isSolved()) {
+    return { stage: 'pll', ...STAGE_INFO.pll };
+  }
+  return { stage: 'solved', ...STAGE_INFO.solved };
+}
+
+function crossFullyDone(cube: CubeState): boolean {
+  const max = (cube.n - 1) / 2;
+  const all = cube.getAllStickers();
+  const dDir = WORLD_FACE_DIR['D'];
+  const edgeStickersOnD = all.filter(
+    (s) => approxDir(s.worldDir, dDir) && (Math.abs(s.pos[0]) > max - 0.5) !== (Math.abs(s.pos[2]) > max - 0.5)
+  );
+  if (!edgeStickersOnD.every((s) => s.color === 'D')) return false;
+  const sideFaces: FaceId[] = ['L', 'R', 'F', 'B'];
+  return sideFaces.every((face) => {
+    const grid = faceGrid(cube, face);
+    const [a, b] = OTHER_AXES[face];
+    const bottomEdge = grid.filter(
+      (s) => s.pos[1] < -max + 0.5 && (Math.abs(s.pos[a]) < max - 0.5) !== (Math.abs(s.pos[b]) < max - 0.5)
+    );
+    return bottomEdge.every((s) => s.color === face);
+  });
+}
