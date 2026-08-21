@@ -21,31 +21,31 @@ export interface StageInfo {
 const STAGE_INFO: Record<Stage, { title: string; hint: string }> = {
   centers: {
     title: 'Build the centers',
-    hint: 'Group each color into a solid center block on its own face before anything else.',
+    hint: 'Pick one face and turn its outer layers to gather 4+ same-color center pieces there, then repeat for the other 5 colors - work on opposite faces (like white then yellow) so you don’t undo progress on the one you just finished.',
   },
   edges: {
     title: 'Pair the edges',
-    hint: 'Match up the edge pieces that share a color so each edge behaves like a single 3x3 edge.',
+    hint: 'Find two edge pieces that share a pair of colors and bring them face to face (usually on the front or back layer), then turn a side layer to slide them together into one matched block - repeat for all 12 edges.',
   },
   cross: {
     title: 'Solve the cross',
-    hint: 'Form the color cross on top (matching the side colors to their centers) - it’s easier to see and turn there. Once it’s done, tap the ⇅ Flip button to send it to the bottom.',
+    hint: 'Do this on top, not the bottom - it’s easier to see and reach. For each of the 4 edge pieces matching the top color: bring it to the top layer, then turn U to line its OTHER color up with that color’s center before turning it into the cross. Once all 4 are placed and lined up, tap ⇅ Flip to send the cross to the bottom.',
   },
   'first-layer': {
     title: 'Finish the first layer',
-    hint: 'Insert the corners on top to finish that layer, then tap ⇅ Flip to move it to the bottom before continuing.',
+    hint: 'Still working on top: for each corner piece belonging up there, position it directly above its empty slot (use U to line it up under the two matching side colors), then repeat R U R’ U’ (or the mirrored L’ U’ L U on the other side) until it pops into the slot facing the right way. Do all 4, then tap ⇅ Flip.',
   },
   f2l: {
     title: 'Finish the second layer (F2L)',
-    hint: 'F2L = "First Two Layers." Pair and insert the middle-layer edges into their slots next to the corners.',
+    hint: 'F2L = "First Two Layers." For each remaining edge, find its matching corner, bring both up to the top layer next to each other, then turn U to line the pair up over its empty middle-layer slot before repeating R U R’ U’ (or L’ U’ L U) to drop them in together, matched and correctly oriented.',
   },
   oll: {
     title: 'Orient the last layer (OLL)',
-    hint: 'OLL = "Orient Last Layer." Get the top face to be a single solid color, ignoring the side stickers for now. If you solved F2L on top, tap ⇅ Flip now to send it to the bottom - exact algorithms only show once the remaining layer is on top.',
+    hint: 'OLL = "Orient Last Layer." Get the top face to one solid color in two looks: first fix any misoriented edges (3 possible shapes - dot, L, or line), then fix any twisted corners (7 shapes). You don’t need to memorize these - pause for a few seconds and this app recognizes your exact shape and shows the precise algorithm, highlighting each move as you go. (Solved F2L on top and haven’t flipped? Tap ⇅ Flip first - exact algorithms only show once the last layer is on top.) Want to drill a shape ahead of time? Use "Practice a case" above.',
   },
   pll: {
     title: 'Permute the last layer (PLL)',
-    hint: 'PLL = "Permute Last Layer." The top face is oriented — now cycle the last layer pieces into their correct spots.',
+    hint: 'PLL = "Permute Last Layer." The top is one color, but pieces may be in the wrong spot. Pause for a moment and this app recognizes your exact case (one of 21 standard patterns) and shows the algorithm, highlighting each move as you go - or use "Practice a case" above to try any of them ahead of time.',
   },
   solved: {
     title: 'Solved!',
