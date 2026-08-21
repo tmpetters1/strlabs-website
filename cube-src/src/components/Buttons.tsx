@@ -1,8 +1,5 @@
-import { useRef } from 'react';
 import type { FaceId, Move } from '../cube/types';
 import { FACE_COLOR } from '../cube/types';
-
-const DOUBLE_TAP_MS = 260;
 
 interface FaceButtonProps {
   face: FaceId;
@@ -13,16 +10,11 @@ interface FaceButtonProps {
 }
 
 function FaceButton({ face, prime, wide, onMove, disabled }: FaceButtonProps) {
-  const lastTap = useRef(0);
-
   const handleClick = () => {
-    const now = performance.now();
-    const isDouble = now - lastTap.current < DOUBLE_TAP_MS;
-    lastTap.current = isDouble ? 0 : now;
     onMove({
       face,
       depth: wide ? 2 : 1,
-      turns: isDouble ? 2 : prime ? 3 : 1,
+      turns: prime ? 3 : 1,
     });
   };
 
@@ -48,16 +40,12 @@ interface SliceButtonProps {
 }
 
 function SliceButton({ slice, prime, onMove, disabled }: SliceButtonProps) {
-  const lastTap = useRef(0);
   const handleClick = () => {
-    const now = performance.now();
-    const isDouble = now - lastTap.current < DOUBLE_TAP_MS;
-    lastTap.current = isDouble ? 0 : now;
     onMove({
       face: 'U',
       depth: 1,
       slice,
-      turns: isDouble ? 2 : prime ? 3 : 1,
+      turns: prime ? 3 : 1,
     });
   };
   const label = `${slice}${prime ? "'" : ''}`;
