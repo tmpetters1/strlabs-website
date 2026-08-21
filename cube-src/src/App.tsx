@@ -9,6 +9,8 @@ import { randomScramble } from './cube/scramble';
 import { useKeyboardControls } from './hooks/useKeyboardControls';
 import { useKeyBindings } from './hooks/useKeyBindings';
 import { BindingsPanel } from './components/BindingsPanel';
+import { PracticePanel } from './components/PracticePanel';
+import type { LLCase } from './cube/llAnalysis';
 import './App.css';
 
 const SIZES = [3, 4, 5] as const;
@@ -126,6 +128,7 @@ function App() {
   const { bindings, setBinding, resetBindings } = useKeyBindings();
   useKeyboardControls(n, handleMove, false, bindings);
   const [bindingsOpen, setBindingsOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(false);
 
   const [isTouch] = useState(() => window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
@@ -149,6 +152,18 @@ function App() {
     setRedoStack([]);
     resetHintTimer();
   };
+
+  const handlePractice = useCallback((llCase: LLCase) => {
+    sceneRef.current?.reset();
+    const setupMoves = [...llCase.moves].reverse().map(invertMove);
+    sceneRef.current?.scramble(setupMoves);
+    setHistory([]);
+    setRedoStack([]);
+    setPracticeOpen(false);
+    // Skip the usual idle wait - practicing a case should show its algorithm right away.
+    setShowHint(true);
+    if (hintTimer.current) clearTimeout(hintTimer.current);
+  }, []);
 
   const handleReset = () => {
     sceneRef.current?.reset();
@@ -218,6 +233,9 @@ function App() {
           </button>
           <button className="ghost-btn" onClick={handleScramble}>Scramble</button>
           <button className="ghost-btn" onClick={handleReset}>Reset</button>
+          {n === 3 && (
+            <button className="ghost-btn" onClick={() => setPracticeOpen(true)}>Practice a case</button>
+          )}
           <button className="icon-btn" onClick={() => setBindingsOpen(true)} title="Keyboard bindings" aria-label="Keyboard bindings">
             ⌨
           </button>
@@ -306,6 +324,10 @@ function App() {
           onReset={resetBindings}
           onClose={() => setBindingsOpen(false)}
         />
+      )}
+
+      {practiceOpen && (
+        <PracticePanel onPick={handlePractice} onClose={() => setPracticeOpen(false)} />
       )}
     </div>
   );
