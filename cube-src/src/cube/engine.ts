@@ -45,6 +45,8 @@ function faceQuarterTurns(face: FaceId, turns: number): number {
 }
 
 export function selectMoveCubies(cubies: Cubie[], n: number, move: Move): Cubie[] {
+  if (move.whole) return cubies;
+
   const axis: Axis = move.slice
     ? (move.slice === 'M' ? 'x' : move.slice === 'E' ? 'y' : 'z')
     : FACE_AXIS[move.face];

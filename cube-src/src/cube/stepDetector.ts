@@ -98,6 +98,15 @@ function edgesPaired(cube: CubeState): boolean {
   });
 }
 
+// The color a face's center currently shows - not necessarily that face's
+// "original" color, since a whole-cube flip can move any color to any face.
+function faceCenterColor(cube: CubeState, face: FaceId): string | undefined {
+  const max = (cube.n - 1) / 2;
+  const grid = faceGrid(cube, face);
+  const [a, b] = OTHER_AXES[face];
+  return grid.find((s) => Math.abs(s.pos[a]) < max - 0.5 && Math.abs(s.pos[b]) < max - 0.5)?.color;
+}
+
 function faceMatchesBelow(cube: CubeState, face: FaceId, yThresholdExclusive: number): boolean {
   const grid = faceGrid(cube, face);
   const relevant = grid.filter((s) => s.pos[1] < yThresholdExclusive);
@@ -139,18 +148,21 @@ function crossFullyDone(cube: CubeState): boolean {
   const max = (cube.n - 1) / 2;
   const all = cube.getAllStickers();
   const dDir = WORLD_FACE_DIR['D'];
+  const dCenterColor = faceCenterColor(cube, 'D');
+  if (dCenterColor === undefined) return false;
   const edgeStickersOnD = all.filter(
     (s) => approxDir(s.worldDir, dDir) && (Math.abs(s.pos[0]) > max - 0.5) !== (Math.abs(s.pos[2]) > max - 0.5)
   );
-  if (!edgeStickersOnD.every((s) => s.color === 'D')) return false;
+  if (!edgeStickersOnD.every((s) => s.color === dCenterColor)) return false;
   const sideFaces: FaceId[] = ['L', 'R', 'F', 'B'];
   return sideFaces.every((face) => {
     const grid = faceGrid(cube, face);
     const [a, b] = OTHER_AXES[face];
+    const centerColor = faceCenterColor(cube, face);
     const bottomEdge = grid.filter(
       (s) => s.pos[1] < -max + 0.5 && (Math.abs(s.pos[a]) < max - 0.5) !== (Math.abs(s.pos[b]) < max - 0.5)
     );
-    return bottomEdge.every((s) => s.color === face);
+    return centerColor !== undefined && bottomEdge.every((s) => s.color === centerColor);
   });
 }
 

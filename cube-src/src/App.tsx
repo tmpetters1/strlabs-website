@@ -79,7 +79,7 @@ function App() {
     setRedoStack([]);
 
     const current = exactHintRef.current;
-    if (current) {
+    if (current && !move.whole) {
       setAlgIndex((idx) => {
         const expected = current.moves[idx];
         if (!expected) return idx;
@@ -98,6 +98,14 @@ function App() {
     sceneRef.current?.pushMove(resolved);
     resetHintTimer();
   }, [resetHintTimer]);
+
+  const handleFlip = useCallback(() => {
+    // Rotates the whole cube (not a layer) so top and bottom swap - like
+    // physically picking the cube up and turning it over. Uses the same
+    // visual-to-world remap as face turns, so it flips around whatever is
+    // currently the left-right axis on screen, regardless of camera angle.
+    handleMove({ face: 'R', depth: 1, turns: 2, whole: true });
+  }, [handleMove]);
 
   const handleUndo = useCallback(() => {
     if (history.length === 0) return;
@@ -204,6 +212,9 @@ function App() {
           </button>
           <button className="icon-btn" onClick={handleRedo} disabled={redoStack.length === 0} title="Redo" aria-label="Redo">
             ↷
+          </button>
+          <button className="icon-btn" onClick={handleFlip} title="Flip the whole cube (swap top/bottom)" aria-label="Flip cube">
+            ⇅
           </button>
           <button className="ghost-btn" onClick={handleScramble}>Scramble</button>
           <button className="ghost-btn" onClick={handleReset}>Reset</button>

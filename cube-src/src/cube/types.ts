@@ -21,6 +21,10 @@ export interface Move {
   slice?: 'M' | 'E' | 'S';
   // Number of quarter turns clockwise (looking at the face from outside), 1..3
   turns: 1 | 2 | 3;
+  // Whole-cube reorientation (like picking the cube up and turning it over) -
+  // rotates every cubie together instead of a single layer. `face`/`depth` still
+  // pick the rotation axis, but every cubie is affected regardless of depth.
+  whole?: boolean;
 }
 
 export const FACE_AXIS: Record<FaceId, Axis> = {
