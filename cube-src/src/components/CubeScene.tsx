@@ -6,6 +6,7 @@ import { CubeState } from '../cube/state';
 import { selectMoveCubies } from '../cube/engine';
 import type { FaceId, Move } from '../cube/types';
 import { FACE_AXIS, FACE_COLOR, FACE_SIGN } from '../cube/types';
+import { FACE_CYCLE, OPPOSITE_FACE } from '../cube/orientation';
 
 const STICKER_COLOR: Record<string, string> = FACE_COLOR;
 const BODY_COLOR = '#131419';
@@ -109,8 +110,6 @@ const WORLD_FACE_DIR: Record<FaceId, THREE.Vector3> = {
   B: new THREE.Vector3(0, 0, -1),
 };
 
-const OPPOSITE_FACE: Record<FaceId, FaceId> = { U: 'D', D: 'U', L: 'R', R: 'L', F: 'B', B: 'F' };
-
 function nearestFace(dir: THREE.Vector3): FaceId {
   let best: FaceId = 'F';
   let bestDot = -Infinity;
@@ -206,7 +205,58 @@ export interface CubeSceneHandle {
   pushMove: (move: Move) => void;
   scramble: (moves: Move[]) => void;
   reset: () => void;
+  orientFront: (face: FaceId) => void;
 }
+
+interface CameraOrientAnim {
+  startPos: THREE.Vector3;
+  total: number;
+  startTime: number;
+  duration: number;
+}
+
+// Smoothly spins the camera (around Y, keeping its current radius/elevation) so a
+// given world face becomes the visual front - used to line an algorithm hint's
+// required viewing angle up with what the on-screen buttons actually turn.
+const CameraOrienter = forwardRef<{ orientFront: (face: FaceId) => void }, unknown>(function CameraOrienter(
+  _props,
+  ref
+) {
+  const { camera } = useThree();
+  const animRef = useRef<CameraOrientAnim | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    orientFront: (face: FaceId) => {
+      const cur = nearestFace(camera.position.clone().normalize());
+      const idxCur = FACE_CYCLE.indexOf(cur);
+      const idxTarget = FACE_CYCLE.indexOf(face);
+      if (idxCur === -1 || idxTarget === -1) return;
+      const steps = (idxTarget - idxCur + 4) % 4;
+      if (steps === 0) return;
+      animRef.current = {
+        startPos: camera.position.clone(),
+        total: steps * (Math.PI / 2),
+        startTime: performance.now(),
+        duration: 500,
+      };
+    },
+  }));
+
+  useFrame(() => {
+    const a = animRef.current;
+    if (!a) return;
+    const t = Math.min(1, (performance.now() - a.startTime) / a.duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const angle = a.total * eased;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    camera.position.set(a.startPos.x * cos + a.startPos.z * sin, a.startPos.y, -a.startPos.x * sin + a.startPos.z * cos);
+    camera.lookAt(0, 0, 0);
+    if (t >= 1) animRef.current = null;
+  });
+
+  return null;
+});
 
 interface CubeSceneProps {
   n: number;
@@ -269,7 +319,7 @@ function RotatingRig({
         move,
         affectedIds: new Set(affected.map((c) => c.id)),
         startTime: performance.now(),
-        duration: 220,
+        duration: 110,
         fromAngle: 0,
         toAngle: totalAngle,
         axis,
@@ -326,6 +376,7 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
   const cubeStateRef = useRef(new CubeState(n));
   const queueRef = useRef<Move[]>([]);
   const [, setVersion] = useState(0);
+  const orienterRef = useRef<{ orientFront: (face: FaceId) => void }>(null);
 
   useImperativeHandle(ref, () => ({
     pushMove: (move: Move) => {
@@ -346,12 +397,15 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
       setVersion((v) => v + 1);
       onStateChange(cubeStateRef.current);
     },
+    orientFront: (face: FaceId) => {
+      orienterRef.current?.orientFront(face);
+    },
   }));
 
   return (
     <Canvas
       shadows
-      camera={{ position: [n * 1.7, n * 1.5, n * 2.1], fov: 40 }}
+      camera={{ position: [n * 2.2, n * 1.94, n * 2.72], fov: 40 }}
       style={{ touchAction: 'none' }}
     >
       <color attach="background" args={['#101216']} />
@@ -369,6 +423,7 @@ const CubeScene = forwardRef<CubeSceneHandle, CubeSceneProps>(function CubeScene
         onMoveApplied={onMoveApplied}
       />
       <FrontFaceHighlight n={n} onFrontFaceChange={onFrontFaceChange} onOrientationChange={onOrientationChange} />
+      <CameraOrienter ref={orienterRef} />
       <OrbitControls
         enablePan={false}
         enableZoom={true}

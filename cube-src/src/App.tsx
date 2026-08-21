@@ -1,31 +1,35 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import CubeScene, { type CubeSceneHandle } from './components/CubeScene';
-import { LeftButtonPanel, RightButtonPanel } from './components/Buttons';
+import { LeftButtonPanel, RightButtonPanel, SliceBar } from './components/Buttons';
 import type { FaceId, Move } from './cube/types';
 import { CubeState } from './cube/state';
-import { detectStage, type StageInfo } from './cube/stepDetector';
+import { detectStage, getExactHint, type ExactHint, type StageInfo } from './cube/stepDetector';
+import { invertMove, moveToNotation } from './cube/moves';
 import { randomScramble } from './cube/scramble';
-import { invertMove } from './cube/moves';
 import { useKeyboardControls } from './hooks/useKeyboardControls';
 import './App.css';
 
 const SIZES = [3, 4, 5] as const;
 const HINT_DELAY_MS = 10000;
+const IDENTITY_ORIENTATION: Record<FaceId, FaceId> = { U: 'U', D: 'D', L: 'L', R: 'R', F: 'F', B: 'B' };
 
 function App() {
   const [n, setN] = useState<3 | 4 | 5>(3);
   const [sceneKey, setSceneKey] = useState(0);
   const sceneRef = useRef<CubeSceneHandle>(null);
   const [, setCubeState] = useState<CubeState>(() => new CubeState(3));
-  const [frontFace, setFrontFace] = useState<FaceId>('F');
-  const orientationRef = useRef<Record<FaceId, FaceId>>({ U: 'U', D: 'D', L: 'L', R: 'R', F: 'F', B: 'B' });
-  const [animating, setAnimating] = useState(false);
+  const orientationRef = useRef<Record<FaceId, FaceId>>({ ...IDENTITY_ORIENTATION });
+  const inverseOrientationRef = useRef<Record<FaceId, FaceId>>({ ...IDENTITY_ORIENTATION });
   const [stage, setStage] = useState<StageInfo>(() => detectStage(new CubeState(3)));
   const [showHint, setShowHint] = useState(false);
   const [history, setHistory] = useState<Move[]>([]);
+  const [redoStack, setRedoStack] = useState<Move[]>([]);
   const [blindMode, setBlindMode] = useState(false);
+  const [exactHint, setExactHint] = useState<ExactHint | null>(null);
+  const [algIndex, setAlgIndex] = useState(0);
+  const exactHintRef = useRef<ExactHint | null>(null);
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const undoingRef = useRef(false);
+  const undoRedoRef = useRef<{ kind: 'undo' | 'redo'; original: Move } | null>(null);
 
   const resetHintTimer = useCallback(() => {
     setShowHint(false);
@@ -42,16 +46,46 @@ function App() {
 
   const handleStateChange = useCallback((state: CubeState) => {
     setCubeState(state.clone());
-    setStage(detectStage(state));
+    const info = detectStage(state);
+    setStage(info);
+    const exact = getExactHint(state, n, info.stage);
+    const prev = exactHintRef.current;
+    const same = prev && exact && prev.category === exact.category && prev.caseName === exact.caseName;
+    if (!same) {
+      exactHintRef.current = exact;
+      setExactHint(exact);
+      setAlgIndex(0);
+      if (exact) sceneRef.current?.orientFront(exact.requiredFront);
+    }
     resetHintTimer();
-  }, [resetHintTimer]);
+  }, [resetHintTimer, n]);
 
   const handleMoveApplied = useCallback((move: Move) => {
-    if (undoingRef.current) {
-      undoingRef.current = false;
+    const pending = undoRedoRef.current;
+    undoRedoRef.current = null;
+    if (pending?.kind === 'undo') {
       setHistory((h) => h.slice(0, -1));
-    } else {
-      setHistory((h) => [...h, move]);
+      setRedoStack((r) => [...r, pending.original]);
+      return;
+    }
+    if (pending?.kind === 'redo') {
+      setHistory((h) => [...h, pending.original]);
+      setRedoStack((r) => r.slice(0, -1));
+      return;
+    }
+    setHistory((h) => [...h, move]);
+    setRedoStack([]);
+
+    const current = exactHintRef.current;
+    if (current) {
+      setAlgIndex((idx) => {
+        const expected = current.moves[idx];
+        if (!expected) return idx;
+        const visualLabel = move.slice ?? inverseOrientationRef.current[move.face];
+        const expectedLabel = expected.slice ?? expected.face;
+        if (visualLabel === expectedLabel && move.turns === expected.turns) return idx + 1;
+        return idx;
+      });
     }
   }, []);
 
@@ -66,12 +100,20 @@ function App() {
   const handleUndo = useCallback(() => {
     if (history.length === 0) return;
     const last = history[history.length - 1];
-    undoingRef.current = true;
+    undoRedoRef.current = { kind: 'undo', original: last };
     sceneRef.current?.pushMove(invertMove(last));
     resetHintTimer();
   }, [history, resetHintTimer]);
 
-  useKeyboardControls(n, handleMove, animating);
+  const handleRedo = useCallback(() => {
+    if (redoStack.length === 0) return;
+    const next = redoStack[redoStack.length - 1];
+    undoRedoRef.current = { kind: 'redo', original: next };
+    sceneRef.current?.pushMove(next);
+    resetHintTimer();
+  }, [redoStack, resetHintTimer]);
+
+  useKeyboardControls(n, handleMove, false);
 
   const [isTouch] = useState(() => window.matchMedia('(hover: none) and (pointer: coarse)').matches);
 
@@ -82,13 +124,17 @@ function App() {
     setCubeState(fresh);
     setStage(detectStage(fresh));
     setHistory([]);
-    undoingRef.current = false;
+    setRedoStack([]);
+    exactHintRef.current = null;
+    setExactHint(null);
+    undoRedoRef.current = null;
   };
 
   const handleScramble = () => {
     const moves = randomScramble(n);
     sceneRef.current?.scramble(moves);
     setHistory([]);
+    setRedoStack([]);
     resetHintTimer();
   };
 
@@ -98,8 +144,26 @@ function App() {
     setCubeState(fresh);
     setStage(detectStage(fresh));
     setHistory([]);
-    undoingRef.current = false;
+    setRedoStack([]);
+    exactHintRef.current = null;
+    setExactHint(null);
+    undoRedoRef.current = null;
     resetHintTimer();
+  };
+
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  useEffect(() => {
+    const onChange = () => setIsFullscreen(Boolean(document.fullscreenElement));
+    document.addEventListener('fullscreenchange', onChange);
+    return () => document.removeEventListener('fullscreenchange', onChange);
+  }, []);
+  const canFullscreen = typeof document !== 'undefined' && Boolean(document.documentElement.requestFullscreen);
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
   };
 
   return (
@@ -131,11 +195,19 @@ function App() {
             <span className="blind-dot" />
             <span className="blind-label">Blind mode</span>
           </button>
-          <button className="ghost-btn" onClick={handleUndo} disabled={animating || history.length === 0}>
-            Undo
+          <button className="icon-btn" onClick={handleUndo} disabled={history.length === 0} title="Undo" aria-label="Undo">
+            ↶
           </button>
-          <button className="ghost-btn" onClick={handleScramble} disabled={animating}>Scramble</button>
-          <button className="ghost-btn" onClick={handleReset} disabled={animating}>Reset</button>
+          <button className="icon-btn" onClick={handleRedo} disabled={redoStack.length === 0} title="Redo" aria-label="Redo">
+            ↷
+          </button>
+          <button className="ghost-btn" onClick={handleScramble}>Scramble</button>
+          <button className="ghost-btn" onClick={handleReset}>Reset</button>
+          {canFullscreen && (
+            <button className="icon-btn" onClick={toggleFullscreen} title={isFullscreen ? 'Exit full screen' : 'Full screen'} aria-label="Toggle full screen">
+              {isFullscreen ? '⤡' : '⤢'}
+            </button>
+          )}
         </div>
       </header>
 
@@ -144,7 +216,6 @@ function App() {
           <span className="stage-dot" />
           {stage.title}
         </span>
-        <span className="front-face-tag">Front <strong>{frontFace}</strong></span>
         {!isTouch && (
           <span className="kbd-hint">
             ↑↓←→ U/D/L/R &nbsp;·&nbsp; Space F &nbsp;·&nbsp; Alt B &nbsp;·&nbsp; Shift ' &nbsp;·&nbsp; Ctrl wide
@@ -154,7 +225,7 @@ function App() {
       </div>
 
       <main className="play-area">
-        <LeftButtonPanel n={n} onMove={handleMove} disabled={animating} />
+        <LeftButtonPanel n={n} onMove={handleMove} disabled={false} />
 
         <div className="scene-wrap">
           <CubeScene
@@ -163,23 +234,51 @@ function App() {
             n={n}
             blindMode={blindMode}
             onStateChange={handleStateChange}
-            onFrontFaceChange={setFrontFace}
-            onOrientationChange={(map) => { orientationRef.current = map; }}
-            onAnimatingChange={setAnimating}
+            onFrontFaceChange={() => {}}
+            onOrientationChange={(map) => {
+              orientationRef.current = map;
+              const inverse = { ...IDENTITY_ORIENTATION };
+              (Object.keys(map) as FaceId[]).forEach((visual) => {
+                inverse[map[visual]] = visual;
+              });
+              inverseOrientationRef.current = inverse;
+            }}
+            onAnimatingChange={() => {}}
             onMoveApplied={handleMoveApplied}
           />
           {showHint && stage.stage !== 'solved' && (
             <div className="hint-popover">
-              <p>Want a hint?</p>
-              <p className="hint-text">{stage.hint}</p>
+              {exactHint ? (
+                <>
+                  <p>{exactHint.category}: {exactHint.caseName}</p>
+                  <div className="alg-tokens">
+                    {exactHint.moves.map((step, i) => (
+                      <span
+                        key={i}
+                        className={`alg-token ${i < algIndex ? 'alg-token-done' : ''} ${i === algIndex ? 'alg-token-next' : ''}`}
+                      >
+                        {moveToNotation(step)}
+                      </span>
+                    ))}
+                  </div>
+                  {algIndex >= exactHint.moves.length && <p className="hint-text">Case solved!</p>}
+                </>
+              ) : (
+                <>
+                  <p>Want a hint?</p>
+                  <p className="hint-text">{stage.hint}</p>
+                </>
+              )}
               <button onClick={() => setShowHint(false)}>Got it</button>
             </div>
           )}
           {stage.stage === 'solved' && <div className="solved-banner">Solved 🎉</div>}
         </div>
 
-        <RightButtonPanel n={n} onMove={handleMove} disabled={animating} />
+        <RightButtonPanel n={n} onMove={handleMove} disabled={false} />
       </main>
+
+      <SliceBar n={n} onMove={handleMove} disabled={false} />
     </div>
   );
 }

@@ -82,14 +82,6 @@ function WideSlot({ visible, children }: { visible: boolean; children: React.Rea
   );
 }
 
-function SliceSlot({ visible, children }: { visible: boolean; children: React.ReactNode }) {
-  return (
-    <div className={`btn-group slice-group ${visible ? '' : 'slot-hidden'}`} aria-hidden={!visible}>
-      {children}
-    </div>
-  );
-}
-
 // Opposite-face pairs, one pair per row, so both faces of an axis sit side by side.
 const FACE_ROWS: [FaceId, FaceId][] = [
   ['U', 'D'],
@@ -99,7 +91,6 @@ const FACE_ROWS: [FaceId, FaceId][] = [
 
 export function LeftButtonPanel({ n, onMove, disabled }: ButtonPanelProps) {
   const hasWide = n > 3;
-  const hasSlice = n % 2 === 1;
   return (
     <div className="btn-panel btn-panel-left">
       <WideSlot visible={hasWide}>
@@ -112,18 +103,12 @@ export function LeftButtonPanel({ n, onMove, disabled }: ButtonPanelProps) {
           <FaceButton key={face} face={face} prime wide={false} onMove={onMove} disabled={disabled} />
         ))}
       </div>
-      <SliceSlot visible={hasSlice}>
-        <SliceButton slice="M" prime onMove={onMove} disabled={disabled || !hasSlice} />
-        <SliceButton slice="E" prime onMove={onMove} disabled={disabled || !hasSlice} />
-        <SliceButton slice="S" prime onMove={onMove} disabled={disabled || !hasSlice} />
-      </SliceSlot>
     </div>
   );
 }
 
 export function RightButtonPanel({ n, onMove, disabled }: ButtonPanelProps) {
   const hasWide = n > 3;
-  const hasSlice = n % 2 === 1;
   return (
     <div className="btn-panel btn-panel-right">
       <WideSlot visible={hasWide}>
@@ -136,11 +121,24 @@ export function RightButtonPanel({ n, onMove, disabled }: ButtonPanelProps) {
           <FaceButton key={face} face={face} prime={false} wide={false} onMove={onMove} disabled={disabled} />
         ))}
       </div>
-      <SliceSlot visible={hasSlice}>
-        <SliceButton slice="M" prime={false} onMove={onMove} disabled={disabled || !hasSlice} />
-        <SliceButton slice="E" prime={false} onMove={onMove} disabled={disabled || !hasSlice} />
-        <SliceButton slice="S" prime={false} onMove={onMove} disabled={disabled || !hasSlice} />
-      </SliceSlot>
+    </div>
+  );
+}
+
+// M/E/S slices are used far less often than face turns, so they get one shared
+// strip at the bottom of the screen instead of taking up room in both side panels.
+export function SliceBar({ n, onMove, disabled }: ButtonPanelProps) {
+  const hasSlice = n % 2 === 1;
+  if (!hasSlice) return null;
+  const slices: ('M' | 'E' | 'S')[] = ['M', 'E', 'S'];
+  return (
+    <div className="slice-bar">
+      {slices.map((slice) => (
+        <div key={slice} className="slice-pair">
+          <SliceButton slice={slice} prime onMove={onMove} disabled={disabled} />
+          <SliceButton slice={slice} prime={false} onMove={onMove} disabled={disabled} />
+        </div>
+      ))}
     </div>
   );
 }

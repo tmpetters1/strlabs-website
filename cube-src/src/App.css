@@ -208,10 +208,30 @@ html, body, #root {
   box-shadow: 0 0 8px rgba(110, 168, 254, 0.9);
 }
 
-.front-face-tag strong {
-  color: var(--text);
-  font-weight: 700;
+.icon-btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  font-size: 17px;
+  line-height: 1;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
+
+.icon-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.icon-btn:disabled { opacity: 0.35; cursor: default; }
 
 .kbd-hint {
   color: var(--text-faint);
@@ -343,6 +363,64 @@ html, body, #root {
   font-weight: 600;
 }
 
+/* ---------- Slice bar (M/E/S, shared bottom strip) ---------- */
+
+.slice-bar {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border);
+  background: rgba(11, 12, 16, 0.6);
+  flex-shrink: 0;
+}
+
+.slice-pair {
+  display: flex;
+  gap: 6px;
+}
+
+.slice-pair .face-btn {
+  width: 40px;
+  max-width: 40px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* ---------- Algorithm hint ---------- */
+
+.alg-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.alg-token {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-faint);
+  border: 1px solid transparent;
+}
+
+.alg-token-done {
+  color: var(--text-dim);
+  background: rgba(52, 211, 153, 0.08);
+}
+
+.alg-token-next {
+  color: #fff;
+  background: var(--accent-strong);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 12px rgba(74, 134, 247, 0.6);
+}
+
 /* ---------- Overlays ---------- */
 
 .hint-popover {
@@ -404,16 +482,41 @@ html, body, #root {
 @media (max-width: 640px) {
   .topbar { padding: 10px 14px; gap: 10px; }
   .play-area {
-    grid-template-columns: 60px 1fr 60px;
+    grid-template-columns: 84px 1fr 84px;
   }
-  .btn-panel { gap: 10px; }
-  .btn-group { gap: 7px; }
-  .face-btn {
-    max-width: 54px;
-    font-size: 14px;
-    border-radius: 15px;
+  .btn-panel { gap: 8px; padding: 6px; }
+
+  /* Face buttons stack in a single column and stretch to fill the whole side,
+     instead of a cramped 2-column grid - roughly 4x the touch-target area. */
+  .standard-group.face-grid {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    gap: 8px;
   }
-  .wide-btn { max-width: 42px; }
+  .standard-group .face-btn {
+    flex: 1;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 16px;
+    font-size: 20px;
+  }
+  .wide-group.face-grid {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    flex: 0 0 auto;
+  }
+  .wide-group .face-btn {
+    flex: 1;
+    max-width: none;
+    aspect-ratio: 1;
+    font-size: 10px;
+    border-radius: 10px;
+  }
+
   .topbar h1 { font-size: 15px; }
   .kbd-hint { display: none; }
   .stage-bar { gap: 10px; padding: 8px 14px; }
@@ -422,10 +525,9 @@ html, body, #root {
 }
 
 @media (max-width: 420px) {
-  .btn-panel { gap: 6px; padding: 4px; }
-  .btn-group { gap: 5px; }
-  .face-btn { max-width: 42px; border-radius: 13px; }
-  .wide-btn { max-width: 32px; }
-  .slice-btn { font-size: 12px; }
+  .play-area { grid-template-columns: 72px 1fr 72px; }
+  .standard-group .face-btn { font-size: 17px; border-radius: 14px; }
+  .slice-pair .face-btn { width: 34px; max-width: 34px; }
+  .slice-bar { gap: 12px; }
   .ghost-btn { padding: 8px 12px; }
 }

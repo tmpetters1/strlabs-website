@@ -1,5 +1,6 @@
-import type { FaceId } from './types';
+import type { FaceId, Move } from './types';
 import { CubeState, WORLD_FACE_DIR } from './state';
+import { detectOllCornerPhase, detectOllEdgePhase, detectPll } from './llAnalysis';
 
 export type Stage =
   | 'centers'
@@ -35,16 +36,16 @@ const STAGE_INFO: Record<Stage, { title: string; hint: string }> = {
     hint: 'Insert the bottom corners so the whole bottom face and first layer sides are done.',
   },
   f2l: {
-    title: 'Finish F2L (second layer)',
-    hint: 'Pair and insert the middle-layer edges into their slots next to the corners.',
+    title: 'Finish the second layer (F2L)',
+    hint: 'F2L = "First Two Layers." Pair and insert the middle-layer edges into their slots next to the corners.',
   },
   oll: {
-    title: 'Orient the last layer',
-    hint: 'Get the top face to be a single solid color, ignoring the side stickers for now.',
+    title: 'Orient the last layer (OLL)',
+    hint: 'OLL = "Orient Last Layer." Get the top face to be a single solid color, ignoring the side stickers for now.',
   },
   pll: {
-    title: 'Permute the last layer',
-    hint: 'The top face is oriented — now cycle the last layer pieces into their correct spots.',
+    title: 'Permute the last layer (PLL)',
+    hint: 'PLL = "Permute Last Layer." The top face is oriented — now cycle the last layer pieces into their correct spots.',
   },
   solved: {
     title: 'Solved!',
@@ -151,4 +152,38 @@ function crossFullyDone(cube: CubeState): boolean {
     );
     return bottomEdge.every((s) => s.color === face);
   });
+}
+
+export interface ExactHint {
+  category: 'OLL edges' | 'OLL corners' | 'PLL';
+  caseName: string;
+  moves: Move[];
+  requiredFront: FaceId;
+}
+
+// Exact algorithm lookup - only meaningful on a 3x3 during OLL/PLL, where the
+// remaining state is one of a known finite set of cases. Returns null when the
+// size doesn't support case recognition, or when the current pattern doesn't
+// match any of the algorithms we have on file (falls back to the plain hint text).
+export function getExactHint(cube: CubeState, n: number, stage: Stage): ExactHint | null {
+  if (n !== 3) return null;
+  if (stage === 'oll') {
+    const edgePhase = detectOllEdgePhase(cube);
+    if (edgePhase) {
+      return { category: 'OLL edges', caseName: edgePhase.case.name, moves: edgePhase.case.moves, requiredFront: edgePhase.requiredFront };
+    }
+    const cornerPhase = detectOllCornerPhase(cube);
+    if (cornerPhase) {
+      return { category: 'OLL corners', caseName: cornerPhase.case.name, moves: cornerPhase.case.moves, requiredFront: cornerPhase.requiredFront };
+    }
+    return null;
+  }
+  if (stage === 'pll') {
+    const p = detectPll(cube);
+    if (p) {
+      return { category: 'PLL', caseName: p.case.name, moves: p.case.moves, requiredFront: p.requiredFront };
+    }
+    return null;
+  }
+  return null;
 }
